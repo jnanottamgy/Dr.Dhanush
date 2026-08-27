@@ -28,9 +28,8 @@ covering an online store to sell medicines and wellness products.
 
 ## Before sending
 
-Fill the placeholders marked `[...]` in the document (highlighted in amber).
-Only Dr. Dhanush's details are outstanding: clinic name, address, GSTIN and
-AYUSH licence number. The JTACS side carries no details beyond the name.
+Nothing. The document carries no fill-in placeholders — both parties are named
+and nothing else is requested.
 
 ## Regenerating the PDF
 
