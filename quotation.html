@@ -1,0 +1,1010 @@
+<title>Dhanush Ayurveda Commerce Quotation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:wght@400;600;700&display=swap">
+
+<style>
+:root{
+  --paper:#FAFAF8; --surface:#FFFFFF; --surface-2:#F3F4F1; --surface-3:#ECEEEA;
+  --ink:#161D1B; --ink-2:#4A5551; --ink-3:#78827E;
+  --rule:#DCE0DC; --rule-strong:#B4BCB7;
+  --accent:#12564D; --accent-ink:#0C3F38; --accent-soft:#E3EFEB; --accent-line:#9CC6BB;
+  --vendor:#3A5573; --vendor-soft:#E7ECF2; --vendor-line:#A9BDD4;
+  --warn:#8A5A00; --warn-soft:#FAF1DC; --warn-line:#DFC98C;
+  --good:#1B6E3E; --good-soft:#E2F0E7;
+  --shadow:0 1px 2px rgba(22,29,27,.05), 0 8px 28px -12px rgba(22,29,27,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1413; --surface:#151D1B; --surface-2:#1B2422; --surface-3:#212B29;
+    --ink:#E9EEEB; --ink-2:#A7B3AE; --ink-3:#7D8984;
+    --rule:#27312E; --rule-strong:#3B4743;
+    --accent:#63C3AC; --accent-ink:#8FD8C5; --accent-soft:#14312C; --accent-line:#2C5C53;
+    --vendor:#92B3D6; --vendor-soft:#18242F; --vendor-line:#33506C;
+    --warn:#DCA84A; --warn-soft:#2A2316; --warn-line:#5A4A21;
+    --good:#5FC088; --good-soft:#16281E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1413; --surface:#151D1B; --surface-2:#1B2422; --surface-3:#212B29;
+  --ink:#E9EEEB; --ink-2:#A7B3AE; --ink-3:#7D8984;
+  --rule:#27312E; --rule-strong:#3B4743;
+  --accent:#63C3AC; --accent-ink:#8FD8C5; --accent-soft:#14312C; --accent-line:#2C5C53;
+  --vendor:#92B3D6; --vendor-soft:#18242F; --vendor-line:#33506C;
+  --warn:#DCA84A; --warn-soft:#2A2316; --warn-line:#5A4A21;
+  --good:#5FC088; --good-soft:#16281E;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Fira Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:15px; line-height:1.62; margin:0;
+  -webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;
+}
+.doc{max-width:980px; margin:0 auto; padding:0 20px 96px;}
+
+/* ---------- letterhead ---------- */
+.letterhead{
+  border-bottom:2px solid var(--ink);
+  padding:44px 0 20px; margin-bottom:34px;
+  display:flex; flex-wrap:wrap; gap:28px; align-items:flex-end; justify-content:space-between;
+}
+.mark{display:flex; align-items:center; gap:14px;}
+.mark svg{display:block; flex:none; color:var(--accent);}
+.mark-txt .name{
+  font-family:"Spectral", Georgia, serif; font-weight:700; font-size:30px;
+  letter-spacing:.01em; line-height:1.05; margin:0; color:var(--ink);
+}
+.mark-txt .sub{
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:6px; font-weight:500;
+}
+.docmeta{text-align:right; font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:12px; line-height:1.85; color:var(--ink-2);}
+.docmeta .kind{
+  font-family:"Fira Sans", sans-serif; font-size:12px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;
+}
+.docmeta b{color:var(--ink); font-weight:600;}
+
+/* ---------- parties ---------- */
+.parties{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-bottom:44px;}
+.party{background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:20px 22px;}
+.party h3{
+  font-family:"Fira Sans",sans-serif; font-size:10px; font-weight:600; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 12px;
+}
+.party .who{font-family:"Spectral",Georgia,serif; font-size:20px; font-weight:600; margin:0 0 4px; line-height:1.25;}
+.party p{margin:0; color:var(--ink-2); font-size:13.5px; line-height:1.7;}
+.fill{
+  background:var(--warn-soft); border-bottom:1px dashed var(--warn);
+  color:var(--warn); padding:0 4px; border-radius:2px; font-size:12.5px; font-weight:500;
+  font-family:"IBM Plex Mono",monospace;
+}
+
+/* ---------- section rail ---------- */
+section{
+  display:grid; grid-template-columns:56px 1fr; gap:26px;
+  padding-top:38px; margin-top:38px; border-top:1px solid var(--rule);
+  scroll-margin-top:20px;
+}
+section:first-of-type{border-top:none; margin-top:0;}
+.num{
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500;
+  color:var(--accent); padding-top:7px; letter-spacing:.02em;
+}
+.body>h2{
+  font-family:"Spectral",Georgia,serif; font-size:26px; font-weight:600;
+  margin:0 0 6px; line-height:1.22; text-wrap:balance; letter-spacing:-.01em;
+}
+.body>.deck{color:var(--ink-2); margin:0 0 22px; font-size:15px; max-width:66ch;}
+h3.sub{
+  font-family:"Fira Sans",sans-serif; font-size:11px; font-weight:600; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3); margin:32px 0 12px;
+  padding-bottom:7px; border-bottom:1px solid var(--rule);
+}
+h3.sub:first-child{margin-top:0;}
+p{max-width:68ch;}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; margin:0 0 6px; border:1px solid var(--rule); border-radius:3px; background:var(--surface);}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:520px;}
+caption{
+  caption-side:top; text-align:left; padding:12px 16px; font-size:11px; font-weight:600;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3);
+  border-bottom:1px solid var(--rule); background:var(--surface-2);
+}
+th,td{padding:11px 16px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top;}
+thead th{
+  font-size:10.5px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--rule-strong); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none;}
+td.n, th.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+tr.total td{
+  background:var(--accent-soft); font-weight:700; color:var(--accent-ink);
+  border-top:2px solid var(--accent); border-bottom:none; font-size:14.5px;
+}
+tr.sub td{background:var(--surface-2); font-weight:600;}
+tr.vtotal td{
+  background:var(--vendor-soft); font-weight:700; color:var(--vendor);
+  border-top:2px solid var(--vendor); border-bottom:none; font-size:14.5px;
+}
+.rate{font-family:"IBM Plex Mono",monospace; font-size:13px;}
+.free{color:var(--good); font-weight:600;}
+.muted{color:var(--ink-3);}
+.tnote{font-size:12.5px; color:var(--ink-3); margin:9px 0 0; line-height:1.6; max-width:72ch;}
+
+/* ---------- chips / callouts ---------- */
+.chip{
+  display:inline-block; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  padding:3px 8px; border-radius:2px; white-space:nowrap; vertical-align:middle;
+}
+.chip.us{background:var(--accent-soft); color:var(--accent-ink); border:1px solid var(--accent-line);}
+.chip.them{background:var(--vendor-soft); color:var(--vendor); border:1px solid var(--vendor-line);}
+.chip.pick{background:var(--good-soft); color:var(--good); border:1px solid var(--good);}
+.chip.warn{background:var(--warn-soft); color:var(--warn); border:1px solid var(--warn-line);}
+
+.note{
+  border-left:3px solid var(--warn); background:var(--warn-soft);
+  padding:14px 18px; margin:18px 0; border-radius:0 3px 3px 0;
+}
+.note b{color:var(--warn);}
+.note p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:none;}
+.note p+p{margin-top:8px;}
+
+.win{
+  border-left:3px solid var(--accent); background:var(--accent-soft);
+  padding:14px 18px; margin:18px 0; border-radius:0 3px 3px 0;
+}
+.win p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:none;}
+.win b{color:var(--accent-ink);}
+
+.howbox{border:1px solid var(--rule); border-radius:3px; background:var(--surface); padding:4px 0; margin:16px 0 6px;}
+ol.how{margin:0; padding:6px 22px 6px 44px; counter-reset:s;}
+ol.how li{margin:9px 0; font-size:13.5px; color:var(--ink-2); padding-left:4px;}
+ol.how li b, ol.how li strong{color:var(--ink); font-weight:600;}
+ol.how li::marker{color:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:500;}
+
+ul.plain{margin:12px 0; padding-left:0; list-style:none;}
+ul.plain li{position:relative; padding-left:22px; margin:9px 0; font-size:14px; color:var(--ink-2); max-width:70ch;}
+ul.plain li::before{
+  content:""; position:absolute; left:2px; top:.62em; width:7px; height:7px;
+  border:1.5px solid var(--accent); border-radius:1px;
+}
+ul.plain li b{color:var(--ink); font-weight:600;}
+
+ul.tick{margin:12px 0; padding-left:0; list-style:none;}
+ul.tick li{position:relative; padding-left:26px; margin:11px 0; font-size:14px; color:var(--ink-2); max-width:70ch;}
+ul.tick li::before{
+  content:"\2713"; position:absolute; left:0; top:0; color:var(--accent); font-weight:700; font-size:14px;
+}
+ul.tick li b{color:var(--ink); font-weight:600; display:block; margin-bottom:1px;}
+
+/* ---------- plan cards ---------- */
+.plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:20px 0 6px;}
+.plan{
+  border:1px solid var(--rule); border-radius:3px; background:var(--surface);
+  padding:22px 20px; display:flex; flex-direction:column;
+}
+.plan.best{border:1.5px solid var(--accent); box-shadow:var(--shadow); position:relative;}
+.plan .flag{
+  position:absolute; top:-9px; left:20px; background:var(--accent); color:var(--paper);
+  font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:3px 9px; border-radius:2px;
+}
+.plan h4{font-family:"Spectral",Georgia,serif; font-size:20px; font-weight:600; margin:0 0 3px;}
+.plan .for{font-size:12.5px; color:var(--ink-3); margin:0 0 16px; min-height:2.9em; line-height:1.5;}
+.plan .price{font-size:29px; font-weight:600; color:var(--accent-ink); line-height:1; font-variant-numeric:tabular-nums;}
+.plan .price small{font-size:13px; font-weight:500; color:var(--ink-3);}
+.plan .yr{font-size:12.5px; color:var(--ink-2); margin:8px 0 0; padding-top:10px; border-top:1px solid var(--rule);}
+.plan .yr b{color:var(--good); font-weight:600;}
+
+/* ---------- reasons ---------- */
+.reasons{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; margin:20px 0 6px;}
+.reason{background:var(--surface); padding:20px 22px;}
+.reason .rn{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--accent); font-weight:500;}
+.reason h4{font-family:"Fira Sans",sans-serif; font-size:15px; font-weight:600; margin:7px 0 6px; line-height:1.35;}
+.reason p{margin:0; font-size:13.5px; color:var(--ink-2); line-height:1.62; max-width:none;}
+
+/* ---------- timeline ---------- */
+.tl{margin:20px 0 6px; border-left:2px solid var(--rule); padding-left:0;}
+.tl-row{position:relative; padding:0 0 26px 26px;}
+.tl-row:last-child{padding-bottom:0;}
+.tl-row::before{
+  content:""; position:absolute; left:-6px; top:5px; width:10px; height:10px;
+  background:var(--accent); border-radius:50%; border:2px solid var(--paper);
+}
+.tl-row .wk{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+.tl-row h4{font-family:"Fira Sans",sans-serif; font-size:15px; font-weight:600; margin:4px 0 5px;}
+.tl-row p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:66ch;}
+
+/* ---------- signature ---------- */
+.signblock{
+  margin-top:44px; padding-top:34px; border-top:2px solid var(--ink);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:34px;
+}
+.sig h4{font-family:"Fira Sans",sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin:0 0 42px;}
+.sigline{border-bottom:1px solid var(--rule-strong); margin-bottom:9px;}
+.sig p{margin:0; font-size:12.5px; color:var(--ink-3); line-height:1.85;}
+
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--rule); font-size:11.5px; color:var(--ink-3); line-height:1.75;}
+footer h4{font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px;}
+footer a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-line);}
+footer a:hover{border-bottom-color:var(--accent);}
+footer ol{padding-left:18px; margin:0; columns:2; column-gap:34px;}
+footer li{margin:0 0 5px; break-inside:avoid;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+@media (max-width:660px){
+  section{grid-template-columns:1fr; gap:0;}
+  .num{padding-top:0; margin-bottom:8px;}
+  .body>h2{font-size:22px;}
+  .letterhead{padding-top:30px;}
+  .mark-txt .name{font-size:24px;}
+  .docmeta{text-align:left;}
+  footer ol{columns:1;}
+}
+@media print{
+  @page{size:A4; margin:14mm 12mm;}
+  body{background:#fff; color:#000; font-size:10.2pt;}
+  .doc{max-width:none; padding:0;}
+  section{break-inside:auto; page-break-inside:auto;}
+  .tw,.plan,.reason,.note,.win,.howbox,.party,.tl-row{break-inside:avoid; page-break-inside:avoid;}
+  h2,h3.sub{break-after:avoid; page-break-after:avoid;}
+  .signblock{break-before:auto;}
+  a{color:#000;}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important;}}
+</style>
+
+<div class="doc">
+
+<header class="letterhead">
+  <div class="mark">
+    <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <rect x="1" y="1" width="44" height="44" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1.5"/>
+      <path d="M23 9 C15 15, 12 22, 23 37 C34 22, 31 15, 23 9 Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M23 37 L23 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M23 24 L17.5 19 M23 29 L28.5 24" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <div class="mark-txt">
+      <p class="name">JTACS</p>
+      <p class="sub">Digital Commerce &amp; Advisory</p>
+    </div>
+  </div>
+  <div class="docmeta">
+    <div class="kind">Quotation &amp; Proforma Invoice</div>
+    Ref &nbsp;<b>JTACS/QTN/2026-27/014</b><br>
+    Date &nbsp;<b>27 August 2026</b><br>
+    Valid till &nbsp;<b>26 September 2026</b><br>
+    Currency &nbsp;<b>INR (&#8377;)</b>
+  </div>
+</header>
+
+<div class="parties">
+  <div class="party">
+    <h3>From</h3>
+    <p class="who">JTACS</p>
+    <p>
+      <span class="fill">[Legal entity name]</span><br>
+      <span class="fill">[Office address, City, PIN]</span><br>
+      GSTIN <span class="fill">[GSTIN]</span> &nbsp;&middot;&nbsp; PAN <span class="fill">[PAN]</span><br>
+      <span class="fill">[Phone]</span> &nbsp;&middot;&nbsp; <span class="fill">[Email]</span>
+    </p>
+  </div>
+  <div class="party">
+    <h3>Quotation for</h3>
+    <p class="who">Dr. R. Dhanush</p>
+    <p>
+      Ayurvedic Physician &mdash; Medicines &amp; Wellness Products<br>
+      <span class="fill">[Clinic / firm name]</span><br>
+      <span class="fill">[Address, City, PIN]</span><br>
+      GSTIN <span class="fill">[GSTIN]</span> &nbsp;&middot;&nbsp; AYUSH Lic. <span class="fill">[No.]</span>
+    </p>
+  </div>
+  <div class="party">
+    <h3>Subject</h3>
+    <p class="who">Online Store &amp; Ordering System</p>
+    <p>
+      A Shopify online store to sell Ayurvedic medicines and products, with Razorpay
+      for payments, a courier partner for doorstep delivery, and a WhatsApp Business
+      channel for community, offers and ordering.
+    </p>
+  </div>
+</div>
+
+<section id="s1">
+  <div class="num">01</div>
+  <div class="body">
+    <h2>In plain words, what you are buying</h2>
+    <p class="deck">Read only this page if you read nothing else. Everything after it is the detail behind these five points.</p>
+
+    <ul class="tick">
+      <li><b>Your own online shop.</b> A proper website where patients see your medicines, add them to a cart, and pay &mdash; on their phone, in two minutes. It is yours, in your name.</li>
+      <li><b>Money reaches your bank directly.</b> Payments come in by UPI, card, net banking or wallet through Razorpay, and land in your bank account. JTACS never touches your money.</li>
+      <li><b>A courier picks up and delivers.</b> When an order comes, a courier boy comes to your place, collects the parcel, and delivers it to the patient's home anywhere in India. Tracking goes to the patient automatically.</li>
+      <li><b>A WhatsApp channel for your patients.</b> A community they can join for updates and offers, plus automatic WhatsApp messages when their order is confirmed, shipped and delivered &mdash; and the option to order straight from WhatsApp.</li>
+      <li><b>One bill from us, and clear information on everyone else's bills.</b> JTACS charges you a one-time fee to build all of this. Shopify, Razorpay, the courier and WhatsApp charge you separately, directly, at their own published rates. <b>We add no commission on top of them.</b></li>
+    </ul>
+
+    <div class="win">
+      <p><b>The short version of the money.</b> JTACS charges <b>&#8377;36,000 + 18% GST = &#8377;42,480</b>, one time, to build and launch everything. To start the store you will also pay roughly <b>&#8377;24,400</b> to Shopify, WhatsApp and the domain provider in the first month. After that, expect around <b>&#8377;16,600 per month</b> in running costs at 100 orders a month &mdash; plus an optional JTACS care plan from &#8377;3,500 a month if you want us to keep running it for you. Section 08 shows every rupee.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="num">02</div>
+  <div class="body">
+    <h2>Scope of work &mdash; what JTACS will build</h2>
+    <p class="deck">Fixed scope, fixed price. Anything outside this list is quoted separately before we start it, never billed as a surprise.</p>
+
+    <h3 class="sub">A &nbsp;&middot;&nbsp; The online store</h3>
+    <ul class="plain">
+      <li><b>Shopify store setup</b> on your own domain (for example <span class="rate">drdhanushayurveda.in</span>), configured for India: INR pricing, GST-compliant invoices, Indian address formats and pin-code based shipping.</li>
+      <li><b>Custom-designed storefront</b> &mdash; homepage, shop, product pages, About the Doctor, Consultation enquiry, Contact, plus the legally required pages (Terms, Privacy, Shipping Policy, Refund &amp; Return Policy).</li>
+      <li><b>Mobile-first design.</b> Over 80% of your patients will open the site on a phone. It is designed for the phone first and the laptop second.</li>
+      <li><b>Product catalogue loaded &mdash; up to 30 products</b> with photographs, descriptions, ingredients, dosage notes, MRP, stock counts and category grouping (for example: Digestion, Joint Care, Skin, Immunity, Oils, Churnas).</li>
+      <li><b>Search, filters and related-product suggestions</b> so a patient looking for one medicine discovers three more.</li>
+    </ul>
+
+    <h3 class="sub">B &nbsp;&middot;&nbsp; Payments, delivery and WhatsApp</h3>
+    <ul class="plain">
+      <li><b>Razorpay payment gateway</b> &mdash; account opening support, KYC document preparation, integration, live test transactions, settlement to your bank account, and Cash on Delivery enabled alongside.</li>
+      <li><b>Courier integration</b> &mdash; account setup, connection to the store, automatic pickup requests, shipping labels printed from your dashboard, automatic tracking links to patients, and a returns flow.</li>
+      <li><b>WhatsApp Business setup</b> &mdash; verified business profile, product catalogue inside WhatsApp, a Community your patients can join, and automatic order-update messages. Full detail in Section 07.</li>
+    </ul>
+
+    <h3 class="sub">C &nbsp;&middot;&nbsp; Launch and handover</h3>
+    <ul class="plain">
+      <li><b>Google Analytics and Search Console</b> connected, so you can see how many people visited and what they bought.</li>
+      <li><b>Basic SEO</b> &mdash; page titles, descriptions, product schema and a Google Business Profile, so people searching for an Ayurvedic doctor in your city can find you.</li>
+      <li><b>End-to-end testing.</b> We place real test orders ourselves &mdash; pay, ship, track, refund &mdash; before you go live.</li>
+      <li><b>One training session (90 minutes)</b> for you and your staff: adding a product, seeing an order, printing a label, issuing a refund. Recorded, so you can watch it again.</li>
+      <li><b>30 days of free defect support</b> after go-live. If something we built does not work, we fix it at no charge.</li>
+    </ul>
+
+    <h3 class="sub">D &nbsp;&middot;&nbsp; Not included in this price</h3>
+    <p class="tnote">Product photography and videography &middot; logo and brand identity design (if you do not have one) &middot; content writing beyond your supplied product text &middot; paid advertising and its ad spend &middot; mobile apps for Android/iOS &middot; doctor consultation video calls &middot; subscription/refill ordering &middot; regional-language versions of the store. Each of these is available &mdash; see the add-on rates in Section 09.</p>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="num">03</div>
+  <div class="body">
+    <h2>JTACS charges <span class="chip us">Payable to us</span></h2>
+    <p class="deck">This is the one-time fee for building, integrating, testing and launching everything described in Section 02. It is the only invoice you will receive from JTACS for the build.</p>
+
+    <div class="tw">
+      <table>
+        <caption>Proforma invoice &mdash; one-time website and systems build</caption>
+        <thead>
+          <tr><th style="width:38px">#</th><th>Description of service</th><th class="n">Amount (&#8377;)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="muted">1</td><td><b>Store design &amp; development</b> &mdash; Shopify setup, custom storefront design, up to 8 pages, mobile-first build, domain and email configuration</td><td class="n">14,000</td></tr>
+          <tr><td class="muted">2</td><td><b>Product catalogue setup</b> &mdash; up to 30 products with images, descriptions, pricing, stock, categories, search and filters</td><td class="n">6,000</td></tr>
+          <tr><td class="muted">3</td><td><b>Razorpay payment integration</b> &mdash; account and KYC support, gateway integration, UPI / cards / net banking / wallets / COD, live testing, settlement setup</td><td class="n">5,000</td></tr>
+          <tr><td class="muted">4</td><td><b>Logistics &amp; delivery integration</b> &mdash; courier account, automated pickup, labels, tracking, COD reconciliation, return flow</td><td class="n">4,000</td></tr>
+          <tr><td class="muted">5</td><td><b>WhatsApp Business setup</b> &mdash; verified profile, catalogue, Community structure, opt-in flow, order-update message templates, broadcast setup</td><td class="n">5,000</td></tr>
+          <tr><td class="muted">6</td><td><b>Compliance, launch &amp; training</b> &mdash; legal pages, GST invoice configuration, SEO basics, analytics, end-to-end testing, go-live and staff training</td><td class="n">2,000</td></tr>
+          <tr class="sub"><td></td><td>Taxable value</td><td class="n">36,000</td></tr>
+          <tr><td></td><td>GST @ 18% <span class="muted">(SAC 998314 &mdash; IT design &amp; development services)</span></td><td class="n">6,480</td></tr>
+          <tr class="total"><td></td><td>Total payable to JTACS</td><td class="n">42,480</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote"><b>Rupees Forty-Two Thousand Four Hundred and Eighty Only.</b> If your business is GST-registered, the &#8377;6,480 GST is claimable by you as input tax credit &mdash; so your real cost is &#8377;36,000. Please share your GSTIN before the first invoice is raised.</p>
+
+    <div class="note">
+      <p><b>Important &mdash; what this &#8377;42,480 does not cover.</b> Shopify's subscription, Razorpay's transaction fees, courier charges and WhatsApp message costs are <b>not</b> included here and are <b>not</b> billed by JTACS. You pay those companies directly, from your own account, at their published rates. Sections 04 to 07 explain exactly what each of them will charge you and why. We show you these numbers up front so there are no shocks in month two.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="num">04</div>
+  <div class="body">
+    <h2>Shopify <span class="chip them">Paid by you, directly to Shopify</span></h2>
+    <p class="deck">Shopify is the software your shop runs on. You rent it monthly. It handles the cart, the checkout, stock counts, orders and invoices &mdash; so nothing breaks when 200 people visit at once, and you are never dependent on one developer's server.</p>
+
+    <h3 class="sub">What Shopify costs in India</h3>
+    <div class="tw">
+      <table>
+        <caption>Shopify plans &mdash; India pricing, annual billing</caption>
+        <thead>
+          <tr><th>Plan</th><th class="n">Per month</th><th class="n">+ 18% GST</th><th class="n">Per year, all-in</th><th class="n">Extra fee on outside gateway</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Basic</b> &nbsp;<span class="chip pick">Recommended</span></td><td class="n">&#8377;1,499</td><td class="n">&#8377;1,769</td><td class="n"><b>&#8377;21,226</b></td><td class="n">2.0%</td></tr>
+          <tr><td>Grow</td><td class="n">&#8377;5,599</td><td class="n">&#8377;6,607</td><td class="n">&#8377;79,282</td><td class="n">1.0%</td></tr>
+          <tr><td>Advanced</td><td class="n">&#8377;22,680</td><td class="n">&#8377;26,762</td><td class="n">&#8377;3,21,149</td><td class="n">0.6%</td></tr>
+          <tr><td>Plus <span class="muted">(enterprise)</span></td><td class="n">from &#8377;1,75,000</td><td class="n">&#8377;2,06,500</td><td class="n">&#8377;24,78,000</td><td class="n">0.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Paying month-by-month instead of yearly costs roughly <b>25% more</b> &mdash; about &#8377;1,994 + GST = &#8377;2,353 a month on Basic. We recommend the annual Basic plan: it saves you about &#8377;7,000 in the first year and Basic comfortably handles several hundred orders a month.</p>
+
+    <h3 class="sub">The one thing Indian sellers get caught by</h3>
+    <div class="note">
+      <p><b>Shopify charges an extra 2% on Basic because you are in India.</b> Shopify's own payment product, Shopify Payments, is not available in India. So every Indian store must plug in an Indian gateway like Razorpay &mdash; and Shopify then adds a <b>2% "third-party gateway" fee</b> on every order that goes through its standard checkout. That is on top of what Razorpay charges. On &#8377;1,50,000 of monthly sales this is <b>&#8377;3,000 + &#8377;540 GST = &#8377;3,540 a month.</b></p>
+      <p>Most agencies never mention this. We are telling you before you sign, and we have a way around it.</p>
+    </div>
+    <div class="win">
+      <p><b>How we reduce it.</b> Shopify's 2% applies only to orders that pass through Shopify's own checkout page. Orders completed through an approved quick-checkout &mdash; such as <b>Razorpay Magic Checkout</b> &mdash; currently fall outside it. Magic Checkout costs about 0.65% + GST, roughly a third of the 2%, and it also speeds up checkout and cuts fake COD orders. On &#8377;1,50,000 of sales that is about <b>&#8377;2,390 saved every month, &#8377;28,700 a year.</b> We set this up as part of the build. To be straight with you: this is a gap in Shopify's fee rules, not a permanent guarantee, and Shopify could close it. We will tell you the day it changes.</p>
+    </div>
+
+    <h3 class="sub">How we will implement it</h3>
+    <div class="howbox">
+      <ol class="how">
+        <li>Register the Shopify account <b>in your name</b>, with your email, your GSTIN and your card &mdash; so you own it outright and can claim the GST back as input credit.</li>
+        <li>Buy and connect your domain, and set up a professional email address on it (for example <span class="rate">orders@yourdomain.in</span>).</li>
+        <li>Configure India settings: INR, GST rates per product category, HSN codes, GST-compliant invoice format, pin-code shipping zones, and free-shipping thresholds.</li>
+        <li>Build the storefront, load your 30 products, and connect Razorpay, the courier and WhatsApp.</li>
+        <li>Enable Razorpay Magic Checkout as the primary checkout to legally avoid the 2% fee, keeping Shopify's standard checkout as backup.</li>
+        <li>Hand you the login. <b>You hold the owner account; JTACS is added as staff.</b> You can remove our access any day, and the store keeps running.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="num">05</div>
+  <div class="body">
+    <h2>Razorpay <span class="chip them">Paid by you, directly to Razorpay</span></h2>
+    <p class="deck">Razorpay is the payment gateway. It collects money from the patient's UPI app, card, net banking or wallet and deposits it into your bank account. There is no setup fee and no yearly fee &mdash; Razorpay only takes a cut when a payment actually succeeds.</p>
+
+    <h3 class="sub">What Razorpay charges</h3>
+    <div class="tw">
+      <table>
+        <caption>Razorpay standard rates &mdash; India, domestic business</caption>
+        <thead>
+          <tr><th>Payment method</th><th class="n">Razorpay fee</th><th class="n">GST @18%</th><th class="n">You actually pay</th><th class="n">On a &#8377;1,000 order</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>UPI</b> &mdash; GPay, PhonePe, Paytm <span class="chip pick">Most of your orders</span></td><td class="n free">0%</td><td class="n">&mdash;</td><td class="n free"><b>0%</b></td><td class="n free"><b>&#8377;0</b></td></tr>
+          <tr><td><b>RuPay debit cards</b></td><td class="n free">0%</td><td class="n">&mdash;</td><td class="n free"><b>0%</b></td><td class="n free"><b>&#8377;0</b></td></tr>
+          <tr><td>Debit &amp; credit cards, net banking, wallets</td><td class="n">2.00%</td><td class="n">0.36%</td><td class="n"><b>2.36%</b></td><td class="n">&#8377;23.60</td></tr>
+          <tr><td>International cards <span class="muted">(NRI patients)</span></td><td class="n">3.00%</td><td class="n">0.54%</td><td class="n"><b>3.54%</b></td><td class="n">&#8377;35.40</td></tr>
+          <tr><td>Magic Checkout add-on <span class="muted">(optional, see Section 04)</span></td><td class="n">+0.65%</td><td class="n">+0.12%</td><td class="n"><b>+0.77%</b></td><td class="n">&#8377;7.70</td></tr>
+          <tr class="sub"><td>Account opening, integration, yearly maintenance</td><td class="n free">&#8377;0</td><td class="n">&mdash;</td><td class="n free"><b>&#8377;0</b></td><td class="n free">&#8377;0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">UPI is free because the RBI does not permit a merchant charge on UPI. That is the single biggest cost advantage of selling in India &mdash; and it is why we will design your checkout to push UPI first.</p>
+
+    <div class="win">
+      <p><b>What this means for you in practice.</b> In Indian health and wellness stores, roughly 70% of prepaid orders come through UPI. On <b>&#8377;1,50,000</b> of monthly sales split 70% UPI and 30% cards, Razorpay takes: &#8377;1,05,000 on UPI = <b>&#8377;0</b>, and &#8377;45,000 on cards = &#8377;900 + &#8377;162 GST = <b>&#8377;1,062</b>. Your blended payment cost is about <b>0.71%</b> &mdash; far below the 2% headline rate people expect.</p>
+    </div>
+
+    <h3 class="sub">How we will implement it</h3>
+    <div class="howbox">
+      <ol class="how">
+        <li><b>Open the Razorpay account in your name</b> and complete KYC. For an Ayurvedic products business Razorpay treats this as a regulated category, so we prepare the file properly the first time: PAN, GSTIN, bank proof or cancelled cheque, business registration, and critically your <b>AYUSH licence / drug licence</b>. A missing AYUSH certificate is the single most common reason Ayurveda merchant accounts get rejected or frozen later.</li>
+        <li>Install the official Razorpay app in Shopify, generate live API keys, and connect them.</li>
+        <li>Turn on UPI, cards, net banking, wallets, EMI on higher-value orders, and Cash on Delivery.</li>
+        <li>Run live test transactions of &#8377;1 across every method, confirm they appear correctly, then refund them &mdash; so we know refunds work too.</li>
+        <li>Set your settlement bank account and cycle. Expect <b>T+3 to T+5</b> for the first 10&ndash;15 transactions, then it settles into the standard <b>T+2</b> &mdash; money in your bank two working days after the sale.</li>
+        <li>Configure automatic refund handling, so a cancelled order returns the patient's money without you calling anyone.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="s6">
+  <div class="num">06</div>
+  <div class="body">
+    <h2>Logistics &amp; delivery <span class="chip them">Paid by you, directly to the courier</span></h2>
+    <p class="deck">This is the part you described as "someone comes and picks up the order and delivers it". Here is exactly how that works, who the best companies in India are, and what it costs per parcel.</p>
+
+    <h3 class="sub">Who is actually the best in India</h3>
+    <div class="tw">
+      <table>
+        <caption>Courier options for an Ayurvedic products business</caption>
+        <thead>
+          <tr><th>Partner</th><th>What they are best at</th><th class="n">Reach</th><th class="n">Cost level</th><th>Verdict for you</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Shiprocket</b><br><span class="muted">Aggregator, not a courier</span></td>
+            <td>Gives you Delhivery, Blue Dart, Xpressbees, Ekart, DTDC and 12 more from one dashboard, and automatically picks the cheapest one that serves that pin code.</td>
+            <td class="n">24,000+ pin codes</td>
+            <td class="n">Lowest</td>
+            <td><span class="chip pick">Start here</span> Best under 500 orders a day. No negotiation needed, no minimum volume, plugs into Shopify in minutes.</td>
+          </tr>
+          <tr>
+            <td><b>Delhivery</b></td>
+            <td>India's largest home-grown network &mdash; about 2 million shipments a day, with AI address correction that measurably reduces failed deliveries.</td>
+            <td class="n">18,800+ pin codes</td>
+            <td class="n">Low at volume</td>
+            <td>Contract directly once you cross roughly 3,000 orders a month and can negotiate rates.</td>
+          </tr>
+          <tr>
+            <td><b>Blue Dart</b> <span class="muted">(DHL group)</span></td>
+            <td>The highest delivery success rate and lowest return rate in India. Air express, own cargo aircraft. The default choice for pharmaceutical shipments.</td>
+            <td class="n">56,400+ locations</td>
+            <td class="n">30&ndash;50% premium</td>
+            <td>Use selectively for urgent, high-value or temperature-sensitive medicines. Not for everyday &#8377;400 orders.</td>
+          </tr>
+          <tr>
+            <td><b>India Post</b></td>
+            <td>Reaches villages and pin codes no private courier will touch. Cheapest per parcel, but slowest and with the weakest tracking.</td>
+            <td class="n">1,55,000+ offices</td>
+            <td class="n">Cheapest</td>
+            <td>Keep as a fallback for remote pin codes that others refuse.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="win">
+      <p><b>Our recommendation: start on Shiprocket.</b> The honest answer to "who is the best courier in India" is that no single company is best everywhere &mdash; Blue Dart wins on reliability, Delhivery on reach and price at scale, India Post on rural coverage. Shiprocket lets you use all of them at once and picks the right one per order, without you signing a contract with any of them. When your volume justifies a direct Delhivery contract, we move you across. You are not locked in.</p>
+    </div>
+
+    <h3 class="sub">What it costs</h3>
+    <div class="tw">
+      <table>
+        <caption>Shiprocket plans and shipping rates &mdash; all rates exclusive of 18% GST</caption>
+        <thead>
+          <tr><th>Plan</th><th class="n">Monthly fee</th><th class="n">Rate per 500 g</th><th>Suits</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Lite</b> <span class="chip pick">Month 1</span></td><td class="n free">Free</td><td class="n">from &#8377;26.27</td><td>Launch and first weeks, while volume is still small</td></tr>
+          <tr><td><b>Basic</b></td><td class="n">&#8377;1,000</td><td class="n">from &#8377;24.58</td><td>60&ndash;100 orders a month &mdash; pays for itself past ~60 orders</td></tr>
+          <tr><td><b>Advanced</b></td><td class="n">&#8377;2,000</td><td class="n">from &#8377;22.88</td><td>100&ndash;300 orders a month, plus API access</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote"><b>Charges on top of the base rate:</b> Cash on Delivery fee of &#8377;25&ndash;40 per parcel <i>or</i> 1.5&ndash;2.5% of the order value, whichever is higher &middot; RTO (return to origin) &mdash; if the patient refuses the parcel, you pay the return journey too &middot; volumetric weight &mdash; a large light box is charged by its size, not its weight &middot; zone multipliers &mdash; a parcel to Kerala costs more than one across your own city.</p>
+
+    <div class="tw">
+      <table>
+        <caption>Worked example &mdash; 100 orders a month, 500 g average</caption>
+        <thead>
+          <tr><th>Line</th><th class="n">If 50% orders are COD</th><th class="n">If all orders are prepaid</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Shiprocket Basic plan</td><td class="n">&#8377;1,000</td><td class="n">&#8377;1,000</td></tr>
+          <tr><td>Forward shipping &mdash; 100 &times; &#8377;24.58</td><td class="n">&#8377;2,458</td><td class="n">&#8377;2,458</td></tr>
+          <tr><td>COD collection fee &mdash; 50 &times; ~&#8377;35</td><td class="n">&#8377;1,750</td><td class="n free">&#8377;0</td></tr>
+          <tr><td>Returns (RTO) &mdash; approx. 8 refused parcels</td><td class="n">&#8377;200</td><td class="n">&#8377;0</td></tr>
+          <tr class="sub"><td>Sub-total</td><td class="n">&#8377;5,408</td><td class="n">&#8377;3,458</td></tr>
+          <tr><td>GST @ 18%</td><td class="n">&#8377;973</td><td class="n">&#8377;622</td></tr>
+          <tr class="vtotal"><td>Total delivery cost &mdash; about &#8377;64 vs &#8377;41 per order</td><td class="n">&#8377;6,381</td><td class="n">&#8377;4,080</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <p><b>Cash on Delivery is what quietly kills Ayurveda stores.</b> Across Indian e-commerce, roughly <b>26% of COD orders are refused at the door</b>, against under 2% for prepaid. Every refusal costs you the delivery charge, the return charge, and a medicine that comes back possibly damaged. That is why we build the store to <b>reward prepaid</b> &mdash; a small discount or free shipping on prepaid orders, plus a WhatsApp confirmation message before any COD parcel is dispatched. Shifting even half your COD orders to prepaid saves you roughly <b>&#8377;2,300 a month</b> at 100 orders, and far more in returned stock.</p>
+    </div>
+
+    <h3 class="sub">How we will implement it</h3>
+    <div class="howbox">
+      <ol class="how">
+        <li>Open the courier account <b>in your name</b>, with your pickup address and bank account for COD remittance.</li>
+        <li>Install the Shopify plug-in so <b>every new order appears in the courier dashboard automatically</b> &mdash; no re-typing addresses.</li>
+        <li>Set your pickup window. The courier executive comes to your clinic or godown at a fixed time each day and collects everything ready to go.</li>
+        <li>Configure automatic label printing. You print, stick, hand over. That is your entire job.</li>
+        <li>Turn on automatic tracking updates by SMS, email and WhatsApp so patients stop calling you to ask "where is my medicine".</li>
+        <li>Set shipping rules in the store: free shipping above a cart value you choose, flat rate below it, COD blocked on pin codes with a bad history.</li>
+        <li>Set up COD reconciliation so cash collected reaches your bank on the courier's remittance cycle, and we show you how to check it weekly.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="num">07</div>
+  <div class="body">
+    <h2>WhatsApp Business <span class="chip them">Paid by you, directly to Meta / provider</span></h2>
+    <p class="deck">You asked for a WhatsApp Business account with a community people can join for updates and offers, and the ability to order through WhatsApp. That is genuinely achievable &mdash; but it needs <b>two WhatsApp numbers, not one</b>, and this is the detail most agencies get wrong and only discover after they have set it up.</p>
+
+    <div class="note">
+      <p><b>The rule you must know before we start.</b> WhatsApp has two separate products. The free <b>WhatsApp Business App</b> is the only one that can run Communities and groups. The paid <b>WhatsApp Business Platform (API)</b> is the only one that can send unlimited broadcasts and automatic order updates &mdash; but the moment a number is moved onto the API, <b>that number can no longer use the Business App, and loses Communities and groups entirely.</b></p>
+      <p>A number cannot do both. So we set up two numbers, one for each job, both branded as your practice. Doing it this way from day one avoids a painful migration later &mdash; once a number goes to the API, moving it back means losing the number's history.</p>
+    </div>
+
+    <h3 class="sub">The two-number setup we will build</h3>
+    <div class="tw">
+      <table>
+        <caption>What each number does</caption>
+        <thead>
+          <tr><th>&nbsp;</th><th>Number 1 &mdash; Community</th><th>Number 2 &mdash; Broadcast &amp; ordering</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Product</b></td><td>WhatsApp Business App (free)</td><td>WhatsApp Business Platform / API</td></tr>
+          <tr><td><b>Runs on</b></td><td>A phone at your clinic</td><td>A web dashboard, any staff member can log in</td></tr>
+          <tr><td><b>Purpose</b></td><td>The patient community &mdash; an announcement group people join, with linked topic groups for Diet &amp; Lifestyle, New Products, Q&amp;A with the doctor</td><td>Offer campaigns to your whole list, automatic order confirmed / shipped / delivered messages, catalogue ordering, chatbot</td></tr>
+          <tr><td><b>Can hold</b></td><td>A Community links up to 100 groups; broadcast lists cap at 256 contacts</td><td><b>No limit</b> on how many opted-in people you message</td></tr>
+          <tr><td><b>Green tick</b></td><td>Not available</td><td>Yes &mdash; we apply for verification</td></tr>
+          <tr><td><b>Cost</b></td><td class="free"><b>Free</b></td><td>Platform fee + per message &mdash; see below</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Community members are invited by a join link we place on your website, on order confirmation messages, on your clinic reception desk as a QR code, and in the parcel itself as a printed insert. That link is how a &#8377;400 buyer becomes a repeat patient.</p>
+
+    <h3 class="sub">What WhatsApp charges &mdash; Meta's rates for India</h3>
+    <div class="tw">
+      <table>
+        <caption>Per-message rates effective 1 January 2026</caption>
+        <thead>
+          <tr><th>Message type</th><th>Used for</th><th class="n">Meta rate</th><th class="n">With 18% GST</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Marketing</b></td><td>Offers, festival discounts, new product announcements, re-order reminders</td><td class="n">&#8377;0.8631</td><td class="n"><b>&#8377;1.0185</b></td></tr>
+          <tr><td><b>Utility</b></td><td>Order confirmed, payment received, parcel shipped, out for delivery</td><td class="n">&#8377;0.1150</td><td class="n"><b>&#8377;0.1357</b></td></tr>
+          <tr><td><b>Authentication</b></td><td>OTP for login or COD confirmation</td><td class="n">&#8377;0.1150</td><td class="n"><b>&#8377;0.1357</b></td></tr>
+          <tr><td><b>Service</b></td><td>Your replies when a patient messages you first (24-hour window)</td><td class="n free">Free</td><td class="n free"><b>Free</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Meta moved from conversation-based to <b>per-message</b> pricing on 1 July 2025, and raised India's marketing rate about 10% on 1 January 2026. Utility messages are also free if sent inside the 24-hour window after a patient messages you &mdash; we structure the flows to use that window wherever possible.</p>
+
+    <h3 class="sub">Platform provider &mdash; and what it costs each month</h3>
+    <div class="tw">
+      <table>
+        <caption>Indian WhatsApp API providers</caption>
+        <thead>
+          <tr><th>Provider</th><th class="n">Monthly platform fee</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>AiSensy</b> <span class="chip pick">Recommended</span></td><td class="n">from &#8377;1,500 <span class="muted">(Pro &#8377;3,200)</span></td><td>Best value in India, free API setup and free green-tick application, unlimited team logins</td></tr>
+          <tr><td>Interakt</td><td class="n">&#8377;1,999&ndash;5,000</td><td>Charges by number of active contacts, which gets expensive as your list grows</td></tr>
+          <tr><td>Wati</td><td class="n">&#8377;2,199&ndash;4,899</td><td>Strong chatbot builder, higher price for the same core features</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>Worked example &mdash; 1,000 community members, 2 offer campaigns a month, 100 orders</caption>
+        <thead><tr><th>Line</th><th class="n">Amount (&#8377;)</th></tr></thead>
+        <tbody>
+          <tr><td>AiSensy platform fee</td><td class="n">1,500</td></tr>
+          <tr><td>Marketing messages &mdash; 2,000 &times; &#8377;0.8631</td><td class="n">1,726</td></tr>
+          <tr><td>Utility messages &mdash; 300 order updates &times; &#8377;0.1150</td><td class="n">35</td></tr>
+          <tr><td>Patient replies and support conversations</td><td class="n free">0</td></tr>
+          <tr class="sub"><td>Sub-total</td><td class="n">3,261</td></tr>
+          <tr><td>GST @ 18%</td><td class="n">587</td></tr>
+          <tr class="vtotal"><td>Total WhatsApp cost per month</td><td class="n">3,848</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="win">
+      <p><b>Why this is the cheapest marketing you will ever buy.</b> Reaching 1,000 patients costs you about &#8377;1,000 in marketing messages. WhatsApp messages are opened by around 90&ndash;98% of recipients, against roughly 20% for email. If just fifteen of those thousand people re-order a &#8377;600 medicine, that campaign returns &#8377;9,000 on a &#8377;1,000 spend. Repeat purchase is where an Ayurveda practice actually makes money &mdash; patients finish a course and need the next one &mdash; and WhatsApp is the right tool for it.</p>
+    </div>
+
+    <h3 class="sub">How we will implement it</h3>
+    <div class="howbox">
+      <ol class="how">
+        <li>Set up <b>Number 1</b> on the WhatsApp Business App: business name, logo, clinic address, hours, website link, and your product catalogue inside WhatsApp.</li>
+        <li>Create the <b>Community</b> with an announcement group and topic groups, write the group rules and description, and design the join QR code and link.</li>
+        <li>Register <b>Number 2</b> on the WhatsApp Business Platform through AiSensy, complete Meta Business verification, and apply for the green tick.</li>
+        <li>Write and submit for Meta approval the message templates you will need: order confirmed, payment received, shipped with tracking link, out for delivery, delivered, COD confirmation, abandoned-cart reminder, re-order reminder and festival offer.</li>
+        <li>Connect the store to WhatsApp so order updates fire automatically, with no one typing a message.</li>
+        <li>Build the <b>ordering flow</b>: a patient messages your number, sees the catalogue, picks items, and receives a Razorpay payment link in the chat. The paid order then appears in your Shopify dashboard like any other order &mdash; one place to manage everything.</li>
+        <li>Set up the <b>opt-in mechanism</b> properly. Meta bans numbers that message people who did not consent. We collect consent at checkout, on the join link, and at your clinic &mdash; and record it, so your number stays safe.</li>
+        <li>Train your staff on the shared inbox: how to reply, assign, tag and close a conversation.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="num">08</div>
+  <div class="body">
+    <h2>The complete money picture</h2>
+    <p class="deck">Every rupee, in one place. Green rows are payable to JTACS. Blue rows are payable by you directly to Shopify, Razorpay, the courier and Meta &mdash; JTACS takes no commission on any of them.</p>
+
+    <h3 class="sub">A &nbsp;&middot;&nbsp; What it costs to get started</h3>
+    <div class="tw">
+      <table>
+        <caption>Month 1 &mdash; one-time and setup costs, all inclusive of GST</caption>
+        <thead><tr><th>Item</th><th>Paid to</th><th class="n">Amount (&#8377;)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Website and systems build</b> &mdash; everything in Section 02</td><td><span class="chip us">JTACS</span></td><td class="n"><b>42,480</b></td></tr>
+          <tr><td>Domain name for 1 year <span class="muted">(.in or .com)</span></td><td><span class="chip them">Registrar</span></td><td class="n">1,400</td></tr>
+          <tr><td>Shopify Basic, 12 months prepaid</td><td><span class="chip them">Shopify</span></td><td class="n">21,226</td></tr>
+          <tr><td>Razorpay account opening and integration</td><td><span class="chip them">Razorpay</span></td><td class="n free">0</td></tr>
+          <tr><td>Courier account &mdash; Shiprocket Lite for month 1</td><td><span class="chip them">Shiprocket</span></td><td class="n free">0</td></tr>
+          <tr><td>WhatsApp Business App and Community</td><td><span class="chip them">Meta</span></td><td class="n free">0</td></tr>
+          <tr><td>WhatsApp API platform &mdash; first month</td><td><span class="chip them">AiSensy</span></td><td class="n">1,770</td></tr>
+          <tr class="total"><td>Total to go live</td><td></td><td class="n">66,876</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Of this, <b>&#8377;42,480 comes to JTACS</b> and <b>&#8377;24,396 goes to the platforms</b>. If you are GST-registered, roughly &#8377;10,200 of the total is GST you can claim back as input credit &mdash; making your true cost about <b>&#8377;56,700</b>.</p>
+
+    <h3 class="sub">B &nbsp;&middot;&nbsp; What it costs to run, every month</h3>
+    <div class="tw">
+      <table>
+        <caption>Steady state &mdash; 100 orders a month, &#8377;1,50,000 in sales, inclusive of GST</caption>
+        <thead>
+          <tr><th>Running cost</th><th class="n">Standard Shopify checkout</th><th class="n">With Magic Checkout</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Shopify Basic <span class="muted">(annual plan, per month)</span></td><td class="n">1,769</td><td class="n">1,769</td></tr>
+          <tr><td>Shopify third-party gateway fee &mdash; 2%</td><td class="n">3,540</td><td class="n free">0</td></tr>
+          <tr><td>Razorpay <span class="muted">(70% UPI at 0%, 30% cards at 2.36%)</span></td><td class="n">1,062</td><td class="n">1,062</td></tr>
+          <tr><td>Razorpay Magic Checkout &mdash; 0.65%</td><td class="n">&mdash;</td><td class="n">1,151</td></tr>
+          <tr><td>Delivery &mdash; Shiprocket, 100 parcels, 50% COD</td><td class="n">6,381</td><td class="n">6,381</td></tr>
+          <tr><td>WhatsApp &mdash; platform plus messages</td><td class="n">3,848</td><td class="n">3,848</td></tr>
+          <tr class="vtotal"><td>Platform costs per month</td><td class="n">16,600</td><td class="n">14,211</td></tr>
+          <tr><td><b>JTACS Care &amp; Growth</b> &mdash; Growth plan, optional</td><td class="n">7,670</td><td class="n">7,670</td></tr>
+          <tr class="total"><td>All-in monthly cost</td><td class="n">24,270</td><td class="n">21,881</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Setting up Magic Checkout saves about <b>&#8377;2,389 a month &mdash; &#8377;28,668 a year</b>. It is included in the build price at no extra charge.</p>
+
+    <div class="win">
+      <p><b>Does this actually make money?</b> At &#8377;1,50,000 of monthly sales on a typical 60% product margin, your gross profit is &#8377;90,000. Take off &#8377;14,211 of platform costs and &#8377;7,670 for the JTACS Growth plan and you keep roughly <b>&#8377;68,100 a month</b> &mdash; from patients you never had to see in person. The one-time build of &#8377;42,480 pays for itself inside the first month of running at this level, and every month after that is profit. Even at a third of this volume the store covers its own costs.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="num">09</div>
+  <div class="body">
+    <h2>Care &amp; Growth plans <span class="chip us">Optional, payable to JTACS</span></h2>
+    <p class="deck">A store that is not looked after quietly stops working. Apps break after updates, product photos go stale, festival offers are missed, and payment failures go unnoticed for a week. These plans mean you never have to think about any of it &mdash; and you always have someone to call.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <h4>Essential</h4>
+        <p class="for">Keep the store healthy and online. For when you want to run the marketing yourself.</p>
+        <div class="price">&#8377;3,500<small> / month</small></div>
+        <p class="yr">Or &#8377;35,000 a year &mdash; <b>2 months free</b></p>
+      </div>
+      <div class="plan best">
+        <span class="flag">Recommended</span>
+        <h4>Growth</h4>
+        <p class="for">Everything kept running, plus we actively sell for you on WhatsApp every month.</p>
+        <div class="price">&#8377;6,500<small> / month</small></div>
+        <p class="yr">Or &#8377;65,000 a year &mdash; <b>2 months free</b></p>
+      </div>
+      <div class="plan">
+        <h4>Scale</h4>
+        <p class="for">For when the store is working and you want to push it hard with ads and testing.</p>
+        <div class="price">&#8377;11,000<small> / month</small></div>
+        <p class="yr">Or &#8377;1,10,000 a year &mdash; <b>2 months free</b></p>
+      </div>
+    </div>
+    <p class="tnote">All plans exclusive of 18% GST. Monthly plans can be cancelled with 30 days' notice &mdash; there is no lock-in. Annual plans are billed once, in advance.</p>
+
+    <div class="tw">
+      <table>
+        <caption>What each plan includes</caption>
+        <thead>
+          <tr><th>Included every month</th><th class="n">Essential</th><th class="n">Growth</th><th class="n">Scale</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Uptime monitoring, weekly backups, security checks</td><td class="n">&#10003;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
+          <tr><td>Theme and app updates, bug fixes, broken-link checks</td><td class="n">&#10003;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
+          <tr><td>Payment and order failure monitoring</td><td class="n">&#10003;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
+          <tr><td>Product additions and edits</td><td class="n">10 / month</td><td class="n">Unlimited</td><td class="n">Unlimited</td></tr>
+          <tr><td>Design and content change requests</td><td class="n">2 hours</td><td class="n">5 hours</td><td class="n">10 hours</td></tr>
+          <tr><td>Support response time</td><td class="n">24 hours</td><td class="n">8 hours</td><td class="n">4 hours + phone</td></tr>
+          <tr><td>Festival and offer banners designed</td><td class="n muted">&mdash;</td><td class="n">2 / month</td><td class="n">4 / month</td></tr>
+          <tr><td><b>WhatsApp campaigns</b> written, designed, scheduled and reported</td><td class="n muted">&mdash;</td><td class="n">4 / month</td><td class="n">8 / month</td></tr>
+          <tr><td>Abandoned-cart recovery and COD confirmation automation</td><td class="n muted">&mdash;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
+          <tr><td>SEO upkeep and Google Business Profile</td><td class="n">Basic</td><td class="n">&#10003;</td><td class="n">&#10003; + 2 articles</td></tr>
+          <tr><td>Monthly performance report</td><td class="n">&#10003;</td><td class="n">&#10003; + call</td><td class="n">&#10003; + call</td></tr>
+          <tr><td>Conversion optimisation and A/B testing</td><td class="n muted">&mdash;</td><td class="n muted">&mdash;</td><td class="n">&#10003;</td></tr>
+          <tr><td>Google and Meta ads managed <span class="muted">(ad spend billed by them, not us)</span></td><td class="n muted">&mdash;</td><td class="n muted">&mdash;</td><td class="n">up to &#8377;50,000 spend</td></tr>
+          <tr><td><b>AYUSH / ASCI claim review</b> of your product copy and ads</td><td class="n muted">&mdash;</td><td class="n">Quarterly</td><td class="n">Monthly</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="win">
+      <p><b>Our recommendation: Growth.</b> Essential keeps the lights on but nobody is selling for you. Growth is the one that pays for itself &mdash; four WhatsApp campaigns a month to a list of a thousand patients typically returns several times the &#8377;7,670 fee, and it is the difference between a website that sits there and a store that grows. <b>The first 30 days after go-live are free on any plan</b>, so you can see the work before you commit.</p>
+    </div>
+
+    <h3 class="sub">One-time add-ons, whenever you want them</h3>
+    <div class="tw">
+      <table>
+        <caption>Add-on rates &mdash; exclusive of 18% GST</caption>
+        <thead><tr><th>Add-on</th><th class="n">Price (&#8377;)</th><th>Why you might want it</th></tr></thead>
+        <tbody>
+          <tr><td>Next 25 products loaded and written up</td><td class="n">2,500</td><td>As your catalogue grows past 30</td></tr>
+          <tr><td>Campaign landing page</td><td class="n">6,000</td><td>A dedicated page for one festival offer or one hero product</td></tr>
+          <tr><td>SEO article, 800&ndash;1,000 words</td><td class="n">1,500</td><td>Ranking for searches like "ayurvedic medicine for acidity"</td></tr>
+          <tr><td>Product photo editing, per 10 images</td><td class="n">1,200</td><td>Clean white-background shots that sell better</td></tr>
+          <tr><td>Store in Kannada or Hindi</td><td class="n">9,000</td><td>Older patients buy far more readily in their own language</td></tr>
+          <tr><td><b>Subscription &amp; refill ordering</b></td><td class="n">12,000</td><td>Patients auto-receive their monthly course &mdash; the single highest-value feature for an Ayurveda practice</td></tr>
+          <tr><td>Online consultation booking with payment</td><td class="n">15,000</td><td>Sell your time, not just your medicines</td></tr>
+          <tr><td>Loyalty points and referral programme</td><td class="n">8,000</td><td>Patients bring patients</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="num">10</div>
+  <div class="body">
+    <h2>Timeline &mdash; live in four weeks</h2>
+    <p class="deck">Four weeks from the day the advance is received and your material is with us. Razorpay KYC and Meta verification are the two steps outside our control; we file them on day one so they run in the background.</p>
+
+    <div class="tl">
+      <div class="tl-row">
+        <div class="wk">Week 1 &mdash; Foundation</div>
+        <h4>Accounts, domain and content</h4>
+        <p>Kick-off call. We collect your logo, photographs, product list and prices. Domain bought, Shopify account opened in your name, Razorpay KYC filed, Meta Business verification started, both WhatsApp numbers registered.</p>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Week 2 &mdash; Build</div>
+        <h4>Store design and catalogue</h4>
+        <p>Homepage and product page designs shown to you for approval. All 30 products loaded with images, descriptions, pricing and stock. All pages written and built. You review a live preview link, not a picture.</p>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Week 3 &mdash; Connect</div>
+        <h4>Payments, delivery and WhatsApp</h4>
+        <p>Razorpay and Magic Checkout connected and tested. Courier account linked, shipping rules and pickup set. WhatsApp Community created, message templates submitted to Meta, order-update automation switched on.</p>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Week 4 &mdash; Launch</div>
+        <h4>Test, train, go live</h4>
+        <p>We place real test orders end to end &mdash; pay, ship, track, refund. Your corrections are applied. 90-minute staff training, recorded. Store goes live. 30 days of free defect support begins.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">What we need from you to hit these dates</h3>
+    <ul class="plain">
+      <li><b>Business documents</b> &mdash; PAN, GSTIN, AYUSH / drug licence, business registration proof, cancelled cheque or bank statement.</li>
+      <li><b>Two phone numbers</b> for WhatsApp &mdash; one for the Community, one for the API. Neither may already be in use on a personal WhatsApp you want to keep.</li>
+      <li><b>Product list</b> &mdash; name, description, ingredients, dosage, MRP, weight, and how much stock you hold.</li>
+      <li><b>Photographs</b> of each product, and a good photograph of yourself for the About page.</li>
+      <li><b>Your logo</b> if you have one, and any brand colours you already use.</li>
+      <li><b>One decision-maker</b> available for a 30-minute call each week. Delays in approval are the only thing that moves this date.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="num">11</div>
+  <div class="body">
+    <h2>Payment terms</h2>
+    <div class="tw">
+      <table>
+        <caption>Milestone schedule &mdash; JTACS build fee</caption>
+        <thead><tr><th>Stage</th><th>When</th><th class="n">Share</th><th class="n">Amount incl. GST (&#8377;)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Advance</b></td><td>On acceptance of this quotation, to begin work</td><td class="n">50%</td><td class="n">21,240</td></tr>
+          <tr><td><b>Design approval</b></td><td>When you approve the store design and catalogue in week 2</td><td class="n">25%</td><td class="n">10,620</td></tr>
+          <tr><td><b>Go-live</b></td><td>On handover of all logins and completion of training</td><td class="n">25%</td><td class="n">10,620</td></tr>
+          <tr class="total"><td>Total</td><td></td><td class="n">100%</td><td class="n">42,480</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="plain">
+      <li><b>How to pay.</b> NEFT, IMPS, UPI or bank transfer to <span class="fill">[JTACS bank name, A/c no., IFSC, UPI ID]</span>. A GST invoice is issued at each milestone.</li>
+      <li><b>Third-party costs are yours, paid directly.</b> Shopify, Razorpay, the courier and Meta are billed to your own card or bank account, in your own name. JTACS never collects them and adds no markup. You keep the GST input credit on all of them.</li>
+      <li><b>Ownership.</b> On final payment, every account, the domain, the store, the designs and the content are yours outright. JTACS holds nothing back and there is no ransom over access.</li>
+      <li><b>Two rounds of revisions</b> on the design are included. Further rounds, or changes after design approval, are billed at &#8377;1,200 per hour with your written agreement first.</li>
+      <li><b>Validity.</b> This quotation holds for 30 days from the date above. Third-party rates quoted are those published by each company at the time of writing and are set by them, not by us; if any of them changes their rates, we will tell you.</li>
+      <li><b>Late payment.</b> Milestone payments are due within 7 days of the invoice.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s12">
+  <div class="num">12</div>
+  <div class="body">
+    <h2>Why JTACS</h2>
+    <p class="deck">There are cheaper quotes available and there are more expensive ones. Here is the specific case for us.</p>
+
+    <div class="reasons">
+      <div class="reason">
+        <div class="rn">01</div>
+        <h4>One partner, not four vendors</h4>
+        <p>Website, payments, delivery and WhatsApp are four different companies with four different failure modes. Most agencies build the website and leave you to fight with the rest. We deliver all four connected and working, and you have one number to call when anything breaks.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">02</div>
+        <h4>We told you the costs before you signed</h4>
+        <p>Shopify's hidden 2% India fee. WhatsApp's two-number rule. COD refusal rates. These are the three things that ambush Indian sellers in month two. They are in this document, in writing, before you have paid us anything. Ask any other quote you receive whether it mentions them.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">03</div>
+        <h4>We understand Ayurveda is a regulated business</h4>
+        <p>You are not selling t-shirts. The Drugs &amp; Magic Remedies Act, AYUSH licensing and ASCI advertising rules govern what you may claim about your medicines. Wrong wording gets payment accounts frozen and Meta ad accounts banned. Section 13 shows you exactly where the lines are.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">04</div>
+        <h4>We engineer your costs down, not just your website up</h4>
+        <p>A UPI-first checkout takes your payment cost to near zero. Magic Checkout saves about &#8377;28,700 a year on Shopify's fee. Prepaid incentives cut COD returns. That is roughly &#8377;60,000 a year of savings designed into a &#8377;36,000 build.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">05</div>
+        <h4>You own everything, from day one</h4>
+        <p>Every account is opened in your name with your email and your card. We are added as staff, and you can remove us any day without the store stopping. No hostage logins, no proprietary platform, no lock-in. That is a promise most agencies will not make in writing.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">06</div>
+        <h4>Fixed price, and the scope is written down</h4>
+        <p>&#8377;36,000 is the price. Section 02 lists exactly what is in it and exactly what is not. Nothing is billed to you that you did not agree to in advance, in writing.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">07</div>
+        <h4>We do the paperwork, not just the code</h4>
+        <p>Razorpay KYC for a regulated AYUSH category, Meta Business verification, GST-compliant invoice configuration, HSN codes, the green-tick application. This is the tedious part that stalls launches for months. We handle it.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">08</div>
+        <h4>We train your staff and hand over properly</h4>
+        <p>A recorded 90-minute session on adding products, processing orders, printing labels and issuing refunds &mdash; so your clinic runs the store daily without calling us. We would rather you did not need us, and then chose to keep us anyway.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">09</div>
+        <h4>Built for the repeat order, not the first sale</h4>
+        <p>Ayurveda's economics are in the second, third and fourth purchase &mdash; a patient finishes a course and needs the next one. The WhatsApp community, re-order reminders and subscription option are designed around that, not bolted on later.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">10</div>
+        <h4>We are still here after launch</h4>
+        <p>Thirty days of free defect support, then a care plan you can leave with 30 days' notice. We stay because the work is good, not because you are trapped.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s13">
+  <div class="num">13</div>
+  <div class="body">
+    <h2>Compliance &mdash; what you must have in place</h2>
+    <p class="deck">Selling Ayurvedic medicines online in India is legal and straightforward, but it is regulated. These are your responsibilities, not ours &mdash; we flag them now because ignoring them is what shuts stores down. Please confirm your position on each before we begin.</p>
+
+    <ul class="plain">
+      <li><b>AYUSH licence.</b> Ayurvedic, Siddha and Unani medicines fall under the Drugs and Cosmetics Act, 1940 and its 1945 Rules. A manufacturing licence is required if you make them; a retail licence if you only sell them. Razorpay will ask for this during KYC, and Shopify, Amazon and Meta all enforce it.</li>
+      <li><b>What you may and may not say.</b> The Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954 prohibits advertising that a product cures a listed disease &mdash; diabetes, cancer, heart conditions and others. General wellness language is permitted; disease-cure claims are not. <b>This is the most common reason Ayurveda stores lose their payment gateway.</b> We will write your product copy on the right side of this line, and the Growth and Scale plans include a periodic claim review.</li>
+      <li><b>Labelling.</b> Every product page must carry ingredients, net quantity, batch number, manufacturing and expiry dates, MRP inclusive of taxes, manufacturer name and address, and the licence number. We build these fields into the product template.</li>
+      <li><b>GST.</b> Most Ayurvedic medicines attract 12% GST; some cosmetics and wellness products attract 18%. We configure HSN codes per product and set the store to issue GST-compliant invoices automatically. Please have your chartered accountant confirm the rate for each product before we load the catalogue.</li>
+      <li><b>Meta advertising policy.</b> Health claims in WhatsApp templates and Meta ads are reviewed by Meta and rejected or banned if they overstate. We write templates to pass review the first time.</li>
+      <li><b>Store policies.</b> Shipping, returns, refunds and privacy pages are legally required for an e-commerce business and for Razorpay approval. We draft all four; please have them reviewed by your legal advisor before go-live.</li>
+    </ul>
+
+    <div class="note">
+      <p><b>To be clear about our role.</b> JTACS builds and operates your digital systems. We are not your legal or regulatory advisor, and we do not obtain licences on your behalf. Please have your chartered accountant and legal advisor confirm licensing, GST rates and product claims. What we guarantee is that we will not build anything that knowingly puts you on the wrong side of these rules, and that we will tell you when we see a risk.</p>
+    </div>
+  </div>
+</section>
+
+<div class="signblock">
+  <div class="sig">
+    <h4>Accepted for Dr. R. Dhanush</h4>
+    <div class="sigline"></div>
+    <p>Signature &amp; date<br>Name and designation</p>
+  </div>
+  <div class="sig">
+    <h4>For JTACS</h4>
+    <div class="sigline"></div>
+    <p><span class="fill">[Authorised signatory]</span><br>Date &nbsp;27 August 2026</p>
+  </div>
+</div>
+
+<footer>
+  <h4>Notes on the figures</h4>
+  <p style="margin:0 0 14px; max-width:78ch;">
+    All third-party rates in this document are the rates published by those companies as of August 2026 and are subject to change by them. GST is charged at 18% on Shopify, Razorpay, courier and WhatsApp services, and at 18% on JTACS services under SAC 998314; Ayurvedic medicines themselves are typically 12%. Worked examples assume 100 orders a month at an average order value of &#8377;1,500, a 500 g average parcel, a 70:30 UPI-to-card split and a 50% COD share &mdash; your actual numbers will vary. Sources consulted:
+  </p>
+  <ol>
+    <li><a href="https://razorpay.com/blog/razorpay-shopify-payment-gateway-pricing-explained/">Razorpay &mdash; Shopify payment gateway pricing explained, 2026</a></li>
+    <li><a href="https://razorpay.com/docs/payments/payment-gateway/ecommerce-plugins/shopify/integration-steps/">Razorpay Docs &mdash; Shopify integration steps</a></li>
+    <li><a href="https://razorpay.com/docs/payments/business-types-kyc-documents/">Razorpay Docs &mdash; KYC documents by business type</a></li>
+    <li><a href="https://bybtraction.com/shopify-pricing-india-plans-fees-hidden-costs/">Shopify pricing India 2026 &mdash; plans, fees and hidden costs</a></li>
+    <li><a href="https://www.maydayinternet.com/why-shopify-transaction-fees-dont-apply-to-quick-checkouts-like-gokwik-razorpay-magic-checkout-shopflo-in-india-and-how-long-this-will-last">Shopify transaction fees and quick checkouts in India, 2026</a></li>
+    <li><a href="https://www.shiprocket.in/pricing/">Shiprocket &mdash; shipping plans and courier rates</a></li>
+    <li><a href="https://base.com/en-IN/blog/best-courier-partner-for-d2c-brands-in-india/">Courier partners for D2C brands in India, ranked by RTO rate and speed</a></li>
+    <li><a href="https://www.clickpost.ai/blog/best-courier-service-in-india">Best courier and delivery companies in India, 2026</a></li>
+    <li><a href="https://aisensy.com/pricing">AiSensy &mdash; WhatsApp Business API pricing in India, 2026</a></li>
+    <li><a href="https://myoperator.com/blog/whatsapp-business-api-pricing-india-2026">WhatsApp Business API pricing in India, 2026</a></li>
+    <li><a href="https://www.imbee.io/resource/whatsapp-groups-api-business-guide-2026">WhatsApp Groups API &mdash; 2026 business guide</a></li>
+    <li><a href="https://vakilsearch.com/blog/does-one-need-a-license-to-sell-ayurvedic-medicine-in-india/">Licensing requirements for selling Ayurvedic medicine in India</a></li>
+  </ol>
+</footer>
+
+</div>
