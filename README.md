@@ -9,7 +9,7 @@ covering an online store to sell medicines and wellness products.
 |---|---|
 | `quotation.html` | The source document. Loads webfonts from Google Fonts; theme-aware (light/dark). Edit this one. |
 | `quotation-print.html` | Self-contained build with fonts inlined as base64 — used to render the PDF. Regenerated, not hand-edited. |
-| `JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf` | 21-page A4 PDF. This is what goes to the client. |
+| `JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf` | 17-page A4 PDF. This is what goes to the client. |
 
 ## Scope covered
 
@@ -17,21 +17,19 @@ covering an online store to sell medicines and wellness products.
 - Razorpay payment gateway + Magic Checkout
 - Logistics via Shiprocket, with Delhivery / Blue Dart / India Post comparison
 - WhatsApp Business — Community (free app) + Business Platform API for broadcast and order updates
-- JTACS Care & Growth retainer plans (Essential / Growth / Scale)
 
 ## Commercials
 
-- **Build fee:** ₹36,000 + 18% GST = **₹42,480** (one time)
-- **Cost to go live (incl. third-party):** ₹66,876
-- **Steady-state running cost:** ₹14,211–16,600/month at 100 orders
-- **Recurring revenue opportunity:** ₹3,500 / ₹6,500 / ₹11,000 per month + GST
+- **Build fee:** **₹36,000** flat, one time, no GST added
+- **Cost to go live (incl. third-party):** ₹60,396
+- **Steady-state running cost:** ₹14,211–16,600/month at 100 orders, paid by the
+  client directly to Shopify, Razorpay, the courier and Meta
 
 ## Before sending
 
-Fill the placeholders marked `[...]` in the document (highlighted in amber):
-JTACS legal entity name, address, GSTIN, PAN, phone, email, bank details and
-authorised signatory — plus Dr. Dhanush's clinic name, address, GSTIN and AYUSH
-licence number.
+Fill the placeholders marked `[...]` in the document (highlighted in amber).
+Only Dr. Dhanush's details are outstanding: clinic name, address, GSTIN and
+AYUSH licence number. The JTACS side carries no details beyond the name.
 
 ## Regenerating the PDF
 

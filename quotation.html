@@ -184,24 +184,6 @@ ul.tick li::before{
 }
 ul.tick li b{color:var(--ink); font-weight:600; display:block; margin-bottom:1px;}
 
-/* ---------- plan cards ---------- */
-.plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:20px 0 6px;}
-.plan{
-  border:1px solid var(--rule); border-radius:3px; background:var(--surface);
-  padding:22px 20px; display:flex; flex-direction:column;
-}
-.plan.best{border:1.5px solid var(--accent); box-shadow:var(--shadow); position:relative;}
-.plan .flag{
-  position:absolute; top:-9px; left:20px; background:var(--accent); color:var(--paper);
-  font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:3px 9px; border-radius:2px;
-}
-.plan h4{font-family:"Spectral",Georgia,serif; font-size:20px; font-weight:600; margin:0 0 3px;}
-.plan .for{font-size:12.5px; color:var(--ink-3); margin:0 0 16px; min-height:2.9em; line-height:1.5;}
-.plan .price{font-size:29px; font-weight:600; color:var(--accent-ink); line-height:1; font-variant-numeric:tabular-nums;}
-.plan .price small{font-size:13px; font-weight:500; color:var(--ink-3);}
-.plan .yr{font-size:12.5px; color:var(--ink-2); margin:8px 0 0; padding-top:10px; border-top:1px solid var(--rule);}
-.plan .yr b{color:var(--good); font-weight:600;}
-
 /* ---------- reasons ---------- */
 .reasons{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; margin:20px 0 6px;}
 .reason{background:var(--surface); padding:20px 22px;}
@@ -288,12 +270,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
   <div class="party">
     <h3>From</h3>
     <p class="who">JTACS</p>
-    <p>
-      <span class="fill">[Legal entity name]</span><br>
-      <span class="fill">[Office address, City, PIN]</span><br>
-      GSTIN <span class="fill">[GSTIN]</span> &nbsp;&middot;&nbsp; PAN <span class="fill">[PAN]</span><br>
-      <span class="fill">[Phone]</span> &nbsp;&middot;&nbsp; <span class="fill">[Email]</span>
-    </p>
+    <p>Jnanottam</p>
   </div>
   <div class="party">
     <h3>Quotation for</h3>
@@ -331,7 +308,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
     </ul>
 
     <div class="win">
-      <p><b>The short version of the money.</b> JTACS charges <b>&#8377;36,000 + 18% GST = &#8377;42,480</b>, one time, to build and launch everything. To start the store you will also pay roughly <b>&#8377;24,400</b> to Shopify, WhatsApp and the domain provider in the first month. After that, expect around <b>&#8377;16,600 per month</b> in running costs at 100 orders a month &mdash; plus an optional JTACS care plan from &#8377;3,500 a month if you want us to keep running it for you. Section 08 shows every rupee.</p>
+      <p><b>The short version of the money.</b> JTACS charges <b>&#8377;36,000</b>, one time, to build and launch everything. There is no tax added on top of that and nothing further to pay us for the build. To start the store you will also pay roughly <b>&#8377;24,400</b> to Shopify, WhatsApp and the domain provider in the first month. After that, expect around <b>&#8377;16,600 per month</b> in running costs at 100 orders a month, paid directly to those companies. Section 08 shows every rupee.</p>
     </div>
   </div>
 </section>
@@ -368,7 +345,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
     </ul>
 
     <h3 class="sub">D &nbsp;&middot;&nbsp; Not included in this price</h3>
-    <p class="tnote">Product photography and videography &middot; logo and brand identity design (if you do not have one) &middot; content writing beyond your supplied product text &middot; paid advertising and its ad spend &middot; mobile apps for Android/iOS &middot; doctor consultation video calls &middot; subscription/refill ordering &middot; regional-language versions of the store. Each of these is available &mdash; see the add-on rates in Section 09.</p>
+    <p class="tnote">Product photography and videography &middot; logo and brand identity design (if you do not have one) &middot; content writing beyond your supplied product text &middot; paid advertising and its ad spend &middot; mobile apps for Android/iOS &middot; doctor consultation video calls &middot; subscription/refill ordering &middot; regional-language versions of the store. Each of these is available and quoted separately whenever you want it.</p>
   </div>
 </section>
 
@@ -391,16 +368,14 @@ footer li{margin:0 0 5px; break-inside:avoid;}
           <tr><td class="muted">4</td><td><b>Logistics &amp; delivery integration</b> &mdash; courier account, automated pickup, labels, tracking, COD reconciliation, return flow</td><td class="n">4,000</td></tr>
           <tr><td class="muted">5</td><td><b>WhatsApp Business setup</b> &mdash; verified profile, catalogue, Community structure, opt-in flow, order-update message templates, broadcast setup</td><td class="n">5,000</td></tr>
           <tr><td class="muted">6</td><td><b>Compliance, launch &amp; training</b> &mdash; legal pages, GST invoice configuration, SEO basics, analytics, end-to-end testing, go-live and staff training</td><td class="n">2,000</td></tr>
-          <tr class="sub"><td></td><td>Taxable value</td><td class="n">36,000</td></tr>
-          <tr><td></td><td>GST @ 18% <span class="muted">(SAC 998314 &mdash; IT design &amp; development services)</span></td><td class="n">6,480</td></tr>
-          <tr class="total"><td></td><td>Total payable to JTACS</td><td class="n">42,480</td></tr>
+          <tr class="total"><td></td><td>Total payable to JTACS</td><td class="n">36,000</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="tnote"><b>Rupees Forty-Two Thousand Four Hundred and Eighty Only.</b> If your business is GST-registered, the &#8377;6,480 GST is claimable by you as input tax credit &mdash; so your real cost is &#8377;36,000. Please share your GSTIN before the first invoice is raised.</p>
+    <p class="tnote"><b>Rupees Thirty-Six Thousand Only.</b> This is a flat fee with no tax added on top and nothing further to pay for the build.</p>
 
     <div class="note">
-      <p><b>Important &mdash; what this &#8377;42,480 does not cover.</b> Shopify's subscription, Razorpay's transaction fees, courier charges and WhatsApp message costs are <b>not</b> included here and are <b>not</b> billed by JTACS. You pay those companies directly, from your own account, at their published rates. Sections 04 to 07 explain exactly what each of them will charge you and why. We show you these numbers up front so there are no shocks in month two.</p>
+      <p><b>Important &mdash; what this &#8377;36,000 does not cover.</b> Shopify's subscription, Razorpay's transaction fees, courier charges and WhatsApp message costs are <b>not</b> included here and are <b>not</b> billed by JTACS. You pay those companies directly, from your own account, at their published rates. Sections 04 to 07 explain exactly what each of them will charge you and why. We show you these numbers up front so there are no shocks in month two.</p>
     </div>
   </div>
 </section>
@@ -704,18 +679,18 @@ footer li{margin:0 0 5px; break-inside:avoid;}
         <caption>Month 1 &mdash; one-time and setup costs, all inclusive of GST</caption>
         <thead><tr><th>Item</th><th>Paid to</th><th class="n">Amount (&#8377;)</th></tr></thead>
         <tbody>
-          <tr><td><b>Website and systems build</b> &mdash; everything in Section 02</td><td><span class="chip us">JTACS</span></td><td class="n"><b>42,480</b></td></tr>
+          <tr><td><b>Website and systems build</b> &mdash; everything in Section 02</td><td><span class="chip us">JTACS</span></td><td class="n"><b>36,000</b></td></tr>
           <tr><td>Domain name for 1 year <span class="muted">(.in or .com)</span></td><td><span class="chip them">Registrar</span></td><td class="n">1,400</td></tr>
           <tr><td>Shopify Basic, 12 months prepaid</td><td><span class="chip them">Shopify</span></td><td class="n">21,226</td></tr>
           <tr><td>Razorpay account opening and integration</td><td><span class="chip them">Razorpay</span></td><td class="n free">0</td></tr>
           <tr><td>Courier account &mdash; Shiprocket Lite for month 1</td><td><span class="chip them">Shiprocket</span></td><td class="n free">0</td></tr>
           <tr><td>WhatsApp Business App and Community</td><td><span class="chip them">Meta</span></td><td class="n free">0</td></tr>
           <tr><td>WhatsApp API platform &mdash; first month</td><td><span class="chip them">AiSensy</span></td><td class="n">1,770</td></tr>
-          <tr class="total"><td>Total to go live</td><td></td><td class="n">66,876</td></tr>
+          <tr class="total"><td>Total to go live</td><td></td><td class="n">60,396</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="tnote">Of this, <b>&#8377;42,480 comes to JTACS</b> and <b>&#8377;24,396 goes to the platforms</b>. If you are GST-registered, roughly &#8377;10,200 of the total is GST you can claim back as input credit &mdash; making your true cost about <b>&#8377;56,700</b>.</p>
+    <p class="tnote">Of this, <b>&#8377;36,000 comes to JTACS</b> and <b>&#8377;24,396 goes to the platforms</b>. If you are GST-registered, roughly &#8377;3,700 of the platform charges is GST you can claim back as input credit &mdash; making your true cost about <b>&#8377;56,700</b>.</p>
 
     <h3 class="sub">B &nbsp;&middot;&nbsp; What it costs to run, every month</h3>
     <div class="tw">
@@ -731,99 +706,20 @@ footer li{margin:0 0 5px; break-inside:avoid;}
           <tr><td>Razorpay Magic Checkout &mdash; 0.65%</td><td class="n">&mdash;</td><td class="n">1,151</td></tr>
           <tr><td>Delivery &mdash; Shiprocket, 100 parcels, 50% COD</td><td class="n">6,381</td><td class="n">6,381</td></tr>
           <tr><td>WhatsApp &mdash; platform plus messages</td><td class="n">3,848</td><td class="n">3,848</td></tr>
-          <tr class="vtotal"><td>Platform costs per month</td><td class="n">16,600</td><td class="n">14,211</td></tr>
-          <tr><td><b>JTACS Care &amp; Growth</b> &mdash; Growth plan, optional</td><td class="n">7,670</td><td class="n">7,670</td></tr>
-          <tr class="total"><td>All-in monthly cost</td><td class="n">24,270</td><td class="n">21,881</td></tr>
+          <tr class="vtotal"><td>Total running cost per month</td><td class="n">16,600</td><td class="n">14,211</td></tr>
         </tbody>
       </table>
     </div>
     <p class="tnote">Setting up Magic Checkout saves about <b>&#8377;2,389 a month &mdash; &#8377;28,668 a year</b>. It is included in the build price at no extra charge.</p>
 
     <div class="win">
-      <p><b>Does this actually make money?</b> At &#8377;1,50,000 of monthly sales on a typical 60% product margin, your gross profit is &#8377;90,000. Take off &#8377;14,211 of platform costs and &#8377;7,670 for the JTACS Growth plan and you keep roughly <b>&#8377;68,100 a month</b> &mdash; from patients you never had to see in person. The one-time build of &#8377;42,480 pays for itself inside the first month of running at this level, and every month after that is profit. Even at a third of this volume the store covers its own costs.</p>
+      <p><b>Does this actually make money?</b> At &#8377;1,50,000 of monthly sales on a typical 60% product margin, your gross profit is &#8377;90,000. Take off &#8377;14,211 of platform costs and you keep roughly <b>&#8377;75,800 a month</b> &mdash; from patients you never had to see in person. The one-time build of &#8377;36,000 pays for itself inside the first month of running at this level, and every month after that is profit. Even at a third of this volume the store covers its own costs.</p>
     </div>
   </div>
 </section>
 
 <section id="s9">
   <div class="num">09</div>
-  <div class="body">
-    <h2>Care &amp; Growth plans <span class="chip us">Optional, payable to JTACS</span></h2>
-    <p class="deck">A store that is not looked after quietly stops working. Apps break after updates, product photos go stale, festival offers are missed, and payment failures go unnoticed for a week. These plans mean you never have to think about any of it &mdash; and you always have someone to call.</p>
-
-    <div class="plans">
-      <div class="plan">
-        <h4>Essential</h4>
-        <p class="for">Keep the store healthy and online. For when you want to run the marketing yourself.</p>
-        <div class="price">&#8377;3,500<small> / month</small></div>
-        <p class="yr">Or &#8377;35,000 a year &mdash; <b>2 months free</b></p>
-      </div>
-      <div class="plan best">
-        <span class="flag">Recommended</span>
-        <h4>Growth</h4>
-        <p class="for">Everything kept running, plus we actively sell for you on WhatsApp every month.</p>
-        <div class="price">&#8377;6,500<small> / month</small></div>
-        <p class="yr">Or &#8377;65,000 a year &mdash; <b>2 months free</b></p>
-      </div>
-      <div class="plan">
-        <h4>Scale</h4>
-        <p class="for">For when the store is working and you want to push it hard with ads and testing.</p>
-        <div class="price">&#8377;11,000<small> / month</small></div>
-        <p class="yr">Or &#8377;1,10,000 a year &mdash; <b>2 months free</b></p>
-      </div>
-    </div>
-    <p class="tnote">All plans exclusive of 18% GST. Monthly plans can be cancelled with 30 days' notice &mdash; there is no lock-in. Annual plans are billed once, in advance.</p>
-
-    <div class="tw">
-      <table>
-        <caption>What each plan includes</caption>
-        <thead>
-          <tr><th>Included every month</th><th class="n">Essential</th><th class="n">Growth</th><th class="n">Scale</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Uptime monitoring, weekly backups, security checks</td><td class="n">&#10003;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
-          <tr><td>Theme and app updates, bug fixes, broken-link checks</td><td class="n">&#10003;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
-          <tr><td>Payment and order failure monitoring</td><td class="n">&#10003;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
-          <tr><td>Product additions and edits</td><td class="n">10 / month</td><td class="n">Unlimited</td><td class="n">Unlimited</td></tr>
-          <tr><td>Design and content change requests</td><td class="n">2 hours</td><td class="n">5 hours</td><td class="n">10 hours</td></tr>
-          <tr><td>Support response time</td><td class="n">24 hours</td><td class="n">8 hours</td><td class="n">4 hours + phone</td></tr>
-          <tr><td>Festival and offer banners designed</td><td class="n muted">&mdash;</td><td class="n">2 / month</td><td class="n">4 / month</td></tr>
-          <tr><td><b>WhatsApp campaigns</b> written, designed, scheduled and reported</td><td class="n muted">&mdash;</td><td class="n">4 / month</td><td class="n">8 / month</td></tr>
-          <tr><td>Abandoned-cart recovery and COD confirmation automation</td><td class="n muted">&mdash;</td><td class="n">&#10003;</td><td class="n">&#10003;</td></tr>
-          <tr><td>SEO upkeep and Google Business Profile</td><td class="n">Basic</td><td class="n">&#10003;</td><td class="n">&#10003; + 2 articles</td></tr>
-          <tr><td>Monthly performance report</td><td class="n">&#10003;</td><td class="n">&#10003; + call</td><td class="n">&#10003; + call</td></tr>
-          <tr><td>Conversion optimisation and A/B testing</td><td class="n muted">&mdash;</td><td class="n muted">&mdash;</td><td class="n">&#10003;</td></tr>
-          <tr><td>Google and Meta ads managed <span class="muted">(ad spend billed by them, not us)</span></td><td class="n muted">&mdash;</td><td class="n muted">&mdash;</td><td class="n">up to &#8377;50,000 spend</td></tr>
-          <tr><td><b>AYUSH / ASCI claim review</b> of your product copy and ads</td><td class="n muted">&mdash;</td><td class="n">Quarterly</td><td class="n">Monthly</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="win">
-      <p><b>Our recommendation: Growth.</b> Essential keeps the lights on but nobody is selling for you. Growth is the one that pays for itself &mdash; four WhatsApp campaigns a month to a list of a thousand patients typically returns several times the &#8377;7,670 fee, and it is the difference between a website that sits there and a store that grows. <b>The first 30 days after go-live are free on any plan</b>, so you can see the work before you commit.</p>
-    </div>
-
-    <h3 class="sub">One-time add-ons, whenever you want them</h3>
-    <div class="tw">
-      <table>
-        <caption>Add-on rates &mdash; exclusive of 18% GST</caption>
-        <thead><tr><th>Add-on</th><th class="n">Price (&#8377;)</th><th>Why you might want it</th></tr></thead>
-        <tbody>
-          <tr><td>Next 25 products loaded and written up</td><td class="n">2,500</td><td>As your catalogue grows past 30</td></tr>
-          <tr><td>Campaign landing page</td><td class="n">6,000</td><td>A dedicated page for one festival offer or one hero product</td></tr>
-          <tr><td>SEO article, 800&ndash;1,000 words</td><td class="n">1,500</td><td>Ranking for searches like "ayurvedic medicine for acidity"</td></tr>
-          <tr><td>Product photo editing, per 10 images</td><td class="n">1,200</td><td>Clean white-background shots that sell better</td></tr>
-          <tr><td>Store in Kannada or Hindi</td><td class="n">9,000</td><td>Older patients buy far more readily in their own language</td></tr>
-          <tr><td><b>Subscription &amp; refill ordering</b></td><td class="n">12,000</td><td>Patients auto-receive their monthly course &mdash; the single highest-value feature for an Ayurveda practice</td></tr>
-          <tr><td>Online consultation booking with payment</td><td class="n">15,000</td><td>Sell your time, not just your medicines</td></tr>
-          <tr><td>Loyalty points and referral programme</td><td class="n">8,000</td><td>Patients bring patients</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="s10">
-  <div class="num">10</div>
   <div class="body">
     <h2>Timeline &mdash; live in four weeks</h2>
     <p class="deck">Four weeks from the day the advance is received and your material is with us. Razorpay KYC and Meta verification are the two steps outside our control; we file them on day one so they run in the background.</p>
@@ -863,36 +759,37 @@ footer li{margin:0 0 5px; break-inside:avoid;}
   </div>
 </section>
 
-<section id="s11">
-  <div class="num">11</div>
+<section id="s10">
+  <div class="num">10</div>
   <div class="body">
     <h2>Payment terms</h2>
     <div class="tw">
       <table>
         <caption>Milestone schedule &mdash; JTACS build fee</caption>
-        <thead><tr><th>Stage</th><th>When</th><th class="n">Share</th><th class="n">Amount incl. GST (&#8377;)</th></tr></thead>
+        <thead><tr><th>Stage</th><th>When</th><th class="n">Share</th><th class="n">Amount (&#8377;)</th></tr></thead>
         <tbody>
-          <tr><td><b>Advance</b></td><td>On acceptance of this quotation, to begin work</td><td class="n">50%</td><td class="n">21,240</td></tr>
-          <tr><td><b>Design approval</b></td><td>When you approve the store design and catalogue in week 2</td><td class="n">25%</td><td class="n">10,620</td></tr>
-          <tr><td><b>Go-live</b></td><td>On handover of all logins and completion of training</td><td class="n">25%</td><td class="n">10,620</td></tr>
-          <tr class="total"><td>Total</td><td></td><td class="n">100%</td><td class="n">42,480</td></tr>
+          <tr><td><b>Advance</b></td><td>On acceptance of this quotation, to begin work</td><td class="n">50%</td><td class="n">18,000</td></tr>
+          <tr><td><b>Design approval</b></td><td>When you approve the store design and catalogue in week 2</td><td class="n">25%</td><td class="n">9,000</td></tr>
+          <tr><td><b>Go-live</b></td><td>On handover of all logins and completion of training</td><td class="n">25%</td><td class="n">9,000</td></tr>
+          <tr class="total"><td>Total</td><td></td><td class="n">100%</td><td class="n">36,000</td></tr>
         </tbody>
       </table>
     </div>
 
     <ul class="plain">
-      <li><b>How to pay.</b> NEFT, IMPS, UPI or bank transfer to <span class="fill">[JTACS bank name, A/c no., IFSC, UPI ID]</span>. A GST invoice is issued at each milestone.</li>
+      <li><b>How to pay.</b> NEFT, IMPS, UPI or bank transfer. Account details are shared on acceptance, and an invoice is issued at each milestone.</li>
       <li><b>Third-party costs are yours, paid directly.</b> Shopify, Razorpay, the courier and Meta are billed to your own card or bank account, in your own name. JTACS never collects them and adds no markup. You keep the GST input credit on all of them.</li>
       <li><b>Ownership.</b> On final payment, every account, the domain, the store, the designs and the content are yours outright. JTACS holds nothing back and there is no ransom over access.</li>
       <li><b>Two rounds of revisions</b> on the design are included. Further rounds, or changes after design approval, are billed at &#8377;1,200 per hour with your written agreement first.</li>
+      <li><b>After launch.</b> Thirty days of free defect support is included. Beyond that, changes and additions are quoted as and when you need them &mdash; there is nothing you are signed up to pay us on an ongoing basis.</li>
       <li><b>Validity.</b> This quotation holds for 30 days from the date above. Third-party rates quoted are those published by each company at the time of writing and are set by them, not by us; if any of them changes their rates, we will tell you.</li>
       <li><b>Late payment.</b> Milestone payments are due within 7 days of the invoice.</li>
     </ul>
   </div>
 </section>
 
-<section id="s12">
-  <div class="num">12</div>
+<section id="s11">
+  <div class="num">11</div>
   <div class="body">
     <h2>Why JTACS</h2>
     <p class="deck">There are cheaper quotes available and there are more expensive ones. Here is the specific case for us.</p>
@@ -911,7 +808,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
       <div class="reason">
         <div class="rn">03</div>
         <h4>We understand Ayurveda is a regulated business</h4>
-        <p>You are not selling t-shirts. The Drugs &amp; Magic Remedies Act, AYUSH licensing and ASCI advertising rules govern what you may claim about your medicines. Wrong wording gets payment accounts frozen and Meta ad accounts banned. Section 13 shows you exactly where the lines are.</p>
+        <p>You are not selling t-shirts. The Drugs &amp; Magic Remedies Act, AYUSH licensing and ASCI advertising rules govern what you may claim about your medicines. Wrong wording gets payment accounts frozen and Meta ad accounts banned. Section 12 shows you exactly where the lines are.</p>
       </div>
       <div class="reason">
         <div class="rn">04</div>
@@ -946,21 +843,21 @@ footer li{margin:0 0 5px; break-inside:avoid;}
       <div class="reason">
         <div class="rn">10</div>
         <h4>We are still here after launch</h4>
-        <p>Thirty days of free defect support, then a care plan you can leave with 30 days' notice. We stay because the work is good, not because you are trapped.</p>
+        <p>Thirty days of free defect support, and we pick up the phone after that too. Anything further is quoted when you ask for it. You are not signed up to anything ongoing, and we would rather earn the next job than lock you into one.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="s13">
-  <div class="num">13</div>
+<section id="s12">
+  <div class="num">12</div>
   <div class="body">
     <h2>Compliance &mdash; what you must have in place</h2>
     <p class="deck">Selling Ayurvedic medicines online in India is legal and straightforward, but it is regulated. These are your responsibilities, not ours &mdash; we flag them now because ignoring them is what shuts stores down. Please confirm your position on each before we begin.</p>
 
     <ul class="plain">
       <li><b>AYUSH licence.</b> Ayurvedic, Siddha and Unani medicines fall under the Drugs and Cosmetics Act, 1940 and its 1945 Rules. A manufacturing licence is required if you make them; a retail licence if you only sell them. Razorpay will ask for this during KYC, and Shopify, Amazon and Meta all enforce it.</li>
-      <li><b>What you may and may not say.</b> The Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954 prohibits advertising that a product cures a listed disease &mdash; diabetes, cancer, heart conditions and others. General wellness language is permitted; disease-cure claims are not. <b>This is the most common reason Ayurveda stores lose their payment gateway.</b> We will write your product copy on the right side of this line, and the Growth and Scale plans include a periodic claim review.</li>
+      <li><b>What you may and may not say.</b> The Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954 prohibits advertising that a product cures a listed disease &mdash; diabetes, cancer, heart conditions and others. General wellness language is permitted; disease-cure claims are not. <b>This is the most common reason Ayurveda stores lose their payment gateway.</b> We will write your product copy on the right side of this line, and flag anything in your existing material that reads as a disease-cure claim.</li>
       <li><b>Labelling.</b> Every product page must carry ingredients, net quantity, batch number, manufacturing and expiry dates, MRP inclusive of taxes, manufacturer name and address, and the licence number. We build these fields into the product template.</li>
       <li><b>GST.</b> Most Ayurvedic medicines attract 12% GST; some cosmetics and wellness products attract 18%. We configure HSN codes per product and set the store to issue GST-compliant invoices automatically. Please have your chartered accountant confirm the rate for each product before we load the catalogue.</li>
       <li><b>Meta advertising policy.</b> Health claims in WhatsApp templates and Meta ads are reviewed by Meta and rejected or banned if they overstate. We write templates to pass review the first time.</li>
@@ -982,14 +879,14 @@ footer li{margin:0 0 5px; break-inside:avoid;}
   <div class="sig">
     <h4>For JTACS</h4>
     <div class="sigline"></div>
-    <p><span class="fill">[Authorised signatory]</span><br>Date &nbsp;27 August 2026</p>
+    <p>Jnanottam<br>Date &nbsp;27 August 2026</p>
   </div>
 </div>
 
 <footer>
   <h4>Notes on the figures</h4>
   <p style="margin:0 0 14px; max-width:78ch;">
-    All third-party rates in this document are the rates published by those companies as of August 2026 and are subject to change by them. GST is charged at 18% on Shopify, Razorpay, courier and WhatsApp services, and at 18% on JTACS services under SAC 998314; Ayurvedic medicines themselves are typically 12%. Worked examples assume 100 orders a month at an average order value of &#8377;1,500, a 500 g average parcel, a 70:30 UPI-to-card split and a 50% COD share &mdash; your actual numbers will vary. Sources consulted:
+    All third-party rates in this document are the rates published by those companies as of August 2026 and are subject to change by them. GST at 18% applies to the Shopify, Razorpay, courier and WhatsApp charges shown; Ayurvedic medicines themselves are typically 12%. The JTACS fee of &#8377;36,000 is quoted flat, with no tax added. Worked examples assume 100 orders a month at an average order value of &#8377;1,500, a 500 g average parcel, a 70:30 UPI-to-card split and a 50% COD share &mdash; your actual numbers will vary. Sources consulted:
   </p>
   <ol>
     <li><a href="https://razorpay.com/blog/razorpay-shopify-payment-gateway-pricing-explained/">Razorpay &mdash; Shopify payment gateway pricing explained, 2026</a></li>
