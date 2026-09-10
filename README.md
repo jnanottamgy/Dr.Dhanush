@@ -1,45 +1,57 @@
-# Dr. Dhanush Ayurveda — JTACS Quotation
+# Dr. Dhanush — client documents
 
-Client quotation and proforma invoice for **Dr. R. Dhanush** (Ayurvedic physician),
-covering an online store to sell medicines and wellness products.
+Two documents for the same client, in sequence. **The build plan is current; the
+Ayurveda quotation is superseded** and kept only for reference.
 
-## Files
+## Current — Malnad commerce build plan
+
+Custom-built storefront, owner dashboard and WhatsApp ordering for a Malnad
+produce business (coffee, spices, estate goods). No rented platform.
 
 | File | What it is |
 |---|---|
-| `quotation.html` | The source document. Loads webfonts from Google Fonts; theme-aware (light/dark). Edit this one. |
-| `quotation-print.html` | Self-contained build with fonts inlined as base64 — used to render the PDF. Regenerated, not hand-edited. |
-| `JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf` | 15-page A4 PDF. This is what goes to the client. |
+| `build-plan.html` | Source. Loads webfonts from Google Fonts; theme-aware. **Edit this one.** |
+| `build-plan-print.html` | Self-contained build with fonts inlined — used to render the PDF. Regenerated, not hand-edited. |
+| `JTACS-Malnad-Build-Plan.pdf` | 17-page A4 PDF. |
 
-## Scope covered
+**Scope:** storefront on a Medusa commerce core with a Next.js front end ·
+two-layer dashboard (operations console + bespoke Owner View) · Razorpay
+prepaid checkout · WhatsApp Community plus in-chat ordering via Flows ·
+FSSAI and Legal Metrology declarations enforced as required product fields ·
+GST at 5% for coffee and most spices.
 
-- Shopify storefront (India-configured: INR, GST, HSN, pin-code shipping)
-- Razorpay payment gateway + Magic Checkout — **prepaid only, no Cash on Delivery**
-- Order management and dispatch workflow for the client's own delivery team
-  (they already have logistics in place, so no courier is quoted)
-- WhatsApp Business — Community (free app) + Business Platform API for broadcast and order updates
+**Engineering commitments:** designed for 1,500 orders/day against an expected
+20–40 (~40× headroom) · catalogue served from CDN edge so ~98% of browsing never
+reaches the database · idempotent payment webhooks with an hourly reconciliation
+sweep · stock decremented under row lock · load test and backup-restore drill
+both gated before launch.
 
-## Commercials
+**Timeline:** six weeks in five phases, each with an explicit gate. The critical
+path is Razorpay/Meta verification and client catalogue content, not code.
 
-- **Build fee:** **₹36,000** flat, one time, no GST added
-- **Cost to go live (incl. third-party):** ₹60,396
-- **Steady-state running cost:** ₹7,830–10,219/month at 100 orders, paid by the
-  client directly to Shopify, Razorpay and Meta
+**Open before quoting:** after-launch support model, and whether source code is
+transferred outright or licensed.
 
-## Before sending
+## Superseded — Ayurveda quotation
 
-Nothing. The document carries no fill-in placeholders — both parties are named
-and nothing else is requested.
+| File | What it is |
+|---|---|
+| `quotation.html` / `quotation-print.html` | Source and print build |
+| `JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf` | 15-page A4 PDF |
 
-## Regenerating the PDF
+Quoted a Shopify store at a flat ₹36,000 for selling Ayurvedic medicines.
+Overtaken by the pivot to Malnad produce and the decision to build in-house.
+
+## Regenerating a PDF
 
 ```sh
 /opt/pw-browsers/chromium --headless --disable-gpu --no-sandbox \
   --virtual-time-budget=30000 --run-all-compositor-stages-before-draw \
   --no-pdf-header-footer \
-  --print-to-pdf=JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf \
-  "file://$PWD/quotation-print.html"
+  --print-to-pdf=JTACS-Malnad-Build-Plan.pdf \
+  "file://$PWD/build-plan-print.html"
 ```
 
-Third-party rates are as published in August 2026 and are set by those vendors,
-not by JTACS. Sources are listed in the document footer.
+Third-party rates and regulatory references are as published in September 2026
+and are set by those bodies, not by JTACS. Sources are listed in each document's
+footer.

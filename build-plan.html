@@ -1,0 +1,821 @@
+<title>Malnad Commerce Build Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:wght@400;600;700&display=swap">
+
+<style>
+:root{
+  --paper:#FAFAF8; --surface:#FFFFFF; --surface-2:#F3F4F1; --surface-3:#ECEEEA;
+  --ink:#161D1B; --ink-2:#4A5551; --ink-3:#78827E;
+  --rule:#DCE0DC; --rule-strong:#B4BCB7;
+  --accent:#12564D; --accent-ink:#0C3F38; --accent-soft:#E3EFEB; --accent-line:#9CC6BB;
+  --vendor:#3A5573; --vendor-soft:#E7ECF2; --vendor-line:#A9BDD4;
+  --warn:#8A5A00; --warn-soft:#FAF1DC; --warn-line:#DFC98C;
+  --good:#1B6E3E; --good-soft:#E2F0E7;
+  --shadow:0 1px 2px rgba(22,29,27,.05), 0 8px 28px -12px rgba(22,29,27,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1413; --surface:#151D1B; --surface-2:#1B2422; --surface-3:#212B29;
+    --ink:#E9EEEB; --ink-2:#A7B3AE; --ink-3:#7D8984;
+    --rule:#27312E; --rule-strong:#3B4743;
+    --accent:#63C3AC; --accent-ink:#8FD8C5; --accent-soft:#14312C; --accent-line:#2C5C53;
+    --vendor:#92B3D6; --vendor-soft:#18242F; --vendor-line:#33506C;
+    --warn:#DCA84A; --warn-soft:#2A2316; --warn-line:#5A4A21;
+    --good:#5FC088; --good-soft:#16281E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1413; --surface:#151D1B; --surface-2:#1B2422; --surface-3:#212B29;
+  --ink:#E9EEEB; --ink-2:#A7B3AE; --ink-3:#7D8984;
+  --rule:#27312E; --rule-strong:#3B4743;
+  --accent:#63C3AC; --accent-ink:#8FD8C5; --accent-soft:#14312C; --accent-line:#2C5C53;
+  --vendor:#92B3D6; --vendor-soft:#18242F; --vendor-line:#33506C;
+  --warn:#DCA84A; --warn-soft:#2A2316; --warn-line:#5A4A21;
+  --good:#5FC088; --good-soft:#16281E;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Fira Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:15px; line-height:1.62; margin:0;
+  -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;
+}
+.doc{max-width:1000px; margin:0 auto; padding:0 20px 96px;}
+
+.letterhead{
+  border-bottom:2px solid var(--ink); padding:44px 0 20px; margin-bottom:34px;
+  display:flex; flex-wrap:wrap; gap:28px; align-items:flex-end; justify-content:space-between;
+}
+.mark{display:flex; align-items:center; gap:14px;}
+.mark svg{display:block; flex:none; color:var(--accent);}
+.mark-txt .name{font-family:"Spectral",Georgia,serif; font-weight:700; font-size:30px; letter-spacing:.01em; line-height:1.05; margin:0;}
+.mark-txt .sub{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-top:6px; font-weight:500;}
+.docmeta{text-align:right; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; line-height:1.85; color:var(--ink-2);}
+.docmeta .kind{font-family:"Fira Sans",sans-serif; font-size:12px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+.docmeta b{color:var(--ink); font-weight:600;}
+
+.parties{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-bottom:44px;}
+.party{background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:20px 22px;}
+.party h3{font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px;}
+.party .who{font-family:"Spectral",Georgia,serif; font-size:20px; font-weight:600; margin:0 0 4px; line-height:1.25;}
+.party p{margin:0; color:var(--ink-2); font-size:13.5px; line-height:1.7;}
+
+section{display:grid; grid-template-columns:56px 1fr; gap:26px; padding-top:38px; margin-top:38px; border-top:1px solid var(--rule);}
+section:first-of-type{border-top:none; margin-top:0;}
+.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500; color:var(--accent); padding-top:7px;}
+.body>h2{font-family:"Spectral",Georgia,serif; font-size:26px; font-weight:600; margin:0 0 6px; line-height:1.22; text-wrap:balance; letter-spacing:-.01em;}
+.body>.deck{color:var(--ink-2); margin:0 0 22px; font-size:15px; max-width:66ch;}
+h3.sub{font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin:32px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--rule);}
+h3.sub:first-child{margin-top:0;}
+p{max-width:68ch;}
+
+.tw{overflow-x:auto; margin:0 0 6px; border:1px solid var(--rule); border-radius:3px; background:var(--surface);}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:520px;}
+caption{caption-side:top; text-align:left; padding:12px 16px; font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); border-bottom:1px solid var(--rule); background:var(--surface-2);}
+th,td{padding:11px 16px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top;}
+thead th{font-size:10.5px; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--rule-strong); white-space:nowrap;}
+tbody tr:last-child td{border-bottom:none;}
+td.n, th.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+tr.total td{background:var(--accent-soft); font-weight:700; color:var(--accent-ink); border-top:2px solid var(--accent); border-bottom:none; font-size:14.5px;}
+tr.sub td{background:var(--surface-2); font-weight:600;}
+.rate{font-family:"IBM Plex Mono",monospace; font-size:12.5px;}
+.free{color:var(--good); font-weight:600;}
+.muted{color:var(--ink-3);}
+.tnote{font-size:12.5px; color:var(--ink-3); margin:9px 0 0; line-height:1.6; max-width:74ch;}
+
+.chip{display:inline-block; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border-radius:2px; white-space:nowrap; vertical-align:middle;}
+.chip.us{background:var(--accent-soft); color:var(--accent-ink); border:1px solid var(--accent-line);}
+.chip.them{background:var(--vendor-soft); color:var(--vendor); border:1px solid var(--vendor-line);}
+.chip.pick{background:var(--good-soft); color:var(--good); border:1px solid var(--good);}
+
+.note{border-left:3px solid var(--warn); background:var(--warn-soft); padding:14px 18px; margin:18px 0; border-radius:0 3px 3px 0;}
+.note b{color:var(--warn);}
+.note p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:none;}
+.note p+p{margin-top:8px;}
+.win{border-left:3px solid var(--accent); background:var(--accent-soft); padding:14px 18px; margin:18px 0; border-radius:0 3px 3px 0;}
+.win p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:none;}
+.win b{color:var(--accent-ink);}
+
+.howbox{border:1px solid var(--rule); border-radius:3px; background:var(--surface); padding:4px 0; margin:16px 0 6px;}
+ol.how{margin:0; padding:6px 22px 6px 44px;}
+ol.how li{margin:9px 0; font-size:13.5px; color:var(--ink-2); padding-left:4px;}
+ol.how li b{color:var(--ink); font-weight:600;}
+ol.how li::marker{color:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:12px;}
+
+ul.plain{margin:12px 0; padding-left:0; list-style:none;}
+ul.plain li{position:relative; padding-left:22px; margin:9px 0; font-size:14px; color:var(--ink-2); max-width:72ch;}
+ul.plain li::before{content:""; position:absolute; left:2px; top:.62em; width:7px; height:7px; border:1.5px solid var(--accent); border-radius:1px;}
+ul.plain li b{color:var(--ink); font-weight:600;}
+ul.tick{margin:12px 0; padding-left:0; list-style:none;}
+ul.tick li{position:relative; padding-left:26px; margin:11px 0; font-size:14px; color:var(--ink-2); max-width:72ch;}
+ul.tick li::before{content:"\2713"; position:absolute; left:0; top:0; color:var(--accent); font-weight:700;}
+ul.tick li b{color:var(--ink); font-weight:600; display:block; margin-bottom:1px;}
+
+figure{margin:22px 0 6px; border:1px solid var(--rule); border-radius:3px; background:var(--surface); padding:22px 18px 14px; overflow-x:auto;}
+figure svg{display:block; max-width:100%; height:auto; margin:0 auto; color:var(--ink-2);}
+figcaption{margin-top:16px; padding-top:12px; border-top:1px solid var(--rule); font-size:12.5px; color:var(--ink-3); line-height:1.6; text-align:left;}
+figcaption b{color:var(--ink-2); font-weight:600;}
+
+.tl{margin:20px 0 6px; border-left:2px solid var(--rule);}
+.tl-row{position:relative; padding:0 0 26px 26px;}
+.tl-row:last-child{padding-bottom:0;}
+.tl-row::before{content:""; position:absolute; left:-6px; top:5px; width:10px; height:10px; background:var(--accent); border-radius:50%; border:2px solid var(--paper);}
+.tl-row .wk{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+.tl-row h4{font-size:15px; font-weight:600; margin:4px 0 5px;}
+.tl-row p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:68ch;}
+.tl-row .gate{display:inline-block; margin-top:7px; font-size:11.5px; color:var(--accent-ink); background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:2px; padding:3px 9px;}
+
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:2px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; margin:20px 0 6px;}
+.cell{background:var(--surface); padding:20px 22px;}
+.cell h4{font-size:15px; font-weight:600; margin:0 0 6px;}
+.cell .lbl{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--accent); font-weight:500;}
+.cell p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:none;}
+.cell ul{margin:8px 0 0; padding-left:17px;}
+.cell li{font-size:13.5px; color:var(--ink-2); margin:5px 0;}
+
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--rule); font-size:11.5px; color:var(--ink-3); line-height:1.75;}
+footer h4{font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px;}
+footer a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-line);}
+footer ol{padding-left:18px; margin:0; columns:2; column-gap:34px;}
+footer li{margin:0 0 5px; break-inside:avoid;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+@media (max-width:660px){
+  section{grid-template-columns:1fr; gap:0;}
+  .num{padding-top:0; margin-bottom:8px;}
+  .body>h2{font-size:22px;}
+  .letterhead{padding-top:30px;}
+  .mark-txt .name{font-size:24px;}
+  .docmeta{text-align:left;}
+  footer ol{columns:1;}
+}
+@media print{
+  @page{size:A4; margin:14mm 12mm;}
+  body{background:#fff; font-size:9.9pt;}
+  .doc{max-width:none; padding:0;}
+  section{padding-top:20px; margin-top:20px;}
+  .body>h2{font-size:16.5pt;}
+  .tw,.note,.win,.howbox,.party,.tl-row,.cell,.grid2,figure{break-inside:avoid; page-break-inside:avoid;}
+  h2,h3.sub{break-after:avoid;}
+  a{color:#000;}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important;}}
+</style>
+
+<div class="doc">
+
+<header class="letterhead">
+  <div class="mark">
+    <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <rect x="1" y="1" width="44" height="44" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1.5"/>
+      <path d="M23 9 C15 15, 12 22, 23 37 C34 22, 31 15, 23 9 Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M23 37 L23 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M23 24 L17.5 19 M23 29 L28.5 24" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <div class="mark-txt">
+      <p class="name">JTACS</p>
+      <p class="sub">Digital Commerce &amp; Advisory</p>
+    </div>
+  </div>
+  <div class="docmeta">
+    <div class="kind">Build &amp; Delivery Plan</div>
+    Ref &nbsp;<b>JTACS/PLN/2026-27/021</b><br>
+    Date &nbsp;<b>10 September 2026</b><br>
+    Revision &nbsp;<b>1.0</b><br>
+    Status &nbsp;<b>For approval</b>
+  </div>
+</header>
+
+<div class="parties">
+  <div class="party">
+    <h3>Prepared by</h3>
+    <p class="who">JTACS</p>
+    <p>Jnanottam</p>
+  </div>
+  <div class="party">
+    <h3>Prepared for</h3>
+    <p class="who">Dr. R. Dhanush</p>
+    <p>Malnad produce &mdash; coffee, spices and estate goods</p>
+  </div>
+  <div class="party">
+    <h3>Subject</h3>
+    <p class="who">Own Storefront &amp; Owner Dashboard</p>
+    <p>
+      A custom-built online store and an owner's dashboard, with WhatsApp
+      community and ordering. Built on your own infrastructure &mdash; no platform
+      rent and no commission on your sales.
+    </p>
+  </div>
+</div>
+
+<section id="s1">
+  <div class="num">01</div>
+  <div class="body">
+    <h2>What we are building</h2>
+    <p class="deck">Three things, on infrastructure you own outright. Read this page if you read nothing else.</p>
+
+    <ul class="tick">
+      <li><b>A storefront.</b> Your own website where customers browse your coffee and spices, choose a pack size, and pay online. Fast on a phone, built to be found on Google, and built around where the produce comes from &mdash; provenance is what sells Malnad goods.</li>
+      <li><b>An owner dashboard.</b> One screen that answers "how did we do today" &mdash; sales, orders waiting to be packed, what is selling, what is running out of stock, and a clean export for your accountant.</li>
+      <li><b>A WhatsApp channel.</b> A community customers join for offers, plus the ability to order inside WhatsApp itself. Those orders arrive in the same dashboard automatically &mdash; nobody re-types them.</li>
+    </ul>
+
+    <div class="win">
+      <p><b>Why building your own is the right call here.</b> A rented platform would charge roughly &#8377;21,000 a year in subscription plus a <b>2% cut of every order</b> for using an Indian payment gateway. On &#8377;1,50,000 of monthly sales that 2% alone is <b>&#8377;42,480 a year</b>, rising every year you grow. Your own build has neither. You pay for hosting &mdash; a few thousand rupees a month &mdash; and nothing per sale. The trade is that the system is yours to look after, which is what Sections 06 to 08 are about.</p>
+    </div>
+
+    <div class="note">
+      <p><b>One assumption to confirm before we build.</b> This plan is engineered for a launch of <b>20&ndash;40 orders a day</b>, designed with headroom to <b>1,500 orders a day</b> so a festival rush or a post that travels does not take the store down. If you expect materially more than that from day one, tell us now &mdash; it changes the database and hosting tier, and it is far cheaper to decide before we build than after.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="num">02</div>
+  <div class="body">
+    <h2>The storefront &mdash; what customers get</h2>
+
+    <h3 class="sub">A &nbsp;&middot;&nbsp; Catalogue built for produce</h3>
+    <ul class="plain">
+      <li><b>Products with real variants.</b> One coffee, sold as 250 g / 500 g / 1 kg, and as beans / coarse / fine grind &mdash; each with its own price, stock count and barcode. Same for spices by weight. Customers pick on one page instead of hunting through six listings.</li>
+      <li><b>Collections</b> &mdash; Coffee, Spices, Honey &amp; Estate Goods, Gift Boxes, and seasonal sets for harvest and festivals.</li>
+      <li><b>Provenance content.</b> Estate story, altitude, harvest month, roast date, single-origin notes. For Malnad produce this is not decoration &mdash; it is the reason someone pays your price instead of a supermarket's.</li>
+      <li><b>Search and filters</b> by category, weight, roast and price, with related-product suggestions on every page.</li>
+      <li><b>Gift and bulk options</b> &mdash; gift notes at checkout and a simple bulk-enquiry form for shops and offices.</li>
+    </ul>
+
+    <h3 class="sub">B &nbsp;&middot;&nbsp; Checkout</h3>
+    <ul class="plain">
+      <li><b>Prepaid, through Razorpay</b> &mdash; UPI, cards, net banking and wallets. UPI carries no charge at all; cards cost 2% plus GST. Nothing ships before the money has cleared.</li>
+      <li><b>Guest checkout by default</b>, with an optional account for order history and faster repeat purchases. Forcing account creation is the single biggest cause of abandoned carts.</li>
+      <li><b>Delivery charges by pin code</b>, free above a cart value you choose, with your own delivery arrangement behind it.</li>
+      <li><b>GST-compliant invoice</b> generated automatically, with HSN codes and a sequential invoice number per financial year.</li>
+    </ul>
+
+    <h3 class="sub">C &nbsp;&middot;&nbsp; Built to be found and to load fast</h3>
+    <ul class="plain">
+      <li><b>Mobile first.</b> Most of your traffic will be a phone on a patchy connection. Pages are built to open in about a second on 4G.</li>
+      <li><b>SEO from the start</b> &mdash; clean URLs, product structured data, sitemap, and a Google Business Profile, so "malnad coffee online" can find you.</li>
+      <li><b>Analytics</b> so you can see where visitors came from and what they bought.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="num">03</div>
+  <div class="body">
+    <h2>The dashboard &mdash; what you get</h2>
+    <p class="deck">Deliberately two layers. One is a full operations console; the other is the single screen you actually open with your morning coffee.</p>
+
+    <div class="grid2">
+      <div class="cell">
+        <div class="lbl">Layer 1</div>
+        <h4>Operations console</h4>
+        <p>The working tool for whoever runs the shop day to day.</p>
+        <ul>
+          <li>Orders &mdash; search, filter, open, mark packed and dispatched</li>
+          <li>Products &mdash; add, edit, price, publish or hide</li>
+          <li>Stock &mdash; counts per variant, low-stock warnings</li>
+          <li>Refunds and cancellations, processed properly through Razorpay</li>
+          <li>Customers and their order history</li>
+          <li>Discount codes and offers</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="lbl">Layer 2</div>
+        <h4>Owner View <span class="chip pick">Bespoke</span></h4>
+        <p>One screen, built for you, answering the questions you actually ask.</p>
+        <ul>
+          <li>Sales today, this week, this month, against last</li>
+          <li>Orders waiting to be packed &mdash; the number that matters at 9am</li>
+          <li>Top products, and what is about to run out</li>
+          <li>Website orders versus WhatsApp orders</li>
+          <li>New versus repeat customers</li>
+          <li>GST and HSN export for your accountant, per month</li>
+        </ul>
+      </div>
+    </div>
+    <p class="tnote">Both read the same database, so they can never disagree. The operations console is a proven open-source admin we configure and secure rather than write from scratch &mdash; that is deliberate, and Section 05 explains why. The Owner View is built specifically for you.</p>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="num">04</div>
+  <div class="body">
+    <h2>WhatsApp &mdash; community and ordering</h2>
+    <p class="deck">You asked whether WhatsApp orders have to be typed into the dashboard by hand. They do not. Here is how they arrive on their own.</p>
+
+    <div class="note">
+      <p><b>The rule that shapes this, and it is not negotiable.</b> WhatsApp has two separate products. The free <b>WhatsApp Business App</b> is the only one that can run a Community. The paid <b>WhatsApp Business Platform (API)</b> is the only one that can broadcast without limit and send automatic order updates &mdash; and the moment a number moves to the API it can no longer use the Business App, and loses Communities entirely.</p>
+      <p>One number cannot do both. So we set up <b>two numbers</b> from day one, both branded as your business. Doing this later means losing a number's history, which is why it is decided now.</p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>Three ways an order can arrive from WhatsApp &mdash; all land in the dashboard automatically</caption>
+        <thead>
+          <tr><th>Route</th><th>How it works for the customer</th><th>How the order reaches you</th><th class="n">Phase</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Link out</b> <span class="chip pick">Day one</span></td>
+            <td>They chat, and get a link to a ready-filled cart on the website. They pay there.</td>
+            <td>It is an ordinary website order. No extra machinery at all.</td>
+            <td class="n">1</td>
+          </tr>
+          <tr>
+            <td><b>Order inside the chat</b></td>
+            <td>A form opens inside WhatsApp &mdash; pick products, quantity, address, confirm. No browser, no app switch.</td>
+            <td>WhatsApp posts the completed form to our server, which creates the order and marks its source as WhatsApp.</td>
+            <td class="n">3</td>
+          </tr>
+          <tr>
+            <td><b>Pay inside the chat</b></td>
+            <td>Razorpay is linked to your WhatsApp business account, so UPI or card completes without leaving the conversation.</td>
+            <td>Razorpay confirms the payment to our server and the order is marked paid.</td>
+            <td class="n">3</td>
+          </tr>
+          <tr class="sub">
+            <td>Manual entry</td>
+            <td>For phone orders and odd cases, staff create an order from the dashboard.</td>
+            <td>Always available &mdash; but the exception, not the workflow.</td>
+            <td class="n">1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">The in-chat form is a WhatsApp feature called Flows. There is one engineering constraint worth naming because it dictates how we build it: WhatsApp requires our server to acknowledge a submitted form <b>within three seconds</b> or the customer sees an error. So we accept the form instantly and do the real work &mdash; stock check, order creation, confirmation message &mdash; a moment later in the background. Section 06 covers that queue.</p>
+
+    <h3 class="sub">What we set up</h3>
+    <div class="howbox">
+      <ol class="how">
+        <li><b>Number 1 &mdash; Community</b>, on the free app: business profile, catalogue, an announcement group and topic groups for Harvest Updates, Offers, and Recipes &amp; Brewing.</li>
+        <li><b>Number 2 &mdash; ordering and updates</b>, on the API: Meta business verification, green tick application, and the shared inbox your staff work from.</li>
+        <li><b>Message templates</b> submitted to Meta for approval: order confirmed, payment received, dispatched with tracking, delivered, abandoned-cart reminder, re-order reminder, and festival offers.</li>
+        <li><b>Join links and QR codes</b> for the website, order confirmations, and a printed insert in every parcel &mdash; that insert is how a one-time buyer becomes a repeat one.</li>
+        <li><b>Consent capture at every entry point</b>, recorded and timestamped. Meta bans numbers that message people who did not opt in, and a banned number is very hard to recover.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="num">05</div>
+  <div class="body">
+    <h2>How it is built</h2>
+    <p class="deck">The single most important engineering decision in this project is what we <em>do not</em> write ourselves.</p>
+
+    <div class="win">
+      <p><b>We do not hand-write the shop engine.</b> Carts, order states, stock locking, partial refunds &mdash; that is where custom stores fail, and none of it is unique to you. We build on <b>Medusa</b>, an open-source commerce core used in production worldwide, free and MIT-licensed, with no fees of any kind. It brings the order and stock logic already proven by thousands of stores, plus the operations console in Section 03. We then build what <em>is</em> yours: the storefront, the Owner View, and the WhatsApp layer. Fewer of our own bugs, and security fixes to the core come from its community rather than from us noticing.</p>
+    </div>
+
+    <h3 class="sub">The parts</h3>
+    <div class="tw">
+      <table>
+        <caption>Components and what each one is responsible for</caption>
+        <thead><tr><th>Part</th><th>What it is</th><th>Why this one</th></tr></thead>
+        <tbody>
+          <tr><td><b>Storefront</b></td><td>A Next.js website</td><td>Pages can be pre-built and cached, which is what makes the store fast and what absorbs traffic spikes</td></tr>
+          <tr><td><b>Commerce core</b></td><td>Medusa, self-hosted</td><td>Proven cart, order, stock and refund logic. No licence fee, no commission</td></tr>
+          <tr><td><b>Database</b></td><td>Managed PostgreSQL</td><td>The record of every order, product and customer. Managed, so backups and patching are handled</td></tr>
+          <tr><td><b>Cache &amp; queue</b></td><td>Redis</td><td>Holds sessions, and holds background jobs so slow outside services never make a customer wait</td></tr>
+          <tr><td><b>Images</b></td><td>Object storage behind a CDN</td><td>Product photography served from servers near the customer, resized automatically</td></tr>
+          <tr><td><b>Payments</b></td><td>Razorpay hosted checkout</td><td>Card details are entered on Razorpay's page, never ours &mdash; so card data never touches your system</td></tr>
+          <tr><td><b>WhatsApp</b></td><td>Meta Cloud API</td><td>Direct from Meta. Order forms and automated updates</td></tr>
+          <tr><td><b>Watching it</b></td><td>Error tracking, uptime monitor, logs</td><td>We find out something broke before your customers tell you</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 980 500" role="img" aria-label="Diagram showing that customer browsing is served from a CDN edge cache and rarely reaches the application, while only checkout, WhatsApp orders and dashboard reads touch the Postgres database.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <!-- boxes -->
+        <g fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55">
+          <rect x="14"  y="36"  width="148" height="56" rx="3"/>
+          <rect x="460" y="36"  width="160" height="56" rx="3"/>
+          <rect x="14"  y="134" width="148" height="56" rx="3"/>
+          <rect x="460" y="134" width="160" height="56" rx="3"/>
+          <rect x="460" y="228" width="160" height="56" rx="3"/>
+          <rect x="14"  y="322" width="148" height="56" rx="3"/>
+          <rect x="236" y="322" width="150" height="56" rx="3"/>
+          <rect x="460" y="322" width="160" height="56" rx="3"/>
+          <rect x="14"  y="416" width="148" height="56" rx="3"/>
+          <rect x="460" y="416" width="160" height="56" rx="3"/>
+          <rect x="760" y="134" width="180" height="244" rx="3"/>
+        </g>
+        <rect x="236" y="36" width="150" height="56" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+
+        <!-- box labels -->
+        <g font-family="Fira Sans, sans-serif" font-size="12.5" fill="currentColor" text-anchor="middle">
+          <text x="88"  y="60">Shopper</text><text x="88"  y="76" font-size="10.5" opacity=".7">browsing</text>
+          <text x="540" y="60">Storefront app</text><text x="540" y="76" font-size="10.5" opacity=".7">renders pages</text>
+          <text x="88"  y="158">Shopper</text><text x="88" y="174" font-size="10.5" opacity=".7">at checkout</text>
+          <text x="540" y="158">Checkout API</text><text x="540" y="174" font-size="10.5" opacity=".7">cart, stock, order</text>
+          <text x="540" y="252">Razorpay</text><text x="540" y="268" font-size="10.5" opacity=".7">hosted checkout</text>
+          <text x="88"  y="346">Customer</text><text x="88" y="362" font-size="10.5" opacity=".7">on WhatsApp</text>
+          <text x="311" y="346">Meta Cloud API</text><text x="311" y="362" font-size="10.5" opacity=".7">in-chat form</text>
+          <text x="540" y="346">Job queue</text><text x="540" y="362" font-size="10.5" opacity=".7">background work</text>
+          <text x="88"  y="440">Owner</text><text x="88" y="456" font-size="10.5" opacity=".7">and staff</text>
+          <text x="540" y="440">Dashboard</text><text x="540" y="456" font-size="10.5" opacity=".7">Owner View</text>
+          <text x="850" y="244" font-size="13">PostgreSQL</text>
+          <text x="850" y="264" font-size="10.5" opacity=".7">orders &middot; stock</text>
+          <text x="850" y="280" font-size="10.5" opacity=".7">customers</text>
+        </g>
+        <g font-family="Fira Sans, sans-serif" font-size="12.5" fill="var(--accent)" text-anchor="middle" font-weight="600">
+          <text x="311" y="60">CDN edge cache</text>
+          <text x="311" y="76" font-size="10.5" font-weight="400">pages + images</text>
+        </g>
+
+        <!-- arrows -->
+        <g stroke="currentColor" stroke-width="1.3" fill="none" marker-end="url(#ar)" opacity=".7">
+          <line x1="162" y1="64"  x2="230" y2="64"/>
+          <line x1="386" y1="64"  x2="454" y2="64" stroke-dasharray="4 3"/>
+          <line x1="620" y1="74"  x2="754" y2="148"/>
+          <line x1="162" y1="162" x2="454" y2="162"/>
+          <line x1="540" y1="190" x2="540" y2="222"/>
+          <line x1="620" y1="256" x2="754" y2="256"/>
+          <line x1="620" y1="166" x2="754" y2="186"/>
+          <line x1="162" y1="350" x2="230" y2="350"/>
+          <line x1="386" y1="350" x2="454" y2="350"/>
+          <line x1="620" y1="350" x2="754" y2="340"/>
+          <line x1="162" y1="444" x2="454" y2="444"/>
+          <path d="M620 444 H 850 V 384"/>
+        </g>
+
+        <!-- arrow labels -->
+        <g font-family="Fira Sans, sans-serif" font-size="10.5" fill="currentColor" opacity=".75" text-anchor="middle">
+          <text x="196" y="56">page view</text>
+          <text x="420" y="50">cache miss</text>
+          <text x="420" y="88" fill="var(--accent)" opacity="1" font-weight="600">~2% of views</text>
+          <text x="688" y="98">reads catalogue</text>
+          <text x="308" y="152">adds to cart, pays</text>
+          <text x="592" y="212" text-anchor="end">redirect</text>
+          <text x="688" y="246">payment confirmed</text>
+          <text x="690" y="192">writes, one transaction</text>
+          <text x="196" y="342">fills form</text>
+          <text x="420" y="342">webhook</text>
+          <text x="688" y="336">creates order</text>
+          <text x="308" y="436">signs in</text>
+          <text x="736" y="438">reads</text>
+        </g>
+      </svg>
+      <figcaption><b>Why a traffic spike does not take the shop down.</b> Product and category pages are pre-built and served from cache at the network edge, so roughly 98% of browsing never reaches our application or the database at all &mdash; the top row terminates before it gets there. Only the paths that must change something (checkout, a WhatsApp order, a dashboard read) travel the full width. Those are a small fraction of traffic, and they are the only ones the database has to size for.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="s6">
+  <div class="num">06</div>
+  <div class="body">
+    <h2>Capacity &mdash; will it hold up</h2>
+    <p class="deck">You asked whether it can handle the load. Here are the numbers we design to, and the specific reasons each one holds.</p>
+
+    <div class="tw">
+      <table>
+        <caption>Design targets, verified by load test before launch</caption>
+        <thead><tr><th>What</th><th class="n">Expected at launch</th><th class="n">Designed to handle</th><th class="n">Headroom</th></tr></thead>
+        <tbody>
+          <tr><td>Orders per day</td><td class="n">20&ndash;40</td><td class="n"><b>1,500</b></td><td class="n">~40&times;</td></tr>
+          <tr><td>Visitors per day</td><td class="n">500&ndash;1,500</td><td class="n"><b>50,000</b></td><td class="n">~35&times;</td></tr>
+          <tr><td>Shoppers on the site at once</td><td class="n">20&ndash;60</td><td class="n"><b>2,000</b></td><td class="n">~35&times;</td></tr>
+          <tr><td>Checkouts per minute</td><td class="n">1&ndash;2</td><td class="n"><b>100</b></td><td class="n">~50&times;</td></tr>
+          <tr class="sub"><td colspan="4">Speed and reliability</td></tr>
+          <tr><td>Product page opens in</td><td class="n muted">&mdash;</td><td class="n"><b>under 1.5 s</b></td><td class="n muted">95% of visits</td></tr>
+          <tr><td>Checkout completes in</td><td class="n muted">&mdash;</td><td class="n"><b>under 3 s</b></td><td class="n muted">95% of orders</td></tr>
+          <tr><td>Uptime</td><td class="n muted">&mdash;</td><td class="n"><b>99.9%</b></td><td class="n muted">~43 min/month</td></tr>
+          <tr><td>Overselling incidents</td><td class="n muted">&mdash;</td><td class="n free"><b>Zero</b></td><td class="n muted">prevented by design</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">The six things that make those numbers true</h3>
+    <div class="howbox">
+      <ol class="how">
+        <li><b>Browsing is served from cache, not from the database.</b> Product pages are pre-built and pushed to servers near the customer. A post that goes viral hits the cache, and the cache does not run out of breath. This is the single biggest reason the numbers above are achievable on modest hardware.</li>
+        <li><b>Connection pooling on the database.</b> The classic way a small store dies under load is running out of database connections while the machine sits idle. A pooler sits in front so hundreds of simultaneous requests share a small, safe number of connections.</li>
+        <li><b>Slow outside services never block a customer.</b> WhatsApp messages, confirmation emails and invoice generation go onto a background queue. If Meta is slow this evening, your customer still checks out in three seconds; the message goes a minute later.</li>
+        <li><b>The application scales sideways automatically.</b> Traffic climbs, more copies of the app start; traffic falls, they stop. You pay for what you use, and a festival morning does not need anyone awake to handle it.</li>
+        <li><b>Stock is decremented inside a locked transaction.</b> If two people buy the last 500 g pack in the same second, exactly one succeeds and the other is told it just sold out. This is a correctness guarantee, not a best effort.</li>
+        <li><b>Rate limiting and bot protection</b> on checkout and login, so a scripted attack cannot exhaust stock or hammer the payment gateway.</li>
+      </ol>
+    </div>
+
+    <div class="note">
+      <p><b>We prove this before launch, not after.</b> In the final week we run a scripted load test simulating <b>2,000 concurrent shoppers and 100 checkouts a minute</b> for a sustained period, and we do not go live until it passes with the targets above intact. We also restore the database from backup into a scratch environment and check it comes back clean &mdash; an untested backup is not a backup. Both results are written up and handed to you.</p>
+    </div>
+
+    <h3 class="sub">What it costs to run</h3>
+    <div class="tw">
+      <table>
+        <caption>Monthly infrastructure, estimated &mdash; billed to your own accounts, not through JTACS</caption>
+        <thead><tr><th>Item</th><th class="n">Per month</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Application hosting</td><td class="n">&#8377;1,500&ndash;2,500</td><td>Scales with traffic; low at launch volumes</td></tr>
+          <tr><td>Managed PostgreSQL</td><td class="n">&#8377;800&ndash;1,600</td><td>Includes automated backups</td></tr>
+          <tr><td>Redis</td><td class="n">&#8377;400&ndash;800</td><td>Cache and background queue</td></tr>
+          <tr><td>Image storage and CDN</td><td class="n">&#8377;200&ndash;600</td><td>Grows with catalogue size</td></tr>
+          <tr><td>Monitoring and error tracking</td><td class="n">&#8377;0&ndash;800</td><td>Free tier is sufficient at launch</td></tr>
+          <tr><td>Domain name</td><td class="n">~&#8377;100</td><td>Billed yearly, about &#8377;1,200</td></tr>
+          <tr class="total"><td>Infrastructure total</td><td class="n">&#8377;3,000&ndash;6,400</td><td>No platform fee. No commission on sales.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">On top of this you pay Razorpay only when a payment succeeds &mdash; <b>0% on UPI</b>, 2% plus GST on cards and net banking &mdash; and WhatsApp per message once Phase 3 is live. Estimates are based on published list prices at the time of writing and will be confirmed against real usage in month one.</p>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="num">07</div>
+  <div class="body">
+    <h2>Making sure the money is always right</h2>
+    <p class="deck">The worst failure in an online shop is not a slow page. It is a customer who paid and whose order vanished. This is how that is prevented.</p>
+
+    <figure>
+      <svg viewBox="0 0 940 270" role="img" aria-label="Diagram of order states from cart to delivered, with an hourly reconciliation sweep that checks Razorpay directly when a payment webhook never arrives, moving the order to paid or releasing the reserved stock.">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55">
+          <rect x="14"  y="44"  width="96"  height="54" rx="3"/>
+          <rect x="180" y="44"  width="160" height="54" rx="3"/>
+          <rect x="576" y="44"  width="140" height="54" rx="3"/>
+          <rect x="786" y="44"  width="120" height="54" rx="3"/>
+          <rect x="180" y="176" width="210" height="54" rx="3"/>
+          <rect x="520" y="176" width="190" height="54" rx="3"/>
+        </g>
+        <rect x="410" y="44" width="96" height="54" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+
+        <g font-family="Fira Sans, sans-serif" font-size="12.5" fill="currentColor" text-anchor="middle">
+          <text x="62"  y="76">Cart</text>
+          <text x="260" y="68">Awaiting payment</text>
+          <text x="260" y="85" font-size="10.5" opacity=".7">stock reserved</text>
+          <text x="646" y="68">Dispatched</text>
+          <text x="646" y="85" font-size="10.5" opacity=".7">tracking sent</text>
+          <text x="846" y="76">Delivered</text>
+          <text x="285" y="200">Reconciliation sweep</text>
+          <text x="285" y="217" font-size="10.5" opacity=".7">every hour, asks Razorpay directly</text>
+          <text x="615" y="200">Abandoned</text>
+          <text x="615" y="217" font-size="10.5" opacity=".7">stock released back to sale</text>
+        </g>
+        <g font-family="Fira Sans, sans-serif" font-size="13" fill="var(--accent)" text-anchor="middle" font-weight="600">
+          <text x="458" y="76">Paid</text>
+        </g>
+
+        <g stroke="currentColor" stroke-width="1.3" fill="none" marker-end="url(#ar2)" opacity=".7">
+          <line x1="110" y1="71"  x2="174" y2="71"/>
+          <line x1="340" y1="71"  x2="404" y2="71"/>
+          <line x1="506" y1="71"  x2="570" y2="71"/>
+          <line x1="716" y1="71"  x2="780" y2="71"/>
+          <line x1="260" y1="98"  x2="260" y2="170"/>
+          <path d="M390 190 H 458 V 104"/>
+          <line x1="390" y1="212" x2="514" y2="212"/>
+        </g>
+        <g font-family="Fira Sans, sans-serif" font-size="10.5" fill="currentColor" opacity=".75">
+          <text x="142" y="62" text-anchor="middle">checkout</text>
+          <text x="372" y="62" text-anchor="middle">confirmed</text>
+          <text x="538" y="62" text-anchor="middle">you pack</text>
+          <text x="748" y="62" text-anchor="middle">handover</text>
+          <text x="270" y="140">no confirmation after 10 minutes</text>
+          <text x="466" y="150" fill="var(--accent)" opacity="1" font-weight="600">Razorpay says paid</text>
+          <text x="452" y="204" text-anchor="middle">says unpaid</text>
+        </g>
+      </svg>
+      <figcaption><b>An order is never lost because a message went missing.</b> Normally Razorpay confirms a payment to us within seconds. If that confirmation never arrives &mdash; a dropped connection, a moment of downtime &mdash; the order does not sit stranded: an hourly sweep asks Razorpay directly about every unconfirmed order and either completes it or releases the reserved stock. The customer's money and your stock are reconciled either way, without anyone noticing a problem.</figcaption>
+    </figure>
+
+    <h3 class="sub">The safeguards, plainly</h3>
+    <ul class="plain">
+      <li><b>Card details never touch your system.</b> Payment happens on Razorpay's own page. We receive a yes or a no, never a card number &mdash; which removes an entire category of risk from your business.</li>
+      <li><b>Every message from Razorpay is signature-checked.</b> A forged "payment successful" message cannot create a paid order, because it will not carry Razorpay's signature.</li>
+      <li><b>A repeated confirmation cannot create a second order.</b> Payment services deliberately retry messages. Each one carries an identifier we record, so the same payment processed five times still produces exactly one order.</li>
+      <li><b>Stock cannot go negative.</b> Reserved at checkout, committed on payment, released automatically if payment never completes.</li>
+      <li><b>Every change is written to an audit trail</b> &mdash; who changed what, when. If a figure is ever questioned, it can be answered from the record rather than from memory.</li>
+      <li><b>Refunds go through Razorpay properly</b> and are recorded against the order, so your books and the gateway always agree.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="num">08</div>
+  <div class="body">
+    <h2>Security, backups and keeping it running</h2>
+
+    <div class="grid2">
+      <div class="cell">
+        <div class="lbl">Security</div>
+        <h4>What protects the site</h4>
+        <ul>
+          <li>Encrypted connection everywhere, enforced</li>
+          <li>No card data stored, ever</li>
+          <li>Passwords and API keys held in a managed secret store, never in the code</li>
+          <li>Dashboard access by named account with two-factor authentication and roles &mdash; staff cannot see what owners see</li>
+          <li>Rate limiting and bot protection on checkout and sign-in</li>
+          <li>Dependencies scanned for known vulnerabilities on every change</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="lbl">Continuity</div>
+        <h4>If something goes wrong</h4>
+        <ul>
+          <li>Automated daily database backups with point-in-time recovery</li>
+          <li>A restore rehearsed and verified before launch, not assumed</li>
+          <li>Uptime monitoring that alerts within a minute of the site going down</li>
+          <li>Error tracking, so faults are found before customers report them</li>
+          <li>Every deployment reversible &mdash; a bad release is rolled back, not debugged live</li>
+          <li>A written runbook so recovery does not depend on one person's memory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><b>Being straight with you about ownership.</b> On a rented platform, an outage is the platform's problem. On your own build it is yours, and the saving in Section 01 is the other side of exactly that coin. The measures above are how we keep that risk small: managed services wherever someone else can carry the burden, monitoring so problems surface early, and tested backups so the worst case is hours rather than a business. What none of it removes is the need for someone to be responsible for the system after launch &mdash; which is a commercial matter, and is dealt with in Section 12.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="num">09</div>
+  <div class="body">
+    <h2>Compliance, built into the product</h2>
+    <p class="deck">You hold the licences. Our job is to make sure the software cannot quietly put you in breach of them.</p>
+
+    <div class="win">
+      <p><b>The mechanism, not a promise.</b> Every declaration the law requires on a food listing is a <b>mandatory field on the product record</b>. A product with any of them missing <b>cannot be published to the storefront</b> &mdash; the system refuses. That way compliance does not depend on anyone remembering.</p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>Required on every product page &mdash; enforced by the software</caption>
+        <thead><tr><th>Declaration</th><th>Why it is required</th></tr></thead>
+        <tbody>
+          <tr><td>Net quantity</td><td rowspan="7" style="vertical-align:top">Legal Metrology (Packaged Commodities) Rules, as amended in February 2026, which specifically tightened what an <b>online listing</b> must display &mdash; country of origin in particular. Penalties are assessed <b>per package</b>, so a single non-compliant listing across a large consignment adds up quickly.</td></tr>
+          <tr><td>Retail sale price, inclusive of all taxes</td></tr>
+          <tr><td>Name and address of the manufacturer or packer</td></tr>
+          <tr><td>Date of manufacture or packing</td></tr>
+          <tr><td>Best before / use by</td></tr>
+          <tr><td>Country of origin</td></tr>
+          <tr><td>Consumer care contact</td></tr>
+          <tr><td>FSSAI licence number</td><td>Displayed on listings and in the site footer, as required of a food business selling online.</td></tr>
+          <tr><td>HSN code and GST rate per product</td><td>Roasted and ground coffee and most spices are <b>5%</b> (HSN 0901 and 0904&ndash;0910); value-added blends can attract 12%. Set per product so invoices are correct at source.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Also handled</h3>
+    <ul class="plain">
+      <li><b>GST invoices</b> raised automatically with a sequential, unbroken number series per financial year &mdash; generated in a way that cannot leave gaps when a payment fails.</li>
+      <li><b>Monthly GST and HSN export</b> from the Owner View, formatted for your accountant.</li>
+      <li><b>Store policy pages</b> &mdash; shipping, returns, refunds, privacy and terms. We draft them; please have them reviewed before launch.</li>
+      <li><b>Customer data kept to the minimum</b> needed to fulfil an order, with a documented process for deleting a customer's data on request.</li>
+    </ul>
+
+    <div class="note">
+      <p><b>Where our responsibility ends.</b> JTACS builds and operates the software. We are not your legal, food-safety or tax advisor, and we do not verify the accuracy of the label data you supply &mdash; the system enforces that the fields are <em>filled</em>, not that they are <em>correct</em>. Product claims, licence validity and GST rates remain yours to confirm with your advisors.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="num">10</div>
+  <div class="body">
+    <h2>How we will run the build</h2>
+    <p class="deck">Six weeks in five phases, each ending in something you can see and sign off. Nothing moves forward until the previous gate is cleared.</p>
+
+    <div class="note">
+      <p><b>What actually sets the date.</b> The code is not the slow part. <b>Razorpay verification, Meta business verification, and your product photographs and descriptions are</b> &mdash; these run on other people's clocks, not ours. That is why Phase 0 starts everything in parallel on day one. Realistically, the timeline below holds if your catalogue material reaches us in week one; every week it is late is a week added at the end.</p>
+    </div>
+
+    <div class="tl">
+      <div class="tl-row">
+        <div class="wk">Phase 0 &nbsp;&middot;&nbsp; Week 1 &nbsp;&middot;&nbsp; Foundations</div>
+        <h4>Accounts, infrastructure and content</h4>
+        <p>Kick-off. Domain registered, hosting, database and code repository set up in your name. Razorpay account opened and verification filed. Meta business verification started, both WhatsApp numbers registered. We collect your product list, declarations, photographs and brand material.</p>
+        <span class="gate">Gate: accounts live, catalogue data received</span>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Phase 1 &nbsp;&middot;&nbsp; Weeks 2&ndash;3 &nbsp;&middot;&nbsp; The shop</div>
+        <h4>Storefront, checkout and operations console</h4>
+        <p>Commerce core deployed and configured. Storefront designed and built. Full catalogue loaded with every required declaration. Razorpay connected and tested with live one-rupee transactions across UPI, card and net banking, including a refund. Operations console secured and set up for your staff.</p>
+        <span class="gate">Gate: you place a real order on a preview link, end to end</span>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Phase 2 &nbsp;&middot;&nbsp; Week 4 &nbsp;&middot;&nbsp; Your view</div>
+        <h4>Owner dashboard and invoicing</h4>
+        <p>Owner View built &mdash; daily and monthly sales, pending dispatch, top products, stock warnings, new versus repeat customers. GST invoice generation and the monthly accountant export. Content, policy pages and SEO completed.</p>
+        <span class="gate">Gate: dashboard figures reconcile against Razorpay for the test period</span>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Phase 3 &nbsp;&middot;&nbsp; Week 5 &nbsp;&middot;&nbsp; WhatsApp</div>
+        <h4>Community, in-chat ordering, order updates</h4>
+        <p>Community created and structured on the free app. API number connected, message templates submitted and approved by Meta. In-chat order form built and wired to the dashboard. Automatic order-update messages switched on. Join links, QR codes and parcel inserts produced.</p>
+        <span class="gate">Gate: an order placed inside WhatsApp appears in the dashboard unaided</span>
+      </div>
+      <div class="tl-row">
+        <div class="wk">Phase 4 &nbsp;&middot;&nbsp; Week 6 &nbsp;&middot;&nbsp; Proving it</div>
+        <h4>Load test, restore drill, training, launch</h4>
+        <p>Load test at 2,000 concurrent shoppers and 100 checkouts a minute. Backup restored into a scratch environment and verified. Security review and dependency scan. Your corrections applied. Ninety-minute staff training, recorded. Runbook handed over. Go live.</p>
+        <span class="gate">Gate: load test and restore drill both pass, in writing</span>
+      </div>
+    </div>
+
+    <h3 class="sub">What we need from you</h3>
+    <ul class="plain">
+      <li><b>Product list with every declaration</b> &mdash; name, description, net quantity, MRP, manufacturer or packer details, packing date, best before, country of origin, HSN code. This is the item most likely to delay launch, so it is worth starting today.</li>
+      <li><b>Photographs</b> of each product, plus estate and process images for the story pages. Good photography sells produce; poor photography is the ceiling on your conversion rate.</li>
+      <li><b>Business documents</b> for Razorpay verification &mdash; PAN, GSTIN, FSSAI licence, business registration, cancelled cheque.</li>
+      <li><b>Two phone numbers</b> for WhatsApp, neither currently in use on a personal WhatsApp you wish to keep.</li>
+      <li><b>Your logo and brand material</b>, if you have them.</li>
+      <li><b>One decision-maker for thirty minutes a week.</b> Delay in approvals is the only thing that reliably moves the launch date.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="num">11</div>
+  <div class="body">
+    <h2>What you own at the end</h2>
+    <div class="grid2">
+      <div class="cell">
+        <div class="lbl">Yours outright</div>
+        <h4>Accounts and data</h4>
+        <p>Every account &mdash; domain, hosting, database, Razorpay, Meta, storage &mdash; is opened <b>in your name, on your card</b>, from day one. JTACS is added as a user and can be removed any day without the shop stopping. Your customer and order data is yours, exportable in a standard format whenever you ask.</p>
+      </div>
+      <div class="cell">
+        <div class="lbl">Handed over</div>
+        <h4>Code and documentation</h4>
+        <p>The full source code in a repository under your account, with a <b>runbook</b> covering deployment, key rotation, backup restoration, reading the logs and what to do when the site is down. Plus a recorded ninety-minute training session for you and your staff.</p>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Why the runbook matters more than it sounds.</b> A custom system is only as safe as the knowledge of how to run it. Written down and handed over, that knowledge survives holidays, illness and changes of supplier &mdash; including us. We would rather you were never stuck than that you were dependent.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s12">
+  <div class="num">12</div>
+  <div class="body">
+    <h2>Decisions to confirm, and what is not included</h2>
+
+    <h3 class="sub">Two decisions needed before we quote</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Decision</th><th>The options</th><th>Why it matters to you</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>After-launch support</b></td>
+            <td>A monthly care agreement, or ad-hoc work charged as it arises.</td>
+            <td>A custom system needs someone to patch it, renew its certificates and fix faults. On a rented platform that is included in the rent; here it is a decision. Ad-hoc is cheaper until the week you need someone urgently.</td>
+          </tr>
+          <tr>
+            <td><b>Source code</b></td>
+            <td>Transferred to you outright, or licensed to you for this business.</td>
+            <td>Outright transfer costs more but leaves you free to take the system to any developer. A licence costs less upfront. Either way you keep the accounts, the data and a running shop.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Not included in this plan</h3>
+    <p class="tnote">Product photography and videography &middot; logo and brand identity design &middot; copywriting beyond the product text you supply &middot; paid advertising and its spend &middot; delivery and courier arrangements, which you handle &middot; Android or iOS apps &middot; subscription and repeat-delivery ordering &middot; marketplace listings on Amazon or Flipkart &middot; multi-language storefront &middot; wholesale or dealer pricing tiers. Each can be quoted separately when you want it &mdash; several are natural additions once the shop is trading.</p>
+
+    <div class="win">
+      <p><b>What happens next.</b> Confirm the two decisions above and the expected order volume in Section 01, and we will issue the quotation and a build agreement against this plan. Nothing in this document is charged for, and nothing starts until you have both in hand and have approved them.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h4>Notes</h4>
+  <p style="margin:0 0 14px; max-width:80ch;">
+    This plan describes an intended build and the standards it will be held to; it is not a contract. Infrastructure costs are estimates based on published list prices in September 2026 and will vary with actual traffic and catalogue size. Third-party charges &mdash; hosting, Razorpay, Meta &mdash; are set by those companies, billed to you directly, and carry no JTACS margin. Capacity figures are design targets to be verified by load test before launch, as described in Section 06. Regulatory references are provided for context and are not legal advice. Sources consulted:
+  </p>
+  <ol>
+    <li><a href="https://docs.medusajs.com/learn/deployment/general">Medusa &mdash; deployment documentation</a></li>
+    <li><a href="https://medusajs.com/blog/medusa-cloud-or-self-host">Medusa &mdash; self-hosting considerations</a></li>
+    <li><a href="https://www.npmjs.com/package/@devx-commerce/razorpay">Razorpay payment provider for Medusa</a></li>
+    <li><a href="https://razorpay.com/docs/payments/business-types-kyc-documents/">Razorpay &mdash; KYC documents by business type</a></li>
+    <li><a href="https://razorpay.com/blog/whatsapp-support-for-payment-gateways-the-complete-2026-merchant-playbook">Razorpay &mdash; WhatsApp payments merchant playbook, 2026</a></li>
+    <li><a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/pg/">Meta &mdash; receiving payments via payment gateways on WhatsApp</a></li>
+    <li><a href="https://chatdaddy.tech/blog/whatsapp-flows-guide">WhatsApp Flows &mdash; in-chat forms, 2026</a></li>
+    <li><a href="https://www.zarghamlabs.com/whatsapp-flows-interactive-forms-guide-2026/">WhatsApp Flows &mdash; webhook payloads and response limits</a></li>
+    <li><a href="https://legal4sure.in/blogs/fssai-license-for-ecommerce/">FSSAI licensing for e-commerce food sellers</a></li>
+    <li><a href="https://www.mondaq.com/india/dodd-frank-consumer-protection-act/1806934/legal-metrology-packaged-commodities-amendment-rules-2026-enhancing-transparency-and-consumer-protection-in-e-commerce">Legal Metrology (Packaged Commodities) Amendment Rules, 2026</a></li>
+    <li><a href="https://busy.in/gst-rates/coffee-powder/">GST rate on coffee powder, 2026</a></li>
+    <li><a href="https://busy.in/gst-rates/spices/">GST rate on spices and spice powders, 2026</a></li>
+  </ol>
+</footer>
+
+</div>
