@@ -1,0 +1,570 @@
+<title>Malnad Estate Storefront</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Noto+Serif+Kannada:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#121714; --canopy:#163A2B; --canopy-deep:#0D2119;
+  --paper:#F2F0EA; --card:#FFFFFF; --mist:#DCE0D8; --mist-2:#E8E9E3;
+  --laterite:#9C4A28; --muted:#6B7268;
+  --on-dark:#EDEDE6; --on-dark-mute:#9DAA9C;
+  --s:8px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Archivo",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --kn:"Noto Serif Kannada","Noto Sans Kannada",serif;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;
+}
+img{max-width:100%;}
+
+/* ---------- mockup chrome ---------- */
+.mock{background:var(--ink); color:var(--on-dark-mute); padding:10px 22px; font-size:12px; letter-spacing:.06em;}
+.mock b{color:var(--on-dark); font-weight:600;}
+.screen-tag{max-width:1320px; margin:0 auto; padding:40px 40px 14px; font-family:var(--sans);
+  font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);}
+.frame{border-top:1px solid var(--mist); background:var(--paper);}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1320px; margin:0 auto; padding:0 40px;}
+.rule{border:0; border-top:1px solid var(--mist); margin:0;}
+
+/* ---------- announcement + header ---------- */
+.ann{background:var(--canopy-deep); color:var(--on-dark-mute); text-align:center;
+  font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; padding:11px 20px;}
+.ann b{color:var(--on-dark); font-weight:500;}
+header.site{background:var(--paper);}
+.navbar{display:flex; align-items:center; justify-content:space-between; gap:40px; padding:26px 0 24px;}
+.brand{display:flex; flex-direction:column; gap:3px; text-decoration:none; color:inherit;}
+.brand .kn{font-family:var(--kn); font-size:12.5px; color:var(--laterite); line-height:1; letter-spacing:.02em;}
+.brand .nm{font-family:var(--serif); font-variation-settings:"SOFT" 0,"WONK" 1,"opsz" 40;
+  font-size:25px; font-weight:500; letter-spacing:-.015em; line-height:1;}
+nav ul{display:flex; gap:34px; list-style:none; margin:0; padding:0;}
+nav a{font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink); text-decoration:none; padding-bottom:3px; border-bottom:1px solid transparent;}
+nav a:hover{border-bottom-color:var(--laterite);}
+.util{display:flex; gap:22px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.util span{cursor:default;}
+
+/* ---------- hero ---------- */
+.hero{position:relative; background:var(--canopy-deep); color:var(--on-dark); overflow:hidden;}
+.hero-media{position:absolute; inset:0;}
+.hero-inner{position:relative; max-width:1320px; margin:0 auto; padding:132px 40px 120px;}
+.hero-inner>*{max-width:52%;}
+@media(max-width:900px){.hero-inner>*{max-width:100%;}}
+.eyebrow{font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--on-dark-mute); margin:0 0 26px;}
+.hero h1{font-family:var(--serif); font-variation-settings:"SOFT" 0,"WONK" 1,"opsz" 144;
+  font-size:clamp(44px,6.4vw,86px); font-weight:300; line-height:1.02; letter-spacing:-.022em;
+  margin:0; max-width:15ch; text-wrap:balance;}
+.hero h1 em{font-style:italic; font-weight:400;}
+.hero p.lede{max-width:46ch; margin:30px 0 0; font-size:16.5px; line-height:1.72; color:var(--on-dark-mute);}
+.hero .cta{display:flex; gap:14px; margin-top:42px; flex-wrap:wrap;}
+.btn{display:inline-block; font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; padding:15px 30px; text-decoration:none; border:1px solid currentColor; cursor:pointer;}
+.btn.solid{background:var(--paper); color:var(--ink); border-color:var(--paper);}
+.btn.ghost{background:transparent; color:var(--on-dark);}
+.btn.dark{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.btn:hover{opacity:.86;}
+
+/* ---------- trust strip ---------- */
+.trust{border-bottom:1px solid var(--mist);}
+.trust ul{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); list-style:none; margin:0; padding:0;}
+.trust li{padding:22px 0; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  display:flex; align-items:center; gap:11px; border-left:1px solid var(--mist); padding-left:24px;}
+.trust li:first-child{border-left:0; padding-left:0;}
+.trust svg{flex:none; color:var(--laterite);}
+
+/* ---------- sections ---------- */
+section.band{padding:104px 0;}
+.sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-bottom:46px;}
+.sec-head h2{font-family:var(--serif); font-variation-settings:"SOFT" 0,"WONK" 1,"opsz" 72;
+  font-size:clamp(28px,3.4vw,42px); font-weight:400; letter-spacing:-.018em; line-height:1.08; margin:0; max-width:23ch;}
+.sec-head .more{font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink); text-decoration:none; border-bottom:1px solid var(--laterite); padding-bottom:4px; white-space:nowrap;}
+
+/* ---------- category ---------- */
+.cats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--mist); border:1px solid var(--mist);}
+.cat{background:var(--paper); padding:0; position:relative; text-decoration:none; color:inherit; display:block;}
+.cat .ph{aspect-ratio:3/4;}
+.cat .lab{padding:20px 22px 24px;}
+.cat .lab h3{font-family:var(--serif); font-variation-settings:"opsz" 36,"WONK" 1; font-size:21px; font-weight:500; margin:0 0 4px; letter-spacing:-.01em;}
+.cat .lab span{font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.cat:hover .lab h3{color:var(--laterite);}
+
+/* ---------- products ---------- */
+.prods{display:grid; grid-template-columns:repeat(4,1fr); gap:34px;}
+.prod{text-decoration:none; color:inherit; display:block;}
+.prod .ph{aspect-ratio:1; margin-bottom:18px;}
+.prod .tag{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:7px;}
+.prod h3{font-family:var(--serif); font-variation-settings:"opsz" 30,"WONK" 1; font-size:19px; font-weight:500;
+  margin:0 0 9px; letter-spacing:-.008em; line-height:1.25;}
+.prod .price{font-size:14px; font-weight:500;}
+.prod .price s{color:var(--muted); font-weight:400; margin-left:8px; text-decoration-thickness:1px;}
+.prod:hover h3{color:var(--laterite);}
+
+/* ---------- photo placeholders ---------- */
+.ph{background:var(--mist-2); position:relative; overflow:hidden; display:block;}
+.ph.dark{background:#17241E;}
+.ph svg{position:absolute; inset:0; width:100%; height:100%;}
+.ph .cap{position:absolute; left:14px; bottom:12px; font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); opacity:.75;}
+.ph.dark .cap{color:var(--on-dark-mute);}
+
+/* ---------- estate story band ---------- */
+.story{background:var(--canopy-deep); color:var(--on-dark);}
+.story-grid{display:grid; grid-template-columns:1fr 1fr; min-height:620px;}
+.story-media{position:relative;}
+.story-body{padding:104px 72px; display:flex; flex-direction:column; justify-content:center;}
+.story-body h2{font-family:var(--serif); font-variation-settings:"SOFT" 0,"WONK" 1,"opsz" 96;
+  font-size:clamp(30px,3.6vw,46px); font-weight:300; line-height:1.1; letter-spacing:-.02em; margin:0 0 26px; max-width:17ch;}
+.story-body h2 em{font-style:italic;}
+.story-body p{color:var(--on-dark-mute); font-size:16px; line-height:1.78; margin:0 0 20px; max-width:50ch;}
+.story-body .sig{margin-top:22px; font-family:var(--kn); font-size:15px; color:var(--laterite);}
+
+/* ---------- specimen / provenance figures ---------- */
+.figs{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(237,237,230,.16); margin-top:46px;}
+.fig{padding:26px 24px 0; border-left:1px solid rgba(237,237,230,.16);}
+.fig:first-child{border-left:0; padding-left:0;}
+.fig .n{font-family:var(--serif); font-variation-settings:"opsz" 48; font-size:30px; font-weight:400; line-height:1; letter-spacing:-.02em;}
+.fig .l{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--on-dark-mute); margin-top:9px;}
+
+/* ---------- whatsapp band ---------- */
+.wa{border-top:1px solid var(--mist); border-bottom:1px solid var(--mist);}
+.wa-in{display:grid; grid-template-columns:1.15fr 1fr; gap:80px; align-items:center; padding:84px 0;}
+.wa h2{font-family:var(--serif); font-variation-settings:"opsz" 72,"WONK" 1; font-size:clamp(26px,3vw,38px);
+  font-weight:400; letter-spacing:-.018em; line-height:1.12; margin:0 0 18px; max-width:19ch;}
+.wa p{color:var(--muted); margin:0 0 30px; max-width:48ch; font-size:15.5px; line-height:1.75;}
+.wa-side{border-left:1px solid var(--mist); padding-left:60px;}
+.wa-side ul{list-style:none; margin:0; padding:0;}
+.wa-side li{font-size:14px; color:var(--ink); padding:15px 0; border-bottom:1px solid var(--mist); display:flex; gap:14px; align-items:baseline;}
+.wa-side li:last-child{border-bottom:0;}
+.wa-side li b{font-family:var(--serif); font-variation-settings:"opsz" 24; font-weight:500; color:var(--laterite); font-size:13px; letter-spacing:.04em;}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--ink); color:var(--on-dark-mute); padding:82px 0 34px; font-size:13.5px;}
+.f-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:56px;}
+footer .brand .nm{color:var(--on-dark);}
+footer h4{font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--on-dark); margin:0 0 20px;}
+footer ul{list-style:none; margin:0; padding:0;}
+footer li{margin:0 0 11px;}
+footer a{color:var(--on-dark-mute); text-decoration:none;}
+footer a:hover{color:var(--on-dark);}
+.f-legal{margin-top:64px; padding-top:26px; border-top:1px solid rgba(237,237,230,.14);
+  display:flex; flex-wrap:wrap; gap:26px; justify-content:space-between; font-size:11.5px; letter-spacing:.06em;}
+.f-legal .fssai{color:var(--on-dark);}
+
+/* ---------- PRODUCT PAGE ---------- */
+.crumb{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:30px 0 0;}
+.crumb a{color:var(--muted); text-decoration:none;}
+.pdp{display:grid; grid-template-columns:1.08fr 1fr; gap:80px; padding:40px 0 100px;}
+.gallery{display:grid; grid-template-columns:82px 1fr; gap:16px; align-items:start; position:sticky; top:28px;}
+.thumbs{display:flex; flex-direction:column; gap:12px;}
+.thumbs .ph{aspect-ratio:1; border:1px solid transparent;}
+.thumbs .ph.on{border-color:var(--ink);}
+.gallery .main{aspect-ratio:1;}
+.pdp-info{padding-top:6px;}
+.pdp-info .tag{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);}
+.pdp-info h1{font-family:var(--serif); font-variation-settings:"SOFT" 0,"WONK" 1,"opsz" 96;
+  font-size:clamp(32px,3.8vw,46px); font-weight:400; letter-spacing:-.022em; line-height:1.08; margin:14px 0 0; text-wrap:balance;}
+.pdp-price{display:flex; align-items:baseline; gap:14px; margin:22px 0 6px;}
+.pdp-price .now{font-family:var(--serif); font-variation-settings:"opsz" 48; font-size:29px; font-weight:500; letter-spacing:-.015em;}
+.pdp-price .was{color:var(--muted); font-size:15px; text-decoration:line-through; text-decoration-thickness:1px;}
+.pdp-price .off{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--laterite); font-weight:600;}
+.taxnote{font-size:12px; color:var(--muted); margin:0 0 30px;}
+.opt{margin-bottom:26px;}
+.opt .lab{display:flex; justify-content:space-between; font-size:11px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:13px;}
+.opt .lab .sel{color:var(--ink);}
+.swatches{display:flex; flex-wrap:wrap; gap:9px;}
+.sw{font-size:13px; padding:11px 19px; border:1px solid var(--mist); background:var(--card); cursor:pointer;
+  color:var(--ink); font-family:var(--sans); letter-spacing:.01em;}
+.sw:hover{border-color:var(--muted);}
+.sw.on{border-color:var(--ink); background:var(--ink); color:var(--paper);}
+.sw.out{color:var(--muted); text-decoration:line-through; cursor:not-allowed; background:var(--mist-2);}
+.buy{display:flex; gap:12px; margin:34px 0 18px;}
+.qty{display:flex; border:1px solid var(--mist); background:var(--card);}
+.qty button{width:44px; border:0; background:transparent; font-size:16px; cursor:pointer; color:var(--ink);}
+.qty span{width:46px; display:grid; place-items:center; font-size:14px; border-left:1px solid var(--mist); border-right:1px solid var(--mist);}
+.buy .btn{flex:1; text-align:center;}
+.stockline{font-size:12.5px; color:var(--muted); margin:0 0 30px;}
+.stockline b{color:var(--canopy); font-weight:600;}
+.pdp-desc{font-size:15.5px; line-height:1.78; color:var(--ink); border-top:1px solid var(--mist); padding-top:28px; margin-top:6px;}
+.pdp-desc p{margin:0 0 15px;}
+
+/* ---------- declarations ---------- */
+.decl{border:1px solid var(--mist); background:var(--card); margin-top:34px;}
+.decl h3{font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
+  margin:0; padding:17px 22px; border-bottom:1px solid var(--mist); background:var(--mist-2);}
+.decl dl{margin:0; padding:4px 22px 16px;}
+.decl .row{display:grid; grid-template-columns:1fr 1.15fr; gap:20px; padding:11px 0; border-bottom:1px solid var(--mist-2);}
+.decl .row:last-child{border-bottom:0;}
+.decl dt{font-size:12.5px; color:var(--muted); margin:0;}
+.decl dd{font-size:13.5px; margin:0; color:var(--ink);}
+.decl .foot{padding:14px 22px; border-top:1px solid var(--mist); font-size:11.5px; color:var(--muted); background:var(--mist-2);}
+
+/* ---------- provenance strip on pdp ---------- */
+.prov{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--mist); border-bottom:1px solid var(--mist); margin:0;}
+.prov div{padding:28px 24px; border-left:1px solid var(--mist);}
+.prov div:first-child{border-left:0; padding-left:0;}
+.prov .n{font-family:var(--serif); font-variation-settings:"opsz" 40; font-size:23px; font-weight:400; letter-spacing:-.015em;}
+.prov .l{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:7px;}
+
+@media (max-width:1040px){
+  .gallery{position:static;}
+  .cats,.prods,.f-grid,.prov,.figs{grid-template-columns:repeat(2,1fr);}
+  .story-grid,.pdp,.wa-in{grid-template-columns:1fr;}
+  .story-body{padding:64px 40px;}
+  .wa-side{border-left:0; padding-left:0; border-top:1px solid var(--mist); padding-top:34px;}
+  .wa-in{gap:40px; padding:64px 0;}
+}
+@media (max-width:640px){
+  .wrap,.hero-inner{padding-left:22px; padding-right:22px;}
+  .cats,.prods,.f-grid,.prov,.figs{grid-template-columns:1fr;}
+  .navbar{flex-wrap:wrap; gap:18px;} nav ul{gap:20px; flex-wrap:wrap;}
+  .gallery{grid-template-columns:1fr;} .thumbs{flex-direction:row;}
+  .trust li{border-left:0; padding-left:0;}
+  .prov div,.fig{border-left:0; padding-left:0;}
+  section.band{padding:64px 0;} .hero-inner{padding:84px 22px 74px;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="botanical" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice">
+    <path d="M100 250 C100 200 100 140 100 20" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".5"/>
+    <g fill="none" stroke="currentColor" stroke-width="1" opacity=".42">
+      <path d="M100 56 C74 44 58 50 44 66 C64 78 86 74 100 56Z"/>
+      <path d="M100 56 C126 44 142 50 156 66 C136 78 114 74 100 56Z"/>
+      <path d="M100 104 C72 92 54 98 40 116 C62 128 86 122 100 104Z"/>
+      <path d="M100 104 C128 92 146 98 160 116 C138 128 114 122 100 104Z"/>
+      <path d="M100 154 C76 144 60 149 48 164 C66 175 88 170 100 154Z"/>
+      <path d="M100 154 C124 144 140 149 152 164 C134 175 112 170 100 154Z"/>
+      <path d="M100 200 C80 192 66 196 56 208 C72 217 90 213 100 200Z"/>
+      <path d="M100 200 C120 192 134 196 144 208 C128 217 110 213 100 200Z"/>
+    </g>
+    <g fill="currentColor" opacity=".3">
+      <ellipse cx="86" cy="84" rx="6.5" ry="8"/><ellipse cx="114" cy="90" rx="6.5" ry="8"/>
+      <ellipse cx="84" cy="134" rx="6.5" ry="8"/><ellipse cx="116" cy="140" rx="6.5" ry="8"/>
+      <ellipse cx="88" cy="182" rx="6" ry="7.5"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="mock"><b>Design mockup</b> &nbsp;·&nbsp; Malnad Estate storefront &nbsp;·&nbsp; sample products, placeholder photography &nbsp;·&nbsp; two screens below</div>
+
+<p class="screen-tag">Screen 1 &nbsp;— &nbsp;Home</p>
+<div class="frame">
+
+<div class="ann">Free delivery on orders above <b>&#8377;999</b> &nbsp;·&nbsp; This season's harvest is now roasting</div>
+
+<header class="site">
+  <div class="wrap">
+    <div class="navbar">
+      <a class="brand" href="#">
+        <span class="kn">&#3374;&#3378;&#3398;&#3240;&#3390;&#3465;</span>
+        <span class="nm">Malnad Estate</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#">Coffee</a></li>
+          <li><a href="#">Spices</a></li>
+          <li><a href="#">Honey &amp; Estate</a></li>
+          <li><a href="#">Gift Boxes</a></li>
+          <li><a href="#">Our Estate</a></li>
+        </ul>
+      </nav>
+      <div class="util"><span>Search</span><span>Account</span><span>Bag (0)</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-media ph dark">
+    <svg>
+      <use href="#botanical" x="52%" y="-16%" width="34%" height="136%" style="color:#EDEDE6;opacity:.30"/>
+      <use href="#botanical" x="76%" y="6%" width="26%" height="104%" style="color:#EDEDE6;opacity:.17"/>
+    </svg>
+    <span class="cap" style="left:auto;right:40px;bottom:26px">Estate photograph &mdash; full bleed</span>
+  </div>
+  <div class="hero-inner">
+    <p class="eyebrow">Chikkamagaluru &nbsp;·&nbsp; Western Ghats</p>
+    <h1>Coffee that grew up in the <em>shade</em>.</h1>
+    <p class="lede">Single-estate arabica, pepper and cardamom from the hills where India's
+      first coffee was planted, some three hundred and fifty years ago. Grown under a canopy
+      we did not plant. Picked by hand. Roasted in small batches, to order.</p>
+    <div class="cta">
+      <a class="btn solid" href="#">Shop the harvest</a>
+      <a class="btn ghost" href="#">Read our story</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <ul>
+      <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 1.5 2.5 4v4c0 3.2 2.3 5.6 5.5 6.5 3.2-.9 5.5-3.3 5.5-6.5V4L8 1.5Z"/><path d="m5.8 8 1.6 1.6L10.4 6.6"/></svg> FSSAI licensed</li>
+      <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 1.6c2.4 2 3.6 4.3 3.6 6.8A3.6 3.6 0 0 1 8 12a3.6 3.6 0 0 1-3.6-3.6c0-2.5 1.2-4.8 3.6-6.8Z"/><path d="M8 12v2.5"/></svg> Direct from the estate</li>
+      <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2.5" y="6.5" width="11" height="8" rx="1"/><path d="M5.2 6.5V4.6a2.8 2.8 0 0 1 5.6 0v1.9"/></svg> Prepaid, secure checkout</li>
+      <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.4V8l2.4 1.5"/></svg> Dispatched in 48 hours</li>
+    </ul>
+  </div>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Everything here grew within sight of the house.</h2>
+      <a class="more" href="#">All produce</a>
+    </div>
+    <div class="cats">
+      <a class="cat" href="#"><span class="ph"><svg><use href="#botanical" x="16%" y="4%" width="68%" height="92%" style="color:#163A2B;opacity:.16"/></svg><span class="cap">Photograph</span></span>
+        <span class="lab"><h3>Coffee</h3><span>Arabica &middot; Robusta &middot; Peaberry</span></span></a>
+      <a class="cat" href="#"><span class="ph"><svg><use href="#botanical" x="16%" y="4%" width="68%" height="92%" style="color:#163A2B;opacity:.16"/></svg><span class="cap">Photograph</span></span>
+        <span class="lab"><h3>Spices</h3><span>Pepper &middot; Cardamom &middot; Clove</span></span></a>
+      <a class="cat" href="#"><span class="ph"><svg><use href="#botanical" x="16%" y="4%" width="68%" height="92%" style="color:#163A2B;opacity:.16"/></svg><span class="cap">Photograph</span></span>
+        <span class="lab"><h3>Honey &amp; Estate</h3><span>Wild forest honey &middot; Areca</span></span></a>
+      <a class="cat" href="#"><span class="ph"><svg><use href="#botanical" x="16%" y="4%" width="68%" height="92%" style="color:#163A2B;opacity:.16"/></svg><span class="cap">Photograph</span></span>
+        <span class="lab"><h3>Gift Boxes</h3><span>For the season</span></span></a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>This month from the estate</h2>
+      <a class="more" href="#">Shop all</a>
+    </div>
+    <div class="prods">
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg><span class="cap">Photograph</span></span>
+        <span class="tag">Coffee &middot; Medium roast</span><h3>Malnad Arabica</h3>
+        <span class="price">&#8377;450 <s>&#8377;499</s></span></a>
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg><span class="cap">Photograph</span></span>
+        <span class="tag">Spice &middot; Whole</span><h3>Malabar Black Pepper</h3>
+        <span class="price">&#8377;220 <s>&#8377;249</s></span></a>
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg><span class="cap">Photograph</span></span>
+        <span class="tag">Spice &middot; Whole pods</span><h3>Green Cardamom</h3>
+        <span class="price">&#8377;680 <s>&#8377;749</s></span></a>
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg><span class="cap">Photograph</span></span>
+        <span class="tag">Estate &middot; Raw</span><h3>Wild Forest Honey</h3>
+        <span class="price">&#8377;390</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="story-grid">
+    <div class="story-media ph dark">
+      <svg><use href="#botanical" x="10%" y="-6%" width="80%" height="118%" style="color:#EDEDE6;opacity:.14"/></svg>
+      <span class="cap">Estate photograph</span>
+    </div>
+    <div class="story-body">
+      <p class="eyebrow">Our estate</p>
+      <h2>A canopy we did not <em>plant</em>.</h2>
+      <p>Our coffee grows in filtered light, beneath silver oak and native jackwood that were
+        standing long before the first bush went in. Shade slows the cherry down. It ripens over
+        months rather than weeks, and that patience is what you taste.</p>
+      <p>The monsoon does the rest. Four months of rain, mist that sits in the valley until
+        mid-morning, and red laterite soil that holds the water long after it stops.</p>
+      <div class="figs">
+        <div class="fig"><div class="n">3,200 ft</div><div class="l">Elevation</div></div>
+        <div class="fig"><div class="n">1670</div><div class="l">First planted here</div></div>
+        <div class="fig"><div class="n">100%</div><div class="l">Shade grown</div></div>
+        <div class="fig"><div class="n">Dec&ndash;Feb</div><div class="l">Harvest</div></div>
+      </div>
+      <p class="sig">&#3374;&#3378;&#3398;&#3240;&#3390;&#3465; &mdash; the hill country</p>
+    </div>
+  </div>
+</section>
+
+<section class="wa">
+  <div class="wrap">
+    <div class="wa-in">
+      <div>
+        <p class="eyebrow">The estate community</p>
+        <h2>Harvest notes, straight to your phone.</h2>
+        <p>Join a few hundred people who hear when the new roast comes off, what the rain has done
+          to this year's pepper, and how to brew what they bought. No noise, a few messages a month.</p>
+        <a class="btn dark" href="#">Join on WhatsApp</a>
+      </div>
+      <div class="wa-side">
+        <ul>
+          <li><b>01</b> First refusal on every new harvest</li>
+          <li><b>02</b> Members-only pricing through the season</li>
+          <li><b>03</b> Brewing and grinding notes from the roastery</li>
+          <li><b>04</b> Order straight from the chat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="brand" href="#"><span class="kn">&#3374;&#3378;&#3398;&#3240;&#3390;&#3465;</span><span class="nm">Malnad Estate</span></a>
+        <p style="margin:20px 0 0; max-width:34ch; line-height:1.7;">Single-estate coffee, pepper and
+          cardamom, grown in shade in the Western Ghats and sent direct from Chikkamagaluru.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="#">Coffee</a></li><li><a href="#">Spices</a></li><li><a href="#">Honey &amp; Estate</a></li><li><a href="#">Gift Boxes</a></li></ul></div>
+      <div><h4>The Estate</h4><ul><li><a href="#">Our story</a></li><li><a href="#">How we grow</a></li><li><a href="#">Roasting</a></li><li><a href="#">Visit</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns &amp; refunds</a></li><li><a href="#">Contact</a></li><li><a href="#">Terms &amp; privacy</a></li></ul></div>
+    </div>
+    <div class="f-legal">
+      <span class="fssai">FSSAI Licence 10024000000000</span>
+      <span>Dhanush Estate Foods, Chikkamagaluru, Karnataka 577117</span>
+      <span>&copy; 2026 Malnad Estate</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<p class="screen-tag">Screen 2 &nbsp;— &nbsp;Product page</p>
+<div class="frame">
+
+<div class="ann">Free delivery on orders above <b>&#8377;999</b> &nbsp;·&nbsp; This season's harvest is now roasting</div>
+
+<header class="site">
+  <div class="wrap">
+    <div class="navbar">
+      <a class="brand" href="#"><span class="kn">&#3374;&#3378;&#3398;&#3240;&#3390;&#3465;</span><span class="nm">Malnad Estate</span></a>
+      <nav><ul>
+        <li><a href="#">Coffee</a></li><li><a href="#">Spices</a></li>
+        <li><a href="#">Honey &amp; Estate</a></li><li><a href="#">Gift Boxes</a></li><li><a href="#">Our Estate</a></li>
+      </ul></nav>
+      <div class="util"><span>Search</span><span>Account</span><span>Bag (1)</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumb"><a href="#">Coffee</a> &nbsp;/&nbsp; Malnad Arabica</p>
+
+  <div class="pdp">
+    <div class="gallery">
+      <div class="thumbs">
+        <span class="ph on"><svg><use href="#botanical" x="20%" y="8%" width="60%" height="84%" style="color:#163A2B;opacity:.16"/></svg></span>
+        <span class="ph"><svg><use href="#botanical" x="20%" y="8%" width="60%" height="84%" style="color:#163A2B;opacity:.11"/></svg></span>
+        <span class="ph"><svg><use href="#botanical" x="20%" y="8%" width="60%" height="84%" style="color:#163A2B;opacity:.11"/></svg></span>
+        <span class="ph"><svg><use href="#botanical" x="20%" y="8%" width="60%" height="84%" style="color:#163A2B;opacity:.11"/></svg></span>
+      </div>
+      <span class="ph main">
+        <svg><use href="#botanical" x="26%" y="10%" width="48%" height="80%" style="color:#163A2B;opacity:.15"/></svg>
+        <span class="cap">Pack, straight on &middot; white background</span>
+      </span>
+    </div>
+
+    <div class="pdp-info">
+      <p class="tag">Coffee &nbsp;·&nbsp; Single estate &nbsp;·&nbsp; Medium roast</p>
+      <h1>Malnad Arabica</h1>
+
+      <div class="pdp-price">
+        <span class="now">&#8377;850</span>
+        <span class="was">&#8377;899</span>
+        <span class="off">Save &#8377;49</span>
+      </div>
+      <p class="taxnote">Inclusive of all taxes &nbsp;·&nbsp; GST 5% &nbsp;·&nbsp; HSN 0901</p>
+
+      <div class="opt">
+        <div class="lab"><span>Pack size</span><span class="sel">500 g</span></div>
+        <div class="swatches">
+          <button class="sw" type="button">250 g</button>
+          <button class="sw on" type="button">500 g</button>
+          <button class="sw" type="button">1 kg</button>
+        </div>
+      </div>
+
+      <div class="opt">
+        <div class="lab"><span>Grind</span><span class="sel">Whole beans</span></div>
+        <div class="swatches">
+          <button class="sw on" type="button">Whole beans</button>
+          <button class="sw" type="button">Coarse</button>
+          <button class="sw" type="button">Medium</button>
+          <button class="sw out" type="button" disabled>Fine</button>
+        </div>
+      </div>
+
+      <div class="buy">
+        <div class="qty"><button type="button">&minus;</button><span>1</span><button type="button">+</button></div>
+        <a class="btn dark" href="#">Add to bag</a>
+      </div>
+      <p class="stockline"><b>40 in stock</b> &nbsp;·&nbsp; Roasted to order, dispatched within 48 hours</p>
+
+      <div class="pdp-desc">
+        <p>Grown at 3,200 feet under silver oak and native jackwood, hand-picked between December
+          and February, and roasted in five-kilogram batches the week it ships.</p>
+        <p>Chocolate and dried citrus, low bitterness, a long finish. It takes milk well and
+          holds up black.</p>
+      </div>
+
+      <div class="decl">
+        <h3>Product declarations</h3>
+        <dl>
+          <div class="row"><dt>Net quantity</dt><dd>500 g</dd></div>
+          <div class="row"><dt>Maximum retail price</dt><dd>&#8377;899 (inclusive of all taxes)</dd></div>
+          <div class="row"><dt>Manufactured &amp; packed by</dt><dd>Dhanush Estate Foods, Survey 41/2, Balehonnur Road, Chikkamagaluru, Karnataka 577117</dd></div>
+          <div class="row"><dt>Date of packing</dt><dd>01 / 09 / 2026</dd></div>
+          <div class="row"><dt>Best before</dt><dd>12 months from packing</dd></div>
+          <div class="row"><dt>Country of origin</dt><dd>India</dd></div>
+          <div class="row"><dt>Ingredients</dt><dd>100% arabica coffee beans</dd></div>
+          <div class="row"><dt>Storage</dt><dd>Cool, dry place away from direct sunlight</dd></div>
+          <div class="row"><dt>Consumer care</dt><dd>Customer Care &middot; +91 90000 00000 &middot; care@malnadestate.in</dd></div>
+          <div class="row"><dt>FSSAI licence</dt><dd>10024000000000</dd></div>
+        </dl>
+        <div class="foot">Every value above is transcribed from the pack itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prov">
+    <div><div class="n">3,200 ft</div><div class="l">Elevation</div></div>
+    <div><div class="n">Dec 2025</div><div class="l">Harvest</div></div>
+    <div><div class="n">Medium</div><div class="l">Roast level</div></div>
+    <div><div class="n">Shade</div><div class="l">Grown under canopy</div></div>
+  </div>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head"><h2>Goes well with</h2><a class="more" href="#">All produce</a></div>
+    <div class="prods">
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg></span>
+        <span class="tag">Spice &middot; Whole</span><h3>Malabar Black Pepper</h3><span class="price">&#8377;220 <s>&#8377;249</s></span></a>
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg></span>
+        <span class="tag">Coffee &middot; Dark roast</span><h3>Robusta Peaberry</h3><span class="price">&#8377;520</span></a>
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg></span>
+        <span class="tag">Estate &middot; Raw</span><h3>Wild Forest Honey</h3><span class="price">&#8377;390</span></a>
+      <a class="prod" href="#"><span class="ph"><svg><use href="#botanical" x="22%" y="8%" width="56%" height="84%" style="color:#163A2B;opacity:.14"/></svg></span>
+        <span class="tag">Gift &middot; Three tins</span><h3>The Harvest Box</h3><span class="price">&#8377;1,450</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="brand" href="#"><span class="kn">&#3374;&#3378;&#3398;&#3240;&#3390;&#3465;</span><span class="nm">Malnad Estate</span></a>
+        <p style="margin:20px 0 0; max-width:34ch; line-height:1.7;">Single-estate coffee, pepper and
+          cardamom, grown in shade in the Western Ghats and sent direct from Chikkamagaluru.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="#">Coffee</a></li><li><a href="#">Spices</a></li><li><a href="#">Honey &amp; Estate</a></li><li><a href="#">Gift Boxes</a></li></ul></div>
+      <div><h4>The Estate</h4><ul><li><a href="#">Our story</a></li><li><a href="#">How we grow</a></li><li><a href="#">Roasting</a></li><li><a href="#">Visit</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns &amp; refunds</a></li><li><a href="#">Contact</a></li><li><a href="#">Terms &amp; privacy</a></li></ul></div>
+    </div>
+    <div class="f-legal">
+      <span class="fssai">FSSAI Licence 10024000000000</span>
+      <span>Dhanush Estate Foods, Chikkamagaluru, Karnataka 577117</span>
+      <span>&copy; 2026 Malnad Estate</span>
+    </div>
+  </div>
+</footer>
+
+</div>
