@@ -1,44 +1,132 @@
-# Catalogue intake
+# Catalogue intake — COMPLETE
 
-Products arriving in batches. Appended as received. Nothing is transcribed into
-the Shopify sheet until Jnanottam says **done**.
+Jnanottam confirmed **done**. **65 distinct products** received, images in
+`assets/packs/`. Six products came with both front and back of pack.
 
-**Received so far: 71 products.** Images filed in `assets/packs/`.
+Nothing has been transcribed into the Shopify sheet yet — the open items below
+have to be settled first.
 
-## Rules applied to every batch
+---
 
-- Declarations are transcribed from the pack only. Nothing inferred, nothing filled in.
-- Anything illegible is flagged and re-requested, never guessed.
-- A pack missing a mandatory declaration is recorded as a finding for the client.
-- Prices and stock come from Jnanottam separately — they are not printed on packs.
+## Business identity — read off the back of the coffee pack
+
+Transcribed, not inferred:
+
+| Field | Value |
+|---|---|
+| Brand | **MALNAD SPICES** |
+| Manufactured, packed & marketed by | MALNAD SPICES |
+| Address | Devaramane, Horanadu Post, Kalasa Tq, Chikmagaluru Dist — 577181 |
+| Home delivery contact | 8431218956 · 9480956035 |
+| Website | **www.malnadspices.in** |
+| FSSAI licence | **21223055000121** |
+| Best before | 8 months (coffee) |
+| Storage | Cool, dry, hygienic place, away from direct sunlight and strong odour; transfer to an airtight container once opened |
+
+The packs also carry a nutrition panel, the green vegetarian mark and a recycling
+mark. **This is a properly designed, compliant label.**
+
+---
+
+## Findings
+
+### 1. They already have a website
+
+`www.malnadspices.in` is printed on the packaging. Before anything else, establish
+whether this build **replaces** it, sits alongside it, or whether the domain is
+dormant. It changes the domain plan, the SEO approach and possibly the quotation.
+
+### 2. The declaration fields are blank on the sample packs — by design
+
+`Net Weight`, `Max. Retail Price`, `Unit Sales Price/g`, `Packed on` and
+`Batch No.` are **pre-printed field labels with space to be stamped per batch**.
+On the photographed samples they are empty.
+
+So the pack proves the *format* is compliant but **cannot supply the values**.
+Net weight and MRP must come from the price list, not from the photographs.
+
+### 3. Two different packaging standards in one catalogue
+
+- **Printed branded packs** — coffee, tea, some spices. Full declarations. Fine.
+- **Clear tubs and poly bags** — most seeds, nuts, several spices. A small name
+  sticker only, and chia and sabja appear to have none at all.
+
+The second group cannot be listed as photographed. Either the sold product carries
+a stamped label that is not on the sample, or those lines need labelling before
+launch.
+
+### 4. Pack sizes lost a character in the filenames
+
+Seven filenames arrived with a fraction stripped out, e.g. `_kg_Badam`,
+`_Pista`, `Coconut_oil___liter`. **½ kg is confirmed** — the special tea pack is
+visibly marked `500gm` — but each of these needs stating explicitly rather than
+assumed:
+
+`kg-badam` · `pista` · `kgspecial-tea` · `kg-filter-coffee-special` ·
+`kg-nice-coffee-special` · `coconut-oil-liter` · `100-shahi-jeera`
+
+### 5. Possible duplicates or size variants
+
+- **Coconut oil** — `coconut-oil-liter`, `coconut-oil-1-liter`, `coconut-oil-2-litres`,
+  plus `cold-pressed-coconut-oil-1-liter`. Cold pressed is a genuinely different
+  product and must not be a size variant of refined.
+- **Tea** — `1kg-tea`, `1kg-special-tea`, `250g-special-tea`, `kgspecial-tea`.
+  Some of these may be the same product under different names.
+- **Instant coffee** — 100 g and 200 g, presumably one product, two sizes.
+
+### 6. Health-adjacent naming needs care
+
+`sanjivini-special-tea`, `diabeat-decoction-700ml` and `sugarless-jamboo-syrup`
+carry wording that edges toward a therapeutic claim. Under the Drugs & Magic
+Remedies Act and FSSAI advertising rules, a food cannot claim to treat or prevent
+a condition. The product names can stay; **the descriptions must not make the claim**.
+
+---
+
+## What is needed before transcription starts
+
+1. **Price list** — MRP and selling price for every product and pack size. Nothing on the packs supplies this.
+2. **Stock on hand** per line.
+3. **Back-of-pack photographs** for the tub and poly-bag products.
+4. **Pack sizes confirmed** for the seven listed above.
+5. **A decision on `malnadspices.in`**.
+6. **GST rate per product**, signed off — whole spices and blended masalas differ.
 
 ## Received
 
-### Seeds (10)
-- `100-shahi-jeera`
-- `100g-fennel-seed`
-- `100g-mintiya`
-- `100g-sasive`
-- `chia-seeds`
-- `flax-seeds`
-- `magaz-seeds`
-- `pumpkin-seeds`
-- `sabja-seeds`
-- `sunflower-seeds`
+### Coffee (6)
+- `100g-instant-coffee`
+- `200g-instant-coffee`
+- `250g-special-filter-coffee`
+- `250g-special-nice-coffee`
+- `kg-filter-coffee-special`
+- `kg-nice-coffee-special`
 
-### Whole spices (14)
+### Tea (6)
+- `1kg-special-tea`
+- `1kg-tea`
+- `250g-special-tea`
+- `kgspecial-tea`
+- `sanjivini-special-tea`
+- `tea-powder-1kg`
+
+### Whole spices (18)
+- `100-shahi-jeera`
 - `100g-black-cardamom`
 - `100g-cardamom`
 - `100g-chekke`
 - `100g-clove`
+- `100g-fennel-seed`
 - `100g-jathipathri`
 - `100g-kalhoo`
 - `100g-kasturi-menthi`
 - `100g-marati-moggu`
+- `100g-mintiya`
 - `100g-naga-kesari-moggu`
 - `100g-nutmeg`
 - `100g-palavele`
 - `100g-pepper`
+- `100g-sasive`
 - `100g-star-anise`
 - `100ga-lavanga`
 
@@ -53,27 +141,13 @@ the Shopify sheet until Jnanottam says **done**.
 - `nellikai-powder`
 - `sikakai-powder`
 
-### Coffee (10)
-- `100g-instant-coffee`
-- `200g-instant-coffee`
-- `250g-special-filter-coffee-1`
-- `250g-special-filter-coffee-2`
-- `250g-special-nice-coffee-1`
-- `250g-special-nice-coffee-2`
-- `kg-filter-coffee-special-1`
-- `kg-filter-coffee-special-2`
-- `kg-nice-coffee-special-1`
-- `kg-nice-coffee-special-2`
-
-### Tea (8)
-- `1kg-special-tea`
-- `1kg-tea-1`
-- `1kg-tea-2`
-- `250g-special-tea`
-- `kgspecial-tea`
-- `sanjivini-special-tea-1`
-- `sanjivini-special-tea-2`
-- `tea-powder-1kg`
+### Seeds (6)
+- `chia-seeds`
+- `flax-seeds`
+- `magaz-seeds`
+- `pumpkin-seeds`
+- `sabja-seeds`
+- `sunflower-seeds`
 
 ### Dry fruits & nuts (6)
 - `dry-grapes`
@@ -102,36 +176,3 @@ the Shopify sheet until Jnanottam says **done**.
 
 ### Other (1)
 - `sope-nut`
-
-## Open findings — raised during intake
-
-**1. Which business is this?**
-The pack label on the mixed dry fruits reads **Karthik Traders, Varanga**.
-The earlier AI-generated brand image showed *Malnad Variety Centre / Swad Horanadu*,
-which is a different, real business — those generated packs are not this client's.
-The store cannot be named until this is settled.
-
-**2. Most packs carry no declarations.**
-The photographs show clear tubs with a small name sticker only — `Pumpkin Seeds`,
-`Flax Seeds`, `Magaz Seeds`, `Sunflower Seeds` — and chia and sabja appear to have
-no sticker at all. Only the mixed dry fruits pack carries a real label, and even
-that one shows trader name, product, net weight, MRP, packed-on and a barcode
-with **no FSSAI number, no full address, no country of origin, no best-before**.
-
-Under the Legal Metrology packaged commodities rules an online listing must display
-those declarations, and they have to exist on the pack. As photographed, most of
-this catalogue cannot be listed.
-
-Two possibilities, and only the client can settle it:
-- the declarations are on the **back** of the tub and simply were not photographed, or
-- the packs genuinely do not carry them, in which case **labelling has to be fixed
-  before launch**, not after.
-
-**Back-of-pack photographs are needed for every product either way.**
-
-**3. Not an estate.** This is a Malnad dry-goods retailer — seeds, spices, dry
-fruits, squashes and syrups. The storefront copy written before the packs were
-seen tells an invented single-estate coffee story and must be rewritten.
-
-**4. An electricity bill** (MESCOM, residential, Horanadu) was attached in the
-first batch. Not saved, not used.
