@@ -58,3 +58,75 @@ BEFORE ACCEPTING ANY IMAGE
 3. Same framing and light direction across all 30 products.
 4. Save as 2048x2048, under 20MB, named to match the catalogue.
 ================================================================
+
+
+================================================================
+PART 2 - BRAND & SITE IMAGES (hero, categories, story bands)
+These show place, not product. Nothing here carries a legal
+declaration, so generating them is fine.
+
+BUT: prefer the client's OWN estate photographs wherever they
+exist. Provenance is the entire selling point of this brand - a
+real photograph of their land beats a generated one every time.
+Generate only to fill gaps.
+
+And do not generate a claim: no sprawling 500-acre plantation if
+they farm twelve acres, no grand estate bungalow that is not
+theirs. Atmosphere and place, not specifics they cannot back.
+================================================================
+
+
+--- THE HOUSE STYLE BLOCK ---
+Paste this into EVERY prompt in Part 2, then add the subject line.
+Consistency across the set matters more than any single image.
+
+Photographed in the Western Ghats of Karnataka during the monsoon season. Cool, damp, misty atmosphere with soft diffused light filtering through a dense forest canopy. Muted natural colour grade built on deep shade green, hex 163A2B, soft pale paper grey, hex F2F0EA, and red laterite earth, hex 9C4A28. Overcast or early morning light, never golden hour, never warm orange. Shot on a full frame camera with a prime lens, shallow to medium depth of field, fine natural grain, no HDR. Restrained, editorial, documentary. Unstyled and unposed.
+
+NEGATIVE (use with all of Part 2):
+warm golden hour, orange colour grade, HDR, oversaturation, burlap, hessian sacking, mason jars, latte art, coffee cups, kraft paper, rustic props, stock photo styling, lens flare, vignette, people looking at camera, text, watermark, illustration, cartoon
+
+
+--- 1. HERO (2560x1440, 16:9, full bleed) ---
+The left third must stay dark and uncluttered - the headline sits there.
+
+SUBJECT: Looking upward and through a shade-grown coffee plantation. Tall silver oak and native jackwood trees form a high canopy overhead; coffee bushes in rows below. Thin shafts of pale light break through the leaves on the right side of the frame. The left third of the image is deep shadow, dark and quiet, with no detail competing for attention. Mist hanging low between the trunks.
+
+
+--- 2. ESTATE STORY BAND (1600x2000, 4:5, dark) ---
+SUBJECT: A single old silver oak trunk wrapped in a climbing black pepper vine, moss on the bark, coffee bushes receding into mist behind it. Deep shade. The trunk sits slightly left of centre.
+
+
+--- 3. CATEGORY - COFFEE (1200x1600, 3:4) ---
+SUBJECT: A coffee branch heavy with ripe red cherries, still on the bush, wet from rain. Dark green leaves. Background falls away into soft blurred shade.
+
+
+--- 4. CATEGORY - SPICES (1200x1600, 3:4) ---
+SUBJECT: A black pepper vine climbing a tree trunk, green peppercorn spikes hanging in clusters, wet leaves, deep forest shade behind.
+
+
+--- 5. CATEGORY - HONEY AND ESTATE (1200x1600, 3:4) ---
+SUBJECT: A piece of raw wild honeycomb resting on a dark wet stone, in dappled forest light. Natural and unstyled, no jars, no dipper, no styling.
+
+
+--- 6. CATEGORY - GIFT BOXES (1200x1600, 3:4) ---
+Use REAL product packs for this one. Photograph or composite the
+client's actual packs - do not invent packaging.
+SUBJECT: Three of the estate's own packs arranged upright together on a dark weathered wood surface, shot straight on, soft even light, paper grey background.
+
+
+--- 7. TEXTURE BANK (2000x2000, 1:1) - for section breaks ---
+Run this three or four times for variety.
+SUBJECT A: Wet red laterite earth with fallen leaves and a few scattered coffee cherries.
+SUBJECT B: Mist moving through a valley of coffee bushes seen from above, early morning.
+SUBJECT C: Rain on broad green leaves, water beading, very shallow depth of field.
+SUBJECT D: Drying coffee parchment spread on a red oxide floor, shot from directly above.
+
+
+================================================================
+CHECK BEFORE USING ANY PART 2 IMAGE
+1. Is the grade cool and green, not warm and golden? If warm, rerun.
+2. Does it claim something untrue about their estate? Reject.
+3. Hero only: is the left third dark enough for white text?
+4. Do all the images look like one place shot on one day?
+   If not, rerun the odd one with the style block unchanged.
+================================================================
