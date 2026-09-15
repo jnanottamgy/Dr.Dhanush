@@ -45,6 +45,10 @@ These are his explicit preferences. Do not reintroduce anything he has removed.
   go on the listing. No exceptions, no "reasonable assumptions".
 - **A pack missing a mandatory declaration is a finding**, reported to the
   client. It is not a gap to fill in.
+- **Transcribe declarations only from the raw, unprocessed photograph.** Never
+  from an AI-enhanced image — generative tools rewrite text they cannot read
+  cleanly, so a blurred digit in an FSSAI number comes back crisp and wrong. If
+  the raw photo is illegible, ask for a better one.
 - The client will **not** fill the catalogue spreadsheet. He sends images and
   product names as a PDF; Claude builds the catalogue from those, including
   working out variants from what is visible on the packs.

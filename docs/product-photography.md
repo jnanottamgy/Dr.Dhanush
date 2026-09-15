@@ -99,6 +99,53 @@ Safest of the three — no packaging in frame, so nothing can be misrepresented.
 > colour grade. No packaging, no text, no props. Photorealistic, square 1:1,
 > 2048×2048.
 
+## Prompt D — back of pack (image 4, the declarations panel)
+
+Different job from the other three: this one exists to make **printed text
+readable**, not to look good. Beautifying it is how the content gets destroyed.
+
+> Correct and clarify this photograph of printed product packaging. **Do not
+> alter, redraw, re-letter, re-space, translate, spell-correct or regenerate any
+> text, number, code or symbol. Every character must remain exactly as
+> photographed**, including the FSSAI licence number, batch code, dates, net
+> quantity, MRP and consumer care details. Correct the perspective so the pack
+> face is flat and square to the camera. Remove glare, hotspots and reflections
+> from the plastic film or laminate. Even out uneven lighting across the panel.
+> Increase sharpness and local contrast so small print becomes legible. Reduce
+> noise without smoothing or softening letterforms. Neutral white balance, colour
+> accurate. Crop tight to the pack face with a small even margin. Square 1:1,
+> 2048×2048, photorealistic.
+>
+> Negative: redrawn text, regenerated text, altered numbers, corrected spelling,
+> translated text, invented label detail, smoothed lettering, blurred small print,
+> watermark, added graphics, stylised filter, warm colour grade.
+
+### The trap
+
+**Never transcribe declarations from a processed image.**
+
+Generative tools rewrite text they cannot read cleanly, and they do it
+confidently — a blurred `8` becomes a crisp `3`. On this panel that means the
+FSSAI licence number, the batch code or the net quantity could come back subtly
+wrong, and it would be transcribed onto the listing as a legal declaration.
+
+So the back-of-pack photo does two separate jobs and needs two separate files:
+
+| File | Goes to | Purpose |
+|---|---|---|
+| **Raw, untouched photo** | Claude | Reading the declarations |
+| Processed version | The website | Image 4 on the product page |
+
+If the raw photo is too blurred to read, **ask for a better photo**. Do not run
+it through a tool and read the output.
+
+### A safer option than AI for this one
+
+A plain document-scanner app — the kind built into most phones — does perspective
+correction, deglare and sharpening **without any generative redraw**. For a panel
+of small legal print that is usually the better tool. Use AI here only if the
+scanner app cannot rescue the photo.
+
 ---
 
 ## Image set per product
@@ -108,7 +155,7 @@ Safest of the three — no packaging in frame, so nothing can be misrepresented.
 | 1 | Pack, straight on | A | Pure white |
 | 2 | Pack in context on wood | B | Brand palette |
 | 3 | Macro of the contents | C | Paper `#F4F2ED` |
-| 4 | Back of pack showing the label | Raw photo, lightly cleaned | Any |
+| 4 | Back of pack, declarations panel | D | As photographed |
 
 Image 4 is worth including wherever the label is readable — it shows the
 declarations on the actual pack and reassures a careful buyer.

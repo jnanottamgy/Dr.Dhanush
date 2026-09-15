@@ -30,9 +30,30 @@ NEGATIVE:
 packaging, labels, text, watermark, hands, people, props, oversaturation, HDR, illustration, cartoon
 
 
+--- D. BACK OF PACK (image 4, the declarations panel) ---
+
+This image has one job: make the printed text readable. Do not let any
+tool beautify it. See the warning at the bottom.
+
+Correct and clarify this photograph of printed product packaging. Do not alter, redraw, re-letter, re-space, translate, spell-correct or regenerate any text, number, code or symbol. Every character must remain exactly as photographed, including the FSSAI licence number, batch code, dates, net quantity, MRP and consumer care details. Correct the perspective so the pack face is flat and square to the camera. Remove glare, hotspots and reflections from the plastic film or laminate. Even out uneven lighting across the panel. Increase sharpness and local contrast so small print becomes legible. Reduce noise without smoothing or softening letterforms. Neutral white balance, colour accurate. Crop tight to the pack face with a small even margin. Square 1:1 ratio, 2048 by 2048 pixels. Photorealistic.
+
+NEGATIVE:
+redrawn text, regenerated text, altered numbers, corrected spelling, translated text, invented label detail, smoothed lettering, blurred small print, watermark, added graphics, stylised filter, warm colour grade
+
+
+================================================================
+CRITICAL - THE BACK OF PACK IMAGE
+Send Claude the RAW photo for reading the details.
+Send the processed version to the website only.
+Never transcribe declarations from an AI-processed image - if the
+tool nudged a digit in the FSSAI number, that error goes onto the
+listing as a legal declaration.
+================================================================
+
 ================================================================
 BEFORE ACCEPTING ANY IMAGE
 1. Zoom in on the label. Tools garble text - ARABICA becomes ARAB1CA.
+1b. On the back-of-pack shot, check EVERY digit against the raw photo.
 2. Does the pack match the real pack? If not, reject it.
 3. Same framing and light direction across all 30 products.
 4. Save as 2048x2048, under 20MB, named to match the catalogue.
