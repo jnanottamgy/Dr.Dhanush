@@ -50,6 +50,8 @@ body{background:var(--paper); color:var(--ink); margin:0;
   padding:28px 0 18px; border-bottom:2px solid var(--ink); margin-bottom:24px;}
 .top h1{font-family:"Spectral",Georgia,serif; font-size:27px; font-weight:600; margin:0; line-height:1.15;}
 .top .sub{font-size:13px; color:var(--ink-3); margin:5px 0 0;}
+.live{display:inline-flex; align-items:center; gap:6px; color:var(--good); font-weight:600;}
+.live i{width:7px; height:7px; border-radius:50%; background:var(--good); display:block;}
 .acts{display:flex; gap:10px; flex-wrap:wrap;}
 .btn{display:inline-block; font-size:13px; font-weight:600; padding:9px 16px; border-radius:3px;
   border:1px solid var(--accent); color:var(--accent); background:var(--surface); text-decoration:none; cursor:pointer;}
@@ -113,11 +115,12 @@ footer{margin-top:26px; padding-top:18px; border-top:1px solid var(--rule); font
 <header class="top">
   <div>
     <h1>Malnad Estate &mdash; Owner Dashboard</h1>
-    <p class="sub">September 2026 &nbsp;&middot;&nbsp; updated a few minutes ago</p>
+    <p class="sub">September 2026 &nbsp;&middot;&nbsp; <span class="live"><i></i>Live</span> &mdash; reads your Shopify orders as they come in</p>
   </div>
   <div class="acts">
     <button class="btn pri" type="button">+ Add offline sale</button>
     <button class="btn" type="button">Download GST report</button>
+    <button class="btn" type="button" title="Reload from Shopify">&#8635; Refresh</button>
   </div>
 </header>
 
@@ -236,9 +239,10 @@ footer{margin-top:26px; padding-top:18px; border-top:1px solid var(--rule); font
 </div>
 
 <footer>
-  Sample figures throughout. Every number on this page comes from your Shopify store, including the
-  offline sales you enter yourself &mdash; so the totals are your real totals, not just the website's.
-  Hover any bar to see its exact value.
+  Sample figures throughout. <b>Website and WhatsApp orders appear here on their own</b> &mdash; this page
+  reads your Shopify store directly, so there is nothing to sync and no button to press. The only orders you
+  enter by hand are offline sales, because Shopify cannot know about a sale made at the estate gate. Those
+  count towards every total on this page. Hover any bar to see its exact value.
 </footer>
 
 </div>
