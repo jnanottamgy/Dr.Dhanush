@@ -3,44 +3,40 @@
 Two documents for the same client, in sequence. **The build plan is current; the
 Ayurveda quotation is superseded** and kept only for reference.
 
-## Current — Malnad commerce build plan
+## Current — Malnad store quotation
 
-Custom-built storefront, owner dashboard and WhatsApp ordering for a Malnad
-produce business (coffee, spices, estate goods). No rented platform.
-
-| File | What it is |
-|---|---|
-| `build-plan.html` | Source. Loads webfonts from Google Fonts; theme-aware. **Edit this one.** |
-| `build-plan-print.html` | Self-contained build with fonts inlined — used to render the PDF. Regenerated, not hand-edited. |
-| `JTACS-Malnad-Build-Plan.pdf` | 17-page A4 PDF. |
-
-**Scope:** storefront on a Medusa commerce core with a Next.js front end ·
-two-layer dashboard (operations console + bespoke Owner View) · Razorpay
-prepaid checkout · WhatsApp Community plus in-chat ordering via Flows ·
-FSSAI and Legal Metrology declarations enforced as required product fields ·
-GST at 5% for coffee and most spices.
-
-**Engineering commitments:** designed for 1,500 orders/day against an expected
-20–40 (~40× headroom) · catalogue served from CDN edge so ~98% of browsing never
-reaches the database · idempotent payment webhooks with an hourly reconciliation
-sweep · stock decremented under row lock · load test and backup-restore drill
-both gated before launch.
-
-**Timeline:** six weeks in five phases, each with an explicit gate. The critical
-path is Razorpay/Meta verification and client catalogue content, not code.
-
-**Open before quoting:** after-launch support model, and whether source code is
-transferred outright or licensed.
-
-## Superseded — Ayurveda quotation
+Shopify storefront, Razorpay payments and a WhatsApp Business community for a
+Malnad produce business (coffee, spices, estate goods).
 
 | File | What it is |
 |---|---|
-| `quotation.html` / `quotation-print.html` | Source and print build |
-| `JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf` | 15-page A4 PDF |
+| `quotation-malnad.html` | Source. Loads webfonts from Google Fonts; theme-aware. **Edit this one.** |
+| `quotation-malnad-print.html` | Self-contained build with fonts inlined — used to render the PDF. Regenerated, not hand-edited. |
+| `JTACS-Quotation-Malnad-Store.pdf` | 15-page A4 PDF. |
 
-Quoted a Shopify store at a flat ₹36,000 for selling Ayurvedic medicines.
-Overtaken by the pivot to Malnad produce and the decision to build in-house.
+**Commercials**
+
+- **Build fee:** **₹38,000** flat, one time, no GST added
+- **Cost to go live (incl. third-party):** ₹60,626 — ₹62,396 with the WhatsApp API
+- **Running cost:** ₹3,982–6,371/month at 200 orders, paid by the client directly
+  to Shopify and Razorpay; ₹7,830–10,219 if the WhatsApp API is added
+- Milestones 50/25/25 — ₹19,000 / ₹9,500 / ₹9,500
+
+**Scope:** Shopify Basic store · Razorpay prepaid checkout with Magic Checkout
+(avoids Shopify's 2% third-party gateway fee, ~₹28,700/yr) · WhatsApp Business
+community on the free app, with the paid API priced as an optional upgrade ·
+order and dispatch workflow for the client's own delivery team · FSSAI and
+Legal Metrology declarations enforced as required product fields · GST 5% for
+coffee and most spices. No logistics, no COD, no retainer.
+
+## Superseded
+
+Kept for reference only.
+
+| File | What it was |
+|---|---|
+| `build-plan.html`, `JTACS-Malnad-Build-Plan.pdf` | Delivery plan for a custom-built storefront and owner dashboard. Dropped in favour of Shopify — below roughly ₹3 lakh/month in sales, Shopify costs less than self-hosted infrastructure. |
+| `quotation.html`, `JTACS-Quotation-Dr-Dhanush-Ayurveda.pdf` | ₹36,000 Shopify quotation for selling Ayurvedic medicines. Overtaken by the pivot to Malnad produce. |
 
 ## Regenerating a PDF
 
@@ -48,8 +44,8 @@ Overtaken by the pivot to Malnad produce and the decision to build in-house.
 /opt/pw-browsers/chromium --headless --disable-gpu --no-sandbox \
   --virtual-time-budget=30000 --run-all-compositor-stages-before-draw \
   --no-pdf-header-footer \
-  --print-to-pdf=JTACS-Malnad-Build-Plan.pdf \
-  "file://$PWD/build-plan-print.html"
+  --print-to-pdf=JTACS-Quotation-Malnad-Store.pdf \
+  "file://$PWD/quotation-malnad-print.html"
 ```
 
 Third-party rates and regulatory references are as published in September 2026
