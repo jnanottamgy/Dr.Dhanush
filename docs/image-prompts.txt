@@ -1,0 +1,39 @@
+================================================================
+MALNAD ESTATE - IMAGE PROMPTS
+Use image-to-image. Upload the client's photo. Never text-to-image.
+Swap CONTENTS for: roasted coffee beans / whole black peppercorns /
+green cardamom pods / wild forest honey
+================================================================
+
+
+--- A. CATALOGUE SHOT (image 1, every product, white background) ---
+
+Professional e-commerce product photograph. Keep the product and its packaging, label, lettering, logo and colours exactly as in the source image. Do not redesign, re-letter, translate or invent any packaging detail. Re-light only: soft even diffused daylight from the upper left with gentle fill from the right. No harsh glare, no blown highlights, no glossy commercial sheen. Pure white seamless background, hex FFFFFF. Product centred and upright, shot straight on at eye level, filling about 80 percent of the frame with even margin all round. Soft natural contact shadow directly beneath so the product sits on the surface. Colour accurate and true to the original. Sharp focus edge to edge with crisp detail on all label text. Square 1:1 ratio, 2048 by 2048 pixels. Photorealistic, restrained and natural rather than glossy.
+
+NEGATIVE:
+text changes, invented labels, redrawn labels, altered branding, watermark, props, hands, people, extra products, studio reflections, oversaturation, HDR, illustration, cartoon
+
+
+--- B. LIFESTYLE SHOT (image 2, brand palette) ---
+
+Keep the product and its packaging, label, lettering and colours exactly as in the source image. Do not redesign or invent any packaging detail. Place the product on a dark weathered wood surface with a small natural scatter of loose CONTENTS beside it. Background is a soft warm grey paper tone, hex F4F2ED, falling into a gentle blur of deep green shade canopy foliage, hex 1F4034, in the upper corners. A hint of red laterite earth tone, hex A4552F, in the wood. Soft directional morning light from the left, slightly misty and diffused as after monsoon rain. Shallow depth of field. Muted natural colour, cool green rather than warm golden. Photorealistic and unstyled. Square 1:1 ratio, 2048 by 2048 pixels.
+
+NEGATIVE:
+text changes, invented labels, redrawn labels, altered branding, watermark, hands, people, extra products, oversaturation, HDR, illustration, cartoon, burlap, hessian sacking, rustic props, coffee cups, warm orange colour grade
+
+
+--- C. TEXTURE SHOT (image 3, no packaging in frame) ---
+
+Macro photograph of CONTENTS filling the entire frame, shot from directly above on a soft paper toned surface, hex F4F2ED. Natural soft daylight. Shallow depth of field. Rich texture with visible natural variation between individual pieces. Muted cool natural colour grade. No packaging, no text, no props. Photorealistic. Square 1:1 ratio, 2048 by 2048 pixels.
+
+NEGATIVE:
+packaging, labels, text, watermark, hands, people, props, oversaturation, HDR, illustration, cartoon
+
+
+================================================================
+BEFORE ACCEPTING ANY IMAGE
+1. Zoom in on the label. Tools garble text - ARABICA becomes ARAB1CA.
+2. Does the pack match the real pack? If not, reject it.
+3. Same framing and light direction across all 30 products.
+4. Save as 2048x2048, under 20MB, named to match the catalogue.
+================================================================
