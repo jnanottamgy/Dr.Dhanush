@@ -1,0 +1,244 @@
+<title>Malnad Owner Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:wght@400;600;700&display=swap">
+<style>
+:root{
+  --paper:#F5F6F3; --surface:#FFFFFF; --surface-2:#F3F4F1;
+  --ink:#161D1B; --ink-2:#4A5551; --ink-3:#78827E;
+  --rule:#E2E6E1; --rule-strong:#C3CAC5; --grid:#E8EBE7;
+  --accent:#12564D; --accent-ink:#0C3F38; --accent-soft:#E3EFEB; --accent-line:#9CC6BB;
+  --good:#1B6E3E; --good-soft:#E2F0E7;
+  --warn:#8A5A00; --warn-soft:#FAF1DC; --warn-line:#DFC98C;
+  --crit:#A3341F; --crit-soft:#FBEAE5;
+  --c-web:#2a78d6; --c-wa:#1baf7a; --c-off:#eb6834;
+  --shadow:0 1px 2px rgba(22,29,27,.05), 0 6px 20px -10px rgba(22,29,27,.16);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0D1211; --surface:#151D1B; --surface-2:#1B2422;
+  --ink:#E9EEEB; --ink-2:#A7B3AE; --ink-3:#7D8984;
+  --rule:#27312E; --rule-strong:#3B4743; --grid:#242E2B;
+  --accent:#63C3AC; --accent-ink:#8FD8C5; --accent-soft:#14312C; --accent-line:#2C5C53;
+  --good:#5FC088; --good-soft:#16281E;
+  --warn:#DCA84A; --warn-soft:#2A2316; --warn-line:#5A4A21;
+  --crit:#F08A6B; --crit-soft:#2E1712;
+  --c-web:#3987e5; --c-wa:#199e70; --c-off:#d95926;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px -10px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --paper:#0D1211; --surface:#151D1B; --surface-2:#1B2422;
+  --ink:#E9EEEB; --ink-2:#A7B3AE; --ink-3:#7D8984;
+  --rule:#27312E; --rule-strong:#3B4743; --grid:#242E2B;
+  --accent:#63C3AC; --accent-ink:#8FD8C5; --accent-soft:#14312C; --accent-line:#2C5C53;
+  --good:#5FC088; --good-soft:#16281E;
+  --warn:#DCA84A; --warn-soft:#2A2316; --warn-line:#5A4A21;
+  --crit:#F08A6B; --crit-soft:#2E1712;
+  --c-web:#3987e5; --c-wa:#199e70; --c-off:#d95926;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px -10px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;}
+body{background:var(--paper); color:var(--ink); margin:0;
+  font-family:"Fira Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 80px;}
+
+.mockbar{background:var(--warn-soft); border-bottom:1px solid var(--warn-line); padding:9px 20px; text-align:center;
+  font-size:12.5px; color:var(--warn); font-weight:500;}
+.mockbar b{font-weight:700;}
+
+.top{display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; justify-content:space-between;
+  padding:28px 0 18px; border-bottom:2px solid var(--ink); margin-bottom:24px;}
+.top h1{font-family:"Spectral",Georgia,serif; font-size:27px; font-weight:600; margin:0; line-height:1.15;}
+.top .sub{font-size:13px; color:var(--ink-3); margin:5px 0 0;}
+.acts{display:flex; gap:10px; flex-wrap:wrap;}
+.btn{display:inline-block; font-size:13px; font-weight:600; padding:9px 16px; border-radius:3px;
+  border:1px solid var(--accent); color:var(--accent); background:var(--surface); text-decoration:none; cursor:pointer;}
+.btn.pri{background:var(--accent); color:var(--paper); border-color:var(--accent);}
+.btn:hover{box-shadow:var(--shadow);}
+
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:14px; margin-bottom:14px;}
+.kpi{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:17px 19px;}
+.kpi .lbl{font-size:10.5px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:0 0 9px;}
+.kpi .val{font-size:31px; font-weight:600; line-height:1; letter-spacing:-.02em; margin:0;}
+.kpi .val small{font-size:17px; font-weight:500; color:var(--ink-3);}
+.kpi .dlt{font-size:12.5px; margin:9px 0 0; color:var(--ink-3);}
+.kpi .dlt b{font-weight:600;}
+.up{color:var(--good);} .dn{color:var(--crit);}
+.kpi.act{border-color:var(--warn); background:var(--warn-soft);}
+.kpi.act .val{color:var(--warn);}
+.kpi.act .lbl{color:var(--warn);}
+
+.panel{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px 22px; margin-bottom:14px;}
+.panel h2{font-family:"Spectral",Georgia,serif; font-size:18px; font-weight:600; margin:0 0 3px;}
+.panel .note{font-size:12.5px; color:var(--ink-3); margin:0 0 16px;}
+.cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:14px;}
+
+svg{display:block; max-width:100%; height:auto;}
+.ax{font-family:"Fira Sans",sans-serif; font-size:11px; fill:var(--ink-3);}
+.vlab{font-family:"Fira Sans",sans-serif; font-size:11.5px; font-weight:600; fill:var(--ink-2);}
+.plab{font-family:"Fira Sans",sans-serif; font-size:12.5px; fill:var(--ink-2);}
+.seg{font-family:"Fira Sans",sans-serif; font-size:12px; font-weight:500; fill:var(--ink-2);}
+svg g:hover path[fill],svg g:hover rect{opacity:.78;}
+
+.legend{display:flex; flex-wrap:wrap; gap:18px; margin:14px 0 0; padding-top:14px; border-top:1px solid var(--rule);}
+.legend span{display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink-2);}
+.legend i{width:11px; height:11px; border-radius:2px; display:block; flex:none;}
+
+table{border-collapse:collapse; width:100%; font-size:13.5px;}
+th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--rule);}
+thead th{font-size:10px; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);}
+tbody tr:last-child td{border-bottom:none;}
+td.n,th.n{text-align:right; white-space:nowrap;}
+.tw{overflow-x:auto;}
+tr.tot td{background:var(--accent-soft); font-weight:700; color:var(--accent-ink); border-top:2px solid var(--accent); border-bottom:none;}
+.money td{border-bottom:1px solid var(--rule);}
+.money .less td:first-child{padding-left:26px; color:var(--ink-3);}
+.pill{display:inline-block; font-size:10.5px; font-weight:600; padding:2px 8px; border-radius:10px; white-space:nowrap;}
+.pill.web{background:rgba(42,120,214,.13); color:var(--c-web);}
+.pill.wa{background:rgba(27,175,122,.15); color:var(--c-wa);}
+.pill.off{background:rgba(235,104,52,.14); color:var(--c-off);}
+.pill.wait{background:var(--warn-soft); color:var(--warn); border:1px solid var(--warn-line);}
+.pill.done{background:var(--good-soft); color:var(--good);}
+.low{color:var(--crit); font-weight:600;}
+footer{margin-top:26px; padding-top:18px; border-top:1px solid var(--rule); font-size:12px; color:var(--ink-3); line-height:1.7;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+@media (max-width:640px){ .top h1{font-size:22px;} .kpi .val{font-size:26px;} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="mockbar"><b>Design mockup</b> &mdash; sample figures, not live data. Built to agree the layout before we build the real thing.</div>
+
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>Malnad Estate &mdash; Owner Dashboard</h1>
+    <p class="sub">September 2026 &nbsp;&middot;&nbsp; updated a few minutes ago</p>
+  </div>
+  <div class="acts">
+    <button class="btn pri" type="button">+ Add offline sale</button>
+    <button class="btn" type="button">Download GST report</button>
+  </div>
+</header>
+
+<div class="kpis">
+  <div class="kpi">
+    <p class="lbl">Money received</p>
+    <p class="val">&#8377;1,54,070</p>
+    <p class="dlt"><b class="up">&#9650; 22%</b> vs last month</p>
+  </div>
+  <div class="kpi">
+    <p class="lbl">Orders</p>
+    <p class="val">214</p>
+    <p class="dlt"><b class="up">&#9650; 18%</b> vs last month</p>
+  </div>
+  <div class="kpi act">
+    <p class="lbl">Waiting to be packed</p>
+    <p class="val">12</p>
+    <p class="dlt">Oldest is 2 days old</p>
+  </div>
+  <div class="kpi">
+    <p class="lbl">Average order</p>
+    <p class="val">&#8377;740</p>
+    <p class="dlt"><b class="up">&#9650; 3%</b> vs last month</p>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>Where your money actually is</h2>
+  <p class="note">Orders placed is not the same as money in the bank. This is the difference, in full.</p>
+  <div class="tw">
+    <table class="money">
+      <tbody>
+        <tr><td>Paid online &mdash; website and WhatsApp</td><td class="n">&#8377;1,41,000</td></tr>
+        <tr class="less"><td>less refunds issued</td><td class="n">&minus; &#8377;2,250</td></tr>
+        <tr class="less"><td>less Razorpay fees</td><td class="n">&minus; &#8377;2,080</td></tr>
+        <tr><td><b>Already settled into your bank</b></td><td class="n"><b>&#8377;1,29,300</b></td></tr>
+        <tr><td>Still on its way &mdash; reaches you within 2 working days</td><td class="n">&#8377;7,370</td></tr>
+        <tr><td>Offline sales &mdash; collected by you directly, not through Razorpay</td><td class="n">&#8377;17,400</td></tr>
+        <tr class="tot"><td>Total money received this month</td><td class="n">&#8377;1,54,070</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>Sales, last 30 days</h2>
+  <p class="note">Every order, online and offline, on the day it was placed.</p>
+  <svg viewBox="0 0 900 230" role="img" aria-label="Daily sales for the last 30 days, peaking at 9,100 rupees on day 23."><line x1="52" y1="196.0" x2="892" y2="196.0" stroke="var(--grid)" stroke-width="1"/><text x="43" y="200.0" text-anchor="end" class="ax">0</text><line x1="52" y1="159.6" x2="892" y2="159.6" stroke="var(--grid)" stroke-width="1"/><text x="43" y="163.6" text-anchor="end" class="ax">2k</text><line x1="52" y1="123.2" x2="892" y2="123.2" stroke="var(--grid)" stroke-width="1"/><text x="43" y="127.2" text-anchor="end" class="ax">4k</text><line x1="52" y1="86.8" x2="892" y2="86.8" stroke="var(--grid)" stroke-width="1"/><text x="43" y="90.8" text-anchor="end" class="ax">6k</text><line x1="52" y1="50.4" x2="892" y2="50.4" stroke="var(--grid)" stroke-width="1"/><text x="43" y="54.4" text-anchor="end" class="ax">8k</text><line x1="52" y1="14.0" x2="892" y2="14.0" stroke="var(--grid)" stroke-width="1"/><text x="43" y="18.0" text-anchor="end" class="ax">10k</text><g><title>Day 1: &#8377;3,200</title><path d="M56.5 196 V141.8 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 2: &#8377;4,100</title><path d="M84.5 196 V125.4 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 3: &#8377;2,800</title><path d="M112.5 196 V149.0 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 4: &#8377;5,600</title><path d="M140.5 196 V98.1 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 5: &#8377;4,900</title><path d="M168.5 196 V110.8 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 6: &#8377;3,100</title><path d="M196.5 196 V143.6 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 7: &#8377;6,200</title><path d="M224.5 196 V87.2 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 8: &#8377;5,400</title><path d="M252.5 196 V101.7 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 9: &#8377;4,200</title><path d="M280.5 196 V123.6 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 10: &#8377;7,100</title><path d="M308.5 196 V70.8 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 11: &#8377;5,800</title><path d="M336.5 196 V94.4 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 12: &#8377;3,900</title><path d="M364.5 196 V129.0 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 13: &#8377;4,600</title><path d="M392.5 196 V116.3 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 14: &#8377;8,200</title><path d="M420.5 196 V50.8 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 15: &#8377;6,400</title><path d="M448.5 196 V83.5 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 16: &#8377;5,100</title><path d="M476.5 196 V107.2 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 17: &#8377;4,400</title><path d="M504.5 196 V119.9 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 18: &#8377;3,700</title><path d="M532.5 196 V132.7 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 19: &#8377;6,900</title><path d="M560.5 196 V74.4 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 20: &#8377;5,200</title><path d="M588.5 196 V105.4 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 21: &#8377;4,800</title><path d="M616.5 196 V112.6 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 22: &#8377;7,600</title><path d="M644.5 196 V61.7 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 23: &#8377;9,100</title><path d="M672.5 196 V34.4 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 24: &#8377;6,100</title><path d="M700.5 196 V89.0 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 25: &#8377;5,300</title><path d="M728.5 196 V103.5 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 26: &#8377;4,700</title><path d="M756.5 196 V114.5 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 27: &#8377;6,800</title><path d="M784.5 196 V76.2 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 28: &#8377;5,900</title><path d="M812.5 196 V92.6 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 29: &#8377;4,100</title><path d="M840.5 196 V125.4 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><g><title>Day 30: &#8377;3,200</title><path d="M868.5 196 V141.8 a4 4 0 0 1 4-4 h11.0 a4 4 0 0 1 4 4 V196 Z" fill="var(--c-web)"/></g><text x="682.0" y="22.4" text-anchor="middle" class="vlab">&#8377;9,100</text><text x="66.0" y="216" text-anchor="middle" class="ax">Day 1</text><text x="234.0" y="216" text-anchor="middle" class="ax">Day 7</text><text x="430.0" y="216" text-anchor="middle" class="ax">Day 14</text><text x="626.0" y="216" text-anchor="middle" class="ax">Day 21</text><text x="878.0" y="216" text-anchor="middle" class="ax">Day 30</text></svg>
+</div>
+
+<div class="panel">
+  <h2>Where the orders came from</h2>
+  <p class="note">Offline sales are the ones you enter yourself &mdash; estate gate, phone, market stall.</p>
+  <svg viewBox="0 0 900 64" role="img" aria-label="Order value by channel: website 1,06,800 rupees, WhatsApp 34,200, offline 17,400."><g><title>Website: &#8377;1,06,800 from 142 orders</title><rect x="0.0" y="0" width="604.1" height="34" rx="3" fill="var(--c-web)"/><text x="8.0" y="55" class="seg">Website &middot; &#8377;1,06,800</text></g><g><title>WhatsApp: &#8377;34,200 from 48 orders</title><rect x="606.1" y="0" width="193.5" height="34" rx="3" fill="var(--c-wa)"/><text x="614.1" y="55" class="seg">WhatsApp &middot; &#8377;34,200</text></g><g><title>Offline: &#8377;17,400 from 24 orders</title><rect x="801.6" y="0" width="98.4" height="34" rx="3" fill="var(--c-off)"/><text x="809.6" y="55" class="seg">Offline &middot; &#8377;17,400</text></g></svg>
+  <div class="legend">
+    <span><i style="background:var(--c-web)"></i> Website &mdash; 142 orders</span>
+    <span><i style="background:var(--c-wa)"></i> WhatsApp &mdash; 48 orders</span>
+    <span><i style="background:var(--c-off)"></i> Offline, entered by you &mdash; 24 orders</span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>Best sellers this month</h2>
+  <p class="note">By money earned, not units sold.</p>
+  <svg viewBox="0 0 900 204" role="img" aria-label="Top six products by sales value this month."><g><title>Malnad Arabica 500g: Rs 38,250</title><text x="198" y="21" text-anchor="end" class="plab">Malnad Arabica 500g</text><path d="M210 5 h576.0 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 H210 Z" fill="var(--c-web)" opacity="1.00"/><text x="800.0" y="21" class="vlab">&#8377;38,250</text></g><g><title>Malabar Black Pepper 100g: Rs 22,440</title><text x="198" y="55" text-anchor="end" class="plab">Malabar Black Pepper 100g</text><path d="M210 39 h336.3 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 H210 Z" fill="var(--c-web)" opacity="0.89"/><text x="560.3" y="55" class="vlab">&#8377;22,440</text></g><g><title>Malnad Arabica 250g: Rs 19,800</title><text x="198" y="89" text-anchor="end" class="plab">Malnad Arabica 250g</text><path d="M210 73 h296.2 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 H210 Z" fill="var(--c-web)" opacity="0.78"/><text x="520.2" y="89" class="vlab">&#8377;19,800</text></g><g><title>Wild Forest Honey 500g: Rs 16,200</title><text x="198" y="123" text-anchor="end" class="plab">Wild Forest Honey 500g</text><path d="M210 107 h241.6 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 H210 Z" fill="var(--c-web)" opacity="0.67"/><text x="465.6" y="123" class="vlab">&#8377;16,200</text></g><g><title>Green Cardamom 50g: Rs 14,700</title><text x="198" y="157" text-anchor="end" class="plab">Green Cardamom 50g</text><path d="M210 141 h218.9 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 H210 Z" fill="var(--c-web)" opacity="0.56"/><text x="442.9" y="157" class="vlab">&#8377;14,700</text></g><g><title>Robusta Peaberry 500g: Rs 11,900</title><text x="198" y="191" text-anchor="end" class="plab">Robusta Peaberry 500g</text><path d="M210 175 h176.4 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 H210 Z" fill="var(--c-web)" opacity="0.45"/><text x="400.4" y="191" class="vlab">&#8377;11,900</text></g></svg>
+</div>
+
+<div class="cols">
+  <div class="panel">
+    <h2>Running low</h2>
+    <p class="note">Based on stock you have left, including offline sales.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Product</th><th class="n">Left</th><th class="n">Sold / month</th></tr></thead>
+        <tbody>
+          <tr><td>Green Cardamom 50 g</td><td class="n low">6</td><td class="n">49</td></tr>
+          <tr><td>Wild Forest Honey 250 g</td><td class="n low">9</td><td class="n">31</td></tr>
+          <tr><td>Malnad Arabica 1 kg</td><td class="n low">11</td><td class="n">22</td></tr>
+          <tr><td>Malabar Black Pepper 100 g</td><td class="n">28</td><td class="n">102</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Latest orders</h2>
+    <p class="note">Newest first. Click any row to open the full order.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Order</th><th>From</th><th class="n">Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>#1284</td><td><span class="pill web">Website</span></td><td class="n">&#8377;1,350</td><td><span class="pill wait">To pack</span></td></tr>
+          <tr><td>#1283</td><td><span class="pill off">Offline</span></td><td class="n">&#8377;900</td><td><span class="pill done">Collected</span></td></tr>
+          <tr><td>#1282</td><td><span class="pill wa">WhatsApp</span></td><td class="n">&#8377;450</td><td><span class="pill wait">To pack</span></td></tr>
+          <tr><td>#1281</td><td><span class="pill web">Website</span></td><td class="n">&#8377;2,100</td><td><span class="pill done">Dispatched</span></td></tr>
+          <tr><td>#1280</td><td><span class="pill web">Website</span></td><td class="n">&#8377;680</td><td><span class="pill done">Delivered</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>Customers</h2>
+  <p class="note">Repeat buyers are where a produce business makes its money.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>&nbsp;</th><th class="n">This month</th><th class="n">Last month</th><th class="n">Change</th></tr></thead>
+      <tbody>
+        <tr><td>New customers</td><td class="n">118</td><td class="n">104</td><td class="n up">&#9650; 13%</td></tr>
+        <tr><td>Repeat customers</td><td class="n">96</td><td class="n">77</td><td class="n up">&#9650; 25%</td></tr>
+        <tr><td>Joined the WhatsApp community</td><td class="n">1,042</td><td class="n">871</td><td class="n up">&#9650; 20%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  Sample figures throughout. Every number on this page comes from your Shopify store, including the
+  offline sales you enter yourself &mdash; so the totals are your real totals, not just the website's.
+  Hover any bar to see its exact value.
+</footer>
+
+</div>

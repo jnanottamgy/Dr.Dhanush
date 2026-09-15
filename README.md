@@ -13,6 +13,7 @@ Malnad produce business (coffee, spices, estate goods).
 | `quotation-malnad.html` | Source. Loads webfonts from Google Fonts; theme-aware. **Edit this one.** |
 | `quotation-malnad-print.html` | Self-contained build with fonts inlined — used to render the PDF. Regenerated, not hand-edited. |
 | `JTACS-Quotation-Malnad-Store.pdf` | 15-page A4 PDF. |
+| `dashboard-mockup.html` | Design mockup of the owner dashboard — sample data, agreed before building. |
 
 **Commercials**
 
@@ -25,7 +26,8 @@ Malnad produce business (coffee, spices, estate goods).
 **Scope:** Shopify Basic store · Razorpay prepaid checkout with Magic Checkout
 (avoids Shopify's 2% third-party gateway fee, ~₹28,700/yr) · WhatsApp Business
 community on the free app, with the paid API priced as an optional upgrade ·
-order and dispatch workflow for the client's own delivery team · FSSAI and
+order and dispatch workflow for the packing team · **owner dashboard** with
+offline-sale entry, shown at ₹8,000 and included at no charge · FSSAI and
 Legal Metrology declarations enforced as required product fields · GST 5% for
 coffee and most spices. No logistics, no COD, no retainer.
 
@@ -37,7 +39,7 @@ Internal working documents for the build itself.
 |---|---|
 | `build-runbook.html` | Source. **Edit this one.** |
 | `build-runbook-print.html` | Fonts-inlined build used to render the PDF. Regenerated, not hand-edited. |
-| `JTACS-Malnad-Build-Runbook.pdf` | 14-page A4 PDF. |
+| `JTACS-Malnad-Build-Runbook.pdf` | 15-page A4 PDF. |
 | `templates/catalogue-template.csv` | 30-column product data sheet — one row per pack size. Goes to the client on day one. |
 | `templates/HOW-TO-FILL.md` | Column-by-column guide for whoever fills the sheet. |
 

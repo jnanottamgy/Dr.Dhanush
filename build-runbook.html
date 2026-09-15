@@ -551,7 +551,7 @@ ul.never li b{color:var(--ink); font-weight:600;}
     </div>
 
     <div class="stage">
-      <div class="sh"><h4>Stage 4 &mdash; Orders and dispatch</h4><span class="when">Week 3</span></div>
+      <div class="sh"><h4>Stage 4 &mdash; Orders, dispatch and the owner dashboard</h4><span class="when">Week 3</span></div>
       <ul class="check">
         <li>Order statuses and tags configured for the client's own delivery workflow. <span class="who">Claude</span></li>
         <li><b>Packing slip template</b> built &mdash; items, pack sizes, address, phone, order number. <span class="who">Claude</span></li>
@@ -559,8 +559,14 @@ ul.never li b{color:var(--ink); font-weight:600;}
         <li>Customer emails and messages written for confirmed, dispatched and delivered. <span class="who">Claude</span></li>
         <li>Refund and cancellation process documented, with who is allowed to approve one. <span class="who">Claude</span></li>
         <li>Staff accounts created with least-privilege roles &mdash; packing staff see orders, not settings or payouts. <span class="who">Client</span></li>
+        <li><b>Offline sales recorded as real Shopify orders</b>, not as a separate note or spreadsheet. This is the decision that makes every other number correct: stock decrements, a GST invoice is raised, the customer record is created, and the website can never sell something already sold at the estate gate. <span class="who">Claude</span></li>
+        <li>A saved, named entry flow for offline sales so the client can record one in a few taps: pick products, quantity, mark how it was paid, done. <span class="who">Claude</span></li>
+        <li><b>Order source tagging</b> &mdash; every order tagged website, whatsapp or offline at the moment it is created, so the channel split is real data rather than a guess. Verify on the live store whether Shopify Flow is available on Basic; if not, use a free tagging app or tag at creation. <span class="who">Claude</span></li>
+        <li><b>Owner dashboard built</b> to the approved mockup &mdash; orders and money for today, week and month against the previous month; settled versus in-flight money; awaiting dispatch; best sellers; low stock; new versus repeat customers; channel split. <span class="who">Claude</span></li>
+        <li><b>Monthly GST and HSN summary</b> exportable from the dashboard for the client's accountant. <span class="who">Claude</span></li>
+        <li>Dashboard access is <b>read-only</b> apart from offline order entry, which runs through Shopify's own order creation so it inherits Shopify's stock, tax and invoice handling rather than reimplementing them. <span class="who">Claude</span></li>
       </ul>
-      <span class="gate"><b>Gate</b> &nbsp; A dry-run order goes from paid to packed to dispatched to delivered, with the customer receiving every message at the right moment.</span>
+      <span class="gate"><b>Gate</b> &nbsp; A dry-run order goes from paid to packed to dispatched to delivered with every message arriving on time &middot; an offline sale entered by the client reduces stock, raises a GST invoice and appears in the dashboard totals &middot; the dashboard figures reconcile against Shopify's own reports for the same period.</span>
     </div>
 
     <div class="stage">
