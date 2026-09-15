@@ -3,7 +3,7 @@
 Products arriving in batches. Appended as received. Nothing is transcribed into
 the Shopify sheet until Jnanottam says **done**.
 
-**Received so far: 49 products.** Images filed in `assets/packs/`.
+**Received so far: 61 products.** Images filed in `assets/packs/`.
 
 ## Rules applied to every batch
 
@@ -26,7 +26,7 @@ the Shopify sheet until Jnanottam says **done**.
 - `sabja-seeds`
 - `sunflower-seeds`
 
-### Spices & powders (14)
+### Whole spices (12)
 - `100g-black-cardamom`
 - `100g-cardamom`
 - `100g-clove`
@@ -37,7 +37,16 @@ the Shopify sheet until Jnanottam says **done**.
 - `100g-naga-kesari-moggu`
 - `100g-nutmeg`
 - `100g-palavele`
+- `100g-pepper`
 - `100g-star-anise`
+
+### Masala & ground powders (9)
+- `250g-bisibele-bath-powder`
+- `250g-garam-masala-powder`
+- `250g-palav-powder`
+- `250g-puliyogare-powder`
+- `250g-rasam-powder`
+- `250g-sambar-powder`
 - `antvala-powder`
 - `nellikai-powder`
 - `sikakai-powder`
@@ -66,18 +75,23 @@ the Shopify sheet until Jnanottam says **done**.
 - `kokam-syrup-700ml`
 - `sugarless-jamboo-syrup-700ml`
 
-### Oils (1)
+### Oils (4)
+- `coconut-oil-1-liter`
 - `coconut-oil-2-litres`
+- `coconut-oil-liter`
+- `cold-pressed-coconut-oil-1-liter`
 
 ### Other (1)
 - `sope-nut`
 
-### Unclassified (5)
-- `250g-bisibele-bath-powder`
-- `250g-garam-masala-powder`
-- `250g-palav-powder`
-- `250g-puliyogare-powder`
-- `250g-rasam-powder`
+### Unclassified (7)
+- `100g-chekke`
+- `100ga-lavanga`
+- `1kg-tea-1`
+- `1kg-tea-2`
+- `250g-special-tea`
+- `sanjivini-special-tea-1`
+- `sanjivini-special-tea-2`
 
 ## Open findings — raised during intake
 
