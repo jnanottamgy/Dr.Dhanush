@@ -3,7 +3,7 @@
 Products arriving in batches. Appended as received. Nothing is transcribed into
 the Shopify sheet until Jnanottam says **done**.
 
-**Received so far: 29 products.** Images filed in `assets/packs/`.
+**Received so far: 39 products.** Images filed in `assets/packs/`.
 
 ## Rules applied to every batch
 
@@ -14,7 +14,8 @@ the Shopify sheet until Jnanottam says **done**.
 
 ## Received
 
-### Seeds (9)
+### Seeds (10)
+- `100-shahi-jeera`
 - `100g-fennel-seed`
 - `100g-mintiya`
 - `100g-sasive`
@@ -25,15 +26,21 @@ the Shopify sheet until Jnanottam says **done**.
 - `sabja-seeds`
 - `sunflower-seeds`
 
-### Spices & powders (8)
+### Spices & powders (10)
 - `100g-black-cardamom`
+- `100g-cardamom`
 - `100g-kalhoo`
 - `100g-kasturi-menthi`
+- `100g-marati-moggu`
 - `100g-naga-kesari-moggu`
 - `100g-palavele`
 - `antvala-powder`
 - `nellikai-powder`
 - `sikakai-powder`
+
+### Coffee (2)
+- `100g-instant-coffee`
+- `200g-instant-coffee`
 
 ### Dry fruits & nuts (6)
 - `dry-grapes`
@@ -43,12 +50,19 @@ the Shopify sheet until Jnanottam says **done**.
 - `pista`
 - `special-dates`
 
-### Squashes & syrups (5)
+### Squashes, syrups & decoctions (9)
+- `amla-syrup-700ml`
 - `banana-stem-squash-500ml`
 - `diabeat-decoction-700ml`
+- `ginger-lime-syrup-700ml`
 - `grapes-syrup-700ml`
 - `jamboo-syrup-700ml`
 - `jamun-squash-700ml`
+- `kokam-syrup-700ml`
+- `sugarless-jamboo-syrup-700ml`
+
+### Oils (1)
+- `coconut-oil-2-litres`
 
 ### Other (1)
 - `sope-nut`
