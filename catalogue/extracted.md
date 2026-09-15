@@ -70,17 +70,57 @@ photographed.
 | Swad instant coffee | 100 g | ₹180 |
 | Swad instant coffee | 200 g | ₹360 |
 | Malnad Chai | 250 g | ₹150 |
+| Malnad Chai | 500 g | ₹220 |
 | Swad Horanadu palav powder | 250 g | ₹180 |
 | Swad Horanadu puliyogare powder | 250 g | ₹180 |
 | Swad Horanadu rasam powder | 250 g | ₹180 |
 | Swad Horanadu sambar powder | 250 g | ₹180 |
 | Swad Horanadu garam masala | 250 g | ₹200 |
-| Swad Horanadu bisibele bath powder | 250 g | ₹80 — **looks wrong beside the others, please confirm** |
+| Swad Horanadu bisibele bath powder | 250 g | **₹80** — read confirmed at 7× on the raw photo, see §3a |
 | Shree Durga cold-pressed coconut oil | 1 L | ₹450 |
 | Karthik Traders mixed dry fruits | 150 g | ₹150 |
 
 Pack sizes confirmed from print: **Malnad Chai special tea = 500 gm**, so the
 filenames beginning `_kg_` are **½ kg**. Pistachios read **500 g**.
+
+---
+
+## 3a. The ₹80 pack — settled
+
+The ₹80 is on the **250 g Bisibele Bath powder**, and the reading is correct. The
+raw photograph, magnified 7× with the whole sticker in frame and clear white
+margin on every side, shows a four-line price sticker:
+
+```
+BSSIBELEBATH
+80/-
+UG2026
+DJ 36
+```
+
+There is no clipped digit — the blank label to the left of the `8` is fully
+visible, so it is `80`, not `180`. The printed rows underneath it read *Max.
+Retail Price (Incl. Of All Teaxes) · Packed On · Batch No.* and *(Best before 8
+Months)*, and the net quantity elsewhere on the face is `250gm`.
+
+The 500 g Malnad Chai carries an identical sticker — `MALNAD CHAI / 220/- / SEP
+26 / DJ37` — which fixes the format beyond doubt: **name, price, packing month,
+batch**. So `UG2026` is `AUG 2026` with the leading A off the edge of the
+sticker, and `DJ 36` is the batch.
+
+Two things still need the client, and they are commercial, not photographic:
+
+1. **Is ₹80 the intended MRP?** Every sibling 250 g masala is ₹180–₹200. If ₹80
+   was stamped in error, he is legally capped at ₹80 for every pack already
+   stamped — selling above a declared MRP is an offence. Either he confirms ₹80
+   and we list it, or he re-stamps the stock.
+2. The sticker gives **one** date where the pack asks for a packing date and
+   implies a best-before eight months later. We list the packing month and
+   compute nothing.
+
+Incidental: the pack itself misprints *Taxes* as **Teaxes**, and the sticker
+misprints *BISIBELE* as **BSSIBELE**. Cosmetic, on his own artwork, worth
+mentioning to him for the next print run.
 
 ---
 
@@ -109,3 +149,60 @@ The photographs are a genuinely good, consistent set — same wood surface, same
 greenery, same light. They are usable as the main product image with a square
 crop. What is missing is a **back-of-pack** shot for anything in the bottom two
 tiers.
+
+---
+
+## 6. Tea and coconut oil — named off the packs
+
+Asked for these to be named from the images rather than the filenames. Several
+filenames are wrong; the pack always wins.
+
+### Tea — 5 distinct products, not 8
+
+| Listing name | Pack | Declarations on the pack | File |
+|---|---|---|---|
+| **Malnad Chai — Premium Malnad Tea Powder** | 250 g | FSSAI 21223055000121 · Malnad Spices, Horanadu · MRP ₹150 sticker | `250g-special-tea.png` |
+| **Malnad Chai — Premium Malnad Tea Powder** | 500 g | FSSAI 21223055000121 · MRP ₹220 · packed SEP 26 · batch DJ37 | `kgspecial-tea.png` — **filename says kg, pack says 500gm** |
+| **Malnad Chai — Premium Malnad Tea Powder** | 1 kg | FSSAI 21223055000121 · Malnad Spices, Nature Valley Resorts, Horanadu, Kalasa Tq · green veg mark | `1kg-special-tea.png` |
+| **Sanjivni Special Tea** | 1 kg | FSSAI SSL 21215055000048 · Nagashree Coffee Works, Mahaveera Road, Kalasa 577 124 · care 08263-274536 · best before 12 months | black pack `1kg-tea-1/2.png`, red pack `sanjivini-special-tea-1/2.png` |
+| **QTF Tea — Guard-Hitlow Tea Factory** | sack, size not declared | The Mysore Plantations Limited, Guard Hitlow, Post Box No 12, Koppa 577126 | `tea-powder-1kg.png` |
+
+Malnad Chai is one product with three pack sizes — three variants, one listing.
+
+### Coconut oil — 3 distinct products, not 4
+
+| Listing name | Pack | Declarations on the pack | File |
+|---|---|---|---|
+| **Aaradhya Pure Double Filtered Coconut Oil** | Net volume 1 l | ಆರಾಧ್ಯ · *ಪರಿಶುದ್ಧ ತೆಂಗಿನ ಎಣ್ಣೆ* · "Hygienically Processed / Healthy Cooking oil" · green veg mark | `coconut-oil-1-liter.png` and `coconut-oil-liter.png` — **same product, duplicate photo** |
+| **Kalpatharu Special Double Filtered Pure Coconut Oil** | **Net 1.720 kg, gross 1.820 kg (1.9 Ltr)** | FSSAI 11219312000310 · Ganesh Flour & Oil Mill, College Road, Ujire 574 240, D.K. · care 9480289125 · MFG MAY 2026 · best before 6 months | `coconut-oil-2-litres.png` — **filename says 2 litres, pack does not** |
+| **Ghani-Pressed Copra Coconut Oil** (*ಗಾಣದ ಕೊಬ್ಬರಿ ಎಣ್ಣೆ*) | Net weight 1 Ltr | FSSAI 11221312000760 · Shree Durga Industries, Vijaya Nagar, Madanthyar 574 224 · care +91 94481 89468 · srdurgaindustries2007@gmail.com · MRP ₹450 · B.NO AB.09/01 · SEP 2026 · pkg lic 09/14-15 · best before 12 months | `cold-pressed-coconut-oil-1-liter.png` |
+
+The Shree Durga can is the **most completely declared pack in the whole
+catalogue** — it is the only one carrying a printed nutrition panel.
+
+---
+
+## 7. Findings added on this pass
+
+7. **`coconut-oil-2-litres.png` is not a 2 litre pack.** It declares net 1.720 kg
+   / gross 1.820 kg / 1.9 Ltr. Listing it as 2 litres would be a false net
+   quantity declaration, and Legal Metrology penalties are assessed per package.
+   It gets listed at what the can says.
+8. **The Kalpatharu MRP is illegible** — the printed value is smudged and
+   overwritten by hand. Needs the figure from the client. The *Unite Sale Price
+   0.289* on the same panel is not an MRP and will not be used to derive one.
+9. **The Sanjivni 1 kg MRP row is blank.** Net weight, FSSAI, packer and care
+   number are all there; the price line was never filled in.
+10. **Two Sanjivni packs, one product.** A black bag and a red bag, both 1 kg,
+    both Nagashree Coffee Works, both simply *Sanjivni Special Tea*. Nothing on
+    either pack distinguishes a grade. If they are different teas the client must
+    say so, otherwise they are one listing and we pick one photograph.
+11. **The QTF sack carries no retail declarations** on the printed face — no net
+    weight, no MRP, no FSSAI, no packing date. As photographed it is a bulk sack,
+    not a retail package, and cannot be listed.
+12. **The Shree Durga nutrition panel is wrong.** It declares saturated fat at
+    24 g per 100 g. Coconut oil is roughly 82–90 g saturated per 100 g; the panel
+    also puts mono- and polyunsaturated at 34 g each, which is inverted for this
+    oil. This is the maker's own error, but the moment we retype it onto our
+    listing it becomes our misdeclaration. Do not reproduce it — link the pack
+    photograph instead and let the maker's label speak for itself.

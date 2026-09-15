@@ -82,9 +82,15 @@ def main(src, out):
             row["Variant SKU"] = (v.get("SKU") or "").strip()
             row["Variant Grams"] = num(v.get("Shipping Weight (g)"))
             row["Variant Weight Unit"] = "g"
-            row["Variant Inventory Tracker"] = "shopify"
-            row["Variant Inventory Qty"] = num(v.get("Stock Qty"))
-            row["Variant Inventory Policy"] = "deny"          # never oversell
+            # Client instruction: he does not hold counted stock — everything is
+            # packed to order. So inventory tracking is OFF and the variant stays
+            # buyable regardless of quantity. An empty tracker column is how
+            # Shopify's importer expresses "don't track this variant"; "continue"
+            # is belt-and-braces so a later switch to tracking cannot silently
+            # take the catalogue out of stock.
+            row["Variant Inventory Tracker"] = ""
+            row["Variant Inventory Qty"] = ""
+            row["Variant Inventory Policy"] = "continue"
             row["Variant Fulfillment Service"] = "manual"
             row["Variant Price"] = num(v.get("Selling Price (INR)"))
             mrp, price = num(v.get("MRP (INR incl. all taxes)")), num(v.get("Selling Price (INR)"))
@@ -133,7 +139,7 @@ def main(src, out):
 
     print(f"Wrote {out}")
     print(f"  {len(groups)} products, {len(rows)} variants, {len(out_rows)} CSV rows, {len(cols)} columns")
-    print(f"  every row Status=draft, Published=FALSE, inventory policy=deny (no overselling)")
+    print(f"  every row Status=draft, Published=FALSE, inventory tracking off (packed to order)")
     print(f"  {len(set(images_needed))} distinct image files must be uploaded to Shopify Files first")
     return 0
 

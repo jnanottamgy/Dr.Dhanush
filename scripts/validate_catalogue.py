@@ -16,8 +16,11 @@ PER_VARIANT = ["Net Quantity", "MRP (INR incl. all taxes)", "Best Before / Use B
 PER_PRODUCT = ["Manufacturer or Packer Name", "Manufacturer or Packer Full Address",
                "Country of Origin", "Consumer Care Name", "Consumer Care Phone",
                "Consumer Care Email", "FSSAI Licence Number", "HSN Code", "GST Rate (%)"]
+# "Stock Qty" is deliberately NOT here: the client packs to order and holds no
+# counted stock, so the column stays in the sheet but is never mandatory. It is
+# still range-checked below if he ever chooses to fill it.
 COMMERCIAL = ["Product Name", "Category", "Pack Size", "SKU",
-              "Selling Price (INR)", "Stock Qty", "Shipping Weight (g)"]
+              "Selling Price (INR)", "Shipping Weight (g)"]
 
 VALID_GST = {"0", "5", "12", "18"}
 COFFEE_HSN = {"0901"}

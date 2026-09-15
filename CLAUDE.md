@@ -53,6 +53,42 @@ These are his explicit preferences. Do not reintroduce anything he has removed.
   product names as a PDF; Claude builds the catalogue from those, including
   working out variants from what is visible on the packs.
 
+### Client answers — 15 Sep
+
+His replies to my information-gap list. These are decisions, not suggestions.
+
+- **Price list is coming.** He will send it; nothing gets listed until it lands.
+- **No stock tracking.** *"Stock, well give according to orders"* — he packs to
+  order. Shopify inventory tracking is **off** and variants stay buyable.
+  `build_shopify_import.py` writes an empty tracker and `continue`, and
+  `Stock Qty` is no longer a mandatory column in the validator.
+- **Label photos stay as they are.** He will not re-photograph the unlabelled
+  packs. See the conflict noted below.
+- **Pack sizes come from the catalogue** filenames and pack faces, not from him.
+- **Tea and coconut oil are named off the pack images** — done, recorded in
+  `catalogue/extracted.md` §6. Both filename sets were wrong.
+- **Third-party makers' products are listed as his own stock.** He resells them;
+  they go on the site. The maker's declarations still get printed as the maker's.
+- **`malnadspices.in` will be replaced** by the new store. Not migrated, replaced.
+
+### Two things I will not silently do
+
+Both were raised with him; they are not resolved by his answers.
+
+1. **No fabricated nutrition panel.** "General nutritional info" is fine as
+   descriptive copy — what the product is, how it is used, what is in it from the
+   printed ingredients list. A **per-100 g nutrition table is a regulated
+   declaration** and I will not compute or invent one. Only two packs in the
+   catalogue print a panel at all, and one of those (Shree Durga coconut oil) is
+   arithmetically wrong. Retyping a wrong panel onto our listing makes it our
+   misdeclaration, not the maker's.
+2. **"Labels as is" leaves roughly 25 products unlistable.** Those packs carry no
+   net quantity, MRP, packing date or FSSAI number. Those four are exactly what a
+   Legal Metrology-compliant online listing must show, and under the 2026
+   amendment rules penalties are assessed **per package**. They can be listed the
+   moment a declaration exists; they cannot be listed from a photograph that
+   doesn't have one. This is his call to make, with the exposure stated plainly.
+
 ### Working style
 - **Verify plan and platform claims before stating them.** He has twice called
   out over-hedging. Check, then state plainly. Do not pad with "verify this later"
@@ -127,6 +163,17 @@ were seen and tells an invented estate story (shade-grown arabica, 3,200 ft,
 grind options). **Its copy must be rewritten** once the product list is complete.
 The visual direction and layout still hold.
 
+**Superseded in part by the pack backs — read this with it.** The entity printed
+as manufacturer, packer and marketer is **MALNAD SPICES**, Devaramane, Horanadu
+Post, Kalasa Tq, Chikkamagaluru 577181, FSSAI **21223055000121**, web
+`malnadspices.in`. *Swad Horanadu* and *Malnad Chai* are its own sub-brands. He
+also **resells twelve third-party brands** (Sanjivni, QTF, Kalpatharu, Aaradhya,
+Shree Durga, Malnad's Nisarga, Nanjangud Suruchi's, Hallimane, Hayat, Karthik
+Traders, Annapoorneshwari, Malenadu Special) and those go on the site as his
+stock, under the maker's own declarations. So: a **multi-brand Malnad dry-goods
+retailer**, not a producer and not a coffee estate. Full detail in
+`catalogue/extracted.md`.
+
 Open tax question: puliyogare and rasam powders are **mixed spice blends**, which
 can attract **12% GST** rather than the 5% on whole spices. Needs the CA's
 written call before any listing goes live.
@@ -134,9 +181,19 @@ written call before any listing goes live.
 ## Where we are
 
 **Stage 0 in progress** — Jnanottam is setting up Shopify and Razorpay.
-**Stage 1 receiving data** — scripts written and tested against fixtures.
-First six brand images received and filed in `assets/brand/`. Product catalogue
-arriving in batches of five.
+**Stage 1 — intake complete, blocked on the price list.** All 65 products
+received, photographed and transcribed. Six brand images filed in
+`assets/brand/`, 71 pack images in `assets/packs/`. Scripts written and tested
+against fixtures.
+
+Blocking the first import, in order:
+1. **The price list** — requested, `catalogue/price-list-request.txt`.
+2. **Roughly 25 products have no declarations on the pack** and cannot be listed
+   as photographed.
+3. **GST rate per product** — needs the CA's written call on the blends.
+4. **The three health-claim packs** — Diabeat, Nellikai powder, Amla syrup.
+5. **Storefront copy is written for the wrong business** and must be rewritten.
+   The visual direction and layout still hold.
 
 Eight stages total, each with a gate. Full detail in `build-runbook.html`.
 Stage 3 (payments) is gated hardest: the 16-row test matrix runs in test mode and
@@ -156,6 +213,10 @@ client's bank.
 | `docs/stage1-catalogue.md` | Metafield definitions and import procedure |
 | `docs/product-photography.md` | Storefront palette and image direction |
 | `docs/image-prompts.txt` | The three prompts, plain text |
+| `catalogue/intake.md` | Intake log, 65 products, findings |
+| `catalogue/extracted.md` | Everything read off the packs — brands, MRPs, findings |
+| `catalogue/client-message.txt` | Sent: the information-gap list |
+| `catalogue/price-list-request.txt` | Drafted: the price-list request |
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
 
