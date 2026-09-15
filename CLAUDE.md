@@ -64,7 +64,18 @@ His replies to my information-gap list. These are decisions, not suggestions.
   `Stock Qty` is no longer a mandatory column in the validator.
 - **Label photos stay as they are.** He will not re-photograph the unlabelled
   packs. See the conflict noted below.
-- **Pack sizes come from the catalogue** filenames and pack faces, not from him.
+- **Pack sizes come from the catalogue name for each product**, and *"the quantity
+  is measured"* — he weighs it out, so the name is the quantity. Verified: the two
+  names of that group whose packs also print a net quantity both agree (½ kg
+  special tea = `500gm`, ½ liter coconut oil = `500 ml`), which settles the
+  stripped fraction as **½** across all seven mangled filenames. Full table in
+  `catalogue/quantities.md` — **51 of 65 resolved**, 14 still need him.
+- **Because he measures, he is the packer** for the repacked goods, so his own
+  compliant pack supplies packer name, address, FSSAI 21223055000121, consumer
+  care and country of origin. Only MRP is genuinely missing. This retires most of
+  the "25 products unlistable" blocker — but he still has to print the
+  declaration on the pack he ships, and it does **not** extend to sealed
+  third-party packs (Kalpatharu, Sanjivni, QTF, Shree Durga).
 - **Tea and coconut oil are named off the pack images** — done, recorded in
   `catalogue/extracted.md` §6. Both filename sets were wrong.
 - **Third-party makers' products are listed as his own stock.** He resells them;
@@ -82,12 +93,13 @@ Both were raised with him; they are not resolved by his answers.
    catalogue print a panel at all, and one of those (Shree Durga coconut oil) is
    arithmetically wrong. Retyping a wrong panel onto our listing makes it our
    misdeclaration, not the maker's.
-2. **"Labels as is" leaves roughly 25 products unlistable.** Those packs carry no
-   net quantity, MRP, packing date or FSSAI number. Those four are exactly what a
-   Legal Metrology-compliant online listing must show, and under the 2026
-   amendment rules penalties are assessed **per package**. They can be listed the
-   moment a declaration exists; they cannot be listed from a photograph that
-   doesn't have one. This is his call to make, with the exposure stated plainly.
+2. **"Labels as is" — largely resolved, see the measured-quantity note above.**
+   The listings can now be built, because as packer his own declarations apply.
+   What remains is physical: the tubs and poly bags he ships still go out with a
+   name sticker only, and as packer the full declaration belongs on the pack, not
+   just the website. Under the 2026 amendment rules penalties are assessed **per
+   package**. Flagged to him; the shipping label is his call, not a listing
+   blocker.
 
 ### Working style
 - **Verify plan and platform claims before stating them.** He has twice called
@@ -188,8 +200,8 @@ against fixtures.
 
 Blocking the first import, in order:
 1. **The price list** — requested, `catalogue/price-list-request.txt`.
-2. **Roughly 25 products have no declarations on the pack** and cannot be listed
-   as photographed.
+2. **Net quantity for 14 products** — the three unnamed powders, all six seeds,
+   dry grapes, both dates, soapnut and pista. `catalogue/quantities.md`.
 3. **GST rate per product** — needs the CA's written call on the blends.
 4. **The three health-claim packs** — Diabeat, Nellikai powder, Amla syrup.
 5. **Storefront copy is written for the wrong business** and must be rewritten.
@@ -215,6 +227,7 @@ client's bank.
 | `docs/image-prompts.txt` | The three prompts, plain text |
 | `catalogue/intake.md` | Intake log, 65 products, findings |
 | `catalogue/extracted.md` | Everything read off the packs — brands, MRPs, findings |
+| `catalogue/quantities.md` | Net quantity for all 65, from the catalogue names |
 | `catalogue/client-message.txt` | Sent: the information-gap list |
 | `catalogue/price-list-request.txt` | Drafted: the price-list request |
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |

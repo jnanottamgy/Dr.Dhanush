@@ -169,25 +169,31 @@ filenames are wrong; the pack always wins.
 
 Malnad Chai is one product with three pack sizes — three variants, one listing.
 
-### Coconut oil — 3 distinct products, not 4
+### Coconut oil — 3 distinct products, 4 pack sizes
 
 | Listing name | Pack | Declarations on the pack | File |
 |---|---|---|---|
-| **Aaradhya Pure Double Filtered Coconut Oil** | Net volume 1 l | ಆರಾಧ್ಯ · *ಪರಿಶುದ್ಧ ತೆಂಗಿನ ಎಣ್ಣೆ* · "Hygienically Processed / Healthy Cooking oil" · green veg mark | `coconut-oil-1-liter.png` and `coconut-oil-liter.png` — **same product, duplicate photo** |
+| **Aaradhya Pure Double Filtered Coconut Oil** | 500 ml and 1 l — **two sizes** | ಆರಾಧ್ಯ · *ಪರಿಶುದ್ಧ ತೆಂಗಿನ ಎಣ್ಣೆ* · "Hygienically Processed / Healthy Cooking oil" · green veg mark | `coconut-oil-liter.png` (Net Volume **500 ml**) · `coconut-oil-1-liter.png` (Net Volume **1 l**) |
 | **Kalpatharu Special Double Filtered Pure Coconut Oil** | **Net 1.720 kg, gross 1.820 kg (1.9 Ltr)** | FSSAI 11219312000310 · Ganesh Flour & Oil Mill, College Road, Ujire 574 240, D.K. · care 9480289125 · MFG MAY 2026 · best before 6 months | `coconut-oil-2-litres.png` — **filename says 2 litres, pack does not** |
 | **Ghani-Pressed Copra Coconut Oil** (*ಗಾಣದ ಕೊಬ್ಬರಿ ಎಣ್ಣೆ*) | Net weight 1 Ltr | FSSAI 11221312000760 · Shree Durga Industries, Vijaya Nagar, Madanthyar 574 224 · care +91 94481 89468 · srdurgaindustries2007@gmail.com · MRP ₹450 · B.NO AB.09/01 · SEP 2026 · pkg lic 09/14-15 · best before 12 months | `cold-pressed-coconut-oil-1-liter.png` |
 
 The Shree Durga can is the **most completely declared pack in the whole
 catalogue** — it is the only one carrying a printed nutrition panel.
 
+**Correction.** I first recorded the two clear bottles as one product photographed
+twice. They are not. One declares 500 ml and the other 1 l — two sizes of the
+same Aaradhya oil, so one listing with two variants.
+
 ---
 
 ## 7. Findings added on this pass
 
-7. **`coconut-oil-2-litres.png` is not a 2 litre pack.** It declares net 1.720 kg
-   / gross 1.820 kg / 1.9 Ltr. Listing it as 2 litres would be a false net
-   quantity declaration, and Legal Metrology penalties are assessed per package.
-   It gets listed at what the can says.
+7. **The Kalpatharu can is the one place the name and the pack disagree.** The
+   catalogue name says 2 litres; the can declares net **1.720 kg**, gross 1.820 kg,
+   **1.9 Ltr**. Those are internally consistent — coconut oil is about 0.92 kg per
+   litre, so 1.720 kg is 1.87 l. This is a sealed pack from another maker, so the
+   maker's printed net quantity is the declaration and "2 litre can" is its trade
+   size. Listed as 1.720 kg / 1.9 l, with the can photograph alongside.
 8. **The Kalpatharu MRP is illegible** — the printed value is smudged and
    overwritten by hand. Needs the figure from the client. The *Unite Sale Price
    0.289* on the same panel is not an MRP and will not be used to derive one.
