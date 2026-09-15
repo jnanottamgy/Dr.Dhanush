@@ -29,6 +29,30 @@ order and dispatch workflow for the client's own delivery team · FSSAI and
 Legal Metrology declarations enforced as required product fields · GST 5% for
 coffee and most spices. No logistics, no COD, no retainer.
 
+## Build — runbook and templates
+
+Internal working documents for the build itself.
+
+| File | What it is |
+|---|---|
+| `build-runbook.html` | Source. **Edit this one.** |
+| `build-runbook-print.html` | Fonts-inlined build used to render the PDF. Regenerated, not hand-edited. |
+| `JTACS-Malnad-Build-Runbook.pdf` | 14-page A4 PDF. |
+| `templates/catalogue-template.csv` | 30-column product data sheet — one row per pack size. Goes to the client on day one. |
+| `templates/HOW-TO-FILL.md` | Column-by-column guide for whoever fills the sheet. |
+
+**Eight stages, each with a gate.** Stage 3 (payments) is gated hardest: the
+16-row payment test matrix must pass in test mode and again live, and a
+settlement must be confirmed landed in the client's bank before anything
+proceeds.
+
+**Credential posture — the whole point of the document.** Secrets are generated
+and entered by the client, directly into the destination system, never into a
+chat transcript. Claude receives exactly two grants: Shopify **collaborator**
+access with listed permissions, and Google Analytics/Search Console. No
+passwords, no OTPs, no live Razorpay keys, no bank details, no KYC documents,
+at any stage.
+
 ## Superseded
 
 Kept for reference only.
