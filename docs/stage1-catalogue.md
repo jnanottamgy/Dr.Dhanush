@@ -2,10 +2,37 @@
 
 Needs **no credentials**. Runs in parallel with Razorpay KYC and Meta verification.
 
+## Where the data comes from
+
+**Every declaration is read off the product packaging.** Indian food packs must
+legally carry the FSSAI number, net quantity, MRP, packer name and address,
+manufacture date, best before and consumer care details — so the pack photographs
+are the source, and the listing mirrors the pack.
+
+Three rules, no exceptions:
+
+1. **Transcribe, never infer.** If the pack says `10024000000000`, that is the
+   FSSAI number. If it is illegible in the photo, ask for a clearer photo.
+2. **If it is not on the pack, it does not go on the listing.** Do not fill a
+   gap with a reasonable assumption. A declaration invented in a spreadsheet is
+   a false statement on a food product.
+3. **A pack missing a mandatory declaration is a finding, not a gap.** Report it
+   to the client — their packaging is non-compliant and that is worth knowing
+   before it is photographed for thirty listings. Do not paper over it.
+
+The client supplies **images and product names as a PDF**. Claude reads the packs,
+works out the variants from what is visible, and fills the catalogue sheet. The
+sheet is now Claude's working format, not a form for the client.
+
+Prices, stock and anything genuinely not printed on a pack come from the client
+as a short list — not a spreadsheet.
+
 ## The pipeline
 
 ```
-catalogue sheet (client fills)
+product images + names (PDF from client)
+      │
+      ├─ Claude transcribes packs → catalogue sheet
       │
       ├─ validate_catalogue.py      refuses to pass incomplete or illegal data
       │
