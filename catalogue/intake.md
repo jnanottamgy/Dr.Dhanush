@@ -3,7 +3,7 @@
 Products arriving in batches. Appended as received. Nothing is transcribed into
 the Shopify sheet until Jnanottam says **done**.
 
-**Received so far: 61 products.** Images filed in `assets/packs/`.
+**Received so far: 71 products.** Images filed in `assets/packs/`.
 
 ## Rules applied to every batch
 
@@ -26,9 +26,10 @@ the Shopify sheet until Jnanottam says **done**.
 - `sabja-seeds`
 - `sunflower-seeds`
 
-### Whole spices (12)
+### Whole spices (14)
 - `100g-black-cardamom`
 - `100g-cardamom`
+- `100g-chekke`
 - `100g-clove`
 - `100g-jathipathri`
 - `100g-kalhoo`
@@ -39,6 +40,7 @@ the Shopify sheet until Jnanottam says **done**.
 - `100g-palavele`
 - `100g-pepper`
 - `100g-star-anise`
+- `100ga-lavanga`
 
 ### Masala & ground powders (9)
 - `250g-bisibele-bath-powder`
@@ -51,9 +53,26 @@ the Shopify sheet until Jnanottam says **done**.
 - `nellikai-powder`
 - `sikakai-powder`
 
-### Coffee & tea (3)
+### Coffee (10)
 - `100g-instant-coffee`
 - `200g-instant-coffee`
+- `250g-special-filter-coffee-1`
+- `250g-special-filter-coffee-2`
+- `250g-special-nice-coffee-1`
+- `250g-special-nice-coffee-2`
+- `kg-filter-coffee-special-1`
+- `kg-filter-coffee-special-2`
+- `kg-nice-coffee-special-1`
+- `kg-nice-coffee-special-2`
+
+### Tea (8)
+- `1kg-special-tea`
+- `1kg-tea-1`
+- `1kg-tea-2`
+- `250g-special-tea`
+- `kgspecial-tea`
+- `sanjivini-special-tea-1`
+- `sanjivini-special-tea-2`
 - `tea-powder-1kg`
 
 ### Dry fruits & nuts (6)
@@ -83,15 +102,6 @@ the Shopify sheet until Jnanottam says **done**.
 
 ### Other (1)
 - `sope-nut`
-
-### Unclassified (7)
-- `100g-chekke`
-- `100ga-lavanga`
-- `1kg-tea-1`
-- `1kg-tea-2`
-- `250g-special-tea`
-- `sanjivini-special-tea-1`
-- `sanjivini-special-tea-2`
 
 ## Open findings — raised during intake
 
