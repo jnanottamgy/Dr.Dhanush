@@ -3,7 +3,7 @@
 Products arriving in batches. Appended as received. Nothing is transcribed into
 the Shopify sheet until Jnanottam says **done**.
 
-**Received so far: 39 products.** Images filed in `assets/packs/`.
+**Received so far: 49 products.** Images filed in `assets/packs/`.
 
 ## Rules applied to every batch
 
@@ -26,21 +26,26 @@ the Shopify sheet until Jnanottam says **done**.
 - `sabja-seeds`
 - `sunflower-seeds`
 
-### Spices & powders (10)
+### Spices & powders (14)
 - `100g-black-cardamom`
 - `100g-cardamom`
+- `100g-clove`
+- `100g-jathipathri`
 - `100g-kalhoo`
 - `100g-kasturi-menthi`
 - `100g-marati-moggu`
 - `100g-naga-kesari-moggu`
+- `100g-nutmeg`
 - `100g-palavele`
+- `100g-star-anise`
 - `antvala-powder`
 - `nellikai-powder`
 - `sikakai-powder`
 
-### Coffee (2)
+### Coffee & tea (3)
 - `100g-instant-coffee`
 - `200g-instant-coffee`
+- `tea-powder-1kg`
 
 ### Dry fruits & nuts (6)
 - `dry-grapes`
@@ -66,6 +71,13 @@ the Shopify sheet until Jnanottam says **done**.
 
 ### Other (1)
 - `sope-nut`
+
+### Unclassified (5)
+- `250g-bisibele-bath-powder`
+- `250g-garam-masala-powder`
+- `250g-palav-powder`
+- `250g-puliyogare-powder`
+- `250g-rasam-powder`
 
 ## Open findings — raised during intake
 
