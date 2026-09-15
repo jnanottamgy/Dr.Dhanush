@@ -107,11 +107,36 @@ These are his explicit preferences. Do not reintroduce anything he has removed.
 
 ---
 
+## Catalogue intake — IN PROGRESS
+
+Jnanottam is sending products **five at a time** and will say **"done"** when the
+list is complete. Until then: receive, record each batch in
+`catalogue/intake.md`, save pack images to `assets/packs/`, flag anything
+illegible — and do not start transcribing into the Shopify sheet or ask for the
+next batch. He drives the pace.
+
+## Brand — corrected 15 Sep
+
+The client is **Malnad Variety Centre**, Horanadu, Chikkamagaluru, trading
+**since 1999**. Brand on pack is **Swad Horanadu** / **SWAD**. Products are
+Malnad specialty foods — spice blends (puliyogare powder, rasam powder) and
+coffee powder — **not** a single-estate coffee plantation.
+
+The storefront design at `storefront-design.html` was written before the packs
+were seen and tells an invented estate story (shade-grown arabica, 3,200 ft,
+grind options). **Its copy must be rewritten** once the product list is complete.
+The visual direction and layout still hold.
+
+Open tax question: puliyogare and rasam powders are **mixed spice blends**, which
+can attract **12% GST** rather than the 5% on whole spices. Needs the CA's
+written call before any listing goes live.
+
 ## Where we are
 
 **Stage 0 in progress** — Jnanottam is setting up Shopify and Razorpay.
-**Stage 1 built and waiting on data** — scripts written and tested against
-fixtures; waiting on the client's product images and names PDF.
+**Stage 1 receiving data** — scripts written and tested against fixtures.
+First six brand images received and filed in `assets/brand/`. Product catalogue
+arriving in batches of five.
 
 Eight stages total, each with a gate. Full detail in `build-runbook.html`.
 Stage 3 (payments) is gated hardest: the 16-row test matrix runs in test mode and
