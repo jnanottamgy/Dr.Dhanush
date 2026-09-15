@@ -212,3 +212,55 @@ same Aaradhya oil, so one listing with two variants.
     oil. This is the maker's own error, but the moment we retype it onto our
     listing it becomes our misdeclaration. Do not reproduce it — link the pack
     photograph instead and let the maker's label speak for itself.
+
+---
+
+## 8. Second pass over the unlabelled lines
+
+Went back over the fourteen products that had no quantity, before asking the
+client for anything. Four of them turned out to be fully declared and one is
+declared but unreadable.
+
+| Product | Found on the pack |
+|---|---|
+| **Antuvala powder = SOAPNUT POWDER** | Net 200 g · MRP ₹110 · sticker JUL 2026 · FSSAI 2127055000011 · Annapoorneshwari Malnad Specials, Kalasa, Horanadu 577181 · FACL Lic DU/0120 · best before 12 months |
+| **Sikakai powder** | Net 200 g · MRP ₹120 · sticker AUG 2026 · Annapoorneshwari Spices & Malnad Specials, Kalasa, Horanadu 577181 · care 094487 44341 · Pack Lic KAR/227 · best before 12 months |
+| **Pista** | Net Weight 500g · "Export Quality" · MRP box **blank** · Packed By **blank** |
+| **Dry grapes** (Hayat Organic Raisins) | Ingredients KISHMISH · Net Weight 500gms · FSSAI 1111804000485 · Pahul Agro · best before 12 months · MRP, month of packing and batch all **blank** |
+| **Nellikai powder** | Malenadu Special, Horanadu Nellikai Powder · FSSAI 21217055000117 · Annapoorneshwari Spices Powder Unit · pkd AUG 2026 · best before 12 months · "HOME PRODUCT" · **net contents and MRP printed but illegible** |
+
+### 13. `antvala-powder` is soapnut powder
+
+The name gave nothing away in English. The pack reads **ಅಂಟುವಾಳ ಪೌಡರ್** with
+`SOAPNUT POWDER` beneath it. So the catalogue holds three soapnut/sikakai lines,
+not one: soapnut **powder** 200 g, sikakai **powder** 200 g, and **whole**
+soapnuts loose in a clamshell tub.
+
+### 14. Three products are not food
+
+Soapnut powder, sikakai powder and whole soapnuts are washing and hair-care
+items. Consequences: their own storefront section, HSN outside the food chapters,
+and a GST rate that will not match the spices. The soapnut powder pouch carries
+an FSSAI licence number, which is a food licence — the maker's doing, and a
+question for the client rather than something to correct on the listing.
+
+### 15. The nellikai figures are past what the photo can resolve
+
+Cropped to the label block at 20× and it degrades to pixel mush; the net contents
+digit is 200 or 280 and the MRP reads like 280.00 without being certain. Standing
+rule applies — a close-up has been asked for instead of a reading being invented.
+
+### 16. Two more nutrition panels that should not be copied
+
+The pista pouch prints a generic table for cashews, almonds and "Pistachion"
+where almonds show 267 KJ against cashews at 2938 KJ, an order of magnitude
+apart, and pistachio carbohydrate is given in **mg**. That is now the third
+printed panel in this catalogue with arithmetic that does not hold, after the
+Shree Durga coconut oil. Reinforces the rule: link the pack photograph, never
+retype the panel.
+
+### 17. Special dates ship with an unfilled label
+
+The pack carries a proper pre-printed block — *Net Weight (When Packed)* and
+*M.R.P. ₹ (Incl. of all taxes)* — and both are blank. The format is compliant;
+nobody filled it in.

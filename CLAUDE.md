@@ -69,7 +69,15 @@ His replies to my information-gap list. These are decisions, not suggestions.
   names of that group whose packs also print a net quantity both agree (½ kg
   special tea = `500gm`, ½ liter coconut oil = `500 ml`), which settles the
   stripped fraction as **½** across all seven mangled filenames. Full table in
-  `catalogue/quantities.md` — **51 of 65 resolved**, 14 still need him.
+  `catalogue/quantities.md` — **55 of 65 resolved** after a second pass over the
+  labels recovered four more (soapnut powder 200 g ₹110, sikakai 200 g ₹120,
+  pista 500 g, dry grapes 500 g). Nine bare tubs/bags still need him, and
+  nellikai powder needs a sharper photo — its figures are printed but the raw
+  image will not resolve 200 g from 280 g, so it is not being guessed.
+- **`antvala-powder` is ಅಂಟುವಾಳ ಪೌಡರ್ — soapnut powder**, not a spice. With
+  sikakai powder and the whole soapnuts that is three **non-food** washing and
+  hair-care lines: separate storefront section, and their HSN/GST will not match
+  the food rates.
 - **Because he measures, he is the packer** for the repacked goods, so his own
   compliant pack supplies packer name, address, FSSAI 21223055000121, consumer
   care and country of origin. Only MRP is genuinely missing. This retires most of
@@ -200,8 +208,10 @@ against fixtures.
 
 Blocking the first import, in order:
 1. **The price list** — requested, `catalogue/price-list-request.txt`.
-2. **Net quantity for 14 products** — the three unnamed powders, all six seeds,
-   dry grapes, both dates, soapnut and pista. `catalogue/quantities.md`.
+2. **Net quantity for 9 products** — chia, sabja, flax, magaz, pumpkin and
+   sunflower seeds, both dates, whole soapnut. Plus a sharper photo of the
+   nellikai label. `catalogue/quantities.md`, asked in
+   `catalogue/pack-size-request.txt`.
 3. **GST rate per product** — needs the CA's written call on the blends.
 4. **The three health-claim packs** — Diabeat, Nellikai powder, Amla syrup.
 5. **Storefront copy is written for the wrong business** and must be rewritten.
@@ -230,6 +240,7 @@ client's bank.
 | `catalogue/quantities.md` | Net quantity for all 65, from the catalogue names |
 | `catalogue/client-message.txt` | Sent: the information-gap list |
 | `catalogue/price-list-request.txt` | Drafted: the price-list request |
+| `catalogue/pack-size-request.txt` | Drafted: pack sizes for the 9 unlabelled lines |
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
 

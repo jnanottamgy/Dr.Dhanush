@@ -65,9 +65,9 @@ All from the name. None of these packs prints a net quantity.
 | Puliyogare powder | 250 g | name |
 | Rasam powder | 250 g | name |
 | Sambar powder | 250 g | name |
-| Antvala powder | **not in the name** | — |
-| Nellikai powder | **not in the name** | — |
-| Sikakai powder | **not in the name** | — |
+| **Antuvala (soapnut) powder** | **200 g** | pack label — MRP ₹110 |
+| Sikakai powder | **200 g** | pack label — MRP ₹120 |
+| Nellikai powder | **printed but illegible** | 200 g or 280 g — photo cannot resolve |
 
 ## Seeds — 6, none carry a quantity
 
@@ -79,16 +79,14 @@ Chia · flax · magaz · pumpkin · sabja · sunflower
 |---|---|---|
 | Badam | **½ kg** | name, fraction restored |
 | Mixed dry fruits gift pack | 150 g | pack sticker |
-| Pista | **cannot be derived** | see below |
-| Dry grapes | **not in the name** | — |
+| **Pista** | **500 g** | pack label — MRP box blank |
+| **Dry grapes** (Hayat) | **500 gms** | pack label — MRP box blank |
 | Normal dates | **not in the name** | — |
 | Special dates | **not in the name** | — |
 
-`pista` is the one name the fraction rule cannot rescue. Restoring `½` to
-`kg-badam` works because the `kg` survived; on `pista` the whole quantity token
-is gone, so there is nothing to restore it against. Badam and pista are normally
-sold in the same size, which points at ½ kg, but that is a guess and a net
-quantity is not a thing to guess. **One question to the client.**
+`pista` needed no guess after all. Its pack is a printed pouch and declares
+**Net Weight : 500g** — which is ½ kg, exactly what the badam pattern predicted,
+but now read rather than inferred. The MRP box on it is blank.
 
 ## Squashes, syrups & decoctions — 9, all from the name
 
@@ -113,23 +111,38 @@ trade size of the tin. Listed at what the can says.
 
 ## Other — 1
 
-Soapnut — **not in the name**.
+Whole soapnut — **no quantity anywhere**. A bare clamshell tub, no sticker at all.
+
+Note this is a *different product* from the soapnut powder listed under the
+powders above. `antvala-powder` turned out to be ಅಂಟುವಾಳ ಪೌಡರ್ — soapnut powder —
+so the catalogue holds three related items: soapnut powder 200 g, sikakai powder
+200 g, and whole soapnuts loose in a tub.
 
 ---
 
 ## Where this leaves us
 
-**51 of 65 products now have a net quantity.** Fourteen do not:
+**55 of 65 products now have a net quantity.** A second pass over the labels
+recovered four that the names had not carried — soapnut powder 200 g (MRP ₹110),
+sikakai powder 200 g (MRP ₹120), pista 500 g, dry grapes 500 g.
 
-- antvala powder · nellikai powder · sikakai powder
-- all six seeds — chia, flax, magaz, pumpkin, sabja, sunflower
-- dry grapes · normal dates · special dates
-- soapnut
-- pista
+Nine still have no quantity from any source, and every one of them is a bare tub
+or bag:
 
-These are the only products where the quantity has to come from the client. For
-everything else the name settles it, and every pack that could check the name
-agreed with it.
+- chia · sabja — clear tubs, no sticker at all
+- flax · magaz · pumpkin · sunflower — name sticker only
+- normal dates — bare poly bag
+- special dates — pre-printed label, Net Weight and MRP boxes both left empty
+- whole soapnut — bare tub
+
+One more is printed but unreadable:
+
+- **nellikai powder** — the label carries net contents and MRP, but the raw photo
+  will not resolve them even at 20×. It is 200 g or 280 g. Asked for a close-up
+  rather than guessed, per the standing rule.
+
+Two packs declare a weight but left the MRP box blank: **pista** and **dry
+grapes**. Those two prices ride along with the price list.
 
 ## What the measured quantity unlocks
 
@@ -160,3 +173,14 @@ Two things it does not fix:
 2. **Sealed third-party packs are not his to declare.** Kalpatharu, Sanjivni, QTF
    and Shree Durga carry their maker's declarations. The QTF sack carries none at
    all, so that one stays off the site until there is a retail pack.
+
+---
+
+## Soapnut and sikakai are not food
+
+Soapnut powder, sikakai powder and the whole soapnuts are washing and hair-care
+items. They need their own storefront section away from the spices and coffee,
+and their HSN and GST rate will not match the food lines. Raised with Jnanottam —
+the rate is his call as the CA. Oddly, the soapnut powder pouch carries an FSSAI
+licence number (2127055000011), which is what a food would carry; that is the
+maker's doing and worth a question, not a correction from us.
