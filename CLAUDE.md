@@ -140,6 +140,20 @@ Both were raised with him; they are not resolved by his answers.
 
 ## Corrections already made — do not regress
 
+- **Claude cannot use a Shopify collaborator code.** No browser, no Shopify
+  Partner account, no login of any kind. A collaborator request is made from a
+  Partner Dashboard by a human. Shopify admin actions are therefore **Jnanottam's
+  to perform**, from exact instructions written here. Store:
+  `8uysc8-kx.myshopify.com`. Do not ask for a collaborator code again.
+- **`build_shopify_import.py` had two image bugs**, both caught by the
+  two-product test import on 16 Sep — which is exactly the gate that test exists
+  for. It split image lists on `;` only while the working sheet writes commas, so
+  every image after the first was silently dropped; and it never wrote
+  `Variant Image`, so all pack sizes shared one photograph. On a store whose
+  whole premise is that the listing matches the label, a customer buying the 1 kg
+  seeing the 250 g pack is a real defect, not a cosmetic one. Both fixed, and
+  `Variant Image` is now in the column list.
+
 - Shopify **does not** natively block publishing a product with an empty
   metafield. Validation rules constrain values, not presence. Enforcement is our
   pipeline: validator, draft-only import, theme rendering, and the audit script.

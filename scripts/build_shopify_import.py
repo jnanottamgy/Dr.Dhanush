@@ -42,7 +42,8 @@ BASE = ["Handle","Title","Body (HTML)","Vendor","Product Category","Type","Tags"
         "Variant SKU","Variant Grams","Variant Weight Unit","Variant Inventory Tracker",
         "Variant Inventory Qty","Variant Inventory Policy","Variant Fulfillment Service",
         "Variant Price","Variant Compare At Price","Variant Requires Shipping","Variant Taxable",
-        "Image Src","Image Position","Image Alt Text","SEO Title","SEO Description","Status"]
+        "Image Src","Image Position","Image Alt Text","Variant Image",
+        "SEO Title","SEO Description","Status"]
 
 
 def handle(name):
@@ -70,6 +71,7 @@ def main(src, out):
     for name, variants in groups.items():
         h = handle(name)
         has_grind = any((v.get("Grind / Form") or "").strip() for v in variants)
+        product_images = []   # every distinct image across this product's variants
         for idx, v in enumerate(variants):
             first = idx == 0
             row = {c: "" for c in cols}
@@ -116,21 +118,40 @@ def main(src, out):
             for k, (col, _t) in VARIANT_MF.items():
                 row[f"variant.metafields.{NS}.{k}"] = (v.get(col) or "").strip()
 
-            imgs = [i.strip() for i in (v.get("Image File Names") or "").split(";") if i.strip()]
+            # Accept both separators. The working sheet writes commas; the old
+            # template used semicolons. Splitting on only one silently dropped
+            # every image after the first.
+            raw = (v.get("Image File Names") or "").replace(";", ",")
+            imgs = [i.strip() for i in raw.split(",") if i.strip()]
+
+            # Each pack size gets its OWN photograph on the variant. Without
+            # this a customer buying the 1 kg sees the 250 g pack, which for a
+            # store whose whole point is that the listing matches the label is
+            # not a cosmetic problem.
+            if imgs:
+                row["Variant Image"] = imgs[0]
+                if imgs[0] not in product_images:
+                    product_images.append(imgs[0])
             if first and imgs:
                 row["Image Src"] = imgs[0]
                 row["Image Position"] = "1"
                 row["Image Alt Text"] = name
             images_needed += imgs
+            for extra in imgs[1:]:
+                if extra not in product_images:
+                    product_images.append(extra)
             out_rows.append(row)
 
-            for extra_pos, img in enumerate(imgs[1:], start=2):
-                if not first:
-                    break
-                e = {c: "" for c in cols}
-                e["Handle"] = h; e["Image Src"] = img; e["Image Position"] = str(extra_pos)
-                e["Image Alt Text"] = name
-                out_rows.append(e)
+        # Shopify wants a product's extra images as trailing rows carrying only
+        # the handle, the source and the position. Position 1 is already on the
+        # first variant row, so these start at 2.
+        for pos, img in enumerate(product_images[1:], start=2):
+            e = {c: "" for c in cols}
+            e["Handle"] = h
+            e["Image Src"] = img
+            e["Image Position"] = str(pos)
+            e["Image Alt Text"] = name
+            out_rows.append(e)
 
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
     with open(out, "w", newline="", encoding="utf-8") as fh:

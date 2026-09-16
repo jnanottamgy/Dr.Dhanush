@@ -122,7 +122,9 @@ The builder does exactly this: compare-at is written only when `MRP > selling pr
    the `product.metafields.*` and `variant.metafields.*` columns actually land
    before 30 products are loaded on an unverified assumption.
 3. Check on the two test products: both option levels correct, metafields
-   populated on product *and* variant, status draft, inventory policy `deny`.
+   populated on product *and* variant, status **draft**, and **inventory
+   tracking off** so the variant stays buyable — he packs to order and holds no
+   counted stock.
 4. Only then import the rest.
 
 ## Running it
