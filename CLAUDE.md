@@ -89,6 +89,12 @@ His replies to my information-gap list. These are decisions, not suggestions.
 - **Third-party makers' products are listed as his own stock.** He resells them;
   they go on the site. The maker's declarations still get printed as the maker's.
 - **`malnadspices.in` will be replaced** by the new store. Not migrated, replaced.
+- **Consumer care email is `drjhrnd5@gmail.com`** — supplied 16 Sep. It is not
+  printed on any pack in the catalogue, his own included, so it could never have
+  been transcribed. It is now on all 63 rows: as the **packer's** email on his own
+  repacked goods, and as the **seller's** contact on goods he resells. The one
+  maker that prints its own (Shree Durga) keeps it. Lives in
+  `SELLER_CARE_EMAIL` in `scripts/build_catalogue.py`.
 
 ### Two things I will not silently do
 
@@ -225,9 +231,7 @@ Blocking the first import, in order:
    we have no back photographs.
 4. **Net quantity for 9 products** — the bare tubs and bags. Plus a sharper
    nellikai label. Asked in `catalogue/pack-size-request.txt`.
-5. **Consumer care email** — not printed on a single pack, his own included. One
-   has to be created; it cannot be read off anything.
-6. **Date of packing** — he packs to order, so no single date belongs in a
+5. **Date of packing** — he packs to order, so no single date belongs in a
    catalogue. Needs a decision: apply it to the label at dispatch and show the
    listing as packed-to-order.
 7. **Storefront copy is written for the wrong business** and must be rewritten.

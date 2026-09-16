@@ -17,7 +17,6 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 | Country of Origin | **4** | Follows the packer |
 | Consumer Care Name | **4** | Back-of-pack photo needed |
 | Consumer Care Phone | **16** | Back-of-pack photo needed |
-| Consumer Care Email | **62** | Client - not printed on any pack |
 | FSSAI Licence Number | **14** | Back-of-pack photo needed |
 | HSN Code | **63** | Jnanottam (CA) - see tax-schedule.md |
 | GST Rate (%) | **63** | Jnanottam (CA) - see tax-schedule.md |
@@ -27,7 +26,7 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 
 **Date of packing.** He packs to order, so there is no single date that belongs in a catalogue. It has to be applied to the label at dispatch and shown on the listing as packed-to-order. That is a decision for him, and it is the one mandatory declaration a pack-to-order business cannot hold statically.
 
-**Consumer care email.** Not printed on a single pack in the catalogue, his own included. An e-commerce listing needs a contact route, so one has to be created - it does not exist to be read off anything.
+**Consumer care email - ANSWERED 16 Sep.** `drjhrnd5@gmail.com`. It is not printed on any pack in the catalogue, his own included, so it could never have been transcribed. It now goes on every row: as the packer's email on his own repacked goods, and as the seller's contact on the goods he resells. The one maker that prints its own (Shree Durga) keeps it.
 
 ## Products that cannot be listed at all as photographed
 

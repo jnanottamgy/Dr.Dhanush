@@ -32,6 +32,14 @@ COLUMNS = [
     "Harvest Month", "Roast Level", "Image File Names",
 ]
 
+# Consumer care email. Supplied by the client 16 Sep; it is not printed on a
+# single pack in the catalogue, his own included, so it could not be read off
+# anything. On his own repacked goods he is the packer and this is the packer's
+# email. On goods he resells he is the seller, and this is the seller's contact
+# that e-commerce needs - the maker's own printed email wins wherever there is
+# one (only Shree Durga prints one).
+SELLER_CARE_EMAIL = "drjhrnd5@gmail.com"
+
 # ---------------------------------------------------------------- packers
 # Every field here is transcribed from a pack photograph. "" means the pack
 # does not carry it.
@@ -41,7 +49,7 @@ MS = dict(  # Malnad Spices — the client's own label
     address="Devaramane, Horanadu Post, Kalasa Tq, Chikkamagaluru Dist - 577181, Karnataka, India",
     care_name="Malnad Spices",
     care_phone="8431218956, 9480956035",
-    care_email="",                      # not printed on the pack
+    care_email=SELLER_CARE_EMAIL,       # supplied by the client, not on the pack
     fssai="21223055000121",
     storage="Store in a cool, dry, hygienic place away from direct sunlight and "
             "strong odour. Transfer to an airtight container once opened.",
@@ -503,7 +511,7 @@ def main():
             r["Country of Origin"] = "India" if pk["packer"] else ""
             r["Consumer Care Name"] = pk["care_name"]
             r["Consumer Care Phone"] = pk["care_phone"]
-            r["Consumer Care Email"] = pk["care_email"]
+            r["Consumer Care Email"] = pk["care_email"] or SELLER_CARE_EMAIL
             r["FSSAI Licence Number"] = pk["fssai"]
             r["Ingredients"] = p["ingredients"]
             r["Storage Instructions"] = pk["storage"]
@@ -563,7 +571,7 @@ def write_gaps(rows):
         "MRP (INR incl. all taxes)": "Client - price list / pack stamp",
         "HSN Code": "Jnanottam (CA) - see tax-schedule.md",
         "GST Rate (%)": "Jnanottam (CA) - see tax-schedule.md",
-        "Consumer Care Email": "Client - not printed on any pack",
+        "Consumer Care Email": "SUPPLIED 16 Sep - drjhrnd5@gmail.com",
         "Date of Manufacture or Packing": "Generated at dispatch - see note below",
         "Best Before / Use By": "Client, or the maker's back label",
         "Net Quantity": "Client - the 9 unlabelled lines",
@@ -585,10 +593,12 @@ def write_gaps(rows):
           "dispatch and shown on the listing as packed-to-order. That is a "
           "decision for him, and it is the one mandatory declaration a "
           "pack-to-order business cannot hold statically.", "",
-          "**Consumer care email.** Not printed on a single pack in the "
-          "catalogue, his own included. An e-commerce listing needs a contact "
-          "route, so one has to be created - it does not exist to be read off "
-          "anything.", "",
+          "**Consumer care email - ANSWERED 16 Sep.** `drjhrnd5@gmail.com`. It is not "
+          "printed on any pack in the catalogue, his own included, so it could "
+          "never have been transcribed. It now goes on every row: as the "
+          "packer's email on his own repacked goods, and as the seller's "
+          "contact on the goods he resells. The one maker that prints its own "
+          "(Shree Durga) keeps it.", "",
           "## Products that cannot be listed at all as photographed", ""]
 
     for pr in PRODUCTS:
