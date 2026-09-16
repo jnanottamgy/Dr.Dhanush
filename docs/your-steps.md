@@ -3,7 +3,7 @@
 Eight things need you. Nobody else can do them, because they need a browser
 login. Everything else is done.
 
-Do them in this order. Steps 1 to 4 take about 20 minutes together.
+Do them in this order. Steps 1 to 4 take about half an hour together.
 Steps 5 to 8 need the client.
 
 ---
@@ -24,31 +24,51 @@ store"*. Changing the name fixes all six at once.
 
 ---
 
-## 2. Put in the shipping charge — 3 minutes
+## 2. Check the shipping rates — 10 minutes
 
-**This is the important one. Do not skip it.**
+The courier charges by distance and by weight, so a single flat rate could
+never have worked. That is now built properly.
 
 - Go to **Settings → Shipping and delivery**
-- Click on the **General profile**
-- You will see a zone called **Domestic** with one rate at **₹379**
+- Open the profile called **Malnad delivery**
 
-Three things to change here:
+You will see **four zones**, each with **seven weight steps**:
 
-1. Change the **₹379** to your real delivery charge.
-2. Rename the zone from **Domestic** to `India`
-3. Rename the rate from **मानक** to `Standard delivery`
+| Weight | Karnataka | South & West | Rest of India | North East & islands |
+|---|---|---|---|---|
+| up to 0.5 kg | ₹40 | ₹60 | ₹80 | ₹110 |
+| 0.5 – 1 kg | ₹55 | ₹80 | ₹105 | ₹145 |
+| 1 – 2 kg | ₹85 | ₹120 | ₹155 | ₹215 |
+| 2 – 3 kg | ₹115 | ₹160 | ₹205 | ₹285 |
+| 3 – 5 kg | ₹175 | ₹240 | ₹305 | ₹425 |
+| 5 – 10 kg | ₹325 | ₹440 | ₹555 | ₹775 |
+| 10 – 20 kg | ₹625 | ₹840 | ₹1055 | ₹1475 |
 
-**Why this matters:** ₹379 is a fake number Shopify put there when the store
-was made. Six of your seed packs sell at ₹140. If a customer buys one bag and
-sees ₹379 delivery on top, they will close the page. Every order would be lost.
+**These numbers are a starting shape, not real tariffs.** They are built from
+just eight figures — a base price and a per-kilo price for each of the four
+zones. Send me the courier's actual rate card and I will regenerate the whole
+table from those eight numbers in one go. Or change them yourself in this
+screen; it is the same thing, just slower.
 
-**मानक** is Hindi for "standard". Your store is in English, so the customer
-sees one Hindi word at checkout. It looks like a mistake.
+Two things worth knowing:
 
-I tried to change these two names from my side. Shopify accepted the change,
-said it worked, and then did nothing. So it has to be done by hand.
+- **Shopify already knows what everything weighs.** Every pack has a shipping
+  weight on it — a 100 g packet of pepper counts as 140 g with its wrapper, a
+  700 ml syrup bottle as 1,025 g. So the basket weight adds up by itself and
+  the customer is shown the right band automatically.
+- **Each band charges at its top weight.** A 1.2 kg parcel pays the 2 kg price.
+  That is on purpose. Under-charging postage loses money quietly on every
+  single order, and you would not notice until the accounts.
 
----
+**One thing to watch.** When you add a *new* product later, Shopify puts it in
+the **General profile**, which has no rates. That product would show no
+delivery option at checkout. After adding anything new, open
+**Settings → Shipping** and move it into **Malnad delivery**.
+
+I could not avoid this: Shopify's API let me create this profile but refuses to
+add zones to the General one — it accepts the request, reports success, and
+changes nothing. If you would rather have it all in the General profile, you
+can rebuild these four zones there by hand and then delete Malnad delivery.
 
 ## 3. Paste in the four policies — 10 minutes
 

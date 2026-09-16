@@ -323,9 +323,21 @@ so **store policies cannot be published from here** — they are written in
 `policies/` and pasted by hand. That is the one hard blocker on the Razorpay
 prerequisite list.
 
-**Silently refuses, with no `userErrors`:** `deliveryProfileUpdate` accepts a
-zone rename and a method rename, returns success, and changes nothing. Tried
-twice, once combined with a delete and once alone. Do not keep retrying it.
+**`deliveryProfileUpdate` cannot touch zones at all, and says nothing.** It
+accepts `zonesToCreate`, `zonesToUpdate`, a zone rename and a method rename,
+returns `userErrors: []`, and changes nothing. Its top-level fields *do* work —
+`zonesToDelete` and `variantsToAssociate` both applied. **Use
+`deliveryProfileCreate` to build zones**; that works completely, weight
+conditions and all. This cost a round trip where the only zone was deleted and
+could not be recreated on the default profile, leaving the shop shipping
+nowhere until a new profile was made.
+
+**Shopify's India province codes are not ISO 3166-2:IN**, and a zone containing
+a bad code is accepted, silently drops that province, and reports no error — so
+four states went missing on the first build. Probed and confirmed:
+**CG** Chhattisgarh (not CT) · **TS** Telangana (not TG) · **UK** Uttarakhand
+(not UT) · **DN** Dadra and Nagar Haveli and **DD** Daman and Diu, still listed
+separately · **OR** Odisha (not OD). 37 entries cover all 36 states and UTs.
 
 **There is no Admin API mutation for the shop name**, on any plan. "My Store"
 has to be renamed in admin. It is not a connector limitation.
@@ -340,6 +352,43 @@ brandable on Razorpay's side.
 method name **"मानक"** is not a translation — it is the stored name on the method
 definition, set by Shopify's India onboarding. The translations API is not a
 route to fixing it.
+
+### Shipping — weight-based, rebuilt 16 Sep
+
+The client ships by India Post and general courier from Horanadu, priced **by
+distance and per kilo**. A flat rate cannot express that, so the ₹379 placeholder
+is gone and the real shape is built.
+
+**Profile `Malnad delivery`**, `gid://shopify/DeliveryProfile/97018216561` —
+4 zones x 7 weight bands = **28 rates**, all active, **63 of 63 variants
+associated**, verified by reading it back.
+
+| Zone | Provinces |
+|---|---|
+| Karnataka | 1 |
+| South and West India | 7 |
+| Rest of India | 17 |
+| North East and islands | 12 |
+
+**Every variant already had a shipping weight**, set at import from net quantity
+plus a packing allowance (100 g pack → 140 g, 700 ml syrup → 1,025 g, 1 l oil →
+1,150 g). That is why weight-based rates worked immediately. Note the
+distinction: the Shopify `weight` field is **logistics**, used only to price
+postage; net quantity is the **legal declaration** and lives untouched in the
+`compliance` metafields. Setting one from the other is not inventing a
+declaration.
+
+**The rate table is generated, not typed.** `scripts/build_shipping_rates.py`
+builds all 28 from **eight numbers** — a base and a per-kg figure per zone.
+The numbers currently in the store are a plausible shape, **not quoted
+tariffs**; regenerate from the client's real rate card. Bands charge at their
+**top** weight on purpose: under-recovering postage is invisible until the
+month's accounts.
+
+**Known trap:** the default **General profile now has no zones**, so a product
+added later lands there and shows **no delivery option at checkout**. Recorded
+in `docs/your-steps.md`. It cannot be fixed from here — zones cannot be added to
+the default profile through the API.
 
 ### Stage 2 — STOREFRONT BUILT (16 Sep)
 
@@ -616,6 +665,7 @@ client's bank.
 | `scripts/build_shopify_import.py` | Catalogue → Shopify import CSV, all draft |
 | `scripts/audit_live_products.py` | Finds live products missing declarations |
 | `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
+| `scripts/build_shipping_rates.py` | **Generates the 28 weight-based shipping rates** from eight numbers |
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
 | `policies/` | Refund, shipping, terms, contact — **paste by hand**, see below |
 | `docs/store-setup.md` | What is left and who does it, in full |
