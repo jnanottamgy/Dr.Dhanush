@@ -159,6 +159,28 @@ for the kilo. Coherent with Sanjivni at ₹270/kg and QTF at ₹250/kg — the k
 a bulk band and the small packs carry retail margin — but the 500 g is dominated
 by the 1 kg for anyone paying attention.
 
+### Prices are GST-inclusive — confirmed by the client 16 Sep
+
+*"all the prices mentioned above are all inclusive of gst."* The store was
+already set up that way and was verified, not assumed:
+`shop.taxesIncluded = true`, `taxable = true` on all 63 variants, so Shopify
+works GST **out of** the price for the invoice and adds nothing at checkout. The
+terms and the declarations panel both already say so. **Nothing needed changing.**
+
+Two consequences worth keeping in view:
+
+- **`taxShipping` is `false`.** Delivery is currently treated as carrying no GST.
+  Under GST, delivery charged on a taxable supply is normally a composite supply
+  taxed at the principal rate — so this may want to be `true`. Because prices are
+  tax-inclusive, switching it would **not** change what the customer pays; it
+  changes how the invoice apportions the tax. Jnanottam is the CA; his call.
+- **The `compliance.gst_rate` metafield does not drive checkout tax.** It is our
+  own field, for display and for the accountant. Shopify calculates tax from
+  **Settings → Taxes and duties**, not from a metafield. So "inclusive of GST"
+  only produces a correct invoice once the real rates are configured there. The
+  nine category collections map onto the rate groups closely enough to be the
+  natural vehicle for per-collection tax overrides once the 34 missing rates land.
+
 ### GST — signed off 16 Sep, but only covers 23 of 57
 
 He said *"gst signed off"*, which reads as approving `catalogue/tax-schedule.md`.
