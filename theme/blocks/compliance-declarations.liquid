@@ -1,0 +1,402 @@
+{% comment %}
+  Renders the pack declarations for the product, read from the `compliance`
+  metafields that `scripts/build_catalogue.py` transcribes off the pack
+  photographs.
+
+  Two rules this block exists to enforce:
+
+  1. Nothing is invented. A declaration that is not on the pack renders the
+     "not printed" notice, never a plausible-looking value.
+  2. Pack-level declarations follow the selected variant. Net quantity, MRP,
+     packing date and best before are printed per pack, so every variant is
+     rendered here and `compliance-declarations.js` reveals the selected one.
+{% endcomment %}
+
+{% render 'text-block-styles' %}
+
+{%- liquid
+  assign block_settings = block.settings
+  assign product_resource = closest.product
+  assign selected_variant = product_resource.selected_or_first_available_variant
+  assign pmf = product_resource.metafields.compliance
+  assign gap_text = block_settings.gap_notice
+-%}
+
+{%- comment -%}
+  Joined with a leading separator and the first one removed, so a missing part
+  never leaves a dangling middot.
+{%- endcomment -%}
+{%- assign care = '' -%}
+{%- if pmf.care_name.value != blank -%}
+  {%- assign care = care | append: ' · ' | append: pmf.care_name.value -%}
+{%- endif -%}
+{%- if pmf.care_phone.value != blank -%}
+  {%- assign care = care | append: ' · ' | append: pmf.care_phone.value -%}
+{%- endif -%}
+{%- if pmf.care_email.value != blank -%}
+  {%- assign care = care | append: ' · ' | append: pmf.care_email.value -%}
+{%- endif -%}
+{%- assign care = care | remove_first: ' · ' -%}
+
+{%- assign trade = '' -%}
+{%- if pmf.hsn_code.value != blank -%}
+  {%- assign trade = trade | append: ' · HSN ' | append: pmf.hsn_code.value -%}
+{%- endif -%}
+{%- if pmf.gst_rate.value != blank -%}
+  {%- assign gst_v = pmf.gst_rate.value -%}
+  {%- assign gst_i = gst_v | round -%}
+  {%- if gst_v == gst_i -%}
+    {%- assign gst_text = gst_i -%}
+  {%- else -%}
+    {%- assign gst_text = gst_v | round: 2 -%}
+  {%- endif -%}
+  {%- assign trade = trade | append: ' · GST ' | append: gst_text | append: '%' -%}
+{%- endif -%}
+{%- assign trade = trade | remove_first: ' · ' -%}
+
+{%- assign altitude = '' -%}
+{%- if pmf.altitude_ft.value != blank -%}
+  {%- assign altitude = pmf.altitude_ft.value | append: ' ft' -%}
+{%- endif -%}
+
+<compliance-declarations-component
+  class="decl spacing-style"
+  data-product-id="{{ product_resource.id }}"
+  style="
+    {% render 'spacing-style', settings: block_settings %}
+    --decl-rule: {{ block_settings.rule_color }};
+    --decl-gap: {{ block_settings.gap_color }};
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if block_settings.heading != blank -%}
+    <h2 class="decl__heading {{ block_settings.heading_preset | default: 'h6' }}">
+      {{- block_settings.heading | escape -}}
+    </h2>
+  {%- endif -%}
+
+  {%- if block_settings.intro != blank -%}
+    <p class="decl__intro">{{ block_settings.intro | escape }}</p>
+  {%- endif -%}
+
+  <dl class="decl__list">
+    {%- for variant in product_resource.variants -%}
+      {%- assign vmf = variant.metafields.compliance -%}
+
+      {%- assign mrp = '' -%}
+      {%- assign mrp_v = vmf.mrp.value -%}
+      {%- if mrp_v != blank -%}
+        {%- assign mrp_i = mrp_v | round -%}
+        {%- if mrp_v == mrp_i -%}
+          {%- assign mrp_text = mrp_i -%}
+        {%- else -%}
+          {%- assign mrp_text = mrp_v | round: 2 -%}
+        {%- endif -%}
+        {%- comment -%} MRP is a legal declaration, and the rules require the
+          "inclusive of all taxes" wording alongside it. {%- endcomment -%}
+        {%- assign mrp = '₹' | append: mrp_text | append: ' · inclusive of all taxes' -%}
+      {%- endif -%}
+
+      <div
+        class="decl__pack"
+        data-variant-id="{{ variant.id }}"
+        {% if variant.id != selected_variant.id %}
+          hidden
+        {% endif %}
+      >
+        {% render 'compliance-row',
+          label: 'Net quantity',
+          value: vmf.net_quantity.value,
+          gap_text: gap_text,
+          required: true
+        %}
+        {% render 'compliance-row',
+          label: 'Maximum retail price',
+          value: mrp,
+          gap_text: gap_text,
+          required: true
+        %}
+        {% render 'compliance-row',
+          label: 'Packed on',
+          value: vmf.mfg_date.value,
+          gap_text: gap_text,
+          required: true
+        %}
+        {% render 'compliance-row',
+          label: 'Best before',
+          value: vmf.best_before.value,
+          gap_text: gap_text,
+          required: true
+        %}
+      </div>
+    {%- endfor -%}
+
+    {% render 'compliance-row',
+      label: 'Ingredients',
+      value: pmf.ingredients.value,
+      gap_text: gap_text,
+      required: true,
+      multiline: true
+    %}
+    {% render 'compliance-row',
+      label: 'Packed and marketed by',
+      value: pmf.packer_name.value,
+      gap_text: gap_text,
+      required: true
+    %}
+    {% render 'compliance-row',
+      label: 'Address',
+      value: pmf.packer_address.value,
+      gap_text: gap_text,
+      required: true,
+      multiline: true
+    %}
+    {% render 'compliance-row',
+      label: 'FSSAI licence',
+      value: pmf.fssai_licence.value,
+      gap_text: gap_text,
+      required: true
+    %}
+    {% render 'compliance-row',
+      label: 'Country of origin',
+      value: pmf.country_of_origin.value,
+      gap_text: gap_text,
+      required: true
+    %}
+    {% render 'compliance-row',
+      label: 'Consumer care',
+      value: care,
+      gap_text: gap_text,
+      required: true
+    %}
+    {% render 'compliance-row',
+      label: 'Storage',
+      value: pmf.storage.value,
+      gap_text: gap_text,
+      multiline: true
+    %}
+
+    {%- if block_settings.show_origin_notes -%}
+      {% render 'compliance-row', label: 'Estate', value: pmf.estate.value, gap_text: gap_text %}
+      {% render 'compliance-row', label: 'Altitude', value: altitude, gap_text: gap_text %}
+      {% render 'compliance-row', label: 'Harvest', value: pmf.harvest_month.value, gap_text: gap_text %}
+      {% render 'compliance-row', label: 'Roast', value: pmf.roast_level.value, gap_text: gap_text %}
+    {%- endif -%}
+
+    {%- if block_settings.show_trade -%}
+      {% render 'compliance-row', label: 'HSN and GST', value: trade, gap_text: gap_text %}
+    {%- endif -%}
+  </dl>
+
+  {%- if block_settings.gap_footnote != blank -%}
+    <p class="decl__footnote">{{ block_settings.gap_footnote | escape }}</p>
+  {%- endif -%}
+</compliance-declarations-component>
+
+{% stylesheet %}
+  compliance-declarations-component {
+    display: block;
+  }
+
+  compliance-declarations-component .decl__heading {
+    margin-block: 0 var(--padding-xs);
+  }
+
+  compliance-declarations-component .decl__intro,
+  compliance-declarations-component .decl__footnote {
+    margin-block: 0;
+    font-size: min(0.85em, var(--font-paragraph--size));
+    color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text));
+  }
+
+  compliance-declarations-component .decl__intro {
+    margin-block-end: var(--padding-sm);
+  }
+
+  compliance-declarations-component .decl__footnote {
+    margin-block-start: var(--padding-sm);
+  }
+
+  compliance-declarations-component .decl__list {
+    margin-block: 0;
+  }
+
+  compliance-declarations-component .decl__row {
+    display: grid;
+    grid-template-columns: minmax(7rem, 32%) 1fr;
+    gap: var(--padding-sm);
+    padding-block: var(--padding-xs);
+    /* Every row carries its top rule, so the table reads the same whichever
+       pack is visible. A :first-child reset would attach to a hidden pack. */
+    border-block-start: 1px solid var(--decl-rule, currentcolor);
+  }
+
+  compliance-declarations-component .decl__label {
+    margin: 0;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.7;
+    color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-subdued-text));
+  }
+
+  compliance-declarations-component .decl__value {
+    margin: 0;
+    /* Long addresses and FSSAI numbers must wrap rather than widen the page. */
+    overflow-wrap: anywhere;
+  }
+
+  compliance-declarations-component .decl__value--gap {
+    color: var(--decl-gap);
+    font-style: italic;
+  }
+
+  @media screen and (max-width: 480px) {
+    compliance-declarations-component .decl__row {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+{% endstylesheet %}
+
+<script
+  src="{{ 'compliance-declarations.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% schema %}
+{
+  "name": "Declarations",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads the `compliance` metafields transcribed from the pack. A declaration that is not printed on the pack is shown as missing, never filled in."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Declarations"
+    },
+    {
+      "type": "select",
+      "id": "heading_preset",
+      "label": "Heading size",
+      "options": [
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h6"
+    },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Printed on the pack you receive."
+    },
+    {
+      "type": "header",
+      "content": "Missing declarations"
+    },
+    {
+      "type": "text",
+      "id": "gap_notice",
+      "label": "Notice",
+      "default": "Not printed on this pack.",
+      "info": "Shown in place of any required declaration the pack does not carry."
+    },
+    {
+      "type": "textarea",
+      "id": "gap_footnote",
+      "label": "Footnote",
+      "default": "Where a declaration is not printed on the pack we leave it blank. We do not state one we cannot read."
+    },
+    {
+      "type": "color",
+      "id": "gap_color",
+      "label": "Notice colour",
+      "default": "#9C4A28"
+    },
+    {
+      "type": "header",
+      "content": "Optional rows"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_origin_notes",
+      "label": "Show estate, altitude, harvest and roast",
+      "default": true,
+      "info": "Each row is hidden unless the product has that value."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trade",
+      "label": "Show HSN code and GST rate",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "rule_color",
+      "label": "Rule colour",
+      "default": "#DCE0D8"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Declarations",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

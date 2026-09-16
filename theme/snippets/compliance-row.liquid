@@ -1,0 +1,34 @@
+{%- doc -%}
+  Renders one declaration row in the compliance panel.
+
+  A blank value is never filled in. Where the declaration is one the Legal
+  Metrology (Packaged Commodities) Rules require, a blank renders the "not
+  printed" notice so the omission is visible; where it is optional, the row is
+  left out entirely.
+
+  @param {string} label - Row label
+  @param {string} value - The declaration, read off the pack
+  @param {string} gap_text - Notice shown when a required declaration is blank
+  @param {boolean} [required] - Show the notice instead of hiding the row
+  @param {boolean} [multiline] - Render newlines in the value as line breaks
+
+  @example
+  {% render 'compliance-row', label: 'Net quantity', value: net, gap_text: gap_text, required: true %}
+{%- enddoc -%}
+
+{%- if value != blank or required -%}
+  <div class="decl__row">
+    <dt class="decl__label">{{ label }}</dt>
+    {%- if value == blank -%}
+      <dd class="decl__value decl__value--gap">{{ gap_text }}</dd>
+    {%- else -%}
+      <dd class="decl__value">
+        {%- if multiline -%}
+          {{- value | escape | newline_to_br -}}
+        {%- else -%}
+          {{- value | escape -}}
+        {%- endif -%}
+      </dd>
+    {%- endif -%}
+  </div>
+{%- endif -%}
