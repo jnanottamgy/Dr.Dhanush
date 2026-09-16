@@ -641,18 +641,44 @@ a product set ACTIVE, or a theme preview, which is Jnanottam's to open.
 header and footer, collection template, and the four policy pages Razorpay
 requires. `storefront-design.html` remains the reference.
 
-### Stage 1 — CATALOGUE IS LIVE IN THE STORE (16 Sep)
+### PRODUCTS ARE PUBLISHED — 16 Sep, on Jnanottam's instruction
 
-**All 57 products created, 63 variants, 70 pack photographs, every one DRAFT.**
-Verified by reading the store back, not by trusting the writes:
+*"add the products mate / i gotta get thing going live"*. **All 57 are ACTIVE
+and published to the Online Store channel.** Checked before publishing that
+every one of the 63 variants carries a real price and that no `needs-price`
+tag survives — nothing went live orderable for free.
+
+**Two steps, not one, and the second is the one that gets missed.**
+`bulk-update-product-status` sets `status: ACTIVE`, and that alone left all 57
+on **zero sales channels** — invisible on the storefront, and the status field
+gives no hint of it. `resourcePublicationsCount` read back `0` across the board.
+The channel is a separate mutation: **`publishablePublish`** with the Online
+Store publication `gid://shopify/Publication/177970544753`, one call per
+product, batched as aliases 15 at a time. **Always verify a publish by
+`resourcePublicationsCount`, never by `status`.**
+
+Verified after: 57 ACTIVE, `publishedAt` set on all 57,
+`resourcePublicationsCount: 1` on all 57. The nine smart collections picked
+them up — 17+7+3+3+3+9+6+6+3 = **57, every product in exactly one**.
+
+**The earlier refusal is superseded.** Setting products ACTIVE was previously
+blocked as a real-world transaction; on 16 Sep it went through, 25 + 25 + 7,
+zero failures.
+
+**What being published does NOT mean.** The live theme is still **stock
+Horizon** — the brand palette, the homepage sections and the declarations panel
+all live in the unpublished `Malnad Spices — build`. And there is **no payment
+provider**, so a customer can reach checkout and not pay. Publishing the theme
+and connecting Razorpay are both Jnanottam's.
+
+**Original import, for the record.** 57 products, 63 variants, 70 pack
+photographs, created DRAFT:
 
 | Check | Result |
 |---|---|
-| Products | 57, all `DRAFT` |
 | Media | every image `READY`, **zero** `mediaErrors` |
 | Variant images | every variant carries its **own** pack photo |
 | Inventory | `tracked: false`, policy `CONTINUE` on all 63 |
-| Selling price | `0.00` everywhere, tagged `needs-price` |
 
 **Images went in by URL, not upload.** The connector cannot upload a file, but
 `ProductSet.files.originalSource` accepts a public HTTPS URL, and this repo is
@@ -772,9 +798,9 @@ What is actually in the store, read from the Admin API, not assumed:
 
 | | State |
 |---|---|
-| Theme | **Horizon, stock and untouched.** Our design has **not** been built into it |
+| Theme | **Live theme is still stock Horizon.** Our build is in the unpublished `Malnad Spices — build` — publishing it is Jnanottam's |
 | Shop name | ~~"My Store"~~ **renamed to "Malnad Products" 16 Sep** |
-| Active products | **0.** All 57 are draft |
+| Active products | ~~**0.** All 57 are draft~~ **all 57 ACTIVE and on the Online Store channel, 16 Sep** |
 | Prices | ~~₹0.00 on all 63~~ **all 63 priced 16 Sep** |
 | Payments | none — Razorpay KYC not done |
 | Policies | refund / privacy / terms **not written**. Razorpay requires these published before it will activate |

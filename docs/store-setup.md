@@ -127,11 +127,19 @@ The rate is the client's and it stands; the mismatch is recorded in
 
 ## 6. Publishing
 
-- **57 products are DRAFT.** Setting them ACTIVE was refused by the connector as
-  a real-world transaction, so publishing is manual — and should not happen until
-  the prices in step 4 exist.
-- **The theme is unpublished**, by design. `Malnad Spices — build`. Preview it
-  from Online Store → Themes → ⋯ → Preview.
+- ~~**57 products are DRAFT.**~~ **Done 16 Sep — all 57 ACTIVE and published to
+  the Online Store channel.** Checked first that all 63 variants carry a real
+  price and no `needs-price` tag survives.
+  **Two mutations, not one:** `bulk-update-product-status` sets ACTIVE and
+  leaves the product on **zero sales channels**, invisible, with no signal in
+  the status field. `publishablePublish` against
+  `gid://shopify/Publication/177970544753` is what puts it on the storefront.
+  Verify with `resourcePublicationsCount`, never with `status`.
+- **The theme is still unpublished.** `Malnad Spices — build`. So the products
+  are live on **stock Horizon** — no brand palette, no homepage sections, no
+  declarations panel. Preview from Online Store → Themes → ⋯ → Preview, then
+  Publish. The connector blocks `themePublish`, so it is Jnanottam's.
+- **No payment provider.** A customer can reach checkout and not pay.
 
 ## 7. Nice to have, not blocking
 

@@ -1,26 +1,24 @@
 # Your steps — Malnad Spices store
 
-Eight things need you. Nobody else can do them, because they need a browser
-login. Everything else is done.
+**All 57 products are LIVE as of 16 Sep** — active and on the Online Store
+channel, every one with a real price. The catalogue side is finished.
 
-Do them in this order. Steps 1 to 4 take about half an hour together.
-Steps 5 to 8 need the client.
+What is left needs a browser login, so only you can do it. **The two that
+actually stand between you and a working shop are 4 and 6.** Do them in this
+order.
 
 ---
 
-## 1. Change the store name — 1 minute
+## 1. ~~Change the store name~~ — DONE
 
-Right now the store is called **"My Store"**.
+The store is now **Malnad Products**, not "My Store".
 
-- Go to **Settings → Store details**
-- Find **Store name**
-- Change it to: `Malnad Spices`
-- Click **Save**
-
-**Why this matters:** that one name shows up in six places — the top of every
-page, the browser tab, the order emails, the checkout, and inside the privacy
-policy. Today the privacy policy literally reads *"My Store operates this
-store"*. Changing the name fixes all six at once.
+**One thing to decide, not urgent.** The packs, the FSSAI licence and the
+packer name all say **MALNAD SPICES**. The shop says *Malnad Products*, and the
+new domain would be `malnadproducts.in`. A customer holding a pack will type
+what is printed on it. Whichever you make the main address,
+`malnadspices.in` should be added to the same store as a second domain so it
+redirects instead of dying.
 
 ---
 
@@ -98,37 +96,34 @@ published. This is on their checklist.
 
 ---
 
-## 4. Look at the new website — 5 minutes
+## 4. Publish the website — THE BIG ONE
+
+**The products are live but the website is still Shopify's stock theme.**
+Everything we built — the brand colours and fonts, the home page, the category
+sections, and the declarations box on every product page — sits in a theme
+that is not switched on yet. Right now a visitor sees our products on a plain
+default shop.
 
 - Go to **Online store → Themes**
 - Find **Malnad Spices — build**
-- Click the **⋯** button → **Preview**
+- Click **⋯ → Preview** and have a look first. Open a couple of product pages
+  and check the declarations box at the bottom looks right — that is the one
+  thing I have never been able to see rendered.
+- When you are happy: **⋯ → Publish**
 
-Have a look at the home page. Tell me anything you want changed.
+Tell me anything you want changed and I will change it before you publish.
 
-**One thing I could not check:** the product pages. Every product is still a
-draft, so there is no product page to open yet. Once you put prices in
-(step 5) and publish one product, please open it and check that the
-declarations box at the bottom looks right.
+I cannot publish a theme from my side — Shopify blocks it, which is the right
+way round for a thing this final.
 
 ---
 
-## 5. Prices — needs the client
+## 5. ~~Prices~~ — DONE
 
-**36 pack sizes across 33 products still have no price.** They are all packs
-that do not print an MRP, so only he knows the number.
-
-- all 18 whole spices
-- all 9 syrups and squashes
-- 4 coffees (Swad filter and nice, both sizes)
-- Malnad Chai 1 kg, Sanjivni 1 kg, Badam 500 g
-- Aaradhya coconut oil (both sizes), Kalpatharu
-
-In Shopify you can find them all at once: **Products**, then filter by the tag
-**`needs-price`**.
-
-**Why this matters:** a product with no price is sitting at ₹0.00. If it goes
-live like that, a customer can order it for free.
+**All 63 pack sizes are priced.** The client sent the last of them on 16 Sep.
+Nothing is at ₹0.00 and the `needs-price` tag is gone from every product — I
+checked all 63 one by one before publishing anything, precisely so nothing went
+live orderable for free.
 
 ---
 
@@ -167,19 +162,36 @@ changing either side of it.
 
 ---
 
-## 7. Publish the products — after step 5
+## 7. ~~Publish the products~~ — DONE 16 Sep
 
-All 57 products are drafts. **Do not publish any of them until it has a price.**
+All 57 are **active and on the Online Store channel**. Shopify had blocked this
+before; it went through this time.
 
-I could not publish them from my side — Shopify blocked it as a real-world
-action.
+Worth knowing, because it is a trap: making a product "active" is only half of
+it. All 57 went active and were still on **zero sales channels** — invisible on
+the shop, with nothing on screen to say so. They had to be put on the Online
+Store channel as a separate step. If you ever add a product by hand, check the
+**Sales channels** box on the product page actually says Online Store.
 
 ---
 
-## 8. Publish the website — last
+## 8. Razorpay — the last thing between you and taking money
 
-Only after steps 1 to 7. **Online store → Themes → Malnad Spices — build →
-Publish.**
+**There is no payment provider connected.** A customer can browse, add to
+basket, and reach checkout — and then not be able to pay.
+
+Two parts, in order:
+
+1. **KYC.** The video call is between Dr. Dhanush and a Razorpay officer. You
+   do not need to be in the room and he does not need to travel. It cannot be
+   delegated — his face, his PAN, his Aadhaar. The account goes in **his**
+   name, never yours or JTACS's: settlement has to land in his bank and he
+   holds the FSSAI licence. Full playbook in `docs/razorpay-kyc.md`.
+2. **Connect it.** Test mode needs no KYC at all, so the whole test half can
+   run now with `rzp_test_` keys.
+
+**Do not paste live keys into a chat with me.** Put them straight into Shopify
+on a screen-share.
 
 ---
 
