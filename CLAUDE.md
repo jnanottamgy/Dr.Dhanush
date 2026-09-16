@@ -339,8 +339,19 @@ four states went missing on the first build. Probed and confirmed:
 (not UT) · **DN** Dadra and Nagar Haveli and **DD** Daman and Diu, still listed
 separately · **OR** Odisha (not OD). 37 entries cover all 36 states and UTs.
 
-**There is no Admin API mutation for the shop name**, on any plan. "My Store"
-has to be renamed in admin. It is not a connector limitation.
+**There is no Admin API mutation for the shop name.** Confirmed against the full
+`Mutation` field list, not inferred: the only `shop*` mutations are
+`shopLocaleEnable/Disable/Update`, `shopPolicyUpdate` and
+`shopResourceFeedbackCreate`. Renaming is admin-only on every plan.
+
+**Done 16 Sep: the shop is renamed — it is now `Malnad Products`**, not
+"My Store". Note it does **not** match the packer name printed on the packs and
+on the FSSAI licence, which is **MALNAD SPICES**. Raised with Jnanottam once;
+his call, not a blocker.
+
+**Also fixed by the shipping rebuild: "मानक" is gone.** It lived on the deleted
+Domestic zone's method. Every method in `Malnad delivery` is named
+**Standard delivery**. Do not carry the old finding forward.
 
 **Checkout branding is Plus-only.** `checkoutBrandingUpsert` is refused on Basic:
 *"the shop must be on a Plus plan or a Development store plan"*. Do not retry it,
@@ -644,7 +655,7 @@ What is actually in the store, read from the Admin API, not assumed:
 | | State |
 |---|---|
 | Theme | **Horizon, stock and untouched.** Our design has **not** been built into it |
-| Shop name | **"My Store"** — never renamed |
+| Shop name | ~~"My Store"~~ **renamed to "Malnad Products" 16 Sep** |
 | Active products | **0.** All 57 are draft |
 | Prices | ₹0.00 on all 63 variants |
 | Payments | none — Razorpay KYC not done |
