@@ -115,28 +115,28 @@
           label: 'Net quantity',
           value: vmf.net_quantity.value,
           gap_text: gap_text,
-      show_gap: show_gap,
+          show_gap: show_gap,
           is_required: true
         %}
         {% render 'compliance-row',
           label: 'Maximum retail price',
           value: mrp,
           gap_text: gap_text,
-      show_gap: show_gap,
+          show_gap: show_gap,
           is_required: true
         %}
         {% render 'compliance-row',
           label: 'Packed on',
           value: vmf.mfg_date.value,
           gap_text: gap_text,
-      show_gap: show_gap,
+          show_gap: show_gap,
           is_required: true
         %}
         {% render 'compliance-row',
           label: 'Best before',
           value: vmf.best_before.value,
           gap_text: gap_text,
-      show_gap: show_gap,
+          show_gap: show_gap,
           is_required: true
         %}
       </div>
@@ -336,8 +336,7 @@
     {
       "type": "textarea",
       "id": "gap_footnote",
-      "label": "Footnote",
-      "default": ""
+      "label": "Footnote"
     },
     {
       "type": "color",
