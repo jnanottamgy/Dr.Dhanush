@@ -35,18 +35,18 @@ Below is my proposal so you can tick or correct rather than start from a blank p
 | Swad Horanadu Puliyogare Powder | Masala & Powders | 0910 | **?** | Mixed spice blend. 5% or 12% is the open question - your call. |
 | Swad Horanadu Rasam Powder | Masala & Powders | 0910 | **?** | Mixed spice blend. 5% or 12% is the open question - your call. |
 | Swad Horanadu Sambar Powder | Masala & Powders | 0910 | **?** | Mixed spice blend. 5% or 12% is the open question - your call. |
-| Horanadu Nellikai Powder | Masala & Powders | 0813 | **?** | Net contents and MRP ARE printed on this pack but the photograph cannot resolve them - 200 g or 280 g. A close-up has been asked for. Also: the pac... |
-| Chia Seeds | Seeds | 1207 | **?** | Clear tub, no net quantity and no price anywhere on the pack. |
-| Sabja Seeds | Seeds | 1207 | **?** | Clear tub, no net quantity and no price anywhere on the pack. |
-| Flax Seeds | Seeds | 1204 | **?** | Clear tub, no net quantity and no price anywhere on the pack. |
-| Magaz Seeds | Seeds | 1207 | **?** | Clear tub, no net quantity and no price anywhere on the pack. |
-| Pumpkin Seeds | Seeds | 1207 | **?** | Clear tub, no net quantity and no price anywhere on the pack. |
-| Sunflower Seeds | Seeds | 1206 | **?** | Clear tub, no net quantity and no price anywhere on the pack. |
+| Horanadu Nellikai Powder | Masala & Powders | 0813 | **?** | Net contents confirmed by the client as 200 g on 16 Sep. Its MRP is printed on the pack but still unreadable in the photograph - it looks like 280 ... |
+| Chia Seeds | Seeds | 1207 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
+| Sabja Seeds | Seeds | 1207 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
+| Flax Seeds | Seeds | 1204 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
+| Magaz Seeds | Seeds | 1207 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
+| Pumpkin Seeds | Seeds | 1207 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
+| Sunflower Seeds | Seeds | 1206 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
 | Badam (Almonds) | Dry Fruits & Nuts | 0802 | **?** |  |
 | Pista (Pistachios) | Dry Fruits & Nuts | 0802 | **?** | Printed pouch. Net weight 500 g IS printed. The MRP box and the 'Packed By' box were both left blank, so the packer is not declared. |
 | Hayat Organic Raisins (Dry Grapes) | Dry Fruits & Nuts | 0806 | **?** | MRP, month of packing and batch number are all blank on the pack. |
-| Dates | Dry Fruits & Nuts | 0804 | **?** | Plain poly bag, no label of any kind. |
-| Special Dates | Dry Fruits & Nuts | 0804 | **?** | The pack has a proper pre-printed declaration block - 'Net Weight (When Packed)' and 'M.R.P.' - and both were left empty. |
+| Dates | Dry Fruits & Nuts | 0804 | **?** | Quantity and price supplied 16 Sep. The bag prints nothing at all. |
+| Special Dates | Dry Fruits & Nuts | 0804 | **?** | Quantity and price supplied 16 Sep. The pack has a proper pre-printed block - 'Net Weight (When Packed)' and 'M.R.P.' - and both were left empty. T... |
 | Mixed Dry Fruits Gift Pack | Dry Fruits & Nuts | 0813 | **?** | Karthik Traders, Varanga. 150 g and MRP 150 read off a sticker. |
 | Nisarga Amla Health Drink | Syrups & Squashes | 2106 | **?** | The front label is badged 'HEALTH DRINK'. That is the brand's own wording and must not be carried over as a claim in our copy. |
 | Malnad's Nisarga Banana Stem Squash | Syrups & Squashes | 2106 | **?** | The photograph shows TWO bottles - a regular and one marked 'Sugarless', both 500 ml. Only one banana stem squash was listed in the catalogue. Is t... |
@@ -62,7 +62,7 @@ Below is my proposal so you can tick or correct rather than start from a blank p
 | Ghani-Pressed Copra Coconut Oil | Oils | 1513 | **?** | The most completely declared pack in the catalogue. NOTE: its printed nutrition panel is wrong - 24 g saturated fat per 100 g for coconut oil, whic... |
 | Antuvala (Soapnut) Powder | Home & Personal Care | 3401 | **?** | NOT A FOOD. Washing / hair-care. Needs its own storefront section and its own rate. Curiously the pouch carries an FSSAI food licence. |
 | Sikakai (Shikakai) Powder | Home & Personal Care | 3305 | **?** | NOT A FOOD. Washing / hair-care. |
-| Soapnut (Whole) | Home & Personal Care | 1404 | **?** | NOT A FOOD. Bare clamshell tub, no label of any kind. |
+| Soapnut (Whole) | Home & Personal Care | 1404 | **?** | NOT A FOOD. Quantity and price supplied 16 Sep; the tub prints nothing. |
 
 ## The ones I would actually flag
 

@@ -62,8 +62,12 @@ def handle(name):
 DO_NOT_PUBLISH = set()
 
 
-def tags_for(name, first):
-    t = [x for x in [handle(first.get("Category") or ""), "needs-price"] if x]
+def tags_for(name, first, variants):
+    t = [x for x in [handle(first.get("Category") or "")] if x]
+    # Only flag the ones still waiting on a price, so the tag stays a real
+    # worklist rather than something stuck on everything.
+    if any(not (v.get("Selling Price (INR)") or "").strip() for v in variants):
+        t.append("needs-price")
     if name in DO_NOT_PUBLISH:
         t.append("DO-NOT-PUBLISH")
     return t
@@ -104,7 +108,7 @@ def main():
                 "status": "DRAFT",
                 "vendor": (first.get("Manufacturer or Packer Name") or "").strip() or "Malnad Spices",
                 "productType": (first.get("Category") or "").strip(),
-                "tags": tags_for(name, first),
+                "tags": tags_for(name, first, variants),
                 "metafields": mf(first, PRODUCT_MF),
                 "files": [{"originalSource": RAW + i, "contentType": "IMAGE",
                            "filename": i, "alt": name} for i in imgs],
@@ -126,10 +130,13 @@ def main():
                 raw = (v.get("Image File Names") or "").replace(";", ",")
                 vimgs = [x.strip() for x in raw.split(",") if x.strip()]
                 sw = (v.get("Shipping Weight (g)") or "").strip()
+                # Selling price where the client has given one; 0.00 until then.
+                # These products are draft, so a 0.00 price is not purchasable.
+                sell = (v.get("Selling Price (INR)") or "").strip()
                 var = {
                     "optionValues": [{"optionName": "Pack size", "name": pack}],
                     "sku": (v.get("SKU") or "").strip(),
-                    "price": "0.00",
+                    "price": sell or "0.00",
                     "inventoryPolicy": "CONTINUE",
                     "inventoryItem": {"tracked": False, "requiresShipping": True},
                     "metafields": mf(v, VARIANT_MF),

@@ -89,6 +89,31 @@ His replies to my information-gap list. These are decisions, not suggestions.
 - **Third-party makers' products are listed as his own stock.** He resells them;
   they go on the site. The maker's declarations still get printed as the maker's.
 - **`malnadspices.in` will be replaced** by the new store. Not migrated, replaced.
+### Pack sizes and prices — supplied 16 Sep
+
+| Product | Net quantity | Price |
+|---|---|---|
+| Chia · Sabja · Flax · Magaz · Pumpkin · Sunflower seeds | 150 g each | ₹140 each |
+| Soapnut, whole | 150 g | ₹140 |
+| Dates | 500 g | ₹150 |
+| Special Dates | 500 g | ₹200 |
+| Pista | 500 g (was on the pack) | ₹900 |
+| Hayat raisins | 500 g (was on the pack) | ₹300 |
+| Nellikai powder | **200 g — confirmed** | **still missing** |
+
+**One number was given per item, so it is both the MRP and the selling price.**
+None of these packs prints an MRP, and he is the packer, so the figure he names
+*is* the declared MRP; no compare-at is written, since there is no discount.
+Loaded into the sheet and pushed to all 12 products in Shopify.
+
+**Nellikai powder still has no price.** Its MRP is printed on the pack but the
+photograph cannot resolve it — it looks like ₹280 and will not be guessed. It is
+the only product still tagged `needs-price`.
+
+**The physical packs still print nothing.** Quantity and price now exist on the
+listing, but the tubs and bags he ships carry a name sticker at most. As packer
+that declaration belongs on the pack too.
+
 - **Consumer care email is `drjhrnd5@gmail.com`** — supplied 16 Sep. It is not
   printed on any pack in the catalogue, his own included, so it could never have
   been transcribed. It is now on all 63 rows: as the **packer's** email on his own

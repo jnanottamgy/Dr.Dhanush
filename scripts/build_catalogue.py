@@ -182,9 +182,12 @@ def P(name, category, packer, variants, desc="", full="", ingredients="",
                 proposed_gst=proposed_gst, note=note)
 
 
-def V(pack, net, images, mrp="", kind="pouch", pkd="", best_before=""):
+def V(pack, net, images, mrp="", kind="pouch", pkd="", best_before="", sell=""):
+    # `sell` is the selling price. Where a pack prints no MRP and the client is
+    # the packer, the single price he names is both the MRP and the selling
+    # price - so it is passed to both and no compare-at is written.
     return dict(pack=pack, net=net, images=images, mrp=mrp, kind=kind,
-                pkd=pkd, best_before=best_before)
+                pkd=pkd, best_before=best_before, sell=sell)
 
 
 G = None   # a gap: not on the pack, not in the name
@@ -334,18 +337,21 @@ PRODUCTS = [
       best_before="12 months from the date of packing",
       pkd="August 2026",
       proposed_hsn="0813", proposed_gst="",
-      note="Net contents and MRP ARE printed on this pack but the photograph "
-           "cannot resolve them - 200 g or 280 g. A close-up has been asked for. "
-           "Also: the pack prints 'Rich in Vitamin C and cooling agent for both "
-           "body and eyes'. That claim must not be repeated on the listing.",
-      variants=[V("", G, "nellikai-powder.png")]),
+      note="Net contents confirmed by the client as 200 g on 16 Sep. Its MRP is "
+           "printed on the pack but still unreadable in the photograph - it looks "
+           "like 280 but is not legible enough to transcribe, and it was not "
+           "supplied. Also: the pack prints 'Rich in Vitamin C and cooling agent "
+           "for both body and eyes'. That claim must not be repeated on the listing.",
+      variants=[V("200 g", (200, "g"), "nellikai-powder.png")]),
 
     # ============================================================= SEEDS
     # Clear tubs. Four carry a name sticker, chia and sabja carry nothing.
     *[
         P(nm, "Seeds", MS, desc=d, proposed_hsn=h, proposed_gst="",
-          note="Clear tub, no net quantity and no price anywhere on the pack.",
-          variants=[V("", G, img, kind="tub")])
+          note="Quantity and price supplied by the client 16 Sep. The tub itself "
+               "still prints nothing - he is the packer, so the declaration has "
+               "to go on the pack he ships, not only on the listing.",
+          variants=[V("150 g", (150, "g"), img, mrp="140", sell="140", kind="tub")])
         for nm, d, h, img in [
             ("Chia Seeds", "Chia seeds.", "1207", "chia-seeds.png"),
             ("Sabja Seeds", "Sabja (basil) seeds.", "1207", "sabja-seeds.png"),
@@ -365,25 +371,26 @@ PRODUCTS = [
       desc="Pistachios, export quality.", proposed_hsn="0802", proposed_gst="",
       note="Printed pouch. Net weight 500 g IS printed. The MRP box and the "
            "'Packed By' box were both left blank, so the packer is not declared.",
-      variants=[V("500 g", (500, "g"), "pista.png")]),
+      variants=[V("500 g", (500, "g"), "pista.png", mrp="900", sell="900")]),
 
     P("Hayat Organic Raisins (Dry Grapes)", "Dry Fruits & Nuts", PAHUL,
       desc="Organic raisins.", ingredients="Kishmish",
       best_before="12 months from the date of packing",
       proposed_hsn="0806", proposed_gst="",
       note="MRP, month of packing and batch number are all blank on the pack.",
-      variants=[V("500 g", (500, "g"), "dry-grapes.png")]),
+      variants=[V("500 g", (500, "g"), "dry-grapes.png", mrp="300", sell="300")]),
 
     P("Dates", "Dry Fruits & Nuts", MS,
       desc="Dates.", proposed_hsn="0804", proposed_gst="",
-      note="Plain poly bag, no label of any kind.",
-      variants=[V("", G, "normal-dates.png")]),
+      note="Quantity and price supplied 16 Sep. The bag prints nothing at all.",
+      variants=[V("500 g", (500, "g"), "normal-dates.png", mrp="150", sell="150")]),
 
     P("Special Dates", "Dry Fruits & Nuts", MS,
       desc="Dates.", proposed_hsn="0804", proposed_gst="",
-      note="The pack has a proper pre-printed declaration block - 'Net Weight "
-           "(When Packed)' and 'M.R.P.' - and both were left empty.",
-      variants=[V("", G, "special-dates.png")]),
+      note="Quantity and price supplied 16 Sep. The pack has a proper "
+           "pre-printed block - 'Net Weight (When Packed)' and 'M.R.P.' - and "
+           "both were left empty. Those boxes now have values to carry.",
+      variants=[V("500 g", (500, "g"), "special-dates.png", mrp="200", sell="200")]),
 
     P("Mixed Dry Fruits Gift Pack", "Dry Fruits & Nuts", UNKNOWN,
       desc="Assorted dry fruits in a gift pack.",
@@ -489,8 +496,8 @@ PRODUCTS = [
     P("Soapnut (Whole)", "Home & Personal Care", MS,
       desc="Whole soapnuts, for washing.",
       proposed_hsn="1404", proposed_gst="",
-      note="NOT A FOOD. Bare clamshell tub, no label of any kind.",
-      variants=[V("", G, "sope-nut.png", kind="tub")]),
+      note="NOT A FOOD. Quantity and price supplied 16 Sep; the tub prints nothing.",
+      variants=[V("150 g", (150, "g"), "sope-nut.png", mrp="140", sell="140", kind="tub")]),
 ]
 
 # ---------------------------------------------------------------- emit
@@ -512,6 +519,7 @@ def main():
             r["SKU"] = (f"{slug(p['name'])}-{slug(v['pack'])}"
                         if v["pack"] else f"{slug(p['name'])}")
             r["MRP (INR incl. all taxes)"] = v["mrp"]
+            r["Selling Price (INR)"] = v["sell"]
             r["Shipping Weight (g)"] = ship_weight(net, v["kind"])
             r["Net Quantity"] = net_text(net)
             r["Manufacturer or Packer Name"] = pk["packer"]
@@ -528,7 +536,7 @@ def main():
             r["Estate / Origin"] = p["origin"]
             r["Roast Level"] = p["roast"]
             r["Image File Names"] = v["images"]
-            # Selling Price, Stock Qty, HSN Code, GST Rate stay empty on purpose.
+            # Stock Qty, HSN Code and GST Rate stay empty on purpose.
             rows.append(r)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

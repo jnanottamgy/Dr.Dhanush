@@ -8,8 +8,8 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 
 | Field | Rows missing it | Who supplies it |
 |---|---|---|
-| Net Quantity | **11** | Client - the 9 unlabelled lines |
-| MRP (INR incl. all taxes) | **49** | Client - price list / pack stamp |
+| Net Quantity | **1** | Client - the 9 unlabelled lines |
+| MRP (INR incl. all taxes) | **38** | Client - price list / pack stamp |
 | Best Before / Use By | **44** | Client, or the maker's back label |
 | Date of Manufacture or Packing | **56** | Generated at dispatch - see note below |
 | Manufacturer or Packer Name | **4** | Back-of-pack photo needed |
@@ -20,7 +20,7 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 | FSSAI Licence Number | **14** | Back-of-pack photo needed |
 | HSN Code | **63** | Jnanottam (CA) - see tax-schedule.md |
 | GST Rate (%) | **63** | Jnanottam (CA) - see tax-schedule.md |
-| Selling Price (INR) | **63** | Client - price list |
+| Selling Price (INR) | **52** | Client - price list |
 
 ## The two that are not really the client's to send
 
@@ -87,25 +87,25 @@ Mixed spice blend. 5% or 12% is the open question - your call.
 Mixed spice blend. 5% or 12% is the open question - your call.
 
 **Horanadu Nellikai Powder**  
-Net contents and MRP ARE printed on this pack but the photograph cannot resolve them - 200 g or 280 g. A close-up has been asked for. Also: the pack prints 'Rich in Vitamin C and cooling agent for both body and eyes'. That claim must not be repeated on the listing.
+Net contents confirmed by the client as 200 g on 16 Sep. Its MRP is printed on the pack but still unreadable in the photograph - it looks like 280 but is not legible enough to transcribe, and it was not supplied. Also: the pack prints 'Rich in Vitamin C and cooling agent for both body and eyes'. That claim must not be repeated on the listing.
 
 **Chia Seeds**  
-Clear tub, no net quantity and no price anywhere on the pack.
+Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.
 
 **Sabja Seeds**  
-Clear tub, no net quantity and no price anywhere on the pack.
+Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.
 
 **Flax Seeds**  
-Clear tub, no net quantity and no price anywhere on the pack.
+Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.
 
 **Magaz Seeds**  
-Clear tub, no net quantity and no price anywhere on the pack.
+Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.
 
 **Pumpkin Seeds**  
-Clear tub, no net quantity and no price anywhere on the pack.
+Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.
 
 **Sunflower Seeds**  
-Clear tub, no net quantity and no price anywhere on the pack.
+Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.
 
 **Pista (Pistachios)**  
 Printed pouch. Net weight 500 g IS printed. The MRP box and the 'Packed By' box were both left blank, so the packer is not declared.
@@ -114,10 +114,10 @@ Printed pouch. Net weight 500 g IS printed. The MRP box and the 'Packed By' box 
 MRP, month of packing and batch number are all blank on the pack.
 
 **Dates**  
-Plain poly bag, no label of any kind.
+Quantity and price supplied 16 Sep. The bag prints nothing at all.
 
 **Special Dates**  
-The pack has a proper pre-printed declaration block - 'Net Weight (When Packed)' and 'M.R.P.' - and both were left empty.
+Quantity and price supplied 16 Sep. The pack has a proper pre-printed block - 'Net Weight (When Packed)' and 'M.R.P.' - and both were left empty. Those boxes now have values to carry.
 
 **Mixed Dry Fruits Gift Pack**  
 Karthik Traders, Varanga. 150 g and MRP 150 read off a sticker.
@@ -153,5 +153,5 @@ NOT A FOOD. Washing / hair-care. Needs its own storefront section and its own ra
 NOT A FOOD. Washing / hair-care.
 
 **Soapnut (Whole)**  
-NOT A FOOD. Bare clamshell tub, no label of any kind.
+NOT A FOOD. Quantity and price supplied 16 Sep; the tub prints nothing.
 
