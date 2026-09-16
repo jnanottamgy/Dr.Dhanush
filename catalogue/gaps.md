@@ -17,8 +17,6 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 | Consumer Care Name | **4** | Back-of-pack photo needed |
 | Consumer Care Phone | **16** | Back-of-pack photo needed |
 | FSSAI Licence Number | **14** | Back-of-pack photo needed |
-| HSN Code | **35** | Jnanottam (CA) - see tax-schedule.md |
-| GST Rate (%) | **35** | Jnanottam (CA) - see tax-schedule.md |
 
 ## The two that are not really the client's to send
 
@@ -33,7 +31,7 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 ## Every note, product by product
 
 **Swad Instant Coffee**  
-Instant coffee is an extract — HSN 2101, not 0901. Please confirm.
+Instant coffee is an extract, so HSN 2101, not 0901. The client answered 5% for it on 16 Sep along with everything else. 2101 normally attracts 18%, so the HSN and the rate do not agree - flagged to the CA, his figure is applied.
 
 **Swad Malnad Premium Coffee Powder - Filter**  
 Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / FILTER. If chicory is blended in the classification moves; the back panel prints a nutrition table but no ingredients list, so we cannot tell from the photograph.
@@ -66,22 +64,22 @@ Description left blank - not confident what this is without asking.
 Mustard is an oil seed - HSN chapter 12, not 09. Rate differs from the spices. Please confirm.
 
 **Swad Horanadu Bisibele Bath Powder**  
-Mixed spice blend. 5% or 12% is the open question - your call.
+Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.
 
 **Swad Horanadu Garam Masala Powder**  
-Mixed spice blend. 5% or 12% is the open question - your call.
+Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.
 
 **Swad Horanadu Palav Powder**  
-Mixed spice blend. 5% or 12% is the open question - your call.
+Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.
 
 **Swad Horanadu Puliyogare Powder**  
-Mixed spice blend. 5% or 12% is the open question - your call.
+Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.
 
 **Swad Horanadu Rasam Powder**  
-Mixed spice blend. 5% or 12% is the open question - your call.
+Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.
 
 **Swad Horanadu Sambar Powder**  
-Mixed spice blend. 5% or 12% is the open question - your call.
+Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.
 
 **Horanadu Nellikai Powder**  
 Net contents 200 g and MRP 200 supplied by the client 16 Sep. The MRP is printed on the pack too but is unreadable in the photograph, so this is his figure rather than a transcription. Also: the pack prints 'Rich in Vitamin C and cooling agent for both body and eyes'. That claim must not be repeated on the listing.
@@ -144,10 +142,10 @@ The catalogue name says 2 litres; the can declares net 1.720 kg, gross 1.820 kg,
 The most completely declared pack in the catalogue. NOTE: its printed nutrition panel is wrong - 24 g saturated fat per 100 g for coconut oil, which is out by roughly a factor of three, and the mono/poly figures are inverted. Do not reproduce that panel.
 
 **Antuvala (Soapnut) Powder**  
-NOT A FOOD. Washing / hair-care. Needs its own storefront section and its own rate. Curiously the pouch carries an FSSAI food licence.
+NOT A FOOD. Washing / hair-care, own storefront section. Rate set to 5% on the client's blanket answer 16 Sep; 3401 is a soap/detergent heading and is normally 18%. Flagged. Curiously the pouch carries an FSSAI food licence.
 
 **Sikakai (Shikakai) Powder**  
-NOT A FOOD. Washing / hair-care.
+NOT A FOOD. Washing / hair-care. Rate set to 5% on the client's blanket answer 16 Sep; 3305 is a hair-preparation heading and is normally 18%. Flagged.
 
 **Soapnut (Whole)**  
 NOT A FOOD. Quantity and price supplied 16 Sep; the tub prints nothing.

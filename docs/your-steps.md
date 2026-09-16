@@ -132,16 +132,38 @@ live like that, a customer can order it for free.
 
 ---
 
-## 6. GST rates — needs the client, and your own opinion
+## 6. GST — set the rate in Shopify (only you can)
 
-**34 of 57 products still have no GST rate.** I did not guess them.
+**The catalogue side is done.** Dr. Dhanush answered 5% on everything, so all
+57 products now carry a rate and an HSN code, and the instant coffee's earlier
+18% has been reversed. Nothing is blank.
 
-The groups still open: the 6 Swad masala blends, nellikai powder, the 6 seeds,
-the 6 dry fruits and nuts, the 9 syrups, the 3 oils, and the 3 washing and
-hair-care items.
+**But that does not tax anybody.** The rate I set lives in our own field, for
+the accountant. What a customer is actually charged comes from
+**Settings → Taxes and duties**, and it is still on Shopify's default. There is
+no way to set it through the API — it is a screen only you can open.
 
-One to double-check: **instant coffee went in at HSN 2101 / 18%**. That is the
-biggest single rate in the catalogue. Worth confirming.
+With one flat rate across the whole catalogue it is a small job: **India, 5%.**
+Prices are already tax-inclusive, so this changes how the invoice splits the
+figure, not what the customer pays.
+
+While you are on that screen: **"Charge tax on shipping" is currently off.**
+Delivery on a taxable supply normally carries the same rate. My reading is it
+should be on. Again it does not change what the customer pays, only the invoice
+split. Your call — you are the CA.
+
+**Three things I would put back to him in writing**, all in
+`docs/gst-classification.md` with the reasoning:
+
+1. **Instant coffee.** It is an extract, HSN 2101, which normally attracts 18%.
+   It is the largest single exposure in the catalogue.
+2. **The nine syrups and squashes**, at HSN 2106, also normally 18%. Nine
+   products is the biggest block.
+3. **The two hair powders** — soapnut and sikakai. They are not food at all,
+   and their headings normally attract 18%.
+
+The rate stands as he gave it. I have recorded the mismatch rather than quietly
+changing either side of it.
 
 ---
 

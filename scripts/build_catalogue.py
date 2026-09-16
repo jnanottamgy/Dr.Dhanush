@@ -274,8 +274,8 @@ PRODUCTS = [
     P("Swad Instant Coffee", "Coffee", MS,
       desc="Instant coffee powder from Malnad Spices, Horanadu.",
       best_before="8 months from the date of packing",
-      proposed_hsn="2101", proposed_gst="18",
-      note="Instant coffee is an extract — HSN 2101, not 0901. Please confirm.",
+      proposed_hsn="2101", proposed_gst="5",
+      note="Instant coffee is an extract, so HSN 2101, not 0901. The client answered 5% for it on 16 Sep along with everything else. 2101 normally attracts 18%, so the HSN and the rate do not agree - flagged to the CA, his figure is applied.",
       variants=[
           V("100 g", (100, "g"), "100g-instant-coffee.png", mrp="180"),
           V("200 g", (200, "g"), "200g-instant-coffee.png", mrp="360"),
@@ -389,8 +389,8 @@ PRODUCTS = [
     *[
         P(nm, "Masala & Powders", MS, desc=d,
           best_before="8 months from the date of packing",
-          proposed_hsn="0910", proposed_gst="",
-          note="Mixed spice blend. 5% or 12% is the open question - your call.",
+          proposed_hsn="0910", proposed_gst="5",
+          note="Mixed spice blend. The 5%-vs-12% question was answered 5% by the client 16 Sep. Blends sold under a brand name are commonly taken at 12%, so this one is worth the CA's eye.",
           variants=[V("250 g", (250, "g"), img, mrp=mrp, pkd=pkd)])
         for nm, d, img, mrp, pkd in [
             ("Swad Horanadu Bisibele Bath Powder",
@@ -413,7 +413,7 @@ PRODUCTS = [
       desc="Amla (nellikai) powder from Horanadu.",
       best_before="12 months from the date of packing",
       pkd="August 2026",
-      proposed_hsn="0813", proposed_gst="",
+      proposed_hsn="0813", proposed_gst="5",
       note="Net contents 200 g and MRP 200 supplied by the client 16 Sep. The "
            "MRP is printed on the pack too but is unreadable in the photograph, "
            "so this is his figure rather than a transcription. Also: the pack prints 'Rich in Vitamin C and cooling agent "
@@ -423,7 +423,7 @@ PRODUCTS = [
     # ============================================================= SEEDS
     # Clear tubs. Four carry a name sticker, chia and sabja carry nothing.
     *[
-        P(nm, "Seeds", MS, desc=d, proposed_hsn=h, proposed_gst="",
+        P(nm, "Seeds", MS, desc=d, proposed_hsn=h, proposed_gst="5",
           note="Quantity and price supplied by the client 16 Sep. The tub itself "
                "still prints nothing - he is the packer, so the declaration has "
                "to go on the pack he ships, not only on the listing.",
@@ -440,11 +440,11 @@ PRODUCTS = [
 
     # =============================================== DRY FRUITS & NUTS
     P("Badam (Almonds)", "Dry Fruits & Nuts", MS,
-      desc="Almonds.", proposed_hsn="0802", proposed_gst="",
+      desc="Almonds.", proposed_hsn="0802", proposed_gst="5",
       variants=[V("500 g", (500, "g"), "kg-badam.png")]),
 
     P("Pista (Pistachios)", "Dry Fruits & Nuts", UNKNOWN,
-      desc="Pistachios, export quality.", proposed_hsn="0802", proposed_gst="",
+      desc="Pistachios, export quality.", proposed_hsn="0802", proposed_gst="5",
       note="Printed pouch. Net weight 500 g IS printed. The MRP box and the "
            "'Packed By' box were both left blank, so the packer is not declared.",
       variants=[V("500 g", (500, "g"), "pista.png", mrp="900", sell="900")]),
@@ -452,17 +452,17 @@ PRODUCTS = [
     P("Hayat Organic Raisins (Dry Grapes)", "Dry Fruits & Nuts", PAHUL,
       desc="Organic raisins.", ingredients="Kishmish",
       best_before="12 months from the date of packing",
-      proposed_hsn="0806", proposed_gst="",
+      proposed_hsn="0806", proposed_gst="5",
       note="MRP, month of packing and batch number are all blank on the pack.",
       variants=[V("500 g", (500, "g"), "dry-grapes.png", mrp="300", sell="300")]),
 
     P("Dates", "Dry Fruits & Nuts", MS,
-      desc="Dates.", proposed_hsn="0804", proposed_gst="",
+      desc="Dates.", proposed_hsn="0804", proposed_gst="5",
       note="Quantity and price supplied 16 Sep. The bag prints nothing at all.",
       variants=[V("500 g", (500, "g"), "normal-dates.png", mrp="150", sell="150")]),
 
     P("Special Dates", "Dry Fruits & Nuts", MS,
-      desc="Dates.", proposed_hsn="0804", proposed_gst="",
+      desc="Dates.", proposed_hsn="0804", proposed_gst="5",
       note="Quantity and price supplied 16 Sep. The pack has a proper "
            "pre-printed block - 'Net Weight (When Packed)' and 'M.R.P.' - and "
            "both were left empty. Those boxes now have values to carry.",
@@ -470,7 +470,7 @@ PRODUCTS = [
 
     P("Mixed Dry Fruits Gift Pack", "Dry Fruits & Nuts", UNKNOWN,
       desc="Assorted dry fruits in a gift pack.",
-      proposed_hsn="0813", proposed_gst="",
+      proposed_hsn="0813", proposed_gst="5",
       note="Karthik Traders, Varanga. 150 g and MRP 150 read off a sticker.",
       variants=[V("150 g", (150, "g"), "mixed-dry-fruits-gift-pack.png", mrp="150")]),
 
@@ -480,7 +480,7 @@ PRODUCTS = [
     # for any of these nine.
     *[
         P(nm, "Syrups & Squashes", pk, desc=d, proposed_hsn="2106",
-          proposed_gst="", note=nt,
+          proposed_gst="5", note=nt,
           variants=[V(net_text(n), n, img, kind="bottle")])
         for nm, d, n, img, pk, nt in [
             ("Nisarga Amla Health Drink", "Amla drink.", (700, "ml"),
@@ -524,7 +524,7 @@ PRODUCTS = [
     # ============================================================== OILS
     P("Aaradhya Pure Double Filtered Coconut Oil", "Oils", UNKNOWN,
       desc="Double filtered coconut oil. Hygienically processed cooking oil.",
-      proposed_hsn="1513", proposed_gst="",
+      proposed_hsn="1513", proposed_gst="5",
       note="Net volumes read off the labels. No packer, FSSAI, MRP or date "
            "legible on either bottle.",
       variants=[
@@ -535,7 +535,7 @@ PRODUCTS = [
     P("Kalpatharu Special Double Filtered Pure Coconut Oil", "Oils", GANESH,
       desc="Double filtered coconut oil.",
       best_before="6 months", pkd="May 2026",
-      proposed_hsn="1513", proposed_gst="",
+      proposed_hsn="1513", proposed_gst="5",
       note="The catalogue name says 2 litres; the can declares net 1.720 kg, "
            "gross 1.820 kg, 1.9 Ltr. On a sealed pack the maker's declaration "
            "governs, so it is listed at 1.720 kg. The MRP is printed but smudged "
@@ -545,7 +545,7 @@ PRODUCTS = [
     P("Ghani-Pressed Copra Coconut Oil", "Oils", DURGA,
       desc="Wood-pressed (ghani) coconut oil from copra.",
       best_before="12 months from the date of packing", pkd="September 2026",
-      proposed_hsn="1513", proposed_gst="",
+      proposed_hsn="1513", proposed_gst="5",
       note="The most completely declared pack in the catalogue. NOTE: its "
            "printed nutrition panel is wrong - 24 g saturated fat per 100 g for "
            "coconut oil, which is out by roughly a factor of three, and the "
@@ -557,21 +557,20 @@ PRODUCTS = [
     P("Antuvala (Soapnut) Powder", "Home & Personal Care", ANNA,
       desc="Soapnut powder, for washing hair.",
       best_before="12 months", pkd="July 2026",
-      proposed_hsn="3401", proposed_gst="",
-      note="NOT A FOOD. Washing / hair-care. Needs its own storefront section "
-           "and its own rate. Curiously the pouch carries an FSSAI food licence.",
+      proposed_hsn="3401", proposed_gst="5",
+      note="NOT A FOOD. Washing / hair-care, own storefront section. Rate set to 5% on the client's blanket answer 16 Sep; 3401 is a soap/detergent heading and is normally 18%. Flagged. Curiously the pouch carries an FSSAI food licence.",
       variants=[V("200 g", (200, "g"), "antvala-powder.png", mrp="110")]),
 
     P("Sikakai (Shikakai) Powder", "Home & Personal Care", ANNA,
       desc="Shikakai powder, for washing hair.",
       best_before="12 months", pkd="August 2026",
-      proposed_hsn="3305", proposed_gst="",
-      note="NOT A FOOD. Washing / hair-care.",
+      proposed_hsn="3305", proposed_gst="5",
+      note="NOT A FOOD. Washing / hair-care. Rate set to 5% on the client's blanket answer 16 Sep; 3305 is a hair-preparation heading and is normally 18%. Flagged.",
       variants=[V("200 g", (200, "g"), "sikakai-powder.png", mrp="120")]),
 
     P("Soapnut (Whole)", "Home & Personal Care", MS,
       desc="Whole soapnuts, for washing.",
-      proposed_hsn="1404", proposed_gst="",
+      proposed_hsn="1404", proposed_gst="5",
       note="NOT A FOOD. Quantity and price supplied 16 Sep; the tub prints nothing.",
       variants=[V("150 g", (150, "g"), "sope-nut.png", mrp="140", sell="140", kind="tub")]),
 ]
@@ -724,15 +723,20 @@ def write_gaps(rows):
 
 def write_tax_schedule():
     out = OUT.parent / "tax-schedule.md"
-    L = ["# HSN and GST - proposed, for sign-off", "",
-         "The sheet leaves **HSN Code** and **GST Rate** blank on all 63 rows "
-         "on purpose. Classification is your call, not mine, and CLAUDE.md "
-         "records that it needs your written sign-off before anything goes "
-         "live.", "",
-         "Below is my proposal so you can tick or correct rather than start "
-         "from a blank page. Where I have left the rate blank I am genuinely "
-         "unsure, and those are the ones worth your time.", "",
-         "| Product | Category | Proposed HSN | Proposed rate | Note |",
+    L = ["# HSN and GST - applied", "",
+         "**Rate: 5% on every product.** Dr. Dhanush answered 16 Sep - *\"All "
+         "meterials r 5%\"*, split *\"2 1/2 cgst and 2 1/2 sgst\"*, and "
+         "*\"Same sir\"* to the instant coffee question. That is applied to "
+         "all 57 products and all 63 rows; nothing is left blank.", "",
+         "**HSN is mine, the rate is his.** The codes below are my "
+         "classification. Twelve of them sit in headings that normally carry "
+         "a higher rate than 5% - see `docs/gst-classification.md` for the "
+         "list and the reasoning. The rate stands as he gave it; the mismatch "
+         "is recorded, not silently reconciled.", "",
+         "**This table does not tax anybody.** `compliance.gst_rate` is our "
+         "own metafield, for the accountant. Checkout tax comes from Shopify "
+         "Settings > Taxes and duties, which is still unconfigured.", "",
+         "| Product | Category | HSN | Rate | Note |",
          "|---|---|---|---|---|"]
     for pr in PRODUCTS:
         rate = pr["proposed_gst"] or "**?**"

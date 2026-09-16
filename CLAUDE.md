@@ -85,8 +85,10 @@ His replies to my information-gap list. These are decisions, not suggestions.
   image will not resolve 200 g from 280 g, so it is not being guessed.
 - **`antvala-powder` is ಅಂಟುವಾಳ ಪೌಡರ್ — soapnut powder**, not a spice. With
   sikakai powder and the whole soapnuts that is three **non-food** washing and
-  hair-care lines: separate storefront section, and their HSN/GST will not match
-  the food rates.
+  hair-care lines: separate storefront section, and their HSN codes (3401,
+  3305, 1404) do not sit with the food ones. The client has since put all three
+  at 5% along with everything else — recorded, and the validator warns on the
+  two powders.
 - **Because he measures, he is the packer** for the repacked goods, so his own
   compliant pack supplies packer name, address, FSSAI 21223055000121, consumer
   care and country of origin. Only MRP is genuinely missing. This retires most of
@@ -178,24 +180,42 @@ Two consequences worth keeping in view:
   own field, for display and for the accountant. Shopify calculates tax from
   **Settings → Taxes and duties**, not from a metafield. So "inclusive of GST"
   only produces a correct invoice once the real rates are configured there. The
-  nine category collections map onto the rate groups closely enough to be the
-  natural vehicle for per-collection tax overrides once the 34 missing rates land.
+  nine category collections were the natural vehicle for per-collection
+  overrides, but **that is no longer needed** — the client answered a flat 5%
+  across the catalogue, so it is one India-wide rate.
 
-### GST — signed off 16 Sep, but only covers 23 of 57
+### GST — COMPLETE 16 Sep. 5% on all 57, HSN on all 57.
 
-He said *"gst signed off"*, which reads as approving `catalogue/tax-schedule.md`.
-Applied: **23 products** — coffee, the teas and all 17 whole spices, at 5%
-except instant coffee.
+Dr. Dhanush answered on WhatsApp: *"All meterials r 5%"*, split
+*"2 1/2 cgst and 2 1/2 sgst"*, and to the instant-coffee follow-up,
+*"Same sir"*. Also *"Coconut oil is for both"* — cooking and hair — which
+settles that question and leaves the descriptions as written.
 
-**34 products still have no rate**, because my schedule proposed none for them —
-I left those blank rather than guess, so there was nothing there to approve.
-Grouped for a quick answer: the 6 Swad masala blends (the original 5%-vs-12%
-question), nellikai powder, the 6 seeds, the 6 dry fruits and nuts, the 9 syrups,
-the 3 oils, and the 3 non-food home-care lines.
+**Applied everywhere and verified.** `proposed_gst="5"` on every product in
+`scripts/build_catalogue.py`; all 63 catalogue rows carry a rate and an HSN
+code, none blank; `compliance.gst_rate = 5.0` and `compliance.hsn_code` pushed
+to all 57 products in Shopify and read back product by product. **Instant
+coffee's 18% is reversed.** The 5%-vs-12% masala question is answered 5%, and
+they sit at HSN **0910** (mixtures of spices), which is the heading that agrees
+with 5% — 2103 at 12% was the competing reading.
 
-**Instant coffee went in at HSN 2101 / 18%** — the single largest rate call in
-the catalogue, and the validator warns on it. It was named in the schedule he
-signed off, so it is applied, but it is worth one direct confirmation.
+**Twelve products sit in headings that normally carry more than 5%**, and the
+validator now warns on each: instant coffee at **2101**, the **nine syrups** at
+2106, and the two hair powders at **3401** and **3305**. The rate is his and it
+stands; the mismatch is recorded, not reconciled behind his back. Full reasoning
+in `docs/gst-classification.md`. The two I would put back to him in writing are
+instant coffee and the nine syrups.
+
+**Open, and only Jnanottam can close it: Shopify's own tax settings.**
+`compliance.gst_rate` is our field, for the accountant — Shopify taxes from
+**Settings → Taxes and duties**, which is still on the default. One flat India
+rate of 5% now that the whole catalogue is one rate. Same screen carries the
+`taxShipping` checkbox, still `false`.
+
+**One unresolved classification question**, if he wants it settled: none of the
+six masala packs prints an ingredients list, so 0910 vs 2103 cannot be decided
+from the photographs. One question — what goes into the bisibele bath and
+puliyogare powders besides spices — decides all six.
 
 ### Syrup back labels — not required, client's call 16 Sep
 
@@ -716,8 +736,10 @@ draft. **484 gaps remain**, reported in `catalogue/gaps.md`.
 
 Blocking the first import, in order:
 1. **The price list** — 63 selling prices and 49 MRPs. Requested.
-2. **HSN and GST** — blank on all 63 rows by design. Proposals ready for his
-   sign-off in `catalogue/tax-schedule.md`.
+2. ~~**HSN and GST**~~ — **done 16 Sep.** 5% and an HSN code on all 63 rows,
+   pushed to all 57 products. Twelve HSN/rate mismatches recorded in
+   `docs/gst-classification.md`. What remains is Shopify's own
+   **Settings → Taxes and duties**, which only Jnanottam can reach.
 3. **Back-of-pack photos for the nine syrups and squashes** — the makers are
    named on the front, but address, FSSAI, MRP and dates are all on the back and
    we have no back photographs.
@@ -786,6 +808,7 @@ client's bank.
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
 | `policies/` | Refund, shipping, terms, contact — **paste by hand**, see below |
 | `docs/store-setup.md` | What is left and who does it, in full |
+| `docs/gst-classification.md` | **HSN per product and the 12 rate mismatches**, for the CA |
 | `docs/your-steps.md` | **The same list in plain English, 8 numbered steps.** For Jnanottam |
 | `docs/stage1-catalogue.md` | Metafield definitions and import procedure |
 | `docs/product-photography.md` | Storefront palette and image direction |
@@ -794,7 +817,7 @@ client's bank.
 | `catalogue/extracted.md` | Everything read off the packs — brands, MRPs, findings |
 | `catalogue/malnad-catalogue.csv` | **The working sheet** — 57 products, 63 rows, gaps left empty |
 | `catalogue/gaps.md` | Generated: every outstanding field and who supplies it |
-| `catalogue/tax-schedule.md` | Generated: proposed HSN and GST per product, for sign-off |
+| `catalogue/tax-schedule.md` | Generated: HSN and GST per product — **applied**, 5% throughout |
 | `catalogue/quantities.md` | Net quantity for all 65, from the catalogue names |
 | `catalogue/descriptions.py` | **All 57 product descriptions** — source of truth, re-pushable |
 | `catalogue/price-request-remaining.txt` | Sent: the 36 outstanding selling prices |

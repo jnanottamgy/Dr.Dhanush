@@ -26,6 +26,19 @@ VALID_GST = {"0", "5", "12", "18"}
 COFFEE_HSN = {"0901"}
 SPICE_HSN = {"0904", "0905", "0906", "0907", "0908", "0909", "0910"}
 
+# HSN headings that normally attract more than 5%. The client answered 5% across
+# the whole catalogue on 16 Sep and that rate is applied, but a heading and a
+# rate that describe different things both print on the invoice, so every one of
+# these is surfaced rather than silently accepted. See docs/gst-classification.md.
+HIGH_RATE_HSN = {
+    "2101": "extracts and essences of coffee",
+    "2103": "mixed condiments and mixed seasonings",
+    "2106": "food preparations not elsewhere specified",
+    "2202": "waters and flavoured beverages",
+    "3305": "preparations for use on the hair",
+    "3401": "soap and surface-active preparations",
+}
+
 
 def money(v):
     try:
@@ -96,6 +109,10 @@ def main(path):
             errors.append(f"{tag}: GST rate '{gst}' is not 0, 5, 12 or 18")
         if gst == "18":
             warnings.append(f"{tag}: GST 18% on a food product — confirm with the accountant")
+        head = (r.get("HSN Code") or "").strip()[:4]
+        if gst and float(gst) <= 5 and head in HIGH_RATE_HSN:
+            warnings.append(f"{tag}: HSN {head} is {HIGH_RATE_HSN[head]}, which "
+                            f"normally attracts more than 5% — rate says {gst}%")
 
         if not (r.get("Image File Names") or "").strip():
             warnings.append(f"{tag}: no image listed — it will publish without a photograph")

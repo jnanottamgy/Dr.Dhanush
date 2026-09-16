@@ -103,15 +103,27 @@ The `needs-price` tag was stale on 13 products that had since been priced. That
 is now corrected, so the tag is again a true worklist: **46 tagged before,
 33 now**, matching the 33 products that actually contain a ₹0 variant.
 
-## 5. GST — 34 of 57 products still have no rate
+## 5. GST — 5% on all 57, applied. Shopify's own tax settings are not.
 
-Signed off and applied: 23 products. Still blank, because the schedule proposed
-nothing for them rather than guess: the 6 Swad masala blends (the 5%-vs-12%
-question), nellikai powder, the 6 seeds, the 6 dry fruits and nuts, the 9 syrups,
-the 3 oils, and the 3 non-food home-care lines.
+Client answer 16 Sep: *"All meterials r 5%"*, *"2 1/2 cgst and 2 1/2 sgst"*, and
+*"Same sir"* for instant coffee. Applied to all 57 products and all 63 rows —
+`compliance.gst_rate = 5.0` plus an HSN code on every product, verified by
+reading all 57 back. The instant coffee's 18% is reversed. The 5%-vs-12% masala
+question is answered 5%.
 
-Instant coffee went in at **HSN 2101 / 18%** — the largest single rate call, and
-the validator warns on it. Worth one direct confirmation.
+**The metafield does not drive checkout tax.** That comes from
+**Settings → Taxes and duties**, still on Shopify's default, and there is no
+Admin API mutation for it. One flat India rate of 5% — a small manual job now
+that the whole catalogue is one rate.
+
+**`taxShipping` is still `false`.** Delivery on a taxable supply normally carries
+the principal rate. Prices are tax-inclusive so switching it does not change what
+the customer pays, only the invoice split. Jnanottam's call.
+
+**Twelve products sit in headings that normally carry more than 5%** — instant
+coffee at 2101, the nine syrups at 2106, and the two hair powders at 3401/3305.
+The rate is the client's and it stands; the mismatch is recorded in
+`docs/gst-classification.md` rather than reconciled behind his back.
 
 ## 6. Publishing
 
