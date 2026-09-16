@@ -493,6 +493,13 @@ which matches what this file already said.
   most commercially dangerous setting in the store and is flagged first in
   `docs/store-setup.md`.
 
+**An empty-string schema default makes `themeFilesUpsert` reject the whole file,
+silently.** `"type": "textarea", "default": ""` in a block's `{% schema %}` was
+enough: the upsert returned `userErrors: []` twice, the file simply did not
+change, and GitHub was serving the correct content the whole time. Omit the
+`default` key instead of setting it empty. **Always verify a theme write by
+checksum** — a clean mutation response means nothing here.
+
 **Shopify normalises JSON on write.** `templates/index.json` went up at 11,364
 bytes and is stored as 6,859; `config/settings_data.json` likewise. Nothing was
 dropped — verified by reading both back in full. Only `.liquid` files match by
