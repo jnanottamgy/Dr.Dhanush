@@ -45,6 +45,15 @@ These are his explicit preferences. Do not reintroduce anything he has removed.
   go on the listing. No exceptions, no "reasonable assumptions".
 - **A pack missing a mandatory declaration is a finding**, reported to the
   client. It is not a gap to fill in.
+- **If the pack does not disclose it, the listing does not mention it at all.**
+  Client instruction 16 Sep: *"if that information is not provided in the product
+  then dont add that information in the site, just dont mention it... everything
+  is obtained, everything is legal, they are just not ready to disclose it."*
+  So the **"Not printed on this pack" treatment is retired** — an empty row is
+  simply left out. This does **not** loosen the rule above it: nothing is
+  invented, ever. It only changes what we do about a blank, from announcing it to
+  staying quiet about it. The mechanism survives behind `show_gaps` in the
+  declarations block, **off by default**.
 - **Transcribe declarations only from the raw, unprocessed photograph.** Never
   from an AI-enhanced image — generative tools rewrite text they cannot read
   cleanly, so a blurred digit in an FSSAI number comes back crisp and wrong. If
@@ -296,11 +305,11 @@ wild forest honey (no honey in the catalogue at all), gift boxes, grind
 selectors, a "40 in stock" line for a pack-to-order business, and struck-through
 compare-at prices implying discounts that do not exist.
 
-**The product page now demonstrates the gap treatment.** It renders Malnad Chai
-500 g with eight real declarations and two marked *"Not printed on this pack"* in
-laterite — because that pack genuinely carries no best-before or ingredients
-list. That is the behaviour the theme has to reproduce; a design that only ever
-shows a perfect product teaches the wrong thing.
+~~**The product page demonstrates the gap treatment.**~~ **Superseded 16 Sep.**
+The mockup still shows two rows marked *"Not printed on this pack"* in laterite.
+The live theme no longer does — those rows are omitted entirely, on the client's
+instruction. `storefront-design.html` has not been updated to match and is now
+out of step with the theme on this one point.
 
 **Superseded in part by the pack backs — read this with it.** The entity printed
 as manufacturer, packer and marketer is **MALNAD SPICES**, Devaramane, Horanadu
@@ -374,6 +383,30 @@ brandable on Razorpay's side.
 method name **"मानक"** is not a translation — it is the stored name on the method
 definition, set by Shopify's India onboarding. The translations API is not a
 route to fixing it.
+
+### Product descriptions — written 16 Sep
+
+All **57 rewritten** from one-line stubs (*"Whole black pepper."*) to real copy,
+on his instruction to *"put flattery description for all products... shld be
+accurate"*. Source of truth is **`catalogue/descriptions.py`**, not the store, so
+they are version-controlled and re-pushable. Pushed and verified by reading all
+57 back and matching them against the file.
+
+Two rules held throughout, and worth keeping:
+
+- **No health claims.** Nothing about immunity, cholesterol, omega-3,
+  antioxidants or any named condition. A regex check over the file enforces it.
+  **Diabeat reads only "A herbal decoction from Nanjangud Suruchi's, Nanjangud.
+  Supplied as bottled by the maker."** — its own label makes a claim; we do not
+  repeat it. The unresolved question about that product is unchanged.
+- **No invented botany.** `Kalhoo`, `Mintiya`, `Palavele` and `Naga Kesari` are
+  genuinely local and their botanical identity could not be confirmed, so they
+  are described as what is certain — a Malnad spice used in local blends — rather
+  than given a plausible-sounding identity. Marati moggu is named as kapok buds
+  because that one is well established.
+
+The three home-care lines each end **"Not a food."**, which is a safety line, not
+a disclosure.
 
 ### Shipping — weight-based, rebuilt 16 Sep
 
@@ -493,9 +526,11 @@ In the theme and verified by checksum against the local file:
 exists to get right, neither of them optional:
 
 1. **Nothing is invented.** Each row reads a `compliance` metafield transcribed
-   off the pack. A declaration the Legal Metrology rules require but the pack
-   does not carry renders **"Not printed on this pack."** in laterite — the
-   treatment approved in the mockup. Optional rows just do not render.
+   off the pack. **A blank row is simply not rendered** — client instruction
+   16 Sep. The "Not printed on this pack" notice still exists behind the
+   `show_gaps` setting, which is **off**. Verified by re-running the render test:
+   the Malnad Chai 1 kg pack now shows net quantity and packed-on only, with the
+   MRP and best-before rows gone rather than flagged.
 2. **Declarations follow the selected pack.** Net quantity, MRP, packing date
    and best before differ between a 250 g and a 1 kg, and **Horizon updates
    variant-dependent blocks in place rather than re-rendering the section**
@@ -711,6 +746,8 @@ client's bank.
 | `catalogue/gaps.md` | Generated: every outstanding field and who supplies it |
 | `catalogue/tax-schedule.md` | Generated: proposed HSN and GST per product, for sign-off |
 | `catalogue/quantities.md` | Net quantity for all 65, from the catalogue names |
+| `catalogue/descriptions.py` | **All 57 product descriptions** — source of truth, re-pushable |
+| `catalogue/price-request-remaining.txt` | Sent: the 36 outstanding selling prices |
 | `catalogue/client-message.txt` | Sent: the information-gap list |
 | `catalogue/price-list-request.txt` | Drafted: the price-list request |
 | `catalogue/pack-size-request.txt` | Drafted: pack sizes for the 9 unlabelled lines |

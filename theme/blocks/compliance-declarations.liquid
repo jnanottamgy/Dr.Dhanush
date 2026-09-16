@@ -20,6 +20,7 @@
   assign selected_variant = product_resource.selected_or_first_available_variant
   assign pmf = product_resource.metafields.compliance
   assign gap_text = block_settings.gap_notice
+  assign show_gap = block_settings.show_gaps
 -%}
 
 {%- comment -%}
@@ -114,24 +115,28 @@
           label: 'Net quantity',
           value: vmf.net_quantity.value,
           gap_text: gap_text,
+      show_gap: show_gap,
           is_required: true
         %}
         {% render 'compliance-row',
           label: 'Maximum retail price',
           value: mrp,
           gap_text: gap_text,
+      show_gap: show_gap,
           is_required: true
         %}
         {% render 'compliance-row',
           label: 'Packed on',
           value: vmf.mfg_date.value,
           gap_text: gap_text,
+      show_gap: show_gap,
           is_required: true
         %}
         {% render 'compliance-row',
           label: 'Best before',
           value: vmf.best_before.value,
           gap_text: gap_text,
+      show_gap: show_gap,
           is_required: true
         %}
       </div>
@@ -141,6 +146,7 @@
       label: 'Ingredients',
       value: pmf.ingredients.value,
       gap_text: gap_text,
+      show_gap: show_gap,
       is_required: true,
       multiline: true
     %}
@@ -148,12 +154,14 @@
       label: 'Packed and marketed by',
       value: pmf.packer_name.value,
       gap_text: gap_text,
+      show_gap: show_gap,
       is_required: true
     %}
     {% render 'compliance-row',
       label: 'Address',
       value: pmf.packer_address.value,
       gap_text: gap_text,
+      show_gap: show_gap,
       is_required: true,
       multiline: true
     %}
@@ -161,36 +169,40 @@
       label: 'FSSAI licence',
       value: pmf.fssai_licence.value,
       gap_text: gap_text,
+      show_gap: show_gap,
       is_required: true
     %}
     {% render 'compliance-row',
       label: 'Country of origin',
       value: pmf.country_of_origin.value,
       gap_text: gap_text,
+      show_gap: show_gap,
       is_required: true
     %}
     {% render 'compliance-row',
       label: 'Consumer care',
       value: care,
       gap_text: gap_text,
+      show_gap: show_gap,
       is_required: true
     %}
     {% render 'compliance-row',
       label: 'Storage',
       value: pmf.storage.value,
       gap_text: gap_text,
+      show_gap: show_gap,
       multiline: true
     %}
 
     {%- if block_settings.show_origin_notes -%}
-      {% render 'compliance-row', label: 'Estate', value: pmf.estate.value, gap_text: gap_text %}
-      {% render 'compliance-row', label: 'Altitude', value: altitude, gap_text: gap_text %}
-      {% render 'compliance-row', label: 'Harvest', value: pmf.harvest_month.value, gap_text: gap_text %}
-      {% render 'compliance-row', label: 'Roast', value: pmf.roast_level.value, gap_text: gap_text %}
+      {% render 'compliance-row', label: 'Estate', value: pmf.estate.value, gap_text: gap_text, show_gap: show_gap %}
+      {% render 'compliance-row', label: 'Altitude', value: altitude, gap_text: gap_text, show_gap: show_gap %}
+      {% render 'compliance-row', label: 'Harvest', value: pmf.harvest_month.value, gap_text: gap_text, show_gap: show_gap %}
+      {% render 'compliance-row', label: 'Roast', value: pmf.roast_level.value, gap_text: gap_text, show_gap: show_gap %}
     {%- endif -%}
 
     {%- if block_settings.show_trade -%}
-      {% render 'compliance-row', label: 'HSN and GST', value: trade, gap_text: gap_text %}
+      {% render 'compliance-row', label: 'HSN and GST', value: trade, gap_text: gap_text, show_gap: show_gap %}
     {%- endif -%}
   </dl>
 
@@ -308,6 +320,13 @@
       "content": "Missing declarations"
     },
     {
+      "type": "checkbox",
+      "id": "show_gaps",
+      "label": "Announce a declaration the pack does not carry",
+      "default": false,
+      "info": "Off by default. When off, a row with no value is simply left out."
+    },
+    {
       "type": "text",
       "id": "gap_notice",
       "label": "Notice",
@@ -318,7 +337,7 @@
       "type": "textarea",
       "id": "gap_footnote",
       "label": "Footnote",
-      "default": "Where a declaration is not printed on the pack we leave it blank. We do not state one we cannot read."
+      "default": ""
     },
     {
       "type": "color",
