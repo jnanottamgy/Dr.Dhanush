@@ -113,11 +113,22 @@ there is no discount to show. Applied in the sheet and in Shopify.
 **It only reaches the 27 rows whose pack prints an MRP.** 36 variants across 33
 products print none, so they still have no price at all:
 
-- **18 whole spices**, every one of them — plain poly bags with nothing printed
+- **17 whole spices**, every one of them — plain poly bags with nothing printed
 - **9 syrups and squashes** — front labels only
 - **4 coffees** — Swad filter and nice, both sizes
 - Malnad Chai 1 kg · Sanjivni 1 kg · Badam 500 g
 - Aaradhya coconut oil, both sizes · Kalpatharu (its MRP is smudged illegible)
+
+**Re-checked 16 Sep after Jnanottam asked "dont u already have the prices?"**
+Searched every pack transcription and intake note for a rupee figure against all
+33 products: **zero hits**. Every MRP ever read off a pack is already applied.
+The rule *selling price = printed MRP* only reaches a pack that prints one, and
+these do not — the 17 spice bags print nothing at all, the nine syrup labels have
+an `M.R.P. ₹ (Incl. of all taxes)` box that is **blank**, Kalpatharu's is
+smudged. The 16 Sep price list he sent covered a different batch (seeds, dates,
+pista, raisins, QTF, nellikai, soapnut) and every one of those is in. So this is
+the same standing gap, not a new ask — and it is **17 spices, not 18**, which had
+been miscounted here and quoted to him twice.
 
 ### GST — signed off 16 Sep, but only covers 23 of 57
 
