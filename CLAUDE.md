@@ -308,6 +308,77 @@ written call before any listing goes live.
 
 ## Where we are
 
+### Stage 2 — THEME BUILD STARTED (16 Sep)
+
+Working theme: **`Malnad Spices — build`**,
+`gid://shopify/OnlineStoreTheme/146238865521`, **UNPUBLISHED**, duplicated from
+Horizon. The live theme is never written to — the connector blocks writes to
+MAIN, which is also the right way round. `themeDuplicate` returns **`newTheme`**,
+not `theme`.
+
+**Theme source lives in `theme/`** and goes in by **URL, not paste**:
+`themeFilesUpsert` accepts a body of `type: URL`, and this repo is public, so
+Shopify fetches each file off `raw.githubusercontent.com` — the same route the
+70 pack photographs took. Pin the commit SHA in the URL. Shopify **copies** at
+upsert time; it does not track the URL, so re-run the upsert after every push.
+
+In the theme and verified by checksum against the local file:
+
+| File | |
+|---|---|
+| `blocks/compliance-declarations.liquid` | The pack declarations panel |
+| `snippets/compliance-row.liquid` | One row, incl. the gap treatment |
+| `assets/compliance-declarations.js` | Switches declarations with the selected pack |
+| `templates/product.json` | The block wired into `_product-details` |
+| `config/settings_data.json` | Brand palette and typography |
+
+**The declarations panel is the compliance work made visible.** Two things it
+exists to get right, neither of them optional:
+
+1. **Nothing is invented.** Each row reads a `compliance` metafield transcribed
+   off the pack. A declaration the Legal Metrology rules require but the pack
+   does not carry renders **"Not printed on this pack."** in laterite — the
+   treatment approved in the mockup. Optional rows just do not render.
+2. **Declarations follow the selected pack.** Net quantity, MRP, packing date
+   and best before differ between a 250 g and a 1 kg, and **Horizon updates
+   variant-dependent blocks in place rather than re-rendering the section**
+   (`assets/product-sku.js` is the precedent). A panel rendered only for the
+   selected variant would keep declaring the wrong net quantity after a size
+   change. So every variant is rendered server-side and the component reveals
+   the selected one, reading only the id from the event.
+
+**It is render-tested, because it cannot be rendered on the store.** All 57
+products are DRAFT, so no product page exists to open.
+`scripts/render_declarations_test.py` renders the block with **python-liquid**
+against mock catalogue data. It found three real defects before they shipped:
+`required:` is rejected as a reserved render argument (now `is_required`); MRP
+with paise printed as `249.5` where the declaration reads `249.50` (`round: 2`
+will not pad, so it is worked in paise); and a three-line `hidden` attribute.
+**Re-run it after any edit to the block or the snippet.**
+
+**Brand applied** — `config/settings_data.json`. Body/subheading **Archivo**,
+headings/accent **Fraunces**; both are in Shopify's free font library and the
+handles were checked against the fonts reference, because a bad handle falls
+back silently and the theme would just look like stock Inter. Horizon's 56/48/32
+scale is built for Inter, so h1–h3 come down a step to 48/32/24, using only
+sizes already present in the file. Palette: paper `#F2F0EA`, ink `#121714`,
+muted `#6B7268`, mist `#DCE0D8`. Buttons, cards and badges squared off from
+Horizon's 14/4/100. **`presets.Horizon` is left exactly as Horizon shipped it**,
+so "reset to preset" still restores the stock theme rather than our brand.
+
+Shopify **normalises `config/settings_data.json` on write** — it reformats the
+file, so its stored size and checksum will not match what you uploaded. Verify
+that one by reading the values back, not by checksum. The other four match
+byte for byte.
+
+**Not yet verified, and cannot be from here:** that the panel renders on a real
+product page, and that the two font handles resolve on the storefront. Both need
+a product set ACTIVE, or a theme preview, which is Jnanottam's to open.
+
+**Still to build in Stage 2:** homepage sections (hero, categories, story),
+header and footer, collection template, and the four policy pages Razorpay
+requires. `storefront-design.html` remains the reference.
+
 ### Stage 1 — CATALOGUE IS LIVE IN THE STORE (16 Sep)
 
 **All 57 products created, 63 variants, 70 pack photographs, every one DRAFT.**
@@ -468,6 +539,8 @@ client's bank.
 | `scripts/validate_catalogue.py` | Blocks incomplete or illegal product data |
 | `scripts/build_shopify_import.py` | Catalogue → Shopify import CSV, all draft |
 | `scripts/audit_live_products.py` | Finds live products missing declarations |
+| `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
+| `theme/` | Theme source we add to Horizon — see `theme/README.md` |
 | `docs/stage1-catalogue.md` | Metafield definitions and import procedure |
 | `docs/product-photography.md` | Storefront palette and image direction |
 | `docs/image-prompts.txt` | The three prompts, plain text |
