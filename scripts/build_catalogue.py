@@ -224,6 +224,16 @@ PRICES_16SEP = {
     ("Aaradhya Pure Double Filtered Coconut Oil", "500 ml"): "200",
     ("Aaradhya Pure Double Filtered Coconut Oil", "1 l"): "400",
     ("Kalpatharu Special Double Filtered Pure Coconut Oil", "1.720 kg"): "800",
+    # Syrups and squashes, supplied 16 Sep - the last of the 36.
+    ("Nisarga Amla Health Drink", "700 ml"): "160",
+    ("Malnad's Nisarga Banana Stem Squash", "500 ml"): "180",
+    ("Malnad's Nisarga Jamun Squash", "700 ml"): "160",
+    ("Nanjangud Suruchi's Ginger Lime Syrup", "700 ml"): "160",
+    ("Nanjangud Suruchi's Grapes Syrup", "700 ml"): "130",
+    ("Nanjangud Suruchi's Jamboo Syrup", "700 ml"): "160",
+    ("Nanjangud Suruchi's Sugarless Jamboo Syrup", "700 ml"): "160",
+    ("Hallimane Kokam Syrup", "700 ml"): "140",
+    ("Nanjangud Suruchi's Diabeat", "700 ml"): "270",
 }
 
 # Packed by somebody else, so their price is a selling price only - never an MRP.
@@ -231,6 +241,19 @@ RESOLD_NO_MRP = {
     "Sanjivni Special Tea",
     "Aaradhya Pure Double Filtered Coconut Oil",
     "Kalpatharu Special Double Filtered Pure Coconut Oil",
+    # All nine syrups are sealed bottles from other makers. Their labels do
+    # carry an "M.R.P. Rs (Incl. of all taxes)" box - and the maker left it
+    # blank. A blank box on somebody else's pack is still the maker's
+    # declaration to make, not ours, so only the selling price is set.
+    "Nisarga Amla Health Drink",
+    "Malnad's Nisarga Banana Stem Squash",
+    "Malnad's Nisarga Jamun Squash",
+    "Nanjangud Suruchi's Ginger Lime Syrup",
+    "Nanjangud Suruchi's Grapes Syrup",
+    "Nanjangud Suruchi's Jamboo Syrup",
+    "Nanjangud Suruchi's Sugarless Jamboo Syrup",
+    "Hallimane Kokam Syrup",
+    "Nanjangud Suruchi's Diabeat",
 }
 
 

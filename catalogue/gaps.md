@@ -19,7 +19,6 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 | FSSAI Licence Number | **14** | Back-of-pack photo needed |
 | HSN Code | **35** | Jnanottam (CA) - see tax-schedule.md |
 | GST Rate (%) | **35** | Jnanottam (CA) - see tax-schedule.md |
-| Selling Price (INR) | **9** | Client - price list |
 
 ## The two that are not really the client's to send
 

@@ -123,31 +123,41 @@ His replies to my information-gap list. These are decisions, not suggestions.
 
 **Net quantity is complete: all 63 variants have one.**
 
-### Selling price = MRP — client instruction 16 Sep
+### Prices — COMPLETE 16 Sep. All 63 variants priced, nothing at zero.
 
-*"selling prices are as mentioned above in the packs itself."* So the selling
-price is the printed MRP throughout; no compare-at is ever written, because
-there is no discount to show. Applied in the sheet and in Shopify.
+*"selling prices are as mentioned above in the packs itself."* Where a pack
+prints an MRP that figure is both the MRP and the selling price; no compare-at is
+ever written, because there is no discount to show.
 
-**It only reaches the 27 rows whose pack prints an MRP.** 36 variants across 33
-products print none, so they still have no price at all:
+The 36 that printed nothing were supplied by the client in two batches on 16 Sep
+and are all in. **`needs-price` is gone from every product**, verified by reading
+all 63 variants back.
 
-- **17 whole spices**, every one of them — plain poly bags with nothing printed
-- **9 syrups and squashes** — front labels only
-- **4 coffees** — Swad filter and nice, both sizes
-- Malnad Chai 1 kg · Sanjivni 1 kg · Badam 500 g
-- Aaradhya coconut oil, both sizes · Kalpatharu (its MRP is smudged illegible)
+Prices live in **`PRICES_16SEP`** in `scripts/build_catalogue.py`, keyed
+`(product name, pack size)` — a client answer is one edit there, not 27 scattered
+through the product definitions.
 
-**Re-checked 16 Sep after Jnanottam asked "dont u already have the prices?"**
-Searched every pack transcription and intake note for a rupee figure against all
-33 products: **zero hits**. Every MRP ever read off a pack is already applied.
-The rule *selling price = printed MRP* only reaches a pack that prints one, and
-these do not — the 17 spice bags print nothing at all, the nine syrup labels have
-an `M.R.P. ₹ (Incl. of all taxes)` box that is **blank**, Kalpatharu's is
-smudged. The 16 Sep price list he sent covered a different batch (seeds, dates,
-pista, raisins, QTF, nellikai, soapnut) and every one of those is in. So this is
-the same standing gap, not a new ask — and it is **17 spices, not 18**, which had
-been miscounted here and quoted to him twice.
+**Whether a price also becomes the declared MRP depends on who packs it**, and
+that is enforced by the **`RESOLD_NO_MRP`** set in the same file:
+
+- **His own packs** — the 17 whole spices, both Swad coffees, Malnad Chai 1 kg,
+  Badam — print no MRP, and as packer his number **is** the MRP. Both set.
+- **Goods he only resells** — Sanjivni, Aaradhya x2, Kalpatharu and **all nine
+  syrups** — are sealed by their own maker. Selling price set, **MRP left
+  undeclared**. Kalpatharu's is printed but smudged; the syrup labels carry an
+  `M.R.P. ₹ (Incl. of all taxes)` box the maker left blank. Either way the
+  declaration is theirs to make. Putting our own figure on somebody else's sealed
+  pack would be a misdeclaration, and if the real printed figure were lower,
+  selling above it is an offence.
+
+Same reasoning already applied to QTF and nellikai powder, which are third-party
+and carry a price with no MRP.
+
+**One thing flagged to him, not an error:** Malnad Chai runs ₹600/kg at 250 g,
+₹440/kg at 500 g and ₹300/kg at 1 kg, so two 500 g packs cost ₹440 against ₹300
+for the kilo. Coherent with Sanjivni at ₹270/kg and QTF at ₹250/kg — the kilos are
+a bulk band and the small packs carry retail margin — but the 500 g is dominated
+by the 1 kg for anyone paying attention.
 
 ### GST — signed off 16 Sep, but only covers 23 of 57
 
@@ -721,7 +731,7 @@ What is actually in the store, read from the Admin API, not assumed:
 | Theme | **Horizon, stock and untouched.** Our design has **not** been built into it |
 | Shop name | ~~"My Store"~~ **renamed to "Malnad Products" 16 Sep** |
 | Active products | **0.** All 57 are draft |
-| Prices | ₹0.00 on all 63 variants |
+| Prices | ~~₹0.00 on all 63~~ **all 63 priced 16 Sep** |
 | Payments | none — Razorpay KYC not done |
 | Policies | refund / privacy / terms **not written**. Razorpay requires these published before it will activate |
 | Ships to | **29 countries** by default, including Japan, Norway and the US. He delivers from Horanadu — needs restricting to India |
