@@ -98,6 +98,16 @@ His replies to my information-gap list. These are decisions, not suggestions.
 - **Third-party makers' products are listed as his own stock.** He resells them;
   they go on the site. The maker's declarations still get printed as the maker's.
 - **`malnadspices.in` will be replaced** by the new store. Not migrated, replaced.
+- **New domain, 16 Sep: he intends to buy `malnadproducts.in`** and connect it.
+  **There is no domain mutation in the Admin API** — only `urlRedirect*`, which
+  is in-store redirects, not DNS. Connecting a domain is Shopify admin plus
+  registrar DNS, entirely manual.
+  **Raised with him:** the packs print `malnadspices.in`, and the FSSAI licence
+  and the packer name are both **MALNAD SPICES**, while the shop is now named
+  *Malnad Products* and the new domain would be `malnadproducts.in`. A customer
+  holding a pack will type the printed address. `malnadspices.in` should be added
+  to the same store as a second domain so it redirects, whichever one ends up
+  primary. Awaiting his call on which is primary.
 ### Pack sizes and prices — supplied 16 Sep
 
 | Product | Net quantity | Price |
