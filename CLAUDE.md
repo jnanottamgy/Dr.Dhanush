@@ -140,11 +140,17 @@ Both were raised with him; they are not resolved by his answers.
 
 ## Corrections already made — do not regress
 
-- **Claude cannot use a Shopify collaborator code.** No browser, no Shopify
-  Partner account, no login of any kind. A collaborator request is made from a
-  Partner Dashboard by a human. Shopify admin actions are therefore **Jnanottam's
-  to perform**, from exact instructions written here. Store:
-  `8uysc8-kx.myshopify.com`. Do not ask for a collaborator code again.
+- **Claude cannot use a Shopify collaborator code** — no browser, no Partner
+  account. **Superseded 16 Sep: a Shopify MCP connector is live**, giving direct
+  Admin API access (GraphQL query + mutation, products, collections, orders,
+  analytics). Store confirmed as `8uysc8-kx.myshopify.com`, **Basic**, INR, IST,
+  India, owner email `drjhrnd5@gmail.com`.
+- **The connector cannot upload images.** Both `create-product` and
+  `ProductSet.files` need a **publicly reachable HTTPS URL**; the 66 pack
+  photographs are local PNGs. Either Jnanottam uploads them to Shopify Files by
+  hand, or we go via `stagedUploadsCreate` and POST each file to the staged
+  target from bash. The staged-upload route is untested here — try it before
+  asking him to upload 66 files.
 - **`build_shopify_import.py` had two image bugs**, both caught by the
   two-product test import on 16 Sep — which is exactly the gate that test exists
   for. It split image lists on `;` only while the working sheet writes commas, so
@@ -219,6 +225,26 @@ can attract **12% GST** rather than the 5% on whole spices. Needs the CA's
 written call before any listing goes live.
 
 ## Where we are
+
+### Stage 1 gate — PASSED 16 Sep, live in the store
+
+- **19 metafield definitions created** under namespace `compliance` — 15 on
+  PRODUCT, 4 on PRODUCTVARIANT. Verified back: correct types, and
+  `access.storefront = PUBLIC_READ` on every one, which is the setting that
+  silently breaks the theme if missed.
+- **Two test products created as DRAFT**, proving both paths:
+  - `Malnad Chai - Premium Malnad Tea Powder` — 3 variants, each carrying its own
+    `net_quantity`, MRP 150 / 220 / **empty on the 1 kg** (correct, that pack
+    prints none).
+  - `Ghani-Pressed Copra Coconut Oil` — single variant, all four variant
+    metafields set.
+  - Both: `status DRAFT`, `inventoryItem.tracked = false`,
+    `inventoryPolicy = CONTINUE` — buyable, packed to order, as instructed.
+- **Selling price is `0.00` on every variant, deliberately.** No price list has
+  arrived and a selling price is not something to invent. They are draft, so
+  nothing is purchasable. Tagged `needs-price`.
+- Products carry no images yet — see the connector limitation above.
+
 
 **Stage 0 — Shopify is ready (16 Sep). Razorpay is not: KYC is not done.**
 
