@@ -262,11 +262,13 @@ PRODUCTS = [
     P("QTF Tea - Guard-Hitlow Tea Factory", "Tea", QTF,
       desc="Tea from Guard-Hitlow Tea Factory, Koppa.",
       proposed_hsn="0902", proposed_gst="5",
-      note="CANNOT BE LISTED AS PHOTOGRAPHED. The sack carries no net quantity, "
-           "no MRP, no FSSAI number and no packing date. As supplied it is a "
-           "bulk sack, not a retail package.",
+      note="Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself "
+           "prints no weight. Still missing and still needed: the MRP, the FSSAI "
+           "licence number and a packing date. The printed face carries only the "
+           "factory name and address, which is why this one reads as trade "
+           "packaging rather than a retail pack.",
       variants=[
-          V("", G, "tea-powder-1kg.png"),
+          V("1 kg", (1, "kg"), "tea-powder-1kg.png"),
       ]),
 
     # ==================================================== WHOLE SPICES

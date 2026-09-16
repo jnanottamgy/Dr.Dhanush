@@ -100,6 +100,9 @@ His replies to my information-gap list. These are decisions, not suggestions.
 | Pista | 500 g (was on the pack) | ₹900 |
 | Hayat raisins | 500 g (was on the pack) | ₹300 |
 | Nellikai powder | **200 g — confirmed** | **still missing** |
+| QTF Tea | **1 kg — confirmed** | **still missing** |
+
+**Net quantity is now complete: all 63 variants have one.**
 
 **One number was given per item, so it is both the MRP and the selling price.**
 None of these packs prints an MRP, and he is the packer, so the figure he names
@@ -377,8 +380,11 @@ Blocking the first import, in order:
 
 ### Two products cannot be listed as photographed
 
-- **QTF Tea** — the sack carries no net quantity, MRP, FSSAI or packing date. As
-  supplied it is bulk stock, not a retail package.
+- **QTF Tea** — quantity now confirmed at **1 kg** by the client, but the sack
+  still prints no MRP, no FSSAI number and no packing date. Its printed face
+  carries only the factory name and address, which is why it reads as trade
+  packaging. Needs: the price, the FSSAI number, and a photograph of any other
+  face of the sack in case a label is elsewhere on it.
 - **Nanjangud Suruchi's Diabeat** — the front label calls it a *proprietory
   preparation*, says it is *very much useful for diabetic patients*, and prints a
   **dosage**: *take 30 ml twice before food*. A named condition plus a dose is

@@ -8,7 +8,6 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 
 | Field | Rows missing it | Who supplies it |
 |---|---|---|
-| Net Quantity | **1** | Client - the 9 unlabelled lines |
 | MRP (INR incl. all taxes) | **38** | Client - price list / pack stamp |
 | Best Before / Use By | **44** | Client, or the maker's back label |
 | Date of Manufacture or Packing | **56** | Generated at dispatch - see note below |
@@ -30,7 +29,6 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 
 ## Products that cannot be listed at all as photographed
 
-- **QTF Tea - Guard-Hitlow Tea Factory** - CANNOT BE LISTED AS PHOTOGRAPHED. The sack carries no net quantity, no MRP, no FSSAI number and no packing date. As supplied it is a bulk sack, not a retail package.
 - **Nanjangud Suruchi's Diabeat** - THE MOST SERIOUS ITEM IN THE CATALOGUE. The front label calls it a 'proprietory preparation', says it is 'very much useful for diabetic patients', lists herbal ingredients, and prints a DOSAGE - 'take 30 ml twice before food'. A named condition plus a dose is how a food stops being a food. Listing it as photographed would put an unlicensed drug claim on the storefront. Needs a decision before it goes anywhere near the site.
 
 ## Every note, product by product
@@ -48,7 +46,7 @@ Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / NICE
 Two packs supplied, black and red, both 1 kg, nothing on either distinguishing a grade. Listed once until the client says otherwise. The MRP line on the pack was never filled in.
 
 **QTF Tea - Guard-Hitlow Tea Factory**  
-CANNOT BE LISTED AS PHOTOGRAPHED. The sack carries no net quantity, no MRP, no FSSAI number and no packing date. As supplied it is a bulk sack, not a retail package.
+Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself prints no weight. Still missing and still needed: the MRP, the FSSAI licence number and a packing date. The printed face carries only the factory name and address, which is why this one reads as trade packaging rather than a retail pack.
 
 **Cloves (Lavanga)**  
 Supplied twice, as 'clove' and as 'lavanga' - the same whole cloves in the same bag. Lavanga is Kannada for clove. Listed once.

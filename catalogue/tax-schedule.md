@@ -11,7 +11,7 @@ Below is my proposal so you can tick or correct rather than start from a blank p
 | Swad Malnad Premium Coffee Powder - Nice | Coffee | 0901 | 5 | Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / NICE. 'Nice' usually indicates a coffee-chicory blend, which would move... |
 | Malnad Chai - Premium Malnad Tea Powder | Tea | 0902 | 5 |  |
 | Sanjivni Special Tea | Tea | 0902 | 5 | Two packs supplied, black and red, both 1 kg, nothing on either distinguishing a grade. Listed once until the client says otherwise. The MRP line o... |
-| QTF Tea - Guard-Hitlow Tea Factory | Tea | 0902 | 5 | CANNOT BE LISTED AS PHOTOGRAPHED. The sack carries no net quantity, no MRP, no FSSAI number and no packing date. As supplied it is a bulk sack, not... |
+| QTF Tea - Guard-Hitlow Tea Factory | Tea | 0902 | 5 | Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself prints no weight. Still missing and still needed: the MRP, the FSSAI licence ... |
 | Black Pepper | Whole Spices | 0904 | 5 |  |
 | Cloves (Lavanga) | Whole Spices | 0907 | 5 | Supplied twice, as 'clove' and as 'lavanga' - the same whole cloves in the same bag. Lavanga is Kannada for clove. Listed once. |
 | Green Cardamom | Whole Spices | 0908 | 5 |  |
