@@ -394,7 +394,7 @@ client's bank.
 | `quotation-malnad.html` | **Current** client quotation, ₹38,000 |
 | `build-runbook.html` | Internal eight-stage build runbook |
 | `dashboard-mockup.html` | Owner dashboard design mockup, sample data |
-| `storefront-design.html` | Storefront design mockup, copy rewritten 16 Sep. Published as an artifact: `claude.ai/artifact/GJkBLz3cJ2bUfWKeP2j5X4` |
+| `storefront-design.html` | Storefront design mockup — copy rewritten and **images placed** 16 Sep. Artifact: `claude.ai/artifact/GJkBLz3cJ2bUfWKeP2j5X4` |
 | `Malnad-Spices-Storefront-Design.pdf` | The same, 2 pages, for sending to the client on WhatsApp |
 | `scripts/build_catalogue.py` | **Builds the working sheet** from the pack transcriptions; also emits `gaps.md` and `tax-schedule.md` |
 | `scripts/validate_catalogue.py` | Blocks incomplete or illegal product data |
@@ -414,6 +414,25 @@ client's bank.
 | `catalogue/pack-size-request.txt` | Drafted: pack sizes for the 9 unlabelled lines |
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
+
+### Storefront imagery — placed 16 Sep
+
+Real pack photographs are in the product cards, the product page gallery and two
+category slots; the brand images cover the hero, the story band and the other two
+categories. All embedded as **JPEG data URIs sized to the slot** — the artifact
+CSP blocks external images, so they must travel with the page. Total 1.4 MB.
+
+**A pre-existing CSS bug was hiding the hero media entirely.** `.ph{position:relative}`
+is declared *after* `.hero-media{position:absolute; inset:0}`, same specificity, so
+it won and the media box collapsed to zero height. Nothing had ever rendered in it —
+not the image, not the botanical decoration it replaced. Fixed by raising the
+selector to `section.hero .hero-media`. Watch for the same trap on any `.ph` element
+that needs its own positioning.
+
+**Still needed:** two atmospheric category images (Oils & Syrups, Dry Fruits &
+Seeds) — pack shots are standing in and clash with the nature shots beside them —
+and an upscale of `hero-canopy.png` before launch. `cat-honey-comb.png` and
+`packs-three-up.png` are orphaned: there is no honey and no gift category.
 
 ## Storefront palette
 
