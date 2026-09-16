@@ -206,7 +206,25 @@ written call before any listing goes live.
 
 ## Where we are
 
-**Stage 0 in progress** — Jnanottam is setting up Shopify and Razorpay.
+**Stage 0 — Shopify is ready (16 Sep). Razorpay is not: KYC is not done.**
+
+### Razorpay KYC — verified, do not regress
+
+- **Video KYC is between the client and a Razorpay officer.** Jnanottam is not on
+  that call and does not need to be in the room. RBI's V-CIP exists so the
+  customer does *not* travel, and since May 2021 it covers proprietors and
+  authorised signatories. Distance is not the blocker it looked like.
+- **It cannot be delegated.** The client's face, his PAN, his Aadhaar, geotagged
+  inside India. Someone local may hold the phone; nobody may answer for him.
+- **Never put the merchant account in Jnanottam's or JTACS's name.** Settlement
+  must land in the client's bank and he holds the FSSAI licence. Running a
+  payment account for another party's business is a compliance breach.
+- **Switching gateway does not dodge it.** V-CIP is an RBI requirement on every
+  payment aggregator — Cashfree, PayU, Instamojo, PhonePe all run it.
+- **Test mode needs no KYC.** `rzp_test_` keys are issued immediately on signup,
+  so the entire test-mode half of Stage 3 can run before KYC clears.
+
+Playbook, pre-flight checklist and the batched-visit proposal: `docs/razorpay-kyc.md`.
 
 **Stage 1 — the sheet is built, with gaps.** Per his instruction *"leave gaps for
 all the info u dont have and continue with what u have"*, the working catalogue
