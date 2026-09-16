@@ -7,8 +7,8 @@ Below is my proposal so you can tick or correct rather than start from a blank p
 | Product | Category | Proposed HSN | Proposed rate | Note |
 |---|---|---|---|---|
 | Swad Instant Coffee | Coffee | 2101 | 18 | Instant coffee is an extract — HSN 2101, not 0901. Please confirm. |
-| Swad Special Filter Coffee | Coffee | 0901 | 5 | If chicory is blended in, the classification changes. Ingredients are not printed on the pack — needed. |
-| Swad Special Nice Coffee | Coffee | 0901 | 5 | 'Nice' usually indicates a coffee-chicory blend, which would move the HSN. Not printed on the pack — ingredients needed. |
+| Swad Malnad Premium Coffee Powder - Filter | Coffee | 0901 | 5 | Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / FILTER. If chicory is blended in the classification moves; the back pan... |
+| Swad Malnad Premium Coffee Powder - Nice | Coffee | 0901 | 5 | Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / NICE. 'Nice' usually indicates a coffee-chicory blend, which would move... |
 | Malnad Chai - Premium Malnad Tea Powder | Tea | 0902 | 5 |  |
 | Sanjivni Special Tea | Tea | 0902 | 5 | Two packs supplied, black and red, both 1 kg, nothing on either distinguishing a grade. Listed once until the client says otherwise. The MRP line o... |
 | QTF Tea - Guard-Hitlow Tea Factory | Tea | 0902 | 5 | CANNOT BE LISTED AS PHOTOGRAPHED. The sack carries no net quantity, no MRP, no FSSAI number and no packing date. As supplied it is a bulk sack, not... |

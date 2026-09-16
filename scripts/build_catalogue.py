@@ -203,26 +203,36 @@ PRODUCTS = [
           V("200 g", (200, "g"), "200g-instant-coffee.png", mrp="360"),
       ]),
 
-    P("Swad Special Filter Coffee", "Coffee", MS,
+    # Both coffees came with front AND back photographs. The "-2" file is the
+    # front (SWAD branding), "-1" the back (declarations panel), so the front
+    # leads and the back follows as the second image.
+    P("Swad Malnad Premium Coffee Powder - Filter", "Coffee", MS,
       desc="Filter coffee powder from Malnad Spices, Horanadu.",
       best_before="8 months from the date of packing",
       proposed_hsn="0901", proposed_gst="5",
-      note="If chicory is blended in, the classification changes. Ingredients "
-           "are not printed on the pack — needed.",
+      note="Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE "
+           "POWDER / FILTER. If chicory is blended in the classification moves; "
+           "the back panel prints a nutrition table but no ingredients list, so "
+           "we cannot tell from the photograph.",
       variants=[
-          V("250 g", (250, "g"), "250g-special-filter-coffee.png"),
-          V("500 g", (500, "g"), "kg-filter-coffee-special.png"),
+          V("250 g", (250, "g"),
+            "250g-special-filter-coffee-2.png,250g-special-filter-coffee-1.png"),
+          V("500 g", (500, "g"),
+            "kg-filter-coffee-special-2.png,kg-filter-coffee-special-1.png"),
       ]),
 
-    P("Swad Special Nice Coffee", "Coffee", MS,
+    P("Swad Malnad Premium Coffee Powder - Nice", "Coffee", MS,
       desc="Coffee powder from Malnad Spices, Horanadu.",
       best_before="8 months from the date of packing",
       proposed_hsn="0901", proposed_gst="5",
-      note="'Nice' usually indicates a coffee-chicory blend, which would move "
-           "the HSN. Not printed on the pack — ingredients needed.",
+      note="Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE "
+           "POWDER / NICE. 'Nice' usually indicates a coffee-chicory blend, "
+           "which would move the HSN, but no ingredients list is printed.",
       variants=[
-          V("250 g", (250, "g"), "250g-special-nice-coffee.png"),
-          V("500 g", (500, "g"), "kg-nice-coffee-special.png"),
+          V("250 g", (250, "g"),
+            "250g-special-nice-coffee-2.png,250g-special-nice-coffee-1.png"),
+          V("500 g", (500, "g"),
+            "kg-nice-coffee-special-2.png,kg-nice-coffee-special-1.png"),
       ]),
 
     # =============================================================== TEA

@@ -38,11 +38,11 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 **Swad Instant Coffee**  
 Instant coffee is an extract — HSN 2101, not 0901. Please confirm.
 
-**Swad Special Filter Coffee**  
-If chicory is blended in, the classification changes. Ingredients are not printed on the pack — needed.
+**Swad Malnad Premium Coffee Powder - Filter**  
+Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / FILTER. If chicory is blended in the classification moves; the back panel prints a nutrition table but no ingredients list, so we cannot tell from the photograph.
 
-**Swad Special Nice Coffee**  
-'Nice' usually indicates a coffee-chicory blend, which would move the HSN. Not printed on the pack — ingredients needed.
+**Swad Malnad Premium Coffee Powder - Nice**  
+Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / NICE. 'Nice' usually indicates a coffee-chicory blend, which would move the HSN, but no ingredients list is printed.
 
 **Sanjivni Special Tea**  
 Two packs supplied, black and red, both 1 kg, nothing on either distinguishing a grade. Listed once until the client says otherwise. The MRP line on the pack was never filled in.

@@ -226,7 +226,34 @@ written call before any listing goes live.
 
 ## Where we are
 
-### Stage 1 gate — PASSED 16 Sep, live in the store
+### Stage 1 — CATALOGUE IS LIVE IN THE STORE (16 Sep)
+
+**All 57 products created, 63 variants, 70 pack photographs, every one DRAFT.**
+Verified by reading the store back, not by trusting the writes:
+
+| Check | Result |
+|---|---|
+| Products | 57, all `DRAFT` |
+| Media | every image `READY`, **zero** `mediaErrors` |
+| Variant images | every variant carries its **own** pack photo |
+| Inventory | `tracked: false`, policy `CONTINUE` on all 63 |
+| Selling price | `0.00` everywhere, tagged `needs-price` |
+
+**Images went in by URL, not upload.** The connector cannot upload a file, but
+`ProductSet.files.originalSource` accepts a public HTTPS URL, and this repo is
+public — so Shopify fetched all 70 straight off `raw.githubusercontent.com` and
+copied them to its own CDN. The GitHub URL is only needed during the import.
+`scripts/build_productset_jsonl.py` generates the payloads.
+
+**`bulkOperationRunMutation` is blocked** by the connector's safety policy
+(it can run arbitrary mutations). So imports go as batched aliased `productSet`
+calls, ~9 products each, not as one bulk job.
+
+**Two products are tagged `DO-NOT-PUBLISH`** — QTF Tea and Nanjangud Suruchi's
+Diabeat. They exist as drafts so the catalogue is complete; the tag is what stops
+a bulk publish sweeping them live. Do not remove it without a decision.
+
+### Earlier gate — PASSED 16 Sep
 
 - **19 metafield definitions created** under namespace `compliance` — 15 on
   PRODUCT, 4 on PRODUCTVARIANT. Verified back: correct types, and
