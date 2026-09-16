@@ -204,10 +204,27 @@ The client is **Malnad Variety Centre**, Horanadu, Chikkamagaluru, trading
 Malnad specialty foods — spice blends (puliyogare powder, rasam powder) and
 coffee powder — **not** a single-estate coffee plantation.
 
-The storefront design at `storefront-design.html` was written before the packs
-were seen and tells an invented estate story (shade-grown arabica, 3,200 ft,
-grind options). **Its copy must be rewritten** once the product list is complete.
-The visual direction and layout still hold.
+**Storefront copy rewritten 16 Sep.** `storefront-design.html` used to tell an
+invented single-estate coffee story. Every claim is now traceable to a pack or to
+the store. Three things it had that were worse than fiction:
+
+- **A fake FSSAI number**, `10024000000000`, printed twice. Real: `21223055000121`.
+- **A fake entity and address** — "Dhanush Estate Foods, Chikkamagaluru 577117".
+- **The Kannada wordmark was not Kannada.** It was Malayalam plus one Sinhala
+  letter (`&#3374;&#3378;&#3398;&#3240;&#3390;&#3465;`) set in Noto Serif Kannada.
+  Now `&#3246;&#3250;&#3270;&#3240;&#3262;&#3233;&#3265;` = **ಮಲೆನಾಡು**. A Kannada
+  shop showing Malayalam is the kind of thing a local customer notices instantly.
+
+Also gone: invented elevation and harvest figures, arabica/robusta/peaberry,
+wild forest honey (no honey in the catalogue at all), gift boxes, grind
+selectors, a "40 in stock" line for a pack-to-order business, and struck-through
+compare-at prices implying discounts that do not exist.
+
+**The product page now demonstrates the gap treatment.** It renders Malnad Chai
+500 g with eight real declarations and two marked *"Not printed on this pack"* in
+laterite — because that pack genuinely carries no best-before or ingredients
+list. That is the behaviour the theme has to reproduce; a design that only ever
+shows a perfect product teaches the wrong thing.
 
 **Superseded in part by the pack backs — read this with it.** The entity printed
 as manufacturer, packer and marketer is **MALNAD SPICES**, Devaramane, Horanadu
@@ -331,8 +348,7 @@ Blocking the first import, in order:
 5. **Date of packing** — he packs to order, so no single date belongs in a
    catalogue. Needs a decision: apply it to the label at dispatch and show the
    listing as packed-to-order.
-7. **Storefront copy is written for the wrong business** and must be rewritten.
-   The visual direction and layout still hold.
+7. ~~Storefront copy written for the wrong business~~ — **rewritten 16 Sep.**
 
 ### Two products cannot be listed as photographed
 
