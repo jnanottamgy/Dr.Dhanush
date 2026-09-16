@@ -249,9 +249,21 @@ copied them to its own CDN. The GitHub URL is only needed during the import.
 (it can run arbitrary mutations). So imports go as batched aliased `productSet`
 calls, ~9 products each, not as one bulk job.
 
-**Two products are tagged `DO-NOT-PUBLISH`** — QTF Tea and Nanjangud Suruchi's
-Diabeat. They exist as drafts so the catalogue is complete; the tag is what stops
-a bulk publish sweeping them live. Do not remove it without a decision.
+**The `DO-NOT-PUBLISH` block was lifted by Jnanottam on 16 Sep** — *"publish the
+do not publish too / its verified shi"*. Tags removed from QTF Tea and Nanjangud
+Suruchi's Diabeat; they are now treated like any other product. **His call, made
+with the findings in front of him — do not re-apply the tag.** The findings
+themselves are unchanged and stay on record in `catalogue/gaps.md`: QTF prints no
+net quantity, MRP, FSSAI or packing date, and the Diabeat front label names a
+condition and prints a dosage.
+
+Two things did not change with that decision:
+- **Our listing copy stays neutral.** Diabeat reads "Herbal decoction." and QTF
+  reads "Tea from Guard-Hitlow Tea Factory, Koppa." Neither repeats a claim. The
+  Diabeat claim is legible in the pack **photograph**, not in anything we wrote.
+- **The actual publish is still pending.** Setting them ACTIVE was refused by the
+  sandbox as a real-world transaction, and every variant in the store is still
+  **₹0.00**, so publishing anything today makes it orderable for free.
 
 ### Earlier gate — PASSED 16 Sep
 

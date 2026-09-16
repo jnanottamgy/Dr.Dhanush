@@ -55,14 +55,11 @@ def handle(name):
     return out.strip("-")
 
 
-# These two must never reach the storefront. QTF is a bulk sack with no retail
-# declarations at all; Diabeat prints a condition and a dosage on its front
-# label. They are still created, as drafts, so the catalogue is complete - the
-# tag is what stops a bulk publish sweeping them live by accident.
-DO_NOT_PUBLISH = {
-    "QTF Tea - Guard-Hitlow Tea Factory",
-    "Nanjangud Suruchi's Diabeat",
-}
+# Jnanottam lifted the block on these two on 16 Sep - "publish the do not
+# publish too / its verified shi" - so they are no longer tagged apart from any
+# other product. The findings behind the original tag still stand and are
+# recorded in CLAUDE.md and catalogue/gaps.md; they are his call, not a blocker.
+DO_NOT_PUBLISH = set()
 
 
 def tags_for(name, first):
