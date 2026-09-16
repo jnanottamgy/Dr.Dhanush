@@ -363,6 +363,25 @@ Blocking the first import, in order:
 Also new: the banana stem squash photograph shows **two** bottles, a regular and
 a **Sugarless**, where the catalogue listed one. Asked.
 
+### Store readiness check — 16 Sep
+
+What is actually in the store, read from the Admin API, not assumed:
+
+| | State |
+|---|---|
+| Theme | **Horizon, stock and untouched.** Our design has **not** been built into it |
+| Shop name | **"My Store"** — never renamed |
+| Active products | **0.** All 57 are draft |
+| Prices | ₹0.00 on all 63 variants |
+| Payments | none — Razorpay KYC not done |
+| Policies | refund / privacy / terms **not written**. Razorpay requires these published before it will activate |
+| Ships to | **29 countries** by default, including Japan, Norway and the US. He delivers from Horanadu — needs restricting to India |
+| Billing address | correct: Malnad Spices, Horanadu, Chikmagalur 577181, +91 8431218956 |
+
+**`storefront-design.html` is a mockup, not the site.** It is a static HTML
+design for approval. Building it into the Horizon theme is Stage 2 and has not
+been started.
+
 Eight stages total, each with a gate. Full detail in `build-runbook.html`.
 Stage 3 (payments) is gated hardest: the 16-row test matrix runs in test mode and
 again live, and is not complete until a settlement is confirmed landed in the
