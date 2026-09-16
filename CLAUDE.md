@@ -210,12 +210,12 @@ Both were raised with him; they are not resolved by his answers.
   Admin API access (GraphQL query + mutation, products, collections, orders,
   analytics). Store confirmed as `8uysc8-kx.myshopify.com`, **Basic**, INR, IST,
   India, owner email `drjhrnd5@gmail.com`.
-- **The connector cannot upload images.** Both `create-product` and
-  `ProductSet.files` need a **publicly reachable HTTPS URL**; the 66 pack
-  photographs are local PNGs. Either Jnanottam uploads them to Shopify Files by
-  hand, or we go via `stagedUploadsCreate` and POST each file to the staged
-  target from bash. The staged-upload route is untested here — try it before
-  asking him to upload 66 files.
+- ~~**The connector cannot upload images.**~~ **Superseded 16 Sep: it can.**
+  `fileCreate` takes `originalSource` as a **public HTTPS URL**, so the four
+  brand images went straight into Shopify Files off `raw.githubusercontent.com`
+  and came back `READY` with their filenames intact. `stagedUploadsCreate` was
+  never needed and remains untried. Anything in this repo can be put in Files
+  this way; only video and 3D models genuinely require a staged upload.
 - **`build_shopify_import.py` had two image bugs**, both caught by the
   two-product test import on 16 Sep — which is exactly the gate that test exists
   for. It split image lists on `;` only while the working sheet writes commas, so
@@ -307,6 +307,71 @@ can attract **12% GST** rather than the 5% on whole spices. Needs the CA's
 written call before any listing goes live.
 
 ## Where we are
+
+### Connector scopes — checked, do not guess at these
+
+Read from `currentAppInstallation { accessScopes }`, so this is the real list,
+not inference from a failed call.
+
+**Has:** `write_products` · `write_themes` · `write_files` · `write_content`
+(pages, blogs) · `write_online_store_navigation` (menus) · `write_shipping` ·
+`write_publications` · `write_markets` · `write_discounts` · `write_draft_orders`
+· `write_inventory` · `write_translations` · `write_metaobjects`.
+
+**Does not have:** `write_legal_policies`. It holds `read_legal_policies` only,
+so **store policies cannot be published from here** — they are written in
+`policies/` and pasted by hand. That is the one hard blocker on the Razorpay
+prerequisite list.
+
+**Silently refuses, with no `userErrors`:** `deliveryProfileUpdate` accepts a
+zone rename and a method rename, returns success, and changes nothing. Tried
+twice, once combined with a delete and once alone. Do not keep retrying it.
+
+**There is no Admin API mutation for the shop name**, on any plan. "My Store"
+has to be renamed in admin. It is not a connector limitation.
+
+### Stage 2 — STOREFRONT BUILT (16 Sep)
+
+Everything that does not depend on Razorpay is done. The manual remainder, and
+who owns each item, is in **`docs/store-setup.md`**.
+
+| Built | State |
+|---|---|
+| Collections | **9 smart collections**, tag-driven. 17+7+3+3+3+9+6+6+3 = **57, every product in exactly one** |
+| Homepage | hero · promise · categories · featured · story |
+| Footer | trading name, address, both phones, care email, FSSAI number; policy list; fake socials removed |
+| Menus | main menu with a 9-collection Shop dropdown; footer menu |
+| Pages | **About us** written; the stock empty **Contact** filled in |
+| Shipping | **ships to India only** — the 28-country international zone is deleted |
+| Files | 4 brand images in Shopify Files, all `READY` |
+| Collection art | nature shots on Whole Spices and Coffee; the rest fall back to a pack photo |
+
+**Four brand sections, written rather than bent out of Horizon's.** Horizon's
+`hero` and `collection-list` schemas are 45KB and 26KB; guessing setting names
+out of them produces a section that renders empty with no error. These are small,
+match the approved design, and stay editable in the theme editor:
+`malnad-hero`, `malnad-promise`, `malnad-categories`, `malnad-story`. All four
+parse under python-liquid. The featured row reuses Horizon's own `product-list`
+settings lifted verbatim from its default `index.json`, not reconstructed.
+
+**`needs-price` is a true worklist again.** It was stale on 13 products that had
+since been priced — 46 tagged where only 33 have a ₹0 variant. Corrected, and
+re-verified by reading each record rather than the tag search, which lags.
+Confirmed against prices: **36 variants across 33 products are still ₹0.00**,
+which matches what this file already said.
+
+**Two defects found in Shopify's own defaults, both fixed:**
+- Horizon's footer shipped with social links pointing at `facebook.com`,
+  `instagram.com`, `x.com` — the platforms' front doors, not the shop's. Removed.
+- The India shipping rate is a flat **₹379** placeholder. Six of the seeds sell
+  at ₹140. Left as found because the real rate is the client's, but it is the
+  most commercially dangerous setting in the store and is flagged first in
+  `docs/store-setup.md`.
+
+**Shopify normalises JSON on write.** `templates/index.json` went up at 11,364
+bytes and is stored as 6,859; `config/settings_data.json` likewise. Nothing was
+dropped — verified by reading both back in full. Only `.liquid` files match by
+checksum; verify JSON templates by reading the values.
 
 ### Stage 2 — THEME BUILD STARTED (16 Sep)
 
@@ -541,6 +606,8 @@ client's bank.
 | `scripts/audit_live_products.py` | Finds live products missing declarations |
 | `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
+| `policies/` | Refund, shipping, terms, contact — **paste by hand**, see below |
+| `docs/store-setup.md` | **What is left and who does it.** Start here next session |
 | `docs/stage1-catalogue.md` | Metafield definitions and import procedure |
 | `docs/product-photography.md` | Storefront palette and image direction |
 | `docs/image-prompts.txt` | The three prompts, plain text |
