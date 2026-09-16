@@ -330,6 +330,17 @@ twice, once combined with a delete and once alone. Do not keep retrying it.
 **There is no Admin API mutation for the shop name**, on any plan. "My Store"
 has to be renamed in admin. It is not a connector limitation.
 
+**Checkout branding is Plus-only.** `checkoutBrandingUpsert` is refused on Basic:
+*"the shop must be on a Plus plan or a Development store plan"*. Do not retry it,
+and do not promise the client a styled Shopify checkout on this plan. It does not
+matter much in practice — Razorpay Magic Checkout replaces that page, and it is
+brandable on Razorpay's side.
+
+**Only `en` is installed** and it is primary and published, so the Hindi shipping
+method name **"मानक"** is not a translation — it is the stored name on the method
+definition, set by Shopify's India onboarding. The translations API is not a
+route to fixing it.
+
 ### Stage 2 — STOREFRONT BUILT (16 Sep)
 
 Everything that does not depend on Razorpay is done. The manual remainder, and
@@ -607,7 +618,8 @@ client's bank.
 | `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
 | `policies/` | Refund, shipping, terms, contact — **paste by hand**, see below |
-| `docs/store-setup.md` | **What is left and who does it.** Start here next session |
+| `docs/store-setup.md` | What is left and who does it, in full |
+| `docs/your-steps.md` | **The same list in plain English, 8 numbered steps.** For Jnanottam |
 | `docs/stage1-catalogue.md` | Metafield definitions and import procedure |
 | `docs/product-photography.md` | Storefront palette and image direction |
 | `docs/image-prompts.txt` | The three prompts, plain text |
