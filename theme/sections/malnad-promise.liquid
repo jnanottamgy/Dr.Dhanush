@@ -1,0 +1,154 @@
+{% comment %}
+  The row that says how this shop works. The first item is the declarations
+  promise, which is the thing the whole catalogue pipeline exists to make true,
+  so it is stated on the homepage rather than buried in the terms.
+{% endcomment %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section
+  class="mprom"
+  style="
+    --mprom-bg: {{ s.background_color }};
+    --mprom-rule: {{ s.rule_color }};
+    --mprom-accent: {{ s.accent_color }};
+    padding-block-start: {{ s.padding_block_start }}px;
+    padding-block-end: {{ s.padding_block_end }}px;
+  "
+>
+  <div class="mprom__inner">
+    <ul class="mprom__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="mprom__item" {{ block.shopify_attributes }}>
+          <span class="mprom__icon" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'label' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 5h18v11H3z"/><path d="M6 9h8M6 12h5"/></svg>
+              {%- when 'scale' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v18M5 21h14"/><path d="M4 9h16l-3 5H7z"/></svg>
+              {%- when 'lock' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="10" width="16" height="11"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              {%- when 'truck' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+              {%- when 'leaf' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 4C10 4 4 9 4 16a4 4 0 0 0 4 4c7 0 12-6 12-16Z"/><path d="M4 20 14 10"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+            {%- endcase -%}
+          </span>
+          <span class="mprom__copy">
+            {%- if block.settings.title != blank -%}
+              <span class="mprom__title">{{ block.settings.title | escape }}</span>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <span class="mprom__text">{{ block.settings.text | escape }}</span>
+            {%- endif -%}
+          </span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .mprom { background: var(--mprom-bg, #f2f0ea); }
+
+  .mprom__inner {
+    max-width: var(--page-width, 1320px);
+    margin-inline: auto;
+    padding-inline: max(24px, env(safe-area-inset-left, 0px));
+  }
+
+  .mprom__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0;
+  }
+
+  .mprom__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 24px 24px 24px 0;
+    border-block-start: 1px solid var(--mprom-rule, #dce0d8);
+  }
+
+  .mprom__icon {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    color: var(--mprom-accent, #a4552f);
+  }
+
+  .mprom__icon svg { width: 100%; height: 100%; display: block; }
+
+  .mprom__copy { display: block; }
+
+  .mprom__title {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .mprom__text {
+    display: block;
+    margin-block-start: 6px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    opacity: 0.72;
+    text-wrap: pretty;
+  }
+
+  @media screen and (max-width: 640px) {
+    .mprom__inner { padding-inline: 16px; }
+    .mprom__item { padding-inline-end: 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Malnad promise",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F2F0EA" },
+    { "type": "color", "id": "rule_color", "label": "Rule", "default": "#DCE0D8" },
+    { "type": "color", "id": "accent_color", "label": "Icon", "default": "#A4552F" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_block_start", "label": "Top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 8 },
+    { "type": "range", "id": "padding_block_end", "label": "Bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "label", "label": "Label" },
+            { "value": "scale", "label": "Scales" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "check", "label": "Check" }
+          ],
+          "default": "label"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Read off the pack" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Every declaration comes off the pack you receive. Where one is not printed, we say so." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Malnad promise", "blocks": [{ "type": "promise" }, { "type": "promise" }, { "type": "promise" }, { "type": "promise" }] }]
+}
+{% endschema %}

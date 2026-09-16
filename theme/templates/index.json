@@ -1,0 +1,365 @@
+{
+  "sections": {
+    "hero": {
+      "type": "malnad-hero",
+      "settings": {
+        "image": "shopify://shop_images/hero-canopy.png",
+        "kicker": "Horanadu, Chikkamagaluru · since 1999",
+        "heading": "The Malnad pantry, packed the day you order it",
+        "body": "Spices, coffee and estate goods from the Western Ghats — weighed out by hand, with every declaration read off the pack you actually receive.",
+        "button_label": "Shop the catalogue",
+        "button_link": "shopify://collections/all",
+        "button_2_label": "Who we are",
+        "button_2_link": "shopify://pages/about",
+        "text_color": "#F4F2ED",
+        "overlay_color": "#0D2119",
+        "min_height": 600,
+        "padding_block_start": 0,
+        "padding_block_end": 0
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "promise": {
+      "type": "malnad-promise",
+      "settings": {
+        "background_color": "#F2F0EA",
+        "rule_color": "#DCE0D8",
+        "accent_color": "#A4552F",
+        "padding_block_start": 8,
+        "padding_block_end": 44
+      },
+      "blocks": {
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "icon": "label",
+            "title": "Read off the pack",
+            "text": "Net quantity, MRP, packing date, best before. Where a pack does not print one, the listing says so instead of filling it in."
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "icon": "scale",
+            "title": "Weighed to order",
+            "text": "Nothing sits sealed on a shelf. We measure it out when the order comes in."
+          }
+        },
+        "p3": {
+          "type": "promise",
+          "settings": {
+            "icon": "lock",
+            "title": "Prepaid checkout",
+            "text": "Secure payment online. We do not offer cash on delivery."
+          }
+        },
+        "p4": {
+          "type": "promise",
+          "settings": {
+            "icon": "truck",
+            "title": "Delivered across India",
+            "text": "Dispatched in two to three working days from Horanadu."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    },
+    "categories": {
+      "type": "malnad-categories",
+      "settings": {
+        "heading": "Shop by shelf",
+        "link_label": "All products",
+        "link_url": "shopify://collections/all",
+        "columns": 3,
+        "padding_block_start": 56,
+        "padding_block_end": 56
+      },
+      "blocks": {
+        "c1": {
+          "type": "category",
+          "settings": {
+            "collection": "whole-spices"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "collection": "masala-powders"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "collection": "coffee"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "collection": "tea"
+          }
+        },
+        "c5": {
+          "type": "category",
+          "settings": {
+            "collection": "oils"
+          }
+        },
+        "c6": {
+          "type": "category",
+          "settings": {
+            "collection": "syrups-squashes"
+          }
+        },
+        "c7": {
+          "type": "category",
+          "settings": {
+            "collection": "seeds"
+          }
+        },
+        "c8": {
+          "type": "category",
+          "settings": {
+            "collection": "dry-fruits-nuts"
+          }
+        },
+        "c9": {
+          "type": "category",
+          "settings": {
+            "collection": "home-personal-care"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9"
+      ]
+    },
+    "story": {
+      "type": "malnad-story",
+      "settings": {
+        "image": "shopify://shop_images/story-trunk-pepper-vine.png",
+        "media_position": "left",
+        "kicker": "Devaramane, Horanadu",
+        "heading": "A counter in the hills, now with a door you can reach",
+        "text": "<p>We have sold Malnad produce from Horanadu since 1999. Some of it we pack ourselves under the Swad Horanadu label; the rest we buy from small makers around the district and sell on under their own names.</p><p>Alongside pepper and cardamom we keep marati moggu, naga kesari, kalhoo and palavele — Malnad spices that rarely leave the region, and the reason a kitchen here tastes the way it does.</p>",
+        "signature": "ಮಲೆನಾಡು",
+        "button_label": "More about us",
+        "button_link": "shopify://pages/about",
+        "background_color": "#0D2119",
+        "text_color": "#F4F2ED",
+        "accent_color": "#A4552F",
+        "padding_block_start": 72,
+        "padding_block_end": 72
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "featured": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>From the shop</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "viewall": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading",
+            "viewall"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "gallery": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "gallery",
+            "title",
+            "price"
+          ]
+        }
+      },
+      "name": "t:names.product_list",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 8,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "promise",
+    "categories",
+    "featured",
+    "story"
+  ]
+}

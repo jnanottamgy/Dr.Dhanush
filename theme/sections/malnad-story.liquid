@@ -1,0 +1,176 @@
+{% comment %}
+  Dark band: one photograph beside the shop's own account of itself.
+{% endcomment %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section
+  class="mstory"
+  style="
+    --mstory-bg: {{ s.background_color }};
+    --mstory-ink: {{ s.text_color }};
+    --mstory-accent: {{ s.accent_color }};
+    padding-block-start: {{ s.padding_block_start }}px;
+    padding-block-end: {{ s.padding_block_end }}px;
+  "
+>
+  <div class="mstory__inner {% if s.media_position == 'right' %}mstory__inner--flip{% endif %}">
+    {%- if s.image != blank -%}
+      <div class="mstory__media">
+        {{
+          s.image
+          | image_url: width: 1400
+          | image_tag:
+            loading: 'lazy',
+            sizes: '(max-width: 850px) 100vw, 45vw',
+            widths: '500, 700, 1000, 1400',
+            class: 'mstory__img',
+            alt: s.image.alt
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="mstory__body">
+      {%- if s.kicker != blank -%}
+        <p class="mstory__kicker">{{ s.kicker | escape }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="mstory__heading">{{ s.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <div class="mstory__text rte">{{ s.text }}</div>
+      {%- endif -%}
+      {%- if s.signature != blank -%}
+        <p class="mstory__sig">{{ s.signature }}</p>
+      {%- endif -%}
+      {%- if s.button_label != blank -%}
+        <a class="mstory__btn" href="{{ s.button_link | default: '/pages/about' }}">
+          {{- s.button_label | escape -}}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .mstory {
+    background: var(--mstory-bg, #0d2119);
+    color: var(--mstory-ink, #f4f2ed);
+  }
+
+  .mstory__inner {
+    max-width: var(--page-width, 1320px);
+    margin-inline: auto;
+    padding-inline: max(24px, env(safe-area-inset-left, 0px));
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: clamp(24px, 5vw, 64px);
+    align-items: center;
+  }
+
+  .mstory__inner--flip .mstory__media { order: 2; }
+
+  /* Give the media a shape of its own; without this the grid row collapses to
+     the height of the text and the photograph is cropped to a strip. */
+  .mstory .mstory__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .mstory .mstory__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mstory__kicker {
+    margin: 0 0 16px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .mstory__heading {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .mstory__text {
+    margin-block-start: 20px;
+    max-width: 52ch;
+    line-height: 1.7;
+    opacity: 0.88;
+  }
+
+  .mstory__text > :first-child { margin-block-start: 0; }
+  .mstory__text > :last-child { margin-block-end: 0; }
+
+  .mstory__sig {
+    margin-block-start: 22px;
+    margin-block-end: 0;
+    font-size: 1rem;
+    color: var(--mstory-accent, #a4552f);
+  }
+
+  .mstory__btn {
+    display: inline-block;
+    margin-block-start: 28px;
+    padding: 13px 26px;
+    border: 1px solid currentcolor;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .mstory__btn:hover {
+    background: var(--mstory-ink, #f4f2ed);
+    color: var(--mstory-bg, #0d2119);
+  }
+
+  @media screen and (max-width: 850px) {
+    .mstory__inner { grid-template-columns: minmax(0, 1fr); }
+    .mstory__inner--flip .mstory__media { order: 0; }
+    .mstory .mstory__media { aspect-ratio: 3 / 2; }
+    .mstory__inner { padding-inline: 16px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Malnad story",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "media_position", "label": "Image position", "options": [{ "value": "left", "label": "Left" }, { "value": "right", "label": "Right" }], "default": "left" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Devaramane, Horanadu" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A counter in the hills, now with a door you can reach" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>We have sold Malnad produce from Horanadu since 1999. Some of it we pack ourselves under the Swad Horanadu label; the rest we buy from small makers around the district and sell on under their own names.</p><p>Nothing sits sealed on a shelf waiting. We weigh it out when you order, which is the whole reason a packet from here tastes like the hills it came from.</p>" },
+    { "type": "text", "id": "signature", "label": "Signature", "default": "ಮಲೆನಾಡು" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "More about us" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "header", "content": "Appearance" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#0D2119" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#F4F2ED" },
+    { "type": "color", "id": "accent_color", "label": "Signature", "default": "#A4552F" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_block_start", "label": "Top", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_block_end", "label": "Bottom", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [{ "name": "Malnad story" }]
+}
+{% endschema %}

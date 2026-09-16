@@ -1,0 +1,197 @@
+{% comment %}
+  Full-bleed hero. The image sits under a canopy-green wash rather than a
+  neutral black one, so the photograph still reads as forest.
+{% endcomment %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section
+  class="mhero"
+  style="
+    --mhero-ink: {{ s.text_color }};
+    --mhero-wash: {{ s.overlay_color }};
+    --mhero-min: {{ s.min_height }}px;
+    padding-block-start: {{ s.padding_block_start }}px;
+    padding-block-end: {{ s.padding_block_end }}px;
+  "
+>
+  {%- if s.image != blank -%}
+    <div class="mhero__media">
+      {{
+        s.image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          sizes: '100vw',
+          widths: '600, 900, 1240, 1600, 2000, 2400',
+          class: 'mhero__img',
+          alt: s.image.alt
+      }}
+    </div>
+  {%- endif -%}
+
+  <div class="mhero__wash" aria-hidden="true"></div>
+
+  <div class="mhero__inner">
+    {%- if s.kicker != blank -%}
+      <p class="mhero__kicker">{{ s.kicker | escape }}</p>
+    {%- endif -%}
+
+    {%- if s.heading != blank -%}
+      <h1 class="mhero__heading">{{ s.heading | escape }}</h1>
+    {%- endif -%}
+
+    {%- if s.body != blank -%}
+      <p class="mhero__body">{{ s.body | escape }}</p>
+    {%- endif -%}
+
+    {%- if s.button_label != blank or s.button_2_label != blank -%}
+      <div class="mhero__actions">
+        {%- if s.button_label != blank -%}
+          <a class="mhero__btn mhero__btn--solid" href="{{ s.button_link | default: '/collections/all' }}">
+            {{- s.button_label | escape -}}
+          </a>
+        {%- endif -%}
+        {%- if s.button_2_label != blank -%}
+          <a class="mhero__btn" href="{{ s.button_2_link | default: '/pages/about' }}">
+            {{- s.button_2_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .mhero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    min-height: var(--mhero-min, 520px);
+    overflow: hidden;
+    color: var(--mhero-ink, #f4f2ed);
+  }
+
+  /* The media box is absolutely positioned and the wash sits above it. Keep
+     both selectors at this specificity: a bare .mhero__media rule declared
+     later would collapse the box to zero height and the image would never
+     show at all. */
+  .mhero .mhero__media,
+  .mhero .mhero__wash {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .mhero .mhero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mhero .mhero__wash {
+    background: var(--mhero-wash, #0d2119);
+    opacity: 0.62;
+  }
+
+  .mhero__inner {
+    width: 100%;
+    max-width: var(--page-width, 1320px);
+    margin-inline: auto;
+    padding-inline: max(24px, env(safe-area-inset-left, 0px));
+    padding-block: 48px;
+  }
+
+  .mhero__kicker {
+    margin: 0 0 18px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .mhero__heading {
+    margin: 0;
+    max-width: 18ch;
+    font-family: var(--font-heading--family);
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .mhero__body {
+    margin: 20px 0 0;
+    max-width: 46ch;
+    font-size: 1rem;
+    line-height: 1.65;
+    opacity: 0.88;
+    text-wrap: pretty;
+  }
+
+  .mhero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-block-start: 32px;
+  }
+
+  .mhero__btn {
+    display: inline-block;
+    padding: 13px 26px;
+    border: 1px solid currentcolor;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.18s ease, color 0.18s ease;
+  }
+
+  .mhero__btn:hover { background: currentcolor; }
+  .mhero__btn:hover { color: var(--mhero-wash, #0d2119); }
+
+  .mhero__btn--solid {
+    background: var(--mhero-ink, #f4f2ed);
+    color: var(--mhero-wash, #0d2119);
+  }
+
+  .mhero__btn--solid:hover {
+    background: transparent;
+    color: var(--mhero-ink, #f4f2ed);
+  }
+
+  @media screen and (max-width: 600px) {
+    .mhero__inner { padding-inline: 16px; padding-block: 36px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Malnad hero",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Horanadu, Chikkamagaluru · since 1999" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Malnad pantry, packed the day you order it" },
+    { "type": "textarea", "id": "body", "label": "Text", "default": "Spices, coffee and estate goods from the Western Ghats — weighed out by hand, with every declaration read off the pack you actually receive." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the catalogue" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "button_2_label", "label": "Second button label", "default": "Who we are" },
+    { "type": "url", "id": "button_2_link", "label": "Second button link" },
+    { "type": "header", "content": "Appearance" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#F4F2ED" },
+    { "type": "color", "id": "overlay_color", "label": "Wash colour", "default": "#0D2119" },
+    { "type": "range", "id": "min_height", "label": "Minimum height", "min": 320, "max": 820, "step": 20, "unit": "px", "default": 560 },
+    { "type": "range", "id": "padding_block_start", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_block_end", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Malnad hero" }]
+}
+{% endschema %}
