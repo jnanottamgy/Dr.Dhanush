@@ -394,6 +394,8 @@ client's bank.
 | `quotation-malnad.html` | **Current** client quotation, ₹38,000 |
 | `build-runbook.html` | Internal eight-stage build runbook |
 | `dashboard-mockup.html` | Owner dashboard design mockup, sample data |
+| `storefront-design.html` | Storefront design mockup, copy rewritten 16 Sep. Published as an artifact: `claude.ai/artifact/GJkBLz3cJ2bUfWKeP2j5X4` |
+| `Malnad-Spices-Storefront-Design.pdf` | The same, 2 pages, for sending to the client on WhatsApp |
 | `scripts/build_catalogue.py` | **Builds the working sheet** from the pack transcriptions; also emits `gaps.md` and `tax-schedule.md` |
 | `scripts/validate_catalogue.py` | Blocks incomplete or illegal product data |
 | `scripts/build_shopify_import.py` | Catalogue → Shopify import CSV, all draft |
@@ -429,3 +431,12 @@ python3 scripts/audit_live_products.py  <products_export.csv>
 ```
 
 PDFs are rendered with headless Chromium — see the README for the command.
+
+**Rendering the storefront mockup to PDF.** Headless Chromium's `--screenshot`
+captures the *window*, not the full page, and `--print-to-pdf` paginates the two
+screens into six awkward pages. What works: split the HTML at the second
+`<p class="screen-tag">` into two standalone files sharing the `<style>` and the
+SVG symbol, render each at `--window-size=1440,6500`, measure the real content
+height by scanning up from the bottom for the first row that differs from the
+page ground, then build a PDF with one page cropped to each. One page per
+screen, no cuts.
