@@ -182,6 +182,58 @@ def P(name, category, packer, variants, desc="", full="", ingredients="",
                 proposed_gst=proposed_gst, note=note)
 
 
+# --- Prices supplied 16 Sep, second batch -----------------------------------
+# Keyed (product name, pack size). Applied as an override so a client answer is
+# one edit here rather than 27 edits scattered through the product definitions.
+#
+# Whether the figure also becomes the declared MRP depends on who packs it:
+#
+#   * Goods Malnad Spices packs itself - the 17 whole spices, the Swad coffees,
+#     Malnad Chai, Badam - carry no printed MRP, and as packer his number IS the
+#     MRP. Price and MRP both.
+#   * Goods he only resells - Sanjivni, Aaradhya, Kalpatharu - are sealed by
+#     their own maker. The MRP on those packs is the maker's, not ours;
+#     Kalpatharu's is printed but smudged. We set the selling price and declare
+#     NO MRP, because inventing one would be a misdeclaration on somebody else's
+#     pack.
+PRICES_16SEP = {
+    ("Black Pepper", "100 g"): "80",
+    ("Cloves (Lavanga)", "100 g"): "150",
+    ("Green Cardamom", "100 g"): "500",
+    ("Black Cardamom", "100 g"): "240",
+    ("Nutmeg", "100 g"): "90",
+    ("Jathipathri (Mace)", "100 g"): "320",
+    ("Chekke (Cinnamon Bark)", "100 g"): "50",
+    ("Star Anise", "100 g"): "150",
+    ("Fennel Seed", "100 g"): "50",
+    ("Shahi Jeera", "100 g"): "150",
+    ("Kasturi Menthi", "100 g"): "100",
+    ("Marati Moggu", "100 g"): "160",
+    ("Naga Kesari Moggu", "100 g"): "240",
+    ("Kalhoo", "100 g"): "150",
+    ("Mintiya", "100 g"): "25",
+    ("Palavele", "100 g"): "60",
+    ("Sasive (Mustard Seed)", "100 g"): "25",
+    ("Swad Malnad Premium Coffee Powder - Filter", "250 g"): "160",
+    ("Swad Malnad Premium Coffee Powder - Filter", "500 g"): "300",
+    ("Swad Malnad Premium Coffee Powder - Nice", "250 g"): "160",
+    ("Swad Malnad Premium Coffee Powder - Nice", "500 g"): "300",
+    ("Malnad Chai - Premium Malnad Tea Powder", "1 kg"): "300",
+    ("Badam (Almonds)", "500 g"): "750",
+    ("Sanjivni Special Tea", "1 kg"): "270",
+    ("Aaradhya Pure Double Filtered Coconut Oil", "500 ml"): "200",
+    ("Aaradhya Pure Double Filtered Coconut Oil", "1 l"): "400",
+    ("Kalpatharu Special Double Filtered Pure Coconut Oil", "1.720 kg"): "800",
+}
+
+# Packed by somebody else, so their price is a selling price only - never an MRP.
+RESOLD_NO_MRP = {
+    "Sanjivni Special Tea",
+    "Aaradhya Pure Double Filtered Coconut Oil",
+    "Kalpatharu Special Double Filtered Pure Coconut Oil",
+}
+
+
 def V(pack, net, images, mrp="", kind="pouch", pkd="", best_before="", sell=""):
     # `sell` is the selling price. Where a pack prints no MRP and the client is
     # the packer, the single price he names is both the MRP and the selling
@@ -519,6 +571,11 @@ def main():
             r["Grind / Form"] = p["form"]
             r["SKU"] = (f"{slug(p['name'])}-{slug(v['pack'])}"
                         if v["pack"] else f"{slug(p['name'])}")
+            supplied = PRICES_16SEP.get((p["name"], v["pack"]))
+            if supplied:
+                v = dict(v, sell=supplied)
+                if p["name"] not in RESOLD_NO_MRP:
+                    v["mrp"] = supplied
             r["MRP (INR incl. all taxes)"] = v["mrp"]
             # Client instruction 16 Sep: "selling prices are as mentioned in
             # the packs itself" - so the selling price IS the MRP unless a

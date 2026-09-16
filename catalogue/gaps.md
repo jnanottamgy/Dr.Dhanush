@@ -8,7 +8,7 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 
 | Field | Rows missing it | Who supplies it |
 |---|---|---|
-| MRP (INR incl. all taxes) | **36** | Client - price list / pack stamp |
+| MRP (INR incl. all taxes) | **13** | Client - price list / pack stamp |
 | Best Before / Use By | **44** | Client, or the maker's back label |
 | Date of Manufacture or Packing | **56** | Generated at dispatch - see note below |
 | Manufacturer or Packer Name | **4** | Back-of-pack photo needed |
@@ -19,7 +19,7 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 | FSSAI Licence Number | **14** | Back-of-pack photo needed |
 | HSN Code | **35** | Jnanottam (CA) - see tax-schedule.md |
 | GST Rate (%) | **35** | Jnanottam (CA) - see tax-schedule.md |
-| Selling Price (INR) | **36** | Client - price list |
+| Selling Price (INR) | **9** | Client - price list |
 
 ## The two that are not really the client's to send
 
