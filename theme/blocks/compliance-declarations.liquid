@@ -86,11 +86,19 @@
       {%- assign mrp = '' -%}
       {%- assign mrp_v = vmf.mrp.value -%}
       {%- if mrp_v != blank -%}
-        {%- assign mrp_i = mrp_v | round -%}
-        {%- if mrp_v == mrp_i -%}
-          {%- assign mrp_text = mrp_i -%}
+        {%- comment -%}
+          Worked in paise so a price with a fractional part prints as a price:
+          `round: 2` would give 249.5 where the declaration reads 249.50.
+        {%- endcomment -%}
+        {%- assign mrp_paise = mrp_v | times: 100 | round -%}
+        {%- assign mrp_rupees = mrp_paise | divided_by: 100 -%}
+        {%- assign mrp_frac = mrp_paise | modulo: 100 -%}
+        {%- if mrp_frac == 0 -%}
+          {%- assign mrp_text = mrp_rupees -%}
+        {%- elsif mrp_frac < 10 -%}
+          {%- assign mrp_text = mrp_rupees | append: '.0' | append: mrp_frac -%}
         {%- else -%}
-          {%- assign mrp_text = mrp_v | round: 2 -%}
+          {%- assign mrp_text = mrp_rupees | append: '.' | append: mrp_frac -%}
         {%- endif -%}
         {%- comment -%} MRP is a legal declaration, and the rules require the
           "inclusive of all taxes" wording alongside it. {%- endcomment -%}
@@ -100,33 +108,31 @@
       <div
         class="decl__pack"
         data-variant-id="{{ variant.id }}"
-        {% if variant.id != selected_variant.id %}
-          hidden
-        {% endif %}
+        {%- if variant.id != selected_variant.id %} hidden{% endif %}
       >
         {% render 'compliance-row',
           label: 'Net quantity',
           value: vmf.net_quantity.value,
           gap_text: gap_text,
-          required: true
+          is_required: true
         %}
         {% render 'compliance-row',
           label: 'Maximum retail price',
           value: mrp,
           gap_text: gap_text,
-          required: true
+          is_required: true
         %}
         {% render 'compliance-row',
           label: 'Packed on',
           value: vmf.mfg_date.value,
           gap_text: gap_text,
-          required: true
+          is_required: true
         %}
         {% render 'compliance-row',
           label: 'Best before',
           value: vmf.best_before.value,
           gap_text: gap_text,
-          required: true
+          is_required: true
         %}
       </div>
     {%- endfor -%}
@@ -135,39 +141,39 @@
       label: 'Ingredients',
       value: pmf.ingredients.value,
       gap_text: gap_text,
-      required: true,
+      is_required: true,
       multiline: true
     %}
     {% render 'compliance-row',
       label: 'Packed and marketed by',
       value: pmf.packer_name.value,
       gap_text: gap_text,
-      required: true
+      is_required: true
     %}
     {% render 'compliance-row',
       label: 'Address',
       value: pmf.packer_address.value,
       gap_text: gap_text,
-      required: true,
+      is_required: true,
       multiline: true
     %}
     {% render 'compliance-row',
       label: 'FSSAI licence',
       value: pmf.fssai_licence.value,
       gap_text: gap_text,
-      required: true
+      is_required: true
     %}
     {% render 'compliance-row',
       label: 'Country of origin',
       value: pmf.country_of_origin.value,
       gap_text: gap_text,
-      required: true
+      is_required: true
     %}
     {% render 'compliance-row',
       label: 'Consumer care',
       value: care,
       gap_text: gap_text,
-      required: true
+      is_required: true
     %}
     {% render 'compliance-row',
       label: 'Storage',

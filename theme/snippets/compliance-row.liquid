@@ -9,14 +9,14 @@
   @param {string} label - Row label
   @param {string} value - The declaration, read off the pack
   @param {string} gap_text - Notice shown when a required declaration is blank
-  @param {boolean} [required] - Show the notice instead of hiding the row
+  @param {boolean} [is_required] - Show the notice instead of hiding the row
   @param {boolean} [multiline] - Render newlines in the value as line breaks
 
   @example
-  {% render 'compliance-row', label: 'Net quantity', value: net, gap_text: gap_text, required: true %}
+  {% render 'compliance-row', label: 'Net quantity', value: net, gap_text: gap_text, is_required: true %}
 {%- enddoc -%}
 
-{%- if value != blank or required -%}
+{%- if value != blank or is_required -%}
   <div class="decl__row">
     <dt class="decl__label">{{ label }}</dt>
     {%- if value == blank -%}
