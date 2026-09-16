@@ -390,6 +390,16 @@ added later lands there and shows **no delivery option at checkout**. Recorded
 in `docs/your-steps.md`. It cannot be fixed from here — zones cannot be added to
 the default profile through the API.
 
+**Origin does not need modelling — client answer 16 Sep.** Asked whether
+dispatching from Horanadu or from Kalasa changes the charge: *"5rs + -"*. About
+five rupees either way, so a single origin is correct and a second location
+group would be false precision. The existing rounding already absorbs it: rates
+round **up** to the nearest ₹5 and each band charges at its **top** weight.
+
+**Still outstanding: the eight numbers.** A base and a per-kg figure for each of
+the four zones, off the courier's rate card. That is the only input
+`scripts/build_shipping_rates.py` needs to replace all 28 rates.
+
 ### Stage 2 — STOREFRONT BUILT (16 Sep)
 
 Everything that does not depend on Razorpay is done. The manual remainder, and
