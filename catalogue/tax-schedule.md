@@ -11,7 +11,7 @@ Below is my proposal so you can tick or correct rather than start from a blank p
 | Swad Malnad Premium Coffee Powder - Nice | Coffee | 0901 | 5 | Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / NICE. 'Nice' usually indicates a coffee-chicory blend, which would move... |
 | Malnad Chai - Premium Malnad Tea Powder | Tea | 0902 | 5 |  |
 | Sanjivni Special Tea | Tea | 0902 | 5 | Two packs supplied, black and red, both 1 kg, nothing on either distinguishing a grade. Listed once until the client says otherwise. The MRP line o... |
-| QTF Tea - Guard-Hitlow Tea Factory | Tea | 0902 | 5 | Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself prints no weight. Still missing and still needed: the MRP, the FSSAI licence ... |
+| QTF Tea - Guard-Hitlow Tea Factory | Tea | 0902 | 5 | Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself prints no weight, and 250 per kg is his price. Still missing: the FSSAI licen... |
 | Black Pepper | Whole Spices | 0904 | 5 |  |
 | Cloves (Lavanga) | Whole Spices | 0907 | 5 | Supplied twice, as 'clove' and as 'lavanga' - the same whole cloves in the same bag. Lavanga is Kannada for clove. Listed once. |
 | Green Cardamom | Whole Spices | 0908 | 5 |  |
@@ -35,7 +35,7 @@ Below is my proposal so you can tick or correct rather than start from a blank p
 | Swad Horanadu Puliyogare Powder | Masala & Powders | 0910 | **?** | Mixed spice blend. 5% or 12% is the open question - your call. |
 | Swad Horanadu Rasam Powder | Masala & Powders | 0910 | **?** | Mixed spice blend. 5% or 12% is the open question - your call. |
 | Swad Horanadu Sambar Powder | Masala & Powders | 0910 | **?** | Mixed spice blend. 5% or 12% is the open question - your call. |
-| Horanadu Nellikai Powder | Masala & Powders | 0813 | **?** | Net contents confirmed by the client as 200 g on 16 Sep. Its MRP is printed on the pack but still unreadable in the photograph - it looks like 280 ... |
+| Horanadu Nellikai Powder | Masala & Powders | 0813 | **?** | Net contents 200 g and MRP 200 supplied by the client 16 Sep. The MRP is printed on the pack too but is unreadable in the photograph, so this is hi... |
 | Chia Seeds | Seeds | 1207 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
 | Sabja Seeds | Seeds | 1207 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |
 | Flax Seeds | Seeds | 1204 | **?** | Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack ... |

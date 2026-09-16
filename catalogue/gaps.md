@@ -8,7 +8,7 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 
 | Field | Rows missing it | Who supplies it |
 |---|---|---|
-| MRP (INR incl. all taxes) | **38** | Client - price list / pack stamp |
+| MRP (INR incl. all taxes) | **36** | Client - price list / pack stamp |
 | Best Before / Use By | **44** | Client, or the maker's back label |
 | Date of Manufacture or Packing | **56** | Generated at dispatch - see note below |
 | Manufacturer or Packer Name | **4** | Back-of-pack photo needed |
@@ -17,9 +17,9 @@ Every blank below is a gap, not a guess. Nothing in the sheet was invented to fi
 | Consumer Care Name | **4** | Back-of-pack photo needed |
 | Consumer Care Phone | **16** | Back-of-pack photo needed |
 | FSSAI Licence Number | **14** | Back-of-pack photo needed |
-| HSN Code | **63** | Jnanottam (CA) - see tax-schedule.md |
-| GST Rate (%) | **63** | Jnanottam (CA) - see tax-schedule.md |
-| Selling Price (INR) | **52** | Client - price list |
+| HSN Code | **35** | Jnanottam (CA) - see tax-schedule.md |
+| GST Rate (%) | **35** | Jnanottam (CA) - see tax-schedule.md |
+| Selling Price (INR) | **36** | Client - price list |
 
 ## The two that are not really the client's to send
 
@@ -46,7 +46,7 @@ Named off the pack front, which reads SWAD / MALNAD PREMIUM COFFEE POWDER / NICE
 Two packs supplied, black and red, both 1 kg, nothing on either distinguishing a grade. Listed once until the client says otherwise. The MRP line on the pack was never filled in.
 
 **QTF Tea - Guard-Hitlow Tea Factory**  
-Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself prints no weight. Still missing and still needed: the MRP, the FSSAI licence number and a packing date. The printed face carries only the factory name and address, which is why this one reads as trade packaging rather than a retail pack.
+Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself prints no weight, and 250 per kg is his price. Still missing: the FSSAI licence number and a packing date. The printed face carries only the factory name and address, which is why this one reads as trade packaging rather than a retail pack.
 
 **Cloves (Lavanga)**  
 Supplied twice, as 'clove' and as 'lavanga' - the same whole cloves in the same bag. Lavanga is Kannada for clove. Listed once.
@@ -85,7 +85,7 @@ Mixed spice blend. 5% or 12% is the open question - your call.
 Mixed spice blend. 5% or 12% is the open question - your call.
 
 **Horanadu Nellikai Powder**  
-Net contents confirmed by the client as 200 g on 16 Sep. Its MRP is printed on the pack but still unreadable in the photograph - it looks like 280 but is not legible enough to transcribe, and it was not supplied. Also: the pack prints 'Rich in Vitamin C and cooling agent for both body and eyes'. That claim must not be repeated on the listing.
+Net contents 200 g and MRP 200 supplied by the client 16 Sep. The MRP is printed on the pack too but is unreadable in the photograph, so this is his figure rather than a transcription. Also: the pack prints 'Rich in Vitamin C and cooling agent for both body and eyes'. That claim must not be repeated on the listing.
 
 **Chia Seeds**  
 Quantity and price supplied by the client 16 Sep. The tub itself still prints nothing - he is the packer, so the declaration has to go on the pack he ships, not only on the listing.

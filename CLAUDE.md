@@ -99,10 +99,47 @@ His replies to my information-gap list. These are decisions, not suggestions.
 | Special Dates | 500 g | ₹200 |
 | Pista | 500 g (was on the pack) | ₹900 |
 | Hayat raisins | 500 g (was on the pack) | ₹300 |
-| Nellikai powder | **200 g — confirmed** | **still missing** |
-| QTF Tea | **1 kg — confirmed** | **still missing** |
+| QTF Tea | **1 kg — confirmed** | **₹250 per kg** |
+| Nellikai powder | 200 g | **₹200** |
 
-**Net quantity is now complete: all 63 variants have one.**
+**Net quantity is complete: all 63 variants have one.**
+
+### Selling price = MRP — client instruction 16 Sep
+
+*"selling prices are as mentioned above in the packs itself."* So the selling
+price is the printed MRP throughout; no compare-at is ever written, because
+there is no discount to show. Applied in the sheet and in Shopify.
+
+**It only reaches the 27 rows whose pack prints an MRP.** 36 variants across 33
+products print none, so they still have no price at all:
+
+- **18 whole spices**, every one of them — plain poly bags with nothing printed
+- **9 syrups and squashes** — front labels only
+- **4 coffees** — Swad filter and nice, both sizes
+- Malnad Chai 1 kg · Sanjivni 1 kg · Badam 500 g
+- Aaradhya coconut oil, both sizes · Kalpatharu (its MRP is smudged illegible)
+
+### GST — signed off 16 Sep, but only covers 23 of 57
+
+He said *"gst signed off"*, which reads as approving `catalogue/tax-schedule.md`.
+Applied: **23 products** — coffee, the teas and all 17 whole spices, at 5%
+except instant coffee.
+
+**34 products still have no rate**, because my schedule proposed none for them —
+I left those blank rather than guess, so there was nothing there to approve.
+Grouped for a quick answer: the 6 Swad masala blends (the original 5%-vs-12%
+question), nellikai powder, the 6 seeds, the 6 dry fruits and nuts, the 9 syrups,
+the 3 oils, and the 3 non-food home-care lines.
+
+**Instant coffee went in at HSN 2101 / 18%** — the single largest rate call in
+the catalogue, and the validator warns on it. It was named in the schedule he
+signed off, so it is applied, but it is worth one direct confirmation.
+
+### Syrup back labels — not required, client's call 16 Sep
+
+He does not want them chased. Consequence, recorded once: those nine listings
+carry no packer address, no FSSAI number and no packing date, because those live
+on back labels we will not photograph. Their makers are named from the fronts.
 
 **One number was given per item, so it is both the MRP and the selling price.**
 None of these packs prints an MRP, and he is the packer, so the figure he names

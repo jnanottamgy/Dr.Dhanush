@@ -263,12 +263,12 @@ PRODUCTS = [
       desc="Tea from Guard-Hitlow Tea Factory, Koppa.",
       proposed_hsn="0902", proposed_gst="5",
       note="Net quantity confirmed as 1 kg by the client 16 Sep - the sack itself "
-           "prints no weight. Still missing and still needed: the MRP, the FSSAI "
-           "licence number and a packing date. The printed face carries only the "
+           "prints no weight, and 250 per kg is his price. Still missing: the "
+           "FSSAI licence number and a packing date. The printed face carries only the "
            "factory name and address, which is why this one reads as trade "
            "packaging rather than a retail pack.",
       variants=[
-          V("1 kg", (1, "kg"), "tea-powder-1kg.png"),
+          V("1 kg", (1, "kg"), "tea-powder-1kg.png", mrp="250"),
       ]),
 
     # ==================================================== WHOLE SPICES
@@ -339,12 +339,11 @@ PRODUCTS = [
       best_before="12 months from the date of packing",
       pkd="August 2026",
       proposed_hsn="0813", proposed_gst="",
-      note="Net contents confirmed by the client as 200 g on 16 Sep. Its MRP is "
-           "printed on the pack but still unreadable in the photograph - it looks "
-           "like 280 but is not legible enough to transcribe, and it was not "
-           "supplied. Also: the pack prints 'Rich in Vitamin C and cooling agent "
+      note="Net contents 200 g and MRP 200 supplied by the client 16 Sep. The "
+           "MRP is printed on the pack too but is unreadable in the photograph, "
+           "so this is his figure rather than a transcription. Also: the pack prints 'Rich in Vitamin C and cooling agent "
            "for both body and eyes'. That claim must not be repeated on the listing.",
-      variants=[V("200 g", (200, "g"), "nellikai-powder.png")]),
+      variants=[V("200 g", (200, "g"), "nellikai-powder.png", mrp="200")]),
 
     # ============================================================= SEEDS
     # Clear tubs. Four carry a name sticker, chia and sabja carry nothing.
@@ -521,7 +520,10 @@ def main():
             r["SKU"] = (f"{slug(p['name'])}-{slug(v['pack'])}"
                         if v["pack"] else f"{slug(p['name'])}")
             r["MRP (INR incl. all taxes)"] = v["mrp"]
-            r["Selling Price (INR)"] = v["sell"]
+            # Client instruction 16 Sep: "selling prices are as mentioned in
+            # the packs itself" - so the selling price IS the MRP unless a
+            # different figure was given explicitly.
+            r["Selling Price (INR)"] = v["sell"] or v["mrp"]
             r["Shipping Weight (g)"] = ship_weight(net, v["kind"])
             r["Net Quantity"] = net_text(net)
             r["Manufacturer or Packer Name"] = pk["packer"]
@@ -538,7 +540,10 @@ def main():
             r["Estate / Origin"] = p["origin"]
             r["Roast Level"] = p["roast"]
             r["Image File Names"] = v["images"]
-            # Stock Qty, HSN Code and GST Rate stay empty on purpose.
+            if p["proposed_gst"]:
+                r["HSN Code"] = p["proposed_hsn"]
+                r["GST Rate (%)"] = p["proposed_gst"]
+            # Stock Qty stays empty on purpose.
             rows.append(r)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
