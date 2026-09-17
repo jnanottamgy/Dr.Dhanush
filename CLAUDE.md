@@ -403,8 +403,21 @@ not inference from a failed call.
 
 **Does not have:** `write_legal_policies`. It holds `read_legal_policies` only,
 so **store policies cannot be published from here** — they are written in
-`policies/` and pasted by hand. That is the one hard blocker on the Razorpay
-prerequisite list.
+`policies/` and pasted by hand. Re-confirmed 17 Sep by actually calling
+`shopPolicyUpdate`, which returns *"Access denied ... Required access:
+`write_legal_policies` access scope."* Not inferred.
+
+**All five pasted policies went in ESCAPED — 17 Sep.** Jnanottam pasted them and
+every one stored as `&lt;h2&gt;...` rather than markup, so the storefront shows
+the raw tags as text. The refund one is worse: wrapped in `<pre>`, so it renders
+as a monospace code block. Cause: the policy editor's rich-text view escapes
+anything pasted into it, and copying out of a chat fenced code block can also
+carry code-block formatting in. **The `<>` (Show HTML) toggle must be clicked
+BEFORE pasting**, and the box must be emptied first, or the old escaped text
+stays. Only `PRIVACY_POLICY` is correct, because it is Shopify's own and was
+never touched — and it now correctly interpolates *Malnad Products*, the real
+phone and the real email. **I cannot fix this; it is his to redo.** Verify by
+reading `shopPolicies { body }` back and looking for `&lt;`.
 
 **`deliveryProfileUpdate` cannot touch zones at all, and says nothing.** It
 accepts `zonesToCreate`, `zonesToUpdate`, a zone rename and a method rename,
@@ -832,7 +845,7 @@ client's bank.
 | `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
 | `scripts/build_shipping_rates.py` | **Generates the 28 weight-based shipping rates** from eight numbers |
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
-| `policies/` | Refund, shipping, terms, contact — **paste by hand**, see below |
+| `policies/` | Refund, shipping, terms, contact, legal notice — **paste by hand**, see below |
 | `docs/store-setup.md` | What is left and who does it, in full |
 | `docs/gst-classification.md` | **HSN per product and the 12 rate mismatches**, for the CA |
 | `docs/your-steps.md` | **The same list in plain English, 8 numbered steps.** For Jnanottam |
