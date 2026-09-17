@@ -627,8 +627,8 @@ ul.never li b{color:var(--ink); font-weight:600;}
         <caption>Run twice &mdash; once in test mode, once live. Every row must pass.</caption>
         <thead><tr><th style="width:32px">#</th><th>Test</th><th>How</th><th>Expected result</th><th>Confirm in</th></tr></thead>
         <tbody>
-          <tr><td class="muted">1</td><td><b>UPI success</b></td><td>Pay &#8377;1 by GPay or PhonePe</td><td>Order created, marked paid, stock reduced by one</td><td>Shopify + Razorpay</td></tr>
-          <tr><td class="muted">2</td><td><b>UPI abandoned</b></td><td>Start the payment, then cancel in the UPI app</td><td>No order created; abandoned checkout recorded; <b>stock released</b></td><td>Shopify</td></tr>
+          <tr><td class="muted">1</td><td><b>UPI success</b></td><td>Pay &#8377;1 by GPay or PhonePe</td><td>Order created in Shopify and marked paid</td><td>Shopify + Razorpay</td></tr>
+          <tr><td class="muted">2</td><td><b>UPI abandoned</b></td><td>Start the payment, then cancel in the UPI app</td><td>No order created in Shopify. The abandoned cart is recorded <b>on Razorpay's side</b>, not Shopify's &mdash; Magic owns the checkout</td><td>Razorpay</td></tr>
           <tr><td class="muted">3</td><td><b>Card success</b></td><td>Pay &#8377;1 by debit or credit card</td><td>Order created and marked paid</td><td>Shopify + Razorpay</td></tr>
           <tr><td class="muted">4</td><td><b>Card 3-D Secure failure</b></td><td>Enter a wrong OTP deliberately</td><td>Payment fails, <b>no order created</b>, customer sees a clear message</td><td>Shopify + Razorpay</td></tr>
           <tr><td class="muted">5</td><td><b>Net banking</b></td><td>Pay &#8377;1 by net banking</td><td>Order created and marked paid</td><td>Shopify + Razorpay</td></tr>
@@ -639,9 +639,9 @@ ul.never li b{color:var(--ink); font-weight:600;}
           <tr><td class="muted">10</td><td><b>Settlement lands</b></td><td>Wait the settlement cycle (T+2, longer for the first few)</td><td><b>Money appears in the client's bank account</b>, matching the Razorpay settlement report</td><td>Bank statement</td></tr>
           <tr><td class="muted">11</td><td><b>Magic Checkout path</b></td><td>Place an order through Magic Checkout</td><td>Order completes; <b>Shopify's 2% third-party fee is not charged</b> on it</td><td>Shopify billing</td></tr>
           <tr><td class="muted">12</td><td><b>GST invoice</b></td><td>Open the invoice for a completed order</td><td>Correct GST rate and HSN, correct total, <b>sequential invoice number with no gap</b></td><td>Shopify</td></tr>
-          <tr><td class="muted">13</td><td><b>Last unit race</b></td><td>Set stock to 1, attempt two checkouts at once</td><td>Exactly one succeeds; the other is told it is sold out. <b>Stock never goes negative</b></td><td>Shopify</td></tr>
-          <tr><td class="muted">14</td><td><b>Cash on Delivery is off</b></td><td>Attempt checkout looking for a COD option</td><td>No COD option is offered anywhere</td><td>Shopify</td></tr>
-          <tr><td class="muted">15</td><td><b>Delivery charge by pin code</b></td><td>Check out to a near and a far pin code</td><td>Correct charge each time; free-delivery threshold applies correctly</td><td>Shopify</td></tr>
+          <tr><td class="muted">13</td><td><b>Order lands back in Shopify</b></td><td>Complete a Magic Checkout order, then open Shopify Orders</td><td>The order appears in Shopify within seconds &mdash; right items, right pack sizes, right total, right address. <b>Magic owns the checkout, so the order arrives by API. This join is the thing that can silently break.</b> Inventory is deliberately untracked, so there is no stock figure to check</td><td>Shopify + Razorpay</td></tr>
+          <tr><td class="muted">14</td><td><b>Cash on Delivery is off</b></td><td>Attempt checkout looking for a COD option</td><td>No COD option anywhere. <b>Magic Checkout is built around COD and ships with it on</b> &mdash; it must be turned off in Razorpay's Magic settings, not just in Shopify</td><td>Razorpay + Shopify</td></tr>
+          <tr><td class="muted">15</td><td><b>Delivery charge by weight and zone</b></td><td>Check out one basket to a Karnataka pin code, then to a North East one. Then a light basket and a heavy one</td><td>All four zones and seven weight bands of the <b>Malnad delivery</b> profile reflected correctly. <b>Magic must read our delivery profile</b>; a custom checkout that falls back to one flat rate, or to none, is the most expensive failure on this list. There is no free-delivery threshold &mdash; if one appears, something is wrong</td><td>Razorpay + Shopify</td></tr>
           <tr><td class="muted">16</td><td><b>Notifications fire</b></td><td>Complete one order fully</td><td>Confirmation and dispatch messages reach the customer at the right moments</td><td>Test inbox and phone</td></tr>
         </tbody>
       </table>
@@ -649,7 +649,7 @@ ul.never li b{color:var(--ink); font-weight:600;}
 
     <div class="danger">
       <h4>Stop conditions</h4>
-      <p>If <b>any</b> of rows 7, 10, 12 or 13 fails, stop the launch. Those four are the ones where a failure quietly costs the client money or creates a tax problem: a duplicate order, money that never lands, a broken invoice series, or stock sold twice. A failure there is not a snag to fix later.</p>
+      <p>If <b>any</b> of rows 7, 10, 12, 13 or 15 fails, stop the launch. Those five are where a failure quietly costs the client money or creates a tax problem: a duplicate order, money that never lands, a broken invoice series, an order that never reaches Shopify at all, or delivery charged at the wrong rate on every single parcel. A failure there is not a snag to fix later.</p>
     </div>
     <p class="tnote">Record each run in the repository with the date, who ran it, and the order and payment reference numbers. If a figure is ever questioned, that record is the answer.</p>
   </div>

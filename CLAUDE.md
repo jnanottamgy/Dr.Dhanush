@@ -275,7 +275,7 @@ Both were raised with him; they are not resolved by his answers.
 | Decision | Reason |
 |---|---|
 | **Shopify, not a custom build** | Below roughly ₹3 lakh/month in sales, Shopify's plan plus Magic Checkout costs less than self-hosted infrastructure, and carries none of the operational burden. The custom build plan is superseded, kept for reference. |
-| **Razorpay Magic Checkout** | Shopify adds 2% on Basic because Shopify Payments is unavailable in India. Magic Checkout is ~0.65% and currently falls outside that fee. Saves ~₹28,700/year. Flagged to the client as a gap in Shopify's rules, not a guarantee. |
+| **Razorpay Magic Checkout** | Shopify adds 2% on Basic because Shopify Payments is unavailable in India. Magic Checkout is ~0.65% and currently falls outside that fee. Saves ~₹28,700/year. Flagged to the client as a gap in Shopify's rules, not a guarantee. **Re-confirmed by Jnanottam 17 Sep** — *"lets go with magic checkout"* — after being shown the comparison and the caveats, including that Magic's headline feature is COD and this store is prepaid only, so the purchase is the fee gap plus one-click address, not the product's main draw. |
 | **Prepaid only** | Client instruction. Also removes COD refusal losses entirely. |
 | **WhatsApp community on the free Business App** | Communities only exist on the Business App; the API cannot run one, and a number moved to the API loses Communities permanently. API is priced as a separate optional upgrade, triggered by the 256-contact broadcast cap. |
 | **Owner dashboard included at no charge** | Listed at ₹8,000 then discounted to zero, so the client sees the value. Total stays ₹38,000. |
@@ -739,7 +739,31 @@ Two things did not change with that decision:
 - Products carry no images yet — see the connector limitation above.
 
 
-**Stage 0 — Shopify is ready (16 Sep). Razorpay is not: KYC is not done.**
+**Stage 0 — Shopify is ready (16 Sep). Razorpay KYC cleared 17 Sep.**
+
+### Magic Checkout — chosen 17 Sep, and what it changes about testing
+
+Because Magic **replaces the whole checkout** rather than just the payment step,
+four rows of the Stage 3 test matrix were describing a store that no longer
+exists, and have been rewritten in `build-runbook.html`:
+
+- **Row 1 and 2 no longer mention stock.** Inventory is untracked and policy is
+  CONTINUE — there is no count to decrement or release.
+- **Row 2's abandoned cart now sits on Razorpay's side**, not Shopify's. Magic
+  owns the checkout, so Shopify never sees the abandonment.
+- **Row 13 was "last unit race"**, which is meaningless with no stock tracking.
+  Replaced by **"order lands back in Shopify"** — with Magic the order arrives by
+  API from Razorpay, and that join is the new silent-failure point.
+- **Row 14 gains a real trap: Magic is built around COD and ships with it ON.**
+  It must be disabled in **Razorpay's** Magic settings, not just Shopify. The
+  client is prepaid only; this is the single easiest thing to get wrong.
+- **Row 15 dropped a free-delivery threshold that does not exist**, and now tests
+  what actually matters: that Magic reads the four-zone, seven-band
+  `Malnad delivery` profile. A custom checkout falling back to one flat rate, or
+  to none, would misprice postage on every parcel.
+
+**Stop conditions are now rows 7, 10, 12, 13 and 15** — 15 added because wrong
+delivery pricing is invisible until the month's accounts.
 
 ### Razorpay KYC — verified, do not regress
 
