@@ -14,6 +14,11 @@ so nothing has to be reconstructed from memory after a session compacts.
   checklists. Cannot complete KYC, receive an OTP, or log into anything.
 - **Dr. R. Dhanush** — the client. Sells Malnad produce: coffee, spices, honey,
   estate goods. Holds all required licences already.
+- **Dheeraj** — **Dhanush's brother, and the one who actually runs the business.**
+  The Razorpay merchant account is in his name and greets him by it. Asked and
+  answered 17 Sep: *"dheeraj is dhanush brother / he runs the business / everything
+  is legit."* **Settled — do not re-raise it.** The name on the Razorpay account
+  not matching the name on the quotation is expected, not a finding.
 
 ## What is being built
 
@@ -829,7 +834,7 @@ Blocking the first import, in order:
 Also new: the banana stem squash photograph shows **two** bottles, a regular and
 a **Sugarless**, where the catalogue listed one. Asked.
 
-### Store readiness check — 16 Sep
+### Store readiness check — re-read from the Admin API 17 Sep
 
 What is actually in the store, read from the Admin API, not assumed:
 
@@ -839,9 +844,10 @@ What is actually in the store, read from the Admin API, not assumed:
 | Shop name | ~~"My Store"~~ **renamed to "Malnad Products" 16 Sep** |
 | Active products | ~~**0.** All 57 are draft~~ **all 57 ACTIVE and on the Online Store channel, 16 Sep** |
 | Prices | ~~₹0.00 on all 63~~ **all 63 priced 16 Sep** |
-| Payments | none — Razorpay KYC not done |
-| Policies | refund / privacy / terms **not written**. Razorpay requires these published before it will activate |
-| Ships to | **29 countries** by default, including Japan, Norway and the US. He delivers from Horanadu — needs restricting to India |
+| Payments | KYC cleared 17 Sep. **Magic Checkout app installed but "Needs Activation"**, a second Razorpay app not yet installed, and **no provider is configured in Shopify Settings → Payments** — so nothing can take money yet |
+| Policies | All six exist as of 17 Sep, but **five render as escaped text** (`&lt;h2&gt;`) on the storefront. Written, pasted, broken. Must be redone by hand |
+| Ships to | **India only** — the 28-country international zone was deleted 16 Sep. 4 zones x 7 weight bands, 28 active rates, **but the figures are invented, not the courier's** |
+| Domain | `malnadproducts.in` **bought** 17 Sep. WHOIS registrant verification pending (15-day ICANN clock), and **not connected** — `primaryDomain` still reads `8uysc8-kx.myshopify.com` |
 | Billing address | correct: Malnad Spices, Horanadu, Chikmagalur 577181, +91 8431218956 |
 
 **`storefront-design.html` is a mockup, not the site.** It is a static HTML
