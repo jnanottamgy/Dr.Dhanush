@@ -889,6 +889,39 @@ sides still needs that connector back.
 **Also observed:** the phone field still reads **"Phone (optional)"** — the
 Settings → Checkout change has not been made yet.
 
+### Magic Checkout — now intercepting, 28 Sep. Razorpay backend still erroring.
+
+**How the storefront integration actually works, and how to verify it.** Magic
+needs the **`Magic Checkout Script` app embed** enabled on the live theme:
+Online Store → Themes → Edit theme → left panel, bottom → **App embeds**. Three
+Razorpay embeds are offered — `Login with Razorpay`, `Magic Checkout Script`,
+`Razorpay Reviews`. **Only the middle one is wanted.** Login with Razorpay pushes
+customer identity outside Shopify, which the owner dashboard reads; Reviews is a
+separate decision entirely.
+
+**VERIFY AN APP EMBED BY READING `config/settings_data.json`.** Enabled embeds
+are written into **`current.blocks`**. If that key is absent, **nothing is
+enabled** — regardless of what the toggle looked like. That is exactly what
+happened here: the toggle was flipped but **Save was never pressed**, the file
+had no `blocks` key at all, and three checkout tests were burned chasing
+password protection, cart drawers and theme incompatibility. After a proper save
+the file went **7,877 → 8,082 bytes**. Size alone is enough to confirm.
+
+**Sequence that was wrongly blamed, for the record:** the cart drawer
+(`cart_type: drawer`) was not the cause — `/cart` behaved identically. Password
+protection was not the cause either; the store was launched
+(`passwordProtection.enabled = false`, verified) and nothing changed. Both were
+reasonable hypotheses and both were wrong. The unsaved toggle was the whole
+thing.
+
+**Current state:** Magic's modal now opens over the storefront, branded
+*Secured By Razorpay* — so the button is hooked and the script runs. It then
+fails with **"Something went wrong, please try again after some time."** Not yet
+diagnosed. Leading suspicion is that Magic does not run properly in **test
+mode** on a real storefront, since both the Razorpay dashboard and the Shopify
+gateway are in test. The browser console is the next diagnostic step — the modal
+text is generic and the console will carry the real API error.
+
 ### Razorpay MCP connector — live 28 Sep, and it is READ-ONLY
 
 Jnanottam connected a Razorpay MCP. **24 tools, every one of them `fetch_*`.**
