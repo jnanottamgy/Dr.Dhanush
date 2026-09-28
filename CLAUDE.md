@@ -772,9 +772,16 @@ exists, and have been rewritten in `build-runbook.html`:
 - **Row 13 was "last unit race"**, which is meaningless with no stock tracking.
   Replaced by **"order lands back in Shopify"** — with Magic the order arrives by
   API from Razorpay, and that join is the new silent-failure point.
-- **Row 14 gains a real trap: Magic is built around COD and ships with it ON.**
-  It must be disabled in **Razorpay's** Magic settings, not just Shopify. The
-  client is prepaid only; this is the single easiest thing to get wrong.
+- **Row 14 — checked 28 Sep, and the expected trap did NOT apply.** I had
+  recorded that Magic ships with COD **on** and would need disabling. On this
+  account it is **off**: `dashboard.razorpay.com/app/magic/settings/cod-setup`
+  shows *"Enable COD as a payment option"* with an **Enable Now** button, which
+  only renders while COD is disabled. Most likely cause: **Smart COD
+  Configurations was deliberately not ticked during onboarding**, so the COD
+  product was never switched on. The Basic Settings below it (*All Zones in
+  India*, *All Product*) are the rules that would apply **if** it were enabled —
+  they are not evidence that it is. **Do not click Enable Now.** The row still
+  gets tested at the checkout itself, because a settings page is not proof.
 - **Row 15 dropped a free-delivery threshold that does not exist**, and now tests
   what actually matters: that Magic reads the four-zone, seven-band
   `Malnad delivery` profile. A custom checkout falling back to one flat rate, or
