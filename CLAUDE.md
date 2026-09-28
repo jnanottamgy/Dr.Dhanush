@@ -532,9 +532,12 @@ five rupees either way, so a single origin is correct and a second location
 group would be false precision. The existing rounding already absorbs it: rates
 round **up** to the nearest ₹5 and each band charges at its **top** weight.
 
-**Still outstanding: the eight numbers.** A base and a per-kg figure for each of
-the four zones, off the courier's rate card. That is the only input
-`scripts/build_shipping_rates.py` needs to replace all 28 rates.
+**CLOSED 28 Sep — the rates stand as built.** Jnanottam: *"use the old price we
+decided."* The 28 generated rates are now the shipping prices, not a placeholder.
+He was told three times that they are a plausible shape rather than quoted
+tariffs; this is his decision with that in front of him. **Do not re-raise it.**
+If a real rate card ever arrives, `scripts/build_shipping_rates.py` still
+regenerates all 28 from eight numbers.
 
 ### Stage 2 — STOREFRONT BUILT (16 Sep)
 
@@ -850,7 +853,7 @@ What is actually in the store, read from the Admin API, not assumed:
 
 | | State |
 |---|---|
-| Theme | **Live theme is still stock Horizon.** Our build is in the unpublished `Malnad Spices — build` — publishing it is Jnanottam's |
+| Theme | **PUBLISHED 28 Sep.** `Malnad Spices — build` is now `MAIN`; stock Horizon is demoted to UNPUBLISHED. A third theme, `Updated copy of Malnad Spices — build`, sits as a draft — Shopify's auto-generated update copy, not ours |
 | Shop name | ~~"My Store"~~ **renamed to "Malnad Products" 16 Sep** |
 | Active products | ~~**0.** All 57 are draft~~ **all 57 ACTIVE and on the Online Store channel, 16 Sep** |
 | Prices | ~~₹0.00 on all 63~~ **all 63 priced 16 Sep** |
