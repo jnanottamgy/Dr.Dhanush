@@ -984,6 +984,54 @@ clicking Check out gets a modal that hangs — nobody can buy. Setting
 `"disabled": true` on that block restores the working Shopify checkout (proven by
 order #1001) at the higher ~4% fee. That is a one-line theme write from here.
 
+### SHOPIFY'S SIDE OF MAGIC IS COMPLETE — verified 28 Sep, stop looking here
+
+Jnanottam: *"i want magic to work / until that works im not giving this away."*
+Fair — the fee gap is ~₹28,700/year to the client. So the Shopify half was read
+out properly rather than guessed at. **It is finished.**
+
+`appInstallations` shows three apps only: Shopify Messaging, this connector, and
+**`razorpay-magicx-app` — "Razorpay COD & Magic Checkout", developer Razorpay
+Payments, `AppInstallation/622535835761`, `embedded: false`.** So there is one
+Razorpay app, not two; the readiness table's "a second Razorpay app not yet
+installed" is not a gap, the gateway is a Shopify payment provider rather than an
+app.
+
+**The app holds 41 access scopes and every one Magic needs is granted** —
+`write_orders`, `write_order_edits`, `write_draft_orders`,
+`unauthenticated_write_checkouts`, `unauthenticated_write_customers`,
+`write_themes`, `write_shipping`, `write_delivery_customizations`,
+`write_payment_customizations`, `write_app_proxy`. **A missing scope is ruled
+out.** Keep this list: after any reinstall, read it back and compare.
+
+So everything on our side is done — app installed and fully authorised, embed
+enabled and saved, domain primary with SSL, 57 products and 9 collections
+published, weight-based shipping proven twice. **The remaining fault is in
+Razorpay's own configuration, and every screen for it is behind Jnanottam's
+login.** `embedded: false` means opening the app from Shopify Apps hands off to
+Razorpay's dashboard — that is where setup lives and where "Needs Activation"
+clears.
+
+**LEADING HYPOTHESIS — DOMAIN MISMATCH, and it fits the hang better than test
+mode.** The primary domain became `malnadproducts.in` on **28 Sep**, the same day,
+and `myshopifyDomain` is still `8uysc8-kx.myshopify.com`. Magic's script asks
+Razorpay for the configuration belonging to the domain it is running on. If the app
+was set up before the domain was connected, Razorpay holds the myshopify domain,
+there is no config for `malnadproducts.in`, and the modal waits on an answer that
+never comes. **That explains the clean console** — nothing errored, so bugsnag had
+nothing to report. Test mode would more likely return an error than hang forever.
+
+**Twenty-second check:** Razorpay dashboard → Magic Checkout → Settings → the
+store domain it lists. `8uysc8-kx.myshopify.com` there = found it.
+**Fix:** update the store URL to `malnadproducts.in`; if it cannot be edited,
+uninstall and reinstall the app, since the install handshake re-registers the
+current primary domain. Then live keys — in that order, because live mode cannot
+rescue a wrong domain registration.
+
+**Not stated as settled.** This is the best-fitting candidate and a cheap check,
+not a proven cause. Two earlier confident readings on this integration were wrong
+(the live-mode scare, and three wrong causes before the unsaved toggle).
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
