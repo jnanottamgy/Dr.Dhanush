@@ -783,6 +783,33 @@ exists, and have been rewritten in `build-runbook.html`:
 **Stop conditions are now rows 7, 10, 12, 13 and 15** — 15 added because wrong
 delivery pricing is invisible until the month's accounts.
 
+### Razorpay MCP connector — live 28 Sep, and it is READ-ONLY
+
+Jnanottam connected a Razorpay MCP. **24 tools, every one of them `fetch_*`.**
+There is no mutation, no settings write, no key management.
+
+**What it CAN do — and this genuinely changes how Stage 3 is verified:**
+`fetch_all_payments` · `fetch_payment` · `fetch_payment_card_details` ·
+`fetch_all_orders` · `fetch_order` · `fetch_order_payments` ·
+`fetch_all_refunds` · `fetch_refund` · `fetch_specific_refund_for_payment` ·
+`fetch_all_settlements` · `fetch_settlement_with_id` ·
+`fetch_settlement_recon_details` · `fetch_all_instant_settlements` ·
+payment links, QR codes, payouts.
+
+So the test matrix no longer depends on him screenshotting two dashboards.
+**Rows 8 (order lands in Shopify), 10 (settlement lands) and the refund rows can
+now be checked from BOTH sides by Claude** — Shopify's order against Razorpay's
+payment record, by id and amount. That is exactly the "one system agreeing with
+itself proves nothing" gate, and it is now automatable.
+
+**What it CANNOT do — do not promise these:** turn COD off, switch test/live,
+enter or rotate API keys, or touch any Magic Checkout setting. All of that stays
+in Jnanottam's browser.
+
+**Baseline read 28 Sep:** `fetch_all_payments` 0, `fetch_all_orders` 0,
+`fetch_all_settlements` 0 — matching Shopify's 0 orders. Nothing has been tested
+yet, in test mode or otherwise.
+
 ### Razorpay KYC — verified, do not regress
 
 - **Video KYC is between the client and a Razorpay officer.** Jnanottam is not on
