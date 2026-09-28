@@ -1165,14 +1165,25 @@ modal that renders its chrome and then waits forever with a clean console** —
 nothing threw, so bugsnag reported nothing. Best mechanical fit found for this
 symptom, and it is a documented step rather than a hypothesis.
 
-**2. Payment method customizations.** Razorpay's troubleshooting names active
-payment method customizations as the typical cause of their checkout failing to
-appear: *"Navigate to Shopify Admin → Settings → Payments → Payment Method
-Customizations. Disable or remove all customizations listed under this section."*
-The app page reads **Functions: 1 active, available for 2 areas**, and Shopify
-Functions are how payment and delivery customizations are built — so there is
-something to look at. **This connector cannot read them** — `paymentCustomizations`
-needs `read_payment_customizations`, which it does not hold. Jnanottam's screen.
+**2. Payment method customizations — FOUND AND IDENTIFIED, 28 Sep 23:27.**
+`admin.shopify.com/store/8uysc8-kx/settings/payments/customizations` shows exactly
+one, **Active**:
+
+> **"Hides COD payment method for Non MagicX shipping methods"** — by *Razorpay
+> COD & Magic Checkout*
+
+That closes the "Functions: 1 active" question: it is Razorpay's own COD function.
+**COD is disabled on this account, so the function has nothing to do** — it is a
+no-op. (This connector cannot read these; `paymentCustomizations` needs
+`read_payment_customizations`, which it lacks. Read from Jnanottam's screen.)
+
+Razorpay's troubleshooting does say *"Disable or remove all customizations listed
+under this section"*, but that guidance is about **their gateway not appearing in
+Shopify's checkout** — a different symptom from a Magic modal that never loads,
+and this Function acts on Shopify's checkout, which Magic replaces. So: worth
+disabling because it is their documented step, costs nothing and risks nothing
+with COD off — but **do not expect it to be the fix**. If it changes nothing,
+every documented cause has been tried and the support mail is the next step.
 
 **3. Theme changed.** Their first troubleshooting question is *"check if your
 website's theme was recently changed. If the theme is unchanged, raise a ticket."*
