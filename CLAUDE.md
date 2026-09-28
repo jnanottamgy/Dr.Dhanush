@@ -1215,6 +1215,28 @@ Sources: `razorpay.com/docs/payments/magic-checkout/troubleshooting-faqs/` ·
 `razorpay.com/docs/payments/magic-checkout/shopify/` ·
 `razorpay.com/docs/payments/magic-checkout/shopify/configuration/`
 
+### Magic Cart reads "unpublished" — that is CORRECT, do not publish it
+
+`dashboard.razorpay.com/app/magic/settings/magic-cart` shows a banner: *"Magic
+Cart is unpublished! Your configurations here won't show on your website till you
+publish Magic Cart."* with a **Republish Cart** button. It is the only thing in
+the whole Razorpay dashboard in an explicitly incomplete state, so it looks like
+the find. **It is not.**
+
+**Magic Cart is a separate product from Magic Checkout** — Razorpay's own
+description is a cart that "transforms your static cart into a conversion engine",
+with upsell, cross-sell, discount nudges and AOV widgets. Nothing in their
+documentation makes it a prerequisite for Magic Checkout. Unpublished is the
+correct state for a product that was never configured.
+
+**Do not press Republish Cart.** It would push a Razorpay cart drawer onto the
+live storefront over Horizon's own cart, with `Cart theme color` currently
+`#000` rather than the brand palette — a visible change to a store being handed
+over, for a feature nobody asked for.
+
+Its preview does confirm the catalogue sync is healthy: real products with real
+prices (Soapnut Whole 150 g ₹140, Sikakai Powder 200 g ₹120, grand total ₹260).
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
