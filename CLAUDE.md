@@ -1248,6 +1248,34 @@ over, for a feature nobody asked for.
 Its preview does confirm the catalogue sync is healthy: real products with real
 prices (Soapnut Whole 150 g ₹140, Sikakai Powder 200 g ₹120, grand total ₹260).
 
+### SMS notifications — Shopify barely does them. Answered 28 Sep, no app bought.
+
+Jnanottam saw a notice while making the phone number compulsory, saying an app is
+needed to send SMS. It is accurate. Checked rather than answered from memory:
+
+**Shopify sends natively, and only these four:** order confirmation (only when the
+customer supplies a **phone number instead of an email**), local pickup notices,
+gift card issuance, POS receipts — and only in supported countries.
+
+**Everything else needs a paid third-party app:** shipping and dispatch updates,
+delivery notifications, abandoned cart, anything promotional.
+
+**Consequence for this store:** customers get order confirmation and shipping
+updates **by email only**. For an Indian customer buying spices that is a real
+service gap — a parcel going out with no message is how "where is my order"
+happens.
+
+**DECISION: no SMS app. Do not add a subscription.** Out of the ₹38,000 scope,
+and a recurring monthly cost on a store that has not taken a real order yet. The
+answer is already in scope and free: **the WhatsApp Business App**. The phone
+number is now **required at checkout**, so every order carries a mobile number;
+he packs to order, so when a parcel goes out he sends one WhatsApp with the
+tracking number from his phone. Better service than an automated SMS at this
+volume. Revisit only when order volume makes the typing the bottleneck — at which
+point the cost is obviously justified.
+
+Source: `help.shopify.com/en/manual/fulfillment/setup/notifications/sms-notifications`
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
