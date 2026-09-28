@@ -984,6 +984,51 @@ clicking Check out gets a modal that hangs — nobody can buy. Setting
 `"disabled": true` on that block restores the working Shopify checkout (proven by
 order #1001) at the higher ~4% fee. That is a one-line theme write from here.
 
+### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
+
+`themeFilesUpsert` against the MAIN theme is refused outright by the connector's
+safety policy: *"This mutation targets the live (published) theme. Theme file
+writes against the live storefront are blocked."* Now that `Malnad Spices — build`
+IS MAIN, **no theme file can be written from here at all.** Every theme change is
+either a duplicate-edit-publish cycle or Jnanottam in the theme editor. Do not
+plan a fix that needs a live theme write.
+
+**CONSEQUENCE — the repo and the live theme now DISAGREE on one key, deliberately.**
+`theme/config/settings_data.json` in this repo carries the magicx-script app block
+with **`"disabled": true`**, because the store cannot take an order while Magic
+hangs. The live theme still has **`false`**. Closing that gap is one toggle in
+Online Store → Themes → Customize → App embeds → *Magic Checkout Script* → off →
+**Save** (and Save is the step that gets missed — see the section above). Verify by
+re-reading the live `config/settings_data.json` and looking at that block's
+`disabled` value, never by the toggle.
+
+The repo copy also gained `content_for_index: []`, which the live file already had.
+
+### HANDOVER, 28 Sep — the store is in TEST MODE and that is the real blocker
+
+Told to sort the checkout inside 10 minutes with handover 45 minutes out. Magic is
+not fixable in that window — it waits on Razorpay activating the integration.
+What matters more, and had not been said out loud: **Shopify's Razorpay gateway
+still has test mode ON, so the store takes zero rupees regardless of Magic.**
+Critical path given to him, in order:
+
+1. Magic Checkout Script embed **off** + Save → restores Shopify's checkout,
+   proven working by order #1001. Fee goes to ~4% all-in instead of Magic's
+   ~0.65%. That is a price, not an outage.
+2. Razorpay **Test → Live**, generate live keys, paste into the Shopify gateway,
+   **uncheck test mode**. His browser, never this transcript.
+3. One real ₹80 purchase (Black Pepper 100 g), then refund. **This is now
+   verifiable from both sides by Claude**, because the connector is on live keys.
+
+**What he was told to promise the client:** the store is live and taking Razorpay
+payments; Magic Checkout is a fee optimisation pending Razorpay activation, added
+later with no downtime. **Not** promised for today.
+
+**Also flagged before signing:** two items inside the ₹38,000 scope are not built —
+the **owner dashboard** is still `dashboard-mockup.html` with sample data, and the
+**WhatsApp Business community** has not been started. Better said up front than
+discovered.
+
 ### Razorpay MCP connector — live 28 Sep, and it is READ-ONLY
 
 Jnanottam connected a Razorpay MCP. **24 tools, every one of them `fetch_*`.**
