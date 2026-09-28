@@ -1083,6 +1083,59 @@ which narrows the fault to Magic's own configuration rather than the link.
 **Open app** button, top right beside *More actions* — non-embedded, so it hands
 off to Razorpay's dashboard for this store, which is where Magic's settings live.
 
+### MAGIC IS ACTIVATED — Razorpay's own settings read, 28 Sep 23:03 IST
+
+Reached via `dashboard.razorpay.com/app/magic/settings/checkout-setup`. Magic
+Checkout's settings live under **Payments → (left rail) Magic Checkout → Setup &
+Settings**, with entries: Checkout Setup · Cash On Delivery · RazorpayID ·
+Delivery Statuses · Shipping Setup · Order Settings · Analytics · Upload ·
+Magic Cart, plus a Magic Suite group. **Magic is NOT in the top nav**, which is
+why it looked absent — `Open app` from Shopify lands on `/app/home`, not here.
+
+**"Magic Checkout Settings — Magic Checkout activated. Set up COD and other
+configurations here."** Store shown: `8uysc8-kx.myshopify.com`, with an Edit
+link beside it.
+
+**So the "Needs Activation" hypothesis is DEAD — my fourth wrong call on this
+integration.** Magic is activated and the store is linked. Do not chase
+activation again. For the record the wrong calls were: three causes before the
+unsaved app-embed toggle, the live-mode scare, the domain mismatch, and now
+activation.
+
+Checkout Settings on that page, all **Disabled**: Capture billing address ·
+Capture GSTIN · Capture order instructions · Hide COD payment when disabled ·
+Pay with gift card. None of these would cause a load failure.
+
+**DO NOT ENABLE "Magic Shipping" — `/app/magic/settings/shipping-setup`.** The
+toggle is **off** and must stay off. Its own text: *"Enabling Magic Shipping will
+bypass all shipping configurations from any plugins on your E-commerce platform
+and follow configurations added below."* Turning it on would discard the
+four-zone, seven-band `Malnad delivery` profile that has been proven correct
+twice against real carts (920 g → ₹55, 1,570 g → ₹85). It is a tempting toggle
+that would silently regress working shipping.
+
+**REAL DEFECT FOUND THERE, and it is the Shopify trap seen from Razorpay's side.**
+Razorpay has synced the profiles correctly:
+
+| Profile | Zones |
+|---|---|
+| **All Other Products** (Default) | **— empty** |
+| Malnad delivery | Karnataka · North East and islands · Rest of India · South and West India |
+
+All 63 current variants sit in `Malnad delivery`, so today's catalogue is fine.
+**Any product added later lands in the empty default and gets no delivery option
+at checkout** — unbuyable, with no error shown. Already recorded from the Shopify
+end; this is independent confirmation. Fix is Shopify → Settings → Shipping and
+delivery, adding zones to the default profile; it cannot be done through the API.
+
+**WHAT IS LEFT.** Activation, store link, app embed, 41 scopes, Extensions,
+Functions and shipping profiles have each been checked and are correct. **The
+only remaining difference from a working Magic setup is TEST mode**, still shown
+as a green TEST toggle at the top of every Razorpay screen. That is now the last
+standing hypothesis by elimination rather than by guess. If Magic still hangs on
+live keys it is a Razorpay-side bug and `docs/razorpay-magic-support-request.txt`
+goes in.
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
