@@ -666,6 +666,16 @@ and published to the Online Store channel.** Checked before publishing that
 every one of the 63 variants carries a real price and that no `needs-price`
 tag survives — nothing went live orderable for free.
 
+**The same trap bit the COLLECTIONS too — found 28 Sep.** Every
+`/collections/...` URL returned **404**, so the Shop dropdown and the homepage
+category tiles both led nowhere. Cause: all nine collections sat at
+`resourcePublicationsCount: 0`. They were created, tag-rules working, 57 of 57
+products sorted into them — and on **zero sales channels**, so Shopify would not
+serve their pages at all. Fixed with `publishablePublish` against the Online
+Store publication; all nine read back `1`. **Publishing products does NOT publish
+the collections they belong to — they are separate resources and each needs its
+own publish.** `frontpage` was already on 2 channels because Shopify creates it.
+
 **Two steps, not one, and the second is the one that gets missed.**
 `bulk-update-product-status` sets `status: ACTIVE`, and that alone left all 57
 on **zero sales channels** — invisible on the storefront, and the status field
