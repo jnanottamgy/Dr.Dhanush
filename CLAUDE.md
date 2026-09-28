@@ -790,6 +790,38 @@ exists, and have been rewritten in `build-runbook.html`:
 **Stop conditions are now rows 7, 10, 12, 13 and 15** — 15 added because wrong
 delivery pricing is invisible until the month's accounts.
 
+### DANGER — Shopify's test mode does NOT cover Magic Checkout (28 Sep)
+
+First real checkout attempt exposed this. Two facts that look contradictory and
+are not:
+
+- Shopify → Payments → *01 Cards, UPI, NB, Wallets by Razorpay* shows
+  **"Test mode is on"**, and it is.
+- The actual payment page rejected Razorpay's own test card `4111 1111 1111 1111`
+  with **"International cards are not supported"**, and served a real QR code,
+  real Google Pay and ICICI PayLater. That is **live** behaviour.
+
+**Why both are true: the Shopify gateway was never used.** Magic Checkout
+intercepts the cart *before* Shopify's checkout, so Shopify's test-mode switch
+never applies to it. The page served was
+`api.razorpay.com/v1/checkout/hosted`, driven by the Razorpay **app's own keys**,
+not by the Shopify gateway.
+
+**Consequence: a real card would have taken real money, with Shopify's test mode
+showing on the whole time.** Nothing protects a Magic store except Magic's own
+key mode. The dashboard TEST toggle only changes what the dashboard displays; the
+**API key decides what the checkout does**.
+
+**The 2% is confirmed in writing.** The same Shopify page states *"2% transaction
+fee · processing fees apply"*. That is the fee Magic was chosen to avoid — so it
+also confirms that any order that does fall through to Shopify's checkout costs
+the extra 2%.
+
+**Unresolved and blocking:** whether Magic is genuinely intercepting, or whether
+the customer went Shopify checkout → Razorpay hosted page (the Secure pattern, at
+4% all-in). The page said *"Retry payment of ₹1,155"* with no address collection
+on it, which points at address/shipping having happened elsewhere.
+
 ### Razorpay MCP connector — live 28 Sep, and it is READ-ONLY
 
 Jnanottam connected a Razorpay MCP. **24 tools, every one of them `fetch_*`.**
