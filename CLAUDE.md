@@ -1146,7 +1146,15 @@ earlier conclusion that Razorpay's docs were unreachable was true only of
 WebFetch/curl. Jnanottam's idea to go and research it was the right call and it
 produced more than four hours of my own hypotheses did.
 
-**1. A REQUIRED SETUP STEP WAS NEVER DONE — "disable Auto fetch coupon".**
+**1. ~~A REQUIRED SETUP STEP WAS NEVER DONE — "disable Auto fetch coupon".~~
+WITHDRAWN SAME NIGHT — the setting does not exist on this account.** Jnanottam
+scrolled Checkout Setup to the bottom: it ends at Checkout Settings → Gift Card
+Settings (*Pay with gift card, Disabled*) → *Enable the Abandoned webhook to
+track* (off, URL blank) → **Save settings**. **There is no Auto fetch coupon
+toggle.** Most likely it only renders where the Coupons feature is provisioned —
+in which case the checkout is not fetching coupons either, and this is not the
+cause. Recorded so nobody hunts for that toggle again. The original reasoning,
+kept because the mechanism is still worth knowing:
 Razorpay's Shopify integration procedure reads: *"Navigate to Checkout Setup,
 disable Auto fetch coupon and click Save settings."* It sits below the Gift Card
 Settings on `/app/magic/settings/checkout-setup`, past where the screenshot
@@ -1183,6 +1191,25 @@ three causes above.**
 
 **Escalate to `magic-checkout-support@razorpay.com`**, not generic support — it
 is the address Razorpay gives for getting Magic features enabled on an account.
+
+**A DOCUMENTED STEP THAT HAS NO SCREEN ON THIS ACCOUNT.** The configuration doc
+says: *"navigate to Magic Checkout → Setup & Settings → **Platform Settings**,
+select Shopify from the Platform drop-down list and enter your Shopify Store
+ID."* **There is no Platform Settings entry in this account's sidebar** —
+Checkout Setup · Cash On Delivery · RazorpayID · Delivery Statuses · Shipping
+Setup · Order Settings · Analytics · Upload · Magic Cart · Magic Suite. The store
+ID does appear on Checkout Setup with an Edit link, so this may be the same step
+in a newer layout — or a step this account never got. **Put it to Razorpay
+rather than guessing.** Note `Coupons` IS present as a top-level sidebar item.
+
+**Razorpay's own walkthrough video:** `youtube.com/watch?v=Cr9IdCU5o8Q` —
+*Integrate Razorpay Magic Checkout with Shopify Website*. Not viewable from this
+container (YouTube is blocked at the proxy, like everything else), so it is
+Jnanottam's to watch.
+
+**STILL UNTESTED after all of the above:** payment method customizations
+(cause 2) and the theme change (cause 3). Those two plus Platform Settings are
+what remains.
 
 Sources: `razorpay.com/docs/payments/magic-checkout/troubleshooting-faqs/` ·
 `razorpay.com/docs/payments/magic-checkout/shopify/` ·

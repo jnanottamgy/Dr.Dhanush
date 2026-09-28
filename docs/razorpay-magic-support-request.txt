@@ -59,3 +59,12 @@ ADDITIONAL, AFTER READING YOUR DOCUMENTATION
   Does Magic need to be re-enabled against the newly published theme, and how?
 - Shopify reports "Functions: 1 active" for your app. Could an active payment
   method customization be blocking the checkout from rendering?
+- Your configuration doc says to set the Shopify Store ID under Magic Checkout →
+  Setup & Settings → "Platform Settings". Our dashboard has no Platform Settings
+  entry — only Checkout Setup, Cash On Delivery, RazorpayID, Delivery Statuses,
+  Shipping Setup, Order Settings, Analytics, Upload and Magic Cart. The store ID
+  does show on Checkout Setup. Is that the same step, or is something missing
+  from our account?
+- Checkout Setup has no "Auto fetch coupon" toggle, which your integration steps
+  say to disable. Is that expected on our account?
+
