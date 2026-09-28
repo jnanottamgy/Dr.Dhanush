@@ -965,10 +965,18 @@ installed and the store is public, but the session's egress policy answers **403
 to CONNECT** for both `malnadproducts.in:443` and `checkout.razorpay.com:443`, so
 no browser here can reach either. Driving the checkout is Jnanottam's browser only.
 
-**The one decisive read, and it needs no browser skill:** with the Razorpay MCP
-connected, `fetch_all_orders` says whether Magic's backend ever created a Razorpay
-order at 16:03. Nothing there = the failure is before order creation, which points
-straight at activation. **The connector is disconnected again as of this check.**
+**The read I wanted is NOT available in test mode — checked, 28 Sep.** The
+Razorpay connector came back and returns 0 orders / 0 payments / 0 settlements,
+but it is **live-mode only** (proved against order #1001's test-mode ₹1,155
+Razorpay transaction — see the connector section below). So it cannot say whether
+Magic's backend created an order at 16:03, and no read from here can while the
+store stays in test.
+
+**That removes the last reason to keep debugging in test mode.** Going live is now
+both the leading candidate fix and the only route to verifying anything from this
+side. Order of work: confirm Magic is activated at Razorpay (the app has read
+"Needs Activation" since 17 Sep and was never cleared), then switch to live keys
+and buy one ₹80 pack to prove it end to end.
 
 **Customer-facing consequence while this is open.** The store is public
 (`passwordProtection.enabled = false`) and the embed is live, so a real customer
@@ -999,9 +1007,27 @@ itself proves nothing" gate, and it is now automatable.
 enter or rotate API keys, or touch any Magic Checkout setting. All of that stays
 in Jnanottam's browser.
 
-**Baseline read 28 Sep:** `fetch_all_payments` 0, `fetch_all_orders` 0,
-`fetch_all_settlements` 0 — matching Shopify's 0 orders. Nothing has been tested
-yet, in test mode or otherwise.
+**THE CONNECTOR IS LIVE-MODE ONLY — established 28 Sep, do not re-read it as
+"nothing happened".** Re-read after reconnecting: `fetch_all_orders` **0**,
+`fetch_all_payments` **0**, `fetch_all_settlements` **0**. That is not evidence
+of no activity. Shopify's order #1001 carries a **SUCCESS** Razorpay `SALE`
+transaction for **₹1,155** with `test: true` on both the order and the
+transaction — so a Razorpay test-mode payment certainly exists, and this
+connector cannot see it. Either it is authorised on live keys only, or it is
+pointed at a different Razorpay account. Either way the consequence is the same:
+
+- **It cannot verify anything while the store is in test mode.** The Stage 3
+  both-sides cross-check (rows 8, 10 and the refund rows) only starts working
+  once the store is live.
+- **It is the reason to go live rather than keep testing.** In test mode I am
+  blind on Razorpay's side; in live mode every order can be matched by id and
+  amount from both directions.
+
+**It also closes the 28 Sep live-mode scare with evidence rather than reasoning.**
+If the store had been running on live keys, order #1001's ₹1,155 would be sitting
+in `fetch_all_payments`. It is not, and there are **zero live payments and zero
+settlements on this account** — nothing real has ever been charged. Do not
+re-open that question.
 
 ### Razorpay KYC — verified, do not regress
 
