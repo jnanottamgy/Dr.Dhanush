@@ -790,7 +790,7 @@ exists, and have been rewritten in `build-runbook.html`:
 **Stop conditions are now rows 7, 10, 12, 13 and 15** — 15 added because wrong
 delivery pricing is invisible until the month's accounts.
 
-### DANGER — Shopify's test mode does NOT cover Magic Checkout (28 Sep)
+### Test-mode scare, 28 Sep — MOSTLY A FALSE ALARM, corrected same day
 
 First real checkout attempt exposed this. Two facts that look contradictory and
 are not:
@@ -801,16 +801,25 @@ are not:
   with **"International cards are not supported"**, and served a real QR code,
   real Google Pay and ICICI PayLater. That is **live** behaviour.
 
-**Why both are true: the Shopify gateway was never used.** Magic Checkout
-intercepts the cart *before* Shopify's checkout, so Shopify's test-mode switch
-never applies to it. The page served was
-`api.razorpay.com/v1/checkout/hosted`, driven by the Razorpay **app's own keys**,
-not by the Shopify gateway.
+**The real cause was my own bad test card.** `4111 1111 1111 1111` is the
+classic **international** Visa test number. Razorpay has international payments
+**off** by default — correct for this business — so it is refused with exactly
+that message *even in test mode*. Jnanottam then confirmed the keys on the
+Razorpay dashboard read **`rzp_test_`**.
 
-**Consequence: a real card would have taken real money, with Shopify's test mode
-showing on the whole time.** Nothing protects a Magic store except Magic's own
-key mode. The dashboard TEST toggle only changes what the dashboard displays; the
-**API key decides what the checkout does**.
+**I also over-read the page.** A real-looking QR, Google Pay and ICICI PayLater
+are what Razorpay's test checkout shows; they simulate rather than charge. I
+called that live behaviour and should not have.
+
+**Use a DOMESTIC test card, or UPI.** `success@razorpay` / `failure@razorpay` as
+the VPA is the reliable route and sidesteps the card-origin problem entirely.
+Razorpay's docs carry the domestic test card list; do not reach for 4111 again.
+
+**What survives from the scare, and is still true:** Shopify's test-mode toggle
+governs the **Shopify gateway**, not Magic. If Magic owns the checkout it runs on
+the Razorpay app's own keys. So "Test mode is on" in Shopify is not by itself
+proof that a Magic checkout is safe — check the app's key prefix. On this store
+that check came back `rzp_test_`, so it was safe.
 
 **The 2% is confirmed in writing.** The same Shopify page states *"2% transaction
 fee · processing fees apply"*. That is the fee Magic was chosen to avoid — so it
