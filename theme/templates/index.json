@@ -35,7 +35,7 @@
           "settings": {
             "icon": "label",
             "title": "Read off the pack",
-            "text": "Net quantity, MRP, packing date, best before. Where a pack does not print one, the listing says so instead of filling it in."
+            "text": "Net quantity, MRP, packing date, best before — every figure transcribed from the pack you receive."
           }
         },
         "p2": {

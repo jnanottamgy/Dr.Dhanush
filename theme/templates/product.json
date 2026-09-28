@@ -307,7 +307,6 @@
                 "heading_preset": "h6",
                 "intro": "Printed on the pack you receive.",
                 "gap_notice": "Not printed on this pack.",
-                "gap_footnote": "Where a declaration is not printed on the pack we leave it blank. We do not state one we cannot read.",
                 "gap_color": "#9C4A28",
                 "show_origin_notes": true,
                 "show_trade": false,
