@@ -842,9 +842,10 @@ URL was **`malnadproducts.in/checkouts/cn/...`** — Shopify's own checkout, wit
 Shopify's Contact / Delivery layout. Only *after* that does Razorpay's hosted
 payment page appear. That is the **Razorpay Secure** pattern, the one we
 explicitly chose against: **Shopify's 2% plus Razorpay's ~2%, about 4% all-in,
-against Magic's ~0.65%.** Corroborating evidence on the app page: **Extensions
+against Magic's ~0.65%.** Corroborating evidence on the app page at the time: **Extensions
 0 active** — Magic needs a storefront extension to replace the checkout button
-and none is enabled. **This is the single biggest open item.**
+and none was enabled. **STALE — see below: that page now reads Extensions 1
+active, Functions 1 active.** Do not cite the 0 as current.
 
 **2. TAX IS COMPUTING AT 10%, NOT 5% — and order #1001 names the exact cause.**
 Read back from the order's `taxLines`:
@@ -1052,6 +1053,35 @@ us can see. Two actions, in order:
 **Do not gate the handover on this.** It depends on a third party, so the working
 store (Shopify checkout, proven by order #1001) is what gets handed over, with
 Magic described as a pending fee optimisation.
+
+### The app admin page, read 28 Sep 22:39 IST — the integration is ALIVE
+
+Screenshot of `admin.shopify.com/store/8uysc8-kx/settings/apps/app_installations/app/90fdd4c5dcda479affa5f5bfb4681573`:
+
+| | |
+|---|---|
+| Razorpay COD & Magic Checkout | Installed 1 week ago |
+| **Extensions** | **1 active**, available for 2 areas |
+| **Functions** | **1 active**, available for 2 areas |
+| Orders | view + edit, **recent activity 55 minutes ago** |
+| Customers | view + edit, 1 hour ago |
+| Online Store · Discounts · Shopify Functions · Products | 1 week ago |
+
+**Extensions is 1, not 0.** That supersedes the 28 Sep finding above and matches
+`config/settings_data.json` — the storefront hook is registered on both sides.
+
+**The app is actively calling Shopify.** Orders touched 55 minutes before the
+screenshot, Customers an hour before, both with edit rights — so Razorpay's
+backend is reaching Shopify now, not a week ago. **The integration is not dead**,
+which narrows the fault to Magic's own configuration rather than the link.
+
+**But nothing landed.** Re-read immediately after: still **1 order** (#1001,
+15:28Z, test, PAID, ₹1,155), **1 abandoned checkout** (16:03Z, ₹685) and
+**1 customer**. So that Orders call read or attempted and did not create.
+
+**No "Needs Activation" banner appears on this page.** Next control to try is the
+**Open app** button, top right beside *More actions* — non-embedded, so it hands
+off to Razorpay's dashboard for this store, which is where Magic's settings live.
 
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
