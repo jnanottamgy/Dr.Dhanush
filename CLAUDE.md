@@ -1021,16 +1021,37 @@ there is no config for `malnadproducts.in`, and the modal waits on an answer tha
 never comes. **That explains the clean console** — nothing errored, so bugsnag had
 nothing to report. Test mode would more likely return an error than hang forever.
 
-**Twenty-second check:** Razorpay dashboard → Magic Checkout → Settings → the
-store domain it lists. `8uysc8-kx.myshopify.com` there = found it.
-**Fix:** update the store URL to `malnadproducts.in`; if it cannot be edited,
-uninstall and reinstall the app, since the install handshake re-registers the
-current primary domain. Then live keys — in that order, because live mode cannot
-rescue a wrong domain registration.
+**THE DOMAIN HYPOTHESIS IS WITHDRAWN — it was my third wrong call on this
+integration.** Jnanottam checked and Razorpay's settings do read
+`8uysc8-kx.myshopify.com`. That is **not** a finding: `.myshopify.com` is
+Shopify's permanent internal shop identifier, which every Shopify app stores and
+which never changes when a custom domain is connected. Seeing it there is normal.
+**Do not reinstall the app to "fix" the domain** — it would cost time and risk
+breaking a setup that is otherwise correct. Withdrawn before he acted on it.
 
-**Not stated as settled.** This is the best-fitting candidate and a cheap check,
-not a proven cause. Two earlier confident readings on this integration were wrong
-(the live-mode scare, and three wrong causes before the unsaved toggle).
+**Razorpay's own documentation cannot be read from here either** —
+`razorpay.com` is blocked by the session egress proxy, same as
+`malnadproducts.in` and `checkout.razorpay.com`. So **do not state Razorpay
+dashboard menu paths**; they would be invented. That limit is the reason this
+stopped being diagnosable from this side.
+
+**WHERE IT NOW STANDS.** Everything checkable has been checked and is correct.
+The remaining fault is inside Razorpay's account configuration, which neither of
+us can see. Two actions, in order:
+
+1. **The app tile's "Needs Activation" link** — Shopify → Apps → Razorpay COD &
+   Magic Checkout. The tile is itself the link, the app is non-embedded so it
+   hands off to Razorpay, and this is the only definitely-relevant screen
+   Jnanottam can reach. It has been outstanding since 17 Sep.
+2. **Razorpay support.** Magic Checkout is a product *they* activate. A
+   paste-ready request is written at
+   **`docs/razorpay-magic-support-request.txt`** — it carries the store id, the
+   symptom, the five things already ruled out with the evidence for each, and
+   four direct questions including whether Magic works in test mode at all.
+
+**Do not gate the handover on this.** It depends on a third party, so the working
+store (Shopify checkout, proven by order #1001) is what gets handed over, with
+Magic described as a pending fee optimisation.
 
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 

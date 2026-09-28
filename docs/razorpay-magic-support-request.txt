@@ -1,0 +1,49 @@
+RAZORPAY SUPPORT — MAGIC CHECKOUT NOT LOADING ON SHOPIFY
+Paste this into Razorpay support chat or support@razorpay.com.
+
+---
+
+Subject: Magic Checkout modal opens but never loads — Shopify store
+
+Merchant: Malnad Products
+Shopify store ID: 8uysc8-kx.myshopify.com
+Storefront: https://malnadproducts.in (primary domain, SSL active)
+App installed: Razorpay COD & Magic Checkout (razorpay-magicx-app)
+Mode: test (rzp_test_ keys)
+
+PROBLEM
+The Magic Checkout modal opens over our storefront and shows your
+"Secured By Razorpay" branding, then sits on the loading shield
+indefinitely. It never renders the checkout. Earlier it showed
+"Something went wrong, please try again after some time."
+
+WHAT WE HAVE ALREADY RULED OUT
+- The Magic Checkout Script app embed IS enabled and saved on the live
+  theme. Confirmed by reading config/settings_data.json directly: the
+  magicx-script block is present with "disabled": false.
+- The app holds all 41 Shopify access scopes, including write_orders,
+  write_draft_orders and unauthenticated_write_checkouts.
+- Not the cart drawer: /cart behaves identically.
+- Not password protection: the store is launched and public.
+- No client-side error. The browser console shows only resource preload
+  warnings plus "[bugsnag] Loaded!" from checkout-DTJs6qRt.js, so your
+  bundle and error reporter both load correctly. Nothing throws.
+- Shopify's own checkout works. Order #1001 completed through the
+  "01 Cards, UPI, NB, Wallets by Razorpay" gateway for INR 1,155.
+
+Because the script loads and renders your chrome but the checkout body
+never arrives, and nothing errors in the browser, this looks like a
+request to your backend that does not return.
+
+WHAT WE ARE ASKING YOU TO CHECK
+1. Is Magic Checkout actually ACTIVATED on this account? In Shopify the
+   app tile still reads "Needs Activation" and we cannot find a screen
+   that clears it.
+2. Is this Shopify store correctly registered against our Magic
+   Checkout configuration on your side?
+3. Does Magic Checkout function in TEST mode on a live storefront, or
+   does it require live keys? If live-only, please say so plainly — we
+   will switch.
+4. Is there anything else pending on our account blocking Magic?
+
+We are ready to switch to live keys today if that is the requirement.
