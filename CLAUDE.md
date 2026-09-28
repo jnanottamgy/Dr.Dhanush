@@ -831,6 +831,39 @@ the customer went Shopify checkout → Razorpay hosted page (the Secure pattern,
 4% all-in). The page said *"Retry payment of ₹1,155"* with no address collection
 on it, which points at address/shipping having happened elsewhere.
 
+### FIRST REAL CHECKOUT — 28 Sep. Two defects, one thing verified good.
+
+Cart: Black Cardamom 100 g ₹240 · Badam 500 g ₹750 · Soapnut Powder 200 g ₹110.
+Subtotal ₹1,100. Shipping ₹55. Total ₹1,155 "including ₹100.00 in taxes".
+Delivered to Bangalore 560080 (Karnataka).
+
+**1. MAGIC CHECKOUT IS NOT INTERCEPTING — settled, not a theory.** The checkout
+URL was **`malnadproducts.in/checkouts/cn/...`** — Shopify's own checkout, with
+Shopify's Contact / Delivery layout. Only *after* that does Razorpay's hosted
+payment page appear. That is the **Razorpay Secure** pattern, the one we
+explicitly chose against: **Shopify's 2% plus Razorpay's ~2%, about 4% all-in,
+against Magic's ~0.65%.** Corroborating evidence on the app page: **Extensions
+0 active** — Magic needs a storefront extension to replace the checkout button
+and none is enabled. **This is the single biggest open item.**
+
+**2. TAX IS COMPUTING AT 10%, NOT 5%.** ₹100 declared on ₹1,100 of goods.
+`1100 x 10/110 = 100.00` exactly. Correct at 5% inclusive would be
+`1100 x 5/105 = 52.38`. Shipping is excluded, consistent with `taxShipping:
+false`. Almost certainly Shopify is applying the 5% as CGST **and** again as
+SGST rather than splitting one 5% into 2.5 + 2.5, or the state row is adding to
+the country rate instead of replacing it. **Because prices are tax-inclusive the
+customer still pays ₹1,155 either way — but the client would remit ₹100 instead
+of ₹52.38 on this order.** That is the over-remittance risk, now proven with a
+real figure rather than argued.
+
+**3. Shipping is CORRECT — verified.** Variant weights read back: 140 + 540 +
+240 = **920 g**, which lands in the 0.5–1 kg band; the Karnataka rate for that
+band is **₹55**, exactly what checkout charged. The four-zone weight-based
+profile works.
+
+**Also observed:** the phone field still reads **"Phone (optional)"** — the
+Settings → Checkout change has not been made yet.
+
 ### Razorpay MCP connector — live 28 Sep, and it is READ-ONLY
 
 Jnanottam connected a Razorpay MCP. **24 tools, every one of them `fetch_*`.**
