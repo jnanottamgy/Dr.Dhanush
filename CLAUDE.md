@@ -846,20 +846,45 @@ against Magic's ~0.65%.** Corroborating evidence on the app page: **Extensions
 0 active** — Magic needs a storefront extension to replace the checkout button
 and none is enabled. **This is the single biggest open item.**
 
-**2. TAX IS COMPUTING AT 10%, NOT 5%.** ₹100 declared on ₹1,100 of goods.
-`1100 x 10/110 = 100.00` exactly. Correct at 5% inclusive would be
-`1100 x 5/105 = 52.38`. Shipping is excluded, consistent with `taxShipping:
-false`. Almost certainly Shopify is applying the 5% as CGST **and** again as
-SGST rather than splitting one 5% into 2.5 + 2.5, or the state row is adding to
-the country rate instead of replacing it. **Because prices are tax-inclusive the
-customer still pays ₹1,155 either way — but the client would remit ₹100 instead
-of ₹52.38 on this order.** That is the over-remittance risk, now proven with a
-real figure rather than argued.
+**2. TAX IS COMPUTING AT 10%, NOT 5% — and order #1001 names the exact cause.**
+Read back from the order's `taxLines`:
+
+    CGST  ratePercentage 5  ->  ₹50.00
+    SGST  ratePercentage 5  ->  ₹50.00
+                    total       ₹100.00
+
+So Shopify applies the **country rate to each of CGST and SGST**, not one 5%
+split into 2.5 + 2.5. Correct at 5% inclusive is `1100 x 5/105 = ₹52.38`, so the
+client over-declares **₹47.62 on this order — 4.33% of goods value, on every
+sale.** Prices are tax-inclusive so the customer still pays ₹1,155 either way;
+the difference comes entirely out of the client's own margin at filing.
+
+**THE FIX: set the India country rate to 2.5%, not 5%.** That yields
+CGST 2.5 + SGST 2.5 = 5% on intra-state. **Leave the per-state IGST rows at 5%
+"instead of federal"** — those govern inter-state sales and 5% is right there.
+Jnanottam is the CA and this is his screen, but the arithmetic is settled by the
+order record, not inferred.
 
 **3. Shipping is CORRECT — verified.** Variant weights read back: 140 + 540 +
 240 = **920 g**, which lands in the 0.5–1 kg band; the Karnataka rate for that
 band is **₹55**, exactly what checkout charged. The four-zone weight-based
 profile works.
+
+**Order #1001 — everything else verified good.** `test: true`, `PAID`,
+`UNFULFILLED`. Total ₹1,155 = subtotal ₹1,100 + shipping ₹55. All three line
+items correct with the right variant titles (100 g / 500 g / 200 g). Shipping
+line named **Standard delivery** at ₹55, matching the Karnataka 0.5–1 kg band
+for a 920 g basket. Phone **7204038395** captured despite the field being marked
+optional. **The Razorpay → Shopify join works** — matrix row 13 passes.
+
+**Gateway on the transaction reads `01 Cards, UPI, NB, Wallets by Razorpay`**,
+which is final confirmation the order went the **Shopify-gateway route**, not
+Magic. Finding 1 above is now proven from the order record as well as the URL.
+
+**Not yet cross-checked against Razorpay:** the MCP connector has disconnected
+again and needs re-authorising. Shopify's `paymentId` on the transaction is
+`rUEmUk2hWnDV9gEOJtNdr7YPq`, which is not a Razorpay `pay_` id — matching the two
+sides still needs that connector back.
 
 **Also observed:** the phone field still reads **"Phone (optional)"** — the
 Settings → Checkout change has not been made yet.
