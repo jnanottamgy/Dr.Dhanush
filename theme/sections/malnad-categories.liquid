@@ -33,15 +33,23 @@
     <div class="mcats__grid">
       {%- for block in section.blocks -%}
         {%- liquid
+          # A `collection` setting can reach Liquid either as a resolved
+          # collection object or as the bare handle string, depending on how the
+          # value was written into the JSON template. Resolving through
+          # `collections[...]` either way costs nothing and means a card is never
+          # rendered with an empty href.
           assign coll = block.settings.collection
+          assign coll_handle = coll.handle | default: coll
+          assign coll = collections[coll_handle]
+          assign coll_url = coll.url | default: ''
           assign img = coll.image
           if img == blank
             assign img = coll.products.first.featured_image
           endif
           assign label = block.settings.label | default: coll.title
         -%}
-        {%- if coll != blank -%}
-          <a class="mcat" href="{{ coll.url }}" {{ block.shopify_attributes }}>
+        {%- if coll_url != '' -%}
+          <a class="mcat" href="{{ coll_url }}" {{ block.shopify_attributes }}>
             <span class="mcat__frame">
               {%- if img != blank -%}
                 {{
