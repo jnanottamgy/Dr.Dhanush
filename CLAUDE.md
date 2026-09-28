@@ -922,6 +922,60 @@ mode** on a real storefront, since both the Razorpay dashboard and the Shopify
 gateway are in test. The browser console is the next diagnostic step — the modal
 text is generic and the console will carry the real API error.
 
+### Magic modal hangs on the loading shield — 28 Sep, diagnosed to Razorpay's side
+
+**The storefront side is DONE and proven from the file, not the toggle.** The live
+theme's `config/settings_data.json` (8,082 bytes, MAIN = `Malnad Spices — build`)
+carries:
+
+    "blocks": {
+      "3557650678667880288": {
+        "type": "shopify://apps/razorpay-cod-magic-checkout/blocks/magicx-script/c13c688d-5c45-4054-b95f-1edd63faa705",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+
+So the `Magic Checkout Script` embed is enabled and persisted. **Do not re-chase
+the embed, the cart drawer, the theme or password protection** — all four have now
+been eliminated, three of them after wasting a test each.
+
+**Symptom:** the modal opens, branded *Secured By Razorpay*, then sits on the
+loading shield indefinitely. Console carries no red error — only preload warnings
+and `[bugsnag] Loaded!` from `checkout-DTJs6qRt.js`, i.e. Razorpay's own bundle
+and error reporter load fine. A browser that loads the script and renders the
+chrome but never gets a checkout body is waiting on an API call that does not
+return. **The failure is server-side at Razorpay, not in the theme.**
+
+**Evidence from the Shopify side:** one abandoned checkout, 28 Sep 16:03,
+**₹685 / 4 items**, `AbandonedCheckout/66758444351601`. Orders still stand at one
+(#1001, 15:28, the Shopify-gateway route). So no Magic attempt has ever produced
+an order on either side.
+
+**Leading cause, and it is a settings item not a code one: the Magic Checkout app
+still reads "Needs Activation"** in Shopify (recorded in the readiness table
+above and never cleared). Until Razorpay activates the integration for this
+store, its backend has no store to serve and the modal has nothing to render.
+Second candidate: **Magic is a production feature.** Its saved-address network,
+serviceability and coupon services are live-only, so it is not expected to
+complete against `rzp_test_` keys on a real storefront.
+
+**I cannot reproduce it from this container.** Chromium and Playwright are
+installed and the store is public, but the session's egress policy answers **403
+to CONNECT** for both `malnadproducts.in:443` and `checkout.razorpay.com:443`, so
+no browser here can reach either. Driving the checkout is Jnanottam's browser only.
+
+**The one decisive read, and it needs no browser skill:** with the Razorpay MCP
+connected, `fetch_all_orders` says whether Magic's backend ever created a Razorpay
+order at 16:03. Nothing there = the failure is before order creation, which points
+straight at activation. **The connector is disconnected again as of this check.**
+
+**Customer-facing consequence while this is open.** The store is public
+(`passwordProtection.enabled = false`) and the embed is live, so a real customer
+clicking Check out gets a modal that hangs — nobody can buy. Setting
+`"disabled": true` on that block restores the working Shopify checkout (proven by
+order #1001) at the higher ~4% fee. That is a one-line theme write from here.
+
 ### Razorpay MCP connector — live 28 Sep, and it is READ-ONLY
 
 Jnanottam connected a Razorpay MCP. **24 tools, every one of them `fetch_*`.**
