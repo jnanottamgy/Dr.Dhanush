@@ -3,6 +3,7 @@ Paste this into Razorpay support chat or support@razorpay.com.
 
 ---
 
+To: magic-checkout-support@razorpay.com
 Subject: Magic Checkout modal opens but never loads — Shopify store
 
 Merchant: Malnad Products
@@ -47,3 +48,14 @@ WHAT WE ARE ASKING YOU TO CHECK
 4. Is there anything else pending on our account blocking Magic?
 
 We are ready to switch to live keys today if that is the requirement.
+
+ADDITIONAL, AFTER READING YOUR DOCUMENTATION
+- Is the Coupons feature enabled on this account? Your integration steps say to
+  disable "Auto fetch coupon" in Checkout Setup, and Coupons is an on-demand
+  feature. If Magic auto-fetches coupons on load against an account where that
+  feature is not enabled, would the checkout hang exactly as described?
+- Our Shopify theme was published today, after the app was installed last week.
+  Your troubleshooting names a recent theme change as the first thing to check.
+  Does Magic need to be re-enabled against the newly published theme, and how?
+- Shopify reports "Functions: 1 active" for your app. Could an active payment
+  method customization be blocking the checkout from rendering?

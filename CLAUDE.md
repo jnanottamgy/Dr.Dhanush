@@ -1136,6 +1136,58 @@ standing hypothesis by elimination rather than by guess. If Magic still hangs on
 live keys it is a Razorpay-side bug and `docs/razorpay-magic-support-request.txt`
 goes in.
 
+### RAZORPAY'S OWN DOCS, via WebSearch — 28 Sep. Three documented causes.
+
+**`WebSearch` works even though direct fetching does not.** `razorpay.com`,
+`youtube.com`, `google.com`, `bing.com` and `duckduckgo.com` all fail at the
+egress proxy, but the `WebSearch` tool routes elsewhere and returns Razorpay's
+documentation. **Use WebSearch for any platform question in this project** — the
+earlier conclusion that Razorpay's docs were unreachable was true only of
+WebFetch/curl. Jnanottam's idea to go and research it was the right call and it
+produced more than four hours of my own hypotheses did.
+
+**1. A REQUIRED SETUP STEP WAS NEVER DONE — "disable Auto fetch coupon".**
+Razorpay's Shopify integration procedure reads: *"Navigate to Checkout Setup,
+disable Auto fetch coupon and click Save settings."* It sits below the Gift Card
+Settings on `/app/magic/settings/checkout-setup`, past where the screenshot
+scrolled. **Coupons is a separate on-demand feature** requiring its own request
+form, so on an account without it, a checkout that auto-fetches coupons on load
+calls a service that is not enabled. **A call that never returns is exactly a
+modal that renders its chrome and then waits forever with a clean console** —
+nothing threw, so bugsnag reported nothing. Best mechanical fit found for this
+symptom, and it is a documented step rather than a hypothesis.
+
+**2. Payment method customizations.** Razorpay's troubleshooting names active
+payment method customizations as the typical cause of their checkout failing to
+appear: *"Navigate to Shopify Admin → Settings → Payments → Payment Method
+Customizations. Disable or remove all customizations listed under this section."*
+The app page reads **Functions: 1 active, available for 2 areas**, and Shopify
+Functions are how payment and delivery customizations are built — so there is
+something to look at. **This connector cannot read them** — `paymentCustomizations`
+needs `read_payment_customizations`, which it does not hold. Jnanottam's screen.
+
+**3. Theme changed.** Their first troubleshooting question is *"check if your
+website's theme was recently changed. If the theme is unchanged, raise a ticket."*
+The theme was published **today**, after the app was installed a week ago. Their
+documented flow is *"Magic Checkout will be enabled on a test theme; you can then
+publish this on your live theme post-integration"* — so a theme swap after setup
+is a known breakage.
+
+**On test mode — my long-running hypothesis is WEAKER than I claimed.** The docs
+say plainly *"You can test a payment for All-in-one Razorpay Payment Gateway on
+the Shopify store by switching to test mode."* The real documented limitation is
+narrower: *"Razorpay does not support using live and test keys simultaneously in
+a staging environment, as the URL configured in live mode is used for testing."*
+So test mode is not by itself a reason Magic cannot load. **Demote it below the
+three causes above.**
+
+**Escalate to `magic-checkout-support@razorpay.com`**, not generic support — it
+is the address Razorpay gives for getting Magic features enabled on an account.
+
+Sources: `razorpay.com/docs/payments/magic-checkout/troubleshooting-faqs/` ·
+`razorpay.com/docs/payments/magic-checkout/shopify/` ·
+`razorpay.com/docs/payments/magic-checkout/shopify/configuration/`
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
