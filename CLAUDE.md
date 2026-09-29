@@ -1276,6 +1276,55 @@ point the cost is obviously justified.
 
 Source: `help.shopify.com/en/manual/fulfillment/setup/notifications/sms-notifications`
 
+### DEEP ANALYSIS, 29 Sep — the config may be MODE-SPLIT, and that is testable free
+
+Asked for a proper analysis rather than more single guesses. Every layer has now
+been verified correct: app installed with 41 scopes, embed enabled and saved,
+Extensions 1, Functions 1, Magic **activated**, store linked, catalogue synced
+(Magic Cart preview shows real products and prices), shipping profiles synced,
+and Razorpay's backend actively calling Shopify's Orders API. **Nothing is
+misconfigured. The two systems are talking. Nothing renders.**
+
+**What the symptom rules out.** A modal that draws its chrome, loads bugsnag,
+throws nothing and never fills is not a broken script, a missing scope or a
+plugin conflict — all of those throw. It is a request whose answer never
+arrives: Razorpay's frontend asking Razorpay's backend for this store's checkout
+configuration and getting silence. So the question is not what is misconfigured,
+it is **why the backend cannot find the config the frontend asks for.**
+
+**THE DOCUMENTED LINE THAT EXPLAINS IT, previously under-read:**
+
+> *"Razorpay does not support using live and test keys simultaneously in a
+> staging environment, **as the URL configured in live mode is used for
+> testing**."*
+
+**The store URL registration is a LIVE-MODE object.** It lives in live config and
+is used for testing — not duplicated into test mode. Every dashboard screen read
+so far carried the green **TEST** toggle, so those may be the **test-mode copy**
+of Magic's settings while the registration that matters sits in live.
+
+That fits everything: the config pages look complete (test-mode settings do
+exist); the storefront asks for `malnadproducts.in` config in test mode and there
+is no registration to return; nothing errors because an empty lookup is not an
+exception; and Razorpay still reaches Shopify because the *app* install is a
+separate channel from checkout config.
+
+**THE TEST — one toggle, no keys, no Shopify change.** Flip the Razorpay
+dashboard **TEST → LIVE** and re-open the same screen, Magic Checkout → Setup &
+Settings → **Checkout Setup**. Compare against the test-mode screenshot:
+
+- **Different** (different store, different toggles, or the "Magic Checkout
+  activated" line absent) → config IS mode-split, test mode was the cause,
+  proceed to live keys.
+- **Identical** → config is not mode-split, this theory is dead, and it is a
+  Razorpay-side bug. Send `docs/razorpay-magic-support-request.txt`, having
+  eliminated everything a merchant can eliminate.
+
+**Either answer is worth having.** Note this supersedes the earlier demotion of
+the test-mode hypothesis: the docs do say test payments work on Shopify, but that
+is about the *gateway*, not about where Magic's *store registration* lives. Those
+are different objects and conflating them was the error.
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
