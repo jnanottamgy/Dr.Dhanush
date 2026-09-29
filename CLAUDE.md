@@ -1325,6 +1325,43 @@ the test-mode hypothesis: the docs do say test payments work on Shopify, but tha
 is about the *gateway*, not about where Magic's *store registration* lives. Those
 are different objects and conflating them was the error.
 
+### CONFIRMED 29 Sep 10:59 IST — THE CONFIG IS MODE-SPLIT
+
+Jnanottam switched the dashboard to LIVE. **The Magic Checkout sidebar is not the
+same in the two modes**, which settles it:
+
+| TEST mode | LIVE mode |
+|---|---|
+| Checkout Setup | **Control Center** — absent in test |
+| Cash On Delivery | Checkout… |
+| RazorpayID | COD Setup |
+| Delivery Statuses | RazorpayID |
+| Shipping Setup | **RTO Reduction…** — absent in test |
+| Order Settings | Delivery Statuses |
+| Analytics · Upload · **Magic Cart** | Shipping Setup · Order Settings · Upload |
+
+**Live mode carries screens test mode does not.** So the two modes are separate
+configuration spaces, and every screen inspected on 28 Sep — Checkout Setup,
+Shipping Setup, Magic Cart, the COD page — was the **test-mode copy**. The
+conclusions drawn from them ("activated", "store linked", "shipping synced")
+describe test-mode config and say nothing about live. A live-mode banner
+**"78 Free* Days"** also appears, which test mode never showed.
+
+**This is the first confirmed progress on the hang.** It does not by itself prove
+the checkout will work; it proves the thing we were reading was the wrong copy.
+
+**Next two screens, in order, before any retest:**
+1. **Control Center** — the screen test mode never had; likely carries Magic's
+   live status and setup state.
+2. **Checkout Setup in LIVE** — compare against the test-mode screenshot. If
+   *"Magic Checkout activated"* or the `8uysc8-kx.myshopify.com` line is missing
+   or different, that is the answer.
+
+**Do not retest the cart yet.** Switching the dashboard view does not change the
+storefront: Shopify still holds `rzp_test_` keys, so the checkout behaves exactly
+as before until live keys are generated and pasted in. A retest now would produce
+a false negative.
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
