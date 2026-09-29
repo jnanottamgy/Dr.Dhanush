@@ -1362,6 +1362,56 @@ storefront: Shopify still holds `rzp_test_` keys, so the checkout behaves exactl
 as before until live keys are generated and pasted in. A retest now would produce
 a false negative.
 
+### SOLVED 29 Sep 11:01 — MAGIC'S ENABLE SWITCH EXISTS ONLY IN LIVE MODE
+
+The live-mode Checkout Settings page is a **different page at a different URL**
+from the one inspected all of 28 Sep:
+
+| | TEST | LIVE |
+|---|---|---|
+| URL | `/app/magic/settings/checkout-setup` | `/app/magic/settings/magicx-store-settings` |
+| **Enable Magic Checkout** | **absent** | **present, ON** |
+| Other settings | Capture billing address · GSTIN · order instructions · Hide COD · Gift card · Abandoned webhook | Email Field · Theme Color · Mandatory OTP |
+
+Both pages carry *"Magic Checkout activated"* and `8uysc8-kx.myshopify.com`, which
+is why test mode looked complete.
+
+**THE CAUSE.** There is **no way to enable Magic Checkout in test mode** — the
+toggle does not exist there. The storefront runs on `rzp_test_` keys, so Razorpay
+resolves the store in test context, where Magic has no enabled configuration to
+serve. The script receives nothing, the modal renders its chrome and waits
+forever, and **nothing errors because nothing failed** — there was nothing to
+return. That accounts for every observation: the clean console, the complete-looking
+settings, the healthy app-to-Shopify traffic, and the endless shield.
+
+**THE FIX IS THE LIVE KEYS.** Not a workaround. Generate live keys, paste into the
+Shopify Razorpay gateway, untick test mode. Magic then resolves against live
+config, where it is already enabled.
+
+**TWO DEFECTS ON THAT LIVE PAGE, both flagged:**
+
+1. **`Email Field` = Optional → must be MANDATORY.** Shopify sends order
+   confirmations and shipping updates by **email only** on this store (see the SMS
+   section — no app is being bought). A customer checking out without an email
+   gets **no confirmation at all** and is unreachable except by WhatsApp. This is
+   a service defect, not a preference.
+2. **`Theme Color` = `#528FF0`** — Razorpay's default blue, not the brand. Should
+   be canopy green **`#1F4034`**. It is the screen every customer pays on.
+
+`Mandatory OTP` is **off** and can stay off — it adds friction and guards
+saved-address reuse, which is not needed for a prepaid store.
+
+**Sequence from here:** fix those two → Save → generate live keys → paste into
+Shopify's gateway → untick test mode → buy Black Pepper 100 g at ₹80 → Claude
+matches the order against Razorpay's payment record from both sides, which the
+connector can finally do because it is live-mode only.
+
+**For the record, the wrong calls before this one:** three causes before the
+unsaved app-embed toggle, the live-mode scare, the domain mismatch, activation,
+and the auto-fetch-coupon step. The thing that actually cracked it was
+Jnanottam's instruction to go and research rather than keep reasoning, followed
+by comparing the two modes screen by screen.
+
 ### Live-theme writes ARE blocked — confirmed by the mutation, 28 Sep
 
 `themeFilesUpsert` against the MAIN theme is refused outright by the connector's
