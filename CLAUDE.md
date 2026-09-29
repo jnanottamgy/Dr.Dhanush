@@ -1362,6 +1362,44 @@ storefront: Shopify still holds `rzp_test_` keys, so the checkout behaves exactl
 as before until live keys are generated and pasted in. A retest now would produce
 a false negative.
 
+### ROOT CAUSE, 29 Sep 11:05 — NO WEBSITE IS REGISTERED WITH RAZORPAY
+
+`dashboard.razorpay.com/app/website-app-settings/business-website-details`, live
+mode, **Websites & API keys** tab:
+
+- **Website/app details** — *"Submit the website/app where you want to collect
+  payments. **Verification takes 24-48 hours**."* with **+ Add website/app**.
+  **The list is EMPTY — no website has ever been submitted.**
+- **API keys & integration** — *"You will be able to generate API keys once your
+  website is approved."* **The Generate Key button is DISABLED.**
+- Side panel: *"You can generate API keys after your website is approved.
+  Meanwhile you can switch to test mode to get test API keys for integration."*
+
+**This is the bottom of the whole problem.** Razorpay holds no live registration
+for `malnadproducts.in`, so there is no live store configuration for Magic to
+serve — which is why the modal asks and receives nothing. It is also the
+"Platform Settings / store URL" step flagged on 28 Sep as documented but having
+no screen: **it lives under Account & Settings → Website and app settings, not
+under Magic Checkout.**
+
+**CONSEQUENCE, AND IT IS BIGGER THAN MAGIC.** Live API keys cannot be generated
+at all until a website is submitted and approved. So **the store cannot take real
+money by any route today** — not Magic, not the Shopify gateway. Everything has
+been running on `rzp_test_` keys because those are the only keys that exist.
+
+**ACTION: submit `https://malnadproducts.in` via + Add website/app.** That starts
+a 24–48 hour verification clock held by Razorpay, which neither of us controls.
+
+**FIX THE POLICIES BEFORE THE REVIEW LANDS.** A human reviews the site. Five of
+the six store policies still render as **escaped HTML** (`&lt;h2&gt;` visible as
+text, refund wrapped in `<pre>` as a monospace block). A payments reviewer opening
+Terms, Refund or Shipping sees broken markup — a plausible reason to reject or
+query, costing another 24–48 hours. Redo them with the `<>` (Show HTML) toggle
+clicked **before** pasting, box emptied first.
+
+**Handover framing changes shape:** a finished store that goes live the moment
+Razorpay approves the website. That is accurate and simple to say.
+
 ### SOLVED 29 Sep 11:01 — MAGIC'S ENABLE SWITCH EXISTS ONLY IN LIVE MODE
 
 The live-mode Checkout Settings page is a **different page at a different URL**
