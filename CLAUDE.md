@@ -1402,6 +1402,38 @@ failing and is a real finding.
 Trial banner now reads **71 Free* Days**, down from 78 on 29 Sep — consistent
 with a week elapsed.
 
+### 6 Oct — WEBSITE SUBMISSION IS BROKEN AT RAZORPAY'S END. Workaround: UPI.
+
+Clicking **Proceed to update website/app** returns **"Something Went Wrong"**
+every time. Razorpay documents that string as *"We are facing some trouble
+completing your request at the moment"* — **an exceptional server-side error at
+their end**, to be retried or raised with support. Jnanottam has raised a ticket.
+
+**There is NO workaround for the Razorpay gate.** Live API keys require an
+approved website; the Generate Key button is disabled server-side. Do not look
+for one, and do not propose switching gateway — V-CIP KYC applies at every Indian
+aggregator, so a new provider is slower, not faster.
+
+**BUT THE STORE CAN TRADE TODAY, with zero fees: a Shopify CUSTOM MANUAL PAYMENT
+METHOD for UPI.** Available on every plan. Settings → Payments → Manual payment
+methods → Create custom payment method. Orders land **Pending** until the owner
+confirms payment and marks them Paid.
+
+- **Still prepaid** — payment before dispatch, so the no-COD instruction holds.
+- **Zero fees**, against ~4% on the Shopify gateway or ~0.65% on Magic.
+- **Normal for an Indian retailer**; UPI is how this trade actually settles.
+- Name it **`UPI`** — Shopify reserves *"Bank Deposit"* and *"custom"*.
+- Needs Dhanush's business UPI ID, typed straight into Shopify, never into this
+  transcript.
+- Trade-off: manual reconciliation per order, nothing auto-captures.
+
+**When Razorpay approves, the gateway is added alongside or instead; swapping
+payment methods does not disturb products, shipping or the theme.** So the
+handover is no longer blocked: the client receives a store that genuinely sells,
+with Razorpay as an upgrade added during the week.
+
+Source: `help.shopify.com/en/manual/payments/manual-payments`
+
 ### ROOT CAUSE, 29 Sep 11:05 — NO WEBSITE IS REGISTERED WITH RAZORPAY
 
 `dashboard.razorpay.com/app/website-app-settings/business-website-details`, live
