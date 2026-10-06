@@ -1380,6 +1380,28 @@ storefront: Shopify still holds `rzp_test_` keys, so the checkout behaves exactl
 as before until live keys are generated and pasted in. A retest now would produce
 a false negative.
 
+### Website submission started 6 Oct — the "Food category" condition
+
+The **Add new Website/App** modal opens on a notes screen before the form. Its
+first condition: *"The product/services that you are selling on the website/app
+should fall under **Food** category."* Further notes sit below the fold.
+
+**Worth knowing before a reviewer asks: three of the 57 products are NOT food.**
+Soapnut (whole), soapnut powder and sikakai powder are household and hair-care
+goods — our own copy ends each with *"Not a food."*, they carry HSN 1404 / 3401 /
+3305, and they sit in their own Home & Personal Care collection. That is normal
+for a Malnad dry-goods shop and the separation is already visible on the site, so
+**do not hide them**. If queried, the honest answer is: a food retailer that also
+sells three traditional washing and hair-care items, listed separately and
+labelled as non-food.
+
+Also seen on that screen: a red **"Something Went Wrong"** toast. Treated as a
+page-load artefact; if it recurs *after* submitting, that is the submission
+failing and is a real finding.
+
+Trial banner now reads **71 Free* Days**, down from 78 on 29 Sep — consistent
+with a week elapsed.
+
 ### ROOT CAUSE, 29 Sep 11:05 — NO WEBSITE IS REGISTERED WITH RAZORPAY
 
 `dashboard.razorpay.com/app/website-app-settings/business-website-details`, live
