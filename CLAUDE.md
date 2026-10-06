@@ -412,7 +412,25 @@ so **store policies cannot be published from here** — they are written in
 `shopPolicyUpdate`, which returns *"Access denied ... Required access:
 `write_legal_policies` access scope."* Not inferred.
 
-**All five pasted policies went in ESCAPED — 17 Sep.** Jnanottam pasted them and
+### POLICIES ARE FIXED — verified 6 Oct by reading `shopPolicies { body }`
+
+All six now store as real markup — `<p dir="ltr"><strong>…` — with **no `&lt;`
+anywhere**. Contact, Legal notice, Refund, Shipping, Terms and Privacy all render
+properly on the storefront. Jnanottam redid them. **This closes the longest-running
+manual defect in the project** and removes the most likely cause of a Razorpay
+website-review rejection. Do not re-raise it. The history below is kept only so the
+cause is not repeated on any future paste.
+
+**STATE READ THE SAME DAY:** shop `Malnad Products` at `https://malnadproducts.in`
+with SSL · **57 products** · live theme still `Malnad Spices — build`,
+`config/settings_data.json` unchanged at 8,082 bytes / `c6b03740…` so the Magic
+embed is **still enabled** · **orders still 1** — #1001, 28 Sep, `test: true`,
+gateway `01 Cards, UPI, NB, Wallets by Razorpay`. **No live order has ever been
+taken, so payments never went live.**
+
+---
+
+**All five pasted policies went in ESCAPED — 17 Sep. FIXED, see above.** Jnanottam pasted them and
 every one stored as `&lt;h2&gt;...` rather than markup, so the storefront shows
 the raw tags as text. The refund one is worse: wrapped in `<pre>`, so it renders
 as a monospace code block. Cause: the policy editor's rich-text view escapes
