@@ -1,0 +1,40 @@
+RAZORPAY — ADD WEBSITE/APP
+Everything the submission form asks for, ready to paste.
+
+WEBSITE URL
+https://malnadproducts.in
+
+POLICY AND INFORMATION PAGES
+About us                      https://malnadproducts.in/pages/about
+Contact us                    https://malnadproducts.in/pages/contact
+Pricing details (products)    https://malnadproducts.in/collections/all
+Terms and conditions          https://malnadproducts.in/policies/terms-of-service
+Privacy policy                https://malnadproducts.in/policies/privacy-policy
+Refunds / cancellation        https://malnadproducts.in/policies/refund-policy
+Shipping policy               https://malnadproducts.in/policies/shipping-policy
+Contact information policy    https://malnadproducts.in/policies/contact-information
+Legal notice                  https://malnadproducts.in/policies/legal-notice
+
+BUSINESS CATEGORY
+Food (the shop is a Malnad food and spice retailer).
+Three of the 57 products are deliberately not food — soapnut, soapnut powder
+and sikakai powder are household and hair-care goods, listed in their own
+Home & Personal Care collection and each labelled "Not a food." on the listing.
+If asked: a food retailer that also sells three traditional washing and
+hair-care items, separated and labelled.
+
+BUSINESS DETAILS, if the form asks
+Trading name      MALNAD SPICES
+Address           Devaramane, Horanadu Post, Kalasa Taluk,
+                  Chikkamagaluru District 577181, Karnataka, India
+Email             drjhrnd5@gmail.com
+Phone             8431218956 / 9480956035
+FSSAI licence     21223055000121
+
+NOTES
+- Verification takes up to 3 WORKING DAYS per Razorpay's docs, though the
+  dashboard screen says 24-48 hours. Plan for the longer figure.
+- Live API keys cannot be generated until this website is approved.
+- "Something Went Wrong" on submit is documented by Razorpay as a server-side
+  error at their end. Retry; if it persists, raise it with support quoting the
+  merchant ID, the website URL and the date.
