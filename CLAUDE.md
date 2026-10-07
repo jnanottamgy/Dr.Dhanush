@@ -1427,10 +1427,35 @@ failing and is a real finding.
 Trial banner now reads **71 Free* Days**, down from 78 on 29 Sep — consistent
 with a week elapsed.
 
-### 6 Oct — WEBSITE SUBMISSION IS BROKEN AT RAZORPAY'S END. Workaround: UPI.
+### SUBMITTED AND UNDER REVIEW — 7 Oct 12:09 IST
 
-Clicking **Proceed to update website/app** returns **"Something Went Wrong"**
-every time. Razorpay documents that string as *"We are facing some trouble
+`https://malnadproducts.in` is listed on
+`dashboard.razorpay.com/app/website-app-settings/business-website-details` with
+the status **Under review** — *"Expect an update in 24-48 hours."* **+ Add
+website/app** is now greyed out, which is the correct state for a pending
+submission, and **Generate Key** stays disabled until approval lands. Trial
+banner **70 Free* Days**.
+
+So the 6 Oct "Something Went Wrong" was transient at Razorpay's end, as read, and
+the retry after Jnanottam's ticket went through. **The 24–48 hour clock is
+running and is held entirely by Razorpay** — there is no action on either side
+until it returns. Razorpay's own docs allow up to three working days, so a
+Thursday or Friday answer is normal, not a failure.
+
+**Nothing about the payment chain is diagnosable while this is pending.** On
+approval, in order: Generate live keys → paste into Shopify's Razorpay gateway →
+untick test mode → Magic resolves against live config, where its enable toggle
+already reads ON. That is the whole remaining fix for the Magic hang.
+
+The 6 Oct record below is kept because the UPI workaround still stands as the way
+to trade before approval.
+
+---
+
+### 6 Oct — the submission error, and the UPI workaround
+
+Clicking **Proceed to update website/app** returned **"Something Went Wrong"**
+every time. **Cleared on 7 Oct — see above.** Razorpay documents that string as *"We are facing some trouble
 completing your request at the moment"* — **an exceptional server-side error at
 their end**, to be retried or raised with support. Jnanottam has raised a ticket.
 
