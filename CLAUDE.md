@@ -442,14 +442,38 @@ never touched — and it now correctly interpolates *Malnad Products*, the real
 phone and the real email. **I cannot fix this; it is his to redo.** Verify by
 reading `shopPolicies { body }` back and looking for `&lt;`.
 
-**`deliveryProfileUpdate` cannot touch zones at all, and says nothing.** It
-accepts `zonesToCreate`, `zonesToUpdate`, a zone rename and a method rename,
-returns `userErrors: []`, and changes nothing. Its top-level fields *do* work —
-`zonesToDelete` and `variantsToAssociate` both applied. **Use
-`deliveryProfileCreate` to build zones**; that works completely, weight
-conditions and all. This cost a round trip where the only zone was deleted and
-could not be recreated on the default profile, leaving the shop shipping
-nowhere until a new profile was made.
+**~~`deliveryProfileUpdate` cannot touch zones at all.~~ WRONG — CORRECTED
+7 Oct. It works, and the default profile IS fixable from the API.** The earlier
+attempt must have put `zonesToCreate` at the top level of `DeliveryProfileInput`,
+where it does not exist. **Zones go inside `locationGroupsToUpdate`**, keyed by
+the location group id:
+
+    deliveryProfileUpdate(id: <profileId>, profile: {
+      locationGroupsToUpdate: [{
+        id: <locationGroupId>,
+        zonesToCreate: [{ name, countries: [{code: IN, provinces: [{code}]}],
+                          methodDefinitionsToCreate: [{ name, active,
+                            rateDefinition: { price: { amount, currencyCode } },
+                            weightConditionsToCreate: [
+                              { criteria: {unit: KILOGRAMS, value}, operator: GREATER_THAN_OR_EQUAL_TO },
+                              { criteria: {unit: KILOGRAMS, value}, operator: LESS_THAN_OR_EQUAL_TO }] }] }] }] })
+
+Confirmed field names, read from the schema rather than guessed:
+`DeliveryLocationGroupZoneInput` = countries · id · methodDefinitionsToCreate ·
+methodDefinitionsToUpdate · name. `DeliveryMethodDefinitionInput` = active ·
+conditionsToUpdate · description · id · name · participant ·
+priceConditionsToCreate · **rateDefinition** · **weightConditionsToCreate**.
+Shopify recommends **no more than 5 zones per request**; one zone per call is
+safest and makes a failure traceable.
+
+**THE DEFAULT-PROFILE LANDMINE IS FIXED — 7 Oct.** `General profile`
+(`DeliveryProfile/96993116273`, location group `97908949105`) had **zero zones**,
+so any product added after handover would have landed there with **no delivery
+option at checkout** — unbuyable, no error shown. It now carries all four zones
+and **28 rates**, identical to `Malnad delivery`: Karnataka 1 province,
+South and West India 7, Rest of India 17, North East and islands 12, each with
+the same 7 weight bands. **Verified by reading the profile back**, not by trusting
+`userErrors: []`.
 
 **Shopify's India province codes are not ISO 3166-2:IN**, and a zone containing
 a bad code is accepted, silently drops that province, and reports no error — so
@@ -539,10 +563,11 @@ tariffs**; regenerate from the client's real rate card. Bands charge at their
 **top** weight on purpose: under-recovering postage is invisible until the
 month's accounts.
 
-**Known trap:** the default **General profile now has no zones**, so a product
-added later lands there and shows **no delivery option at checkout**. Recorded
-in `docs/your-steps.md`. It cannot be fixed from here — zones cannot be added to
-the default profile through the API.
+**~~Known trap: the default General profile has no zones.~~ FIXED 7 Oct** —
+all four zones and 28 rates added to `General profile` through
+`deliveryProfileUpdate` → `locationGroupsToUpdate` → `zonesToCreate`, verified by
+reading back. A product added later now gets correct weight-based delivery. See
+the corrected API note in the connector-scopes section.
 
 **Origin does not need modelling — client answer 16 Sep.** Asked whether
 dispatching from Horanadu or from Kalasa changes the charge: *"5rs + -"*. About
