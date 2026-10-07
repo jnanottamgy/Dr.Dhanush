@@ -1581,14 +1581,28 @@ IS MAIN, **no theme file can be written from here at all.** Every theme change i
 either a duplicate-edit-publish cycle or Jnanottam in the theme editor. Do not
 plan a fix that needs a live theme write.
 
-**CONSEQUENCE — the repo and the live theme now DISAGREE on one key, deliberately.**
-`theme/config/settings_data.json` in this repo carries the magicx-script app block
-with **`"disabled": true`**, because the store cannot take an order while Magic
-hangs. The live theme still has **`false`**. Closing that gap is one toggle in
-Online Store → Themes → Customize → App embeds → *Magic Checkout Script* → off →
-**Save** (and Save is the step that gets missed — see the section above). Verify by
-re-reading the live `config/settings_data.json` and looking at that block's
-`disabled` value, never by the toggle.
+**CLOSED 7 Oct — the repo and the live theme agree again.** Jnanottam turned the
+*Magic Checkout Script* embed off and saved on the live theme. Read back from
+`config/settings_data.json`: **`"disabled": true`**, size **8081** (was 8082 —
+`false`→`true` is one byte shorter), md5 **`938f1564badfb4ec385e8434e1b89497`**
+(was `c6b03740…`). **The hanging modal is off the storefront**; Check out now goes
+to Shopify's own checkout, the route proven by order #1001, at the ~4% fee until
+Razorpay approves the website and Magic can resolve against live config.
+
+**Two traps on the way there, both worth keeping:**
+
+1. **There is a second theme that looks like ours.** `Updated copy of Malnad
+   Spices — build`, id **188710879345**, DRAFT — Shopify's auto-generated update
+   copy. Its App embeds panel shows all three Razorpay embeds off and its Save
+   greyed out, so toggling there changes nothing and looks like success. **The
+   live theme is `Malnad Spices — build`, id 146238865521.** Check the theme name
+   and the **Active** badge in the editor's title bar before touching anything,
+   and never press Publish on the update copy.
+2. **The App embeds toggle can show OFF while the file says the block is ON.**
+   Observed directly on the live theme at 12:17 — panel off, file `disabled:
+   false`. The inverse of the September failure and the same lesson: **the toggle
+   is not state, the file is.** Always verify by re-reading
+   `config/settings_data.json` and comparing the checksum.
 
 The repo copy also gained `content_for_index: []`, which the live file already had.
 
