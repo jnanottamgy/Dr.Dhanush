@@ -1889,6 +1889,79 @@ under Razorpay review, so the manual does not go stale the day approval lands.
 JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
 the standing instructions.
 
+### MAGIC — THE HANG IS FIXED, BUT IT DOES NOT OWN THE CHECKOUT. 8 Oct
+
+**Read this before the section below it, which over-called the result.** At 15:32
+I wrote "Magic Checkout works — closed after eleven days" on the strength of the
+modal rendering. **That was my seventh wrong call on this integration** and it was
+made from one screenshot, before following the flow to the end. The modal
+rendering is necessary, not sufficient.
+
+**WHAT ACTUALLY HAPPENS, 15:37:**
+
+1. Magic's modal opens correctly — brand colour, right cart, right variant image.
+2. Contact step: mobile, **OTP**. Works.
+3. Address step. Works.
+4. The customer is then dropped on **Shopify's own checkout**,
+   `malnadproducts.in/checkouts/cn/<token>`, contact and address pre-filled from
+   the modal. Payment completes from there.
+
+**That URL is the exact marker used on 28 Sep to prove the Razorpay Secure
+route.** So by this project's own established test, the order completes the
+Shopify-gateway way at **~4% all-in, not Magic's ~0.65%**.
+
+**CONFIRMED FROM RAZORPAY'S OWN DASHBOARD, 15:46.** Magic Checkout → **Abandoned
+sessions** reads **All 0 · Open 0 · COD 0**, *"No abandoned sessions found"* —
+fifteen minutes after a session was taken through the modal to the address step
+and left. **Magic has no record of a checkout it supposedly ran.** That is the
+strongest available evidence that it is not owning the session, and it cost
+nothing to obtain. (Small caveat kept honest: Shopify's own abandoned checkouts
+took ~10 minutes to register on 28 Sep, so a late arrival is not impossible.
+Re-check before treating it as final.)
+
+**Control Center is a settings hub, not a session log** — COD Configuration, RTO
+Prediction, Checkout Settings, Customer Login with Razorpay, each with Configure
+and User Manual. Nothing to read there. The screens that carry session data are
+**Abandoned sessions** and **Analytics**, both under Insights.
+
+**RULED OUT FOR FREE, from the Shopify side:** Razorpay's setup guide says to add
+products to a *"Magic Checkout sales channel"*. `publications` on this store
+returns exactly **two** — Online Store (`Publication/177970544753`) and Point of
+Sale. **There is no Magic Checkout channel to publish to**, so that step cannot
+be the cause and cannot be actioned. Put it to Razorpay rather than hunting for it.
+
+**THE CONSEQUENCE THAT MATTERS COMMERCIALLY, AND IT IS NOT NEUTRAL.** If Magic is
+not earning the fee difference, the embed is **worse than having it off**: the
+customer now does an OTP step they did not have to do, and arrives at exactly the
+same Shopify checkout they would have reached directly. That is friction with no
+payoff. **Recommendation given: turn the embed off until Razorpay confirms the
+fee, and turn it back on when they do.** Nothing is lost — the rate is already
+~4% either way.
+
+**`docs/razorpay-magic-support-request.txt` is rewritten for this question.** The
+old one described a modal that never loaded, which no longer happens. The new one
+asks the two questions that decide it — *is the handoff expected* and *which fee
+applies* — plus why the session is unrecorded, the missing sales channel and the
+missing Platform Settings screen, and lists everything already verified so support
+cannot send us round the loop.
+
+**TWO THINGS THE LIVE CHECKOUT DID SETTLE, FOR FREE:**
+
+- **The 10% tax defect is live and charging.** Shopify's checkout showed
+  *"Including ₹4.54 in taxes"* on a ₹50 item. `50 × 10/110 = 4.545`; correct at 5%
+  inclusive is `50 × 5/105 = 2.38`. **Confirmed outside test mode**, over-declaring
+  4.3% of goods value. Shipping is correctly untaxed — ₹4.54 is computed on goods
+  alone, consistent with `taxShipping: false`.
+- **Email is captured** (`jnanbelliappa135@gmail.com`). Shopify's checkout
+  requires it, so while the flow ends there the Email Field concern is moot. It
+  becomes live again only if Magic ever owns the whole flow.
+- **Shipping right for the third time**: ₹50 goods + **₹40** = ₹90, the Karnataka
+  0–0.5 kg band exactly.
+
+---
+
+### SUPERSEDED — written 15:32 before the flow was followed to the end
+
 ### MAGIC CHECKOUT WORKS — 8 Oct 15:32 IST. Closed after eleven days.
 
 The modal **opens and fills**: a three-step Contact → Address → Payment flow on
