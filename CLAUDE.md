@@ -1889,6 +1889,51 @@ under Razorpay review, so the manual does not go stale the day approval lands.
 JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
 the standing instructions.
 
+### MAGIC CHECKOUT WORKS — 8 Oct 15:32 IST. Closed after eleven days.
+
+The modal **opens and fills**: a three-step Contact → Address → Payment flow on
+`malnadproducts.in` itself, branded *Secured by Razorpay*, order summary showing
+**Chekke (Cinnamon Bark), Qty 1 · 100 G, ₹50** with the correct variant pack
+photograph. No redirect to Shopify's checkout. **It is intercepting.**
+
+**THE 29 SEP DIAGNOSIS WAS RIGHT, and this confirms it from the storefront
+rather than from the settings screens.** Magic's *Enable Magic Checkout* toggle
+exists **only in live mode**. The storefront ran in test context, so Razorpay
+resolved the store where Magic had no enabled configuration, returned nothing,
+and the modal rendered its chrome and waited — with a clean console, because an
+empty lookup is not an exception. Website approved → gateway live → it resolves.
+**Nothing in the theme, the app, the scopes, the domain or the activation was
+ever wrong.** Every one of those was checked and every one was a wrong call.
+
+**Commercially this is the whole reason Magic was chosen:** ~0.65% against the
+Shopify-gateway route's ~4% all-in, about **₹28,700/year** to the client. It is
+also the thing Jnanottam said on 28 Sep he would not hand over without.
+
+**Two things verified good from the modal itself:**
+- **The panel is brand green, not Razorpay's `#528FF0` blue.**
+- It reads **Malnad Spices**, the Razorpay account's business name — which
+  matches the packer name and the FSSAI licence printed on the packs, so it is
+  the right name to show. **Not** the shop-name mismatch finding; do not raise it.
+
+**ONE REAL DEFECT STILL VISIBLE: the Contact step asks for a mobile number only.**
+No email at that step, and `Email Field` was last read as **Optional** on
+`/app/magic/settings/magicx-store-settings`. This store sends order confirmations
+and dispatch notices **by email only** — no SMS app, by decision — so a customer
+who completes checkout without an email gets **no confirmation at all** and is
+reachable only by WhatsApp. Set it to **Mandatory**. Checking costs nothing:
+continue to the Address step and look, no payment required.
+
+**What remains on the payment chain:**
+
+1. `Email Field` → Mandatory.
+2. **One real paid order**, which is the only thing that proves settlement lands.
+   It should be **Dhanush's or Dheeraj's money into their own bank**, not
+   Jnanottam's — that is what the test exists to prove.
+3. **Tax still computes at 10%**, not 5% — Settings → Taxes and duties, India
+   country rate to 2.5%. 4.33% of goods value on every sale, out of the client's
+   margin.
+4. **Reconnect the Razorpay MCP connector** for the both-sides cross-check.
+
 ### RAZORPAY APPROVED THE WEBSITE — 8 Oct 15:10 IST
 
 `https://malnadproducts.in` reads **✓ Approved** on
