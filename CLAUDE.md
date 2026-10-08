@@ -1890,6 +1890,71 @@ under Razorpay review, so the manual does not go stale the day approval lands.
 JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
 the standing instructions.
 
+### THE REAL ANSWER — MAGIC HAS TWO FLOWS, AND WE HAD THE WRONG ONE. 8 Oct ~17:00
+
+**Razorpay support (Sushil, after Syed was pushed), in writing:**
+
+> **1. Public App** — *"a completely self-serve onboarding process. In this setup,
+> **orders are not processed through Magic Checkout**. Instead, after the
+> customer's address is verified via OTP, they are **redirected to the Shopify
+> checkout page** to complete their purchase."* Example: `nutrova.com`.
+>
+> **2. Private App** — *"does not follow a self-serve process and requires the
+> development of a custom app that is exclusive to your store… the Magic Checkout
+> will handle address and payment processes, and the Shopify redirection will no
+> longer occur."* Needs the **Shopify Collab code and Shopify URL**. Example:
+> `myborosil.com`.
+
+**THAT IS WORD FOR WORD WHAT THIS STORE DOES.** OTP → address → redirect to
+Shopify's checkout. **It was never broken.** We installed the public app from the
+Shopify app store, and the public app is an address collector by design.
+
+**SO THE SECTION BELOW IS WRONG AND IS SUPERSEDED.** I concluded at 16:35 that it
+was "a Razorpay-side defect, not a configuration error". It is neither — it is a
+**product tier**. That was the eighth wrong call on this integration, and the only
+reason the right answer surfaced is that Jnanottam kept the support chat open and
+pushed past two vague replies from the first agent.
+
+**Everything the earlier sections eliminated was still worth eliminating** — the
+embed, the scopes, the customization, the sales channel, Platform Settings, the
+deactivation test. None of it was the cause, but the deactivation test is exactly
+what forced support to explain the two flows. Keep those records.
+
+**ACTION TAKEN 8 Oct: the public app is UNINSTALLED**, on Sushil's instruction,
+and Razorpay's team is building the private app. Verified from the Admin API
+immediately after:
+
+| Check | Result |
+|---|---|
+| `appInstallations` | **Razorpay app gone.** Only Shopify Messaging and the Claude connector remain |
+| **Shipping** | **INTACT — both profiles, 4 zones each, 7 rates each. 28 + 28.** The real risk, since that app held `write_shipping` |
+| Products | 57, untouched |
+
+**ONE ORPHAN LEFT BEHIND.** The live theme's `config/settings_data.json` still
+reads 8082 bytes / `c6b03740…` and still carries the app block
+`shopify://apps/razorpay-cod-magic-checkout/blocks/magicx-script/…` with
+`disabled: false`, pointing at an app that no longer exists. Shopify ignores app
+blocks whose app is gone, so it renders nothing — but **mention it to Razorpay
+before the private app is installed**, because a stale block can confuse a fresh
+install.
+
+**THE COLLABORATOR CODE — scope it.** The private app needs a Shopify Collab code,
+which gives Razorpay's engineers access to the client's store. It does **not**
+consume a staff seat (Basic allows 2). **Grant Themes, Apps and Orders; not
+Customers, not Finances, not Settings.** It is Dhanush's data, so Dheeraj should
+be told a Razorpay engineer has scoped access for the build.
+
+**THE FEE QUESTION IS NOW ANSWERABLE AND STILL UNANSWERED:** with the private app
+owning the whole checkout, does **Shopify's 2% third-party fee** still apply? If
+it disappears, Magic is worth ~1.5% net. If it does not, Magic is 0.5% for a
+nicer address form. Put it to them before accepting the build.
+
+**Until the private app lands, the store sells exactly as before** — Shopify
+checkout → Razorpay Secure, ~4% all-in. **Do not gate the handover on the private
+app.**
+
+### SUPERSEDED by the section above — the conclusion here was wrong
+
 ### SETTLED 8 Oct 16:35 — MAGIC CANNOT COMPLETE A PAYMENT ON THIS ACCOUNT
 
 **The decisive test, and it is conclusive.** With the Razorpay gateway
