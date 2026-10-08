@@ -1890,6 +1890,62 @@ under Razorpay review, so the manual does not go stale the day approval lands.
 JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
 the standing instructions.
 
+### SETTLED 8 Oct 16:35 — MAGIC CANNOT COMPLETE A PAYMENT ON THIS ACCOUNT
+
+**The decisive test, and it is conclusive.** With the Razorpay gateway
+deactivated in Shopify → Settings → Payments, a checkout taken through Magic's
+modal reached Shopify's checkout and showed:
+
+> **"This store can't accept payments right now."** — Pay now greyed out.
+
+**Magic offered no payment method of its own.** So on this store Magic Checkout is
+purely an address-collection front end: it takes a mobile number, an OTP and an
+address, then hands the customer to Shopify's checkout, where **Razorpay Secure**
+takes the money. The gateway was reactivated immediately; the store was without a
+payment method for about two minutes and has never taken a real order, so nothing
+was lost.
+
+**SHOPIFY'S OWN CHECKOUT NAMES THE CULPRIT.** The Payment section reads
+**"Razorpay Secure (UPI, Card, Int'l Card, Apple Pay)"** with *"You'll be
+redirected to Razorpay Secure to complete your purchase"*, and Pay now goes to
+`api.razorpay.com/v1/checkout/hosted` — byte for byte the same page reached at
+15:25 **before Magic was enabled at all**. Razorpay **Secure** is a different
+product from Magic Checkout, and Secure is what is running.
+
+**So Syed's FIRST answer was right and his second was wrong.** *"You have
+integrated the API key, and the Shopify store has been linked, so it is
+redirecting to the Shopify store"* describes exactly what happens. *"There is no
+scenario where Shopify prevents Magic Checkout from completing the checkout"* is
+contradicted by the store's own behaviour with the gateway removed.
+
+**EVERYTHING A MERCHANT CAN DO HAS NOW BEEN TRIED. Do not re-chase any of it:**
+
+| Checked | Result |
+|---|---|
+| **Platform Settings** (the documented store-ID step) | **Does not exist in this account — live OR test.** Confirmed by reading the live sidebar: Control Center · Loyalty · Checkout… · COD Setup · RazorpayID… · RTO Reduction… · Delivery Statuses · Shipping Setup · Order Settings · Upload… |
+| Payment customization *"Hides COD payment method for Non MagicX shipping methods"* | **Deleted. No change.** Razorpay's own documented step. |
+| App embed | Enabled and persisted — verified in `config/settings_data.json`, not the toggle |
+| App scopes | 41, every one Magic needs |
+| Website registration | Approved 8 Oct |
+| Live mode, `Enable Magic Checkout` | On |
+| Magic Checkout sales channel | **Does not exist** — `publications` returns only Online Store and Point of Sale |
+| Gateway deactivated | **Magic offered nothing** |
+
+**CONCLUSION: it is a Razorpay-side defect, not a configuration error.** The
+escalation goes to `magic-checkout-support@razorpay.com` with the deactivation
+test as the closing evidence. `docs/razorpay-magic-support-request.txt` carries
+the full list.
+
+**THE EMBED SHOULD BE OFF.** It costs **0.5% + 18% GST** (Razorpay support, in
+writing) and buys nothing but an extra OTP step for the customer, who lands on the
+same Shopify checkout either way. Turning it off is a strict improvement.
+
+**WHAT THE STORE ACTUALLY RUNS ON, and it works:** Shopify checkout → Razorpay
+Secure, at roughly **4% all-in** (Shopify's 2% third-party fee plus Razorpay's
+transaction fee and GST). Order #1001 proved this route end to end in test. **The
+handover does not change** — the store sells, the money lands, and Magic is a fee
+optimisation sitting on Razorpay's ticket.
+
 ### MAGIC'S 0.5% IS ADDITIVE — the premise of the whole decision was wrong. 8 Oct
 
 **Razorpay support, in writing, answering what fee applies:**
