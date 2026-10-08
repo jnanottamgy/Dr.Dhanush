@@ -1,70 +1,100 @@
-RAZORPAY SUPPORT — MAGIC CHECKOUT NOT LOADING ON SHOPIFY
-Paste this into Razorpay support chat or support@razorpay.com.
+RAZORPAY SUPPORT — MAGIC CHECKOUT HANDS OFF TO SHOPIFY'S CHECKOUT
+Paste into Razorpay support chat, or email magic-checkout-support@razorpay.com.
+
+Supersedes the earlier "modal never loads" request. That problem is SOLVED —
+it was test mode, and it resolved itself the moment the website was approved and
+the gateway went live. The question now is different and narrower.
 
 ---
 
 To: magic-checkout-support@razorpay.com
-Subject: Magic Checkout modal opens but never loads — Shopify store
+Subject: Magic Checkout collects address then hands off to Shopify checkout — is this expected?
 
-Merchant: Malnad Products
-Shopify store ID: 8uysc8-kx.myshopify.com
-Storefront: https://malnadproducts.in (primary domain, SSL active)
-App installed: Razorpay COD & Magic Checkout (razorpay-magicx-app)
-Mode: test (rzp_test_ keys)
+Merchant:            Malnad Products
+Shopify store ID:    8uysc8-kx.myshopify.com
+Storefront:          https://malnadproducts.in (primary domain, SSL active)
+App:                 Razorpay COD & Magic Checkout (razorpay-magicx-app)
+Shopify plan:        Basic
+Mode:                LIVE. Website approved 8 October 2026. Shopify's Razorpay
+                     gateway has test mode OFF.
 
-PROBLEM
-The Magic Checkout modal opens over our storefront and shows your
-"Secured By Razorpay" branding, then sits on the loading shield
-indefinitely. It never renders the checkout. Earlier it showed
-"Something went wrong, please try again after some time."
 
-WHAT WE HAVE ALREADY RULED OUT
-- The Magic Checkout Script app embed IS enabled and saved on the live
-  theme. Confirmed by reading config/settings_data.json directly: the
-  magicx-script block is present with "disabled": false.
-- The app holds all 41 Shopify access scopes, including write_orders,
-  write_draft_orders and unauthenticated_write_checkouts.
-- Not the cart drawer: /cart behaves identically.
-- Not password protection: the store is launched and public.
-- No client-side error. The browser console shows only resource preload
-  warnings plus "[bugsnag] Loaded!" from checkout-DTJs6qRt.js, so your
-  bundle and error reporter both load correctly. Nothing throws.
-- Shopify's own checkout works. Order #1001 completed through the
-  "01 Cards, UPI, NB, Wallets by Razorpay" gateway for INR 1,155.
+WHAT HAPPENS
 
-Because the script loads and renders your chrome but the checkout body
-never arrives, and nothing errors in the browser, this looks like a
-request to your backend that does not return.
+1. Customer clicks Check out on the storefront.
+2. Your Magic Checkout modal opens correctly — "Secured by Razorpay", our
+   brand colour, correct cart contents and the right variant image.
+3. Contact step: mobile number, OTP. Works.
+4. Address step. Works.
+5. The customer is then taken to Shopify's own checkout at
+   malnadproducts.in/checkouts/cn/<token>, with the contact and address
+   pre-filled from your modal. Payment completes from there.
 
-WHAT WE ARE ASKING YOU TO CHECK
-1. Is Magic Checkout actually ACTIVATED on this account? In Shopify the
-   app tile still reads "Needs Activation" and we cannot find a screen
-   that clears it.
-2. Is this Shopify store correctly registered against our Magic
-   Checkout configuration on your side?
-3. Does Magic Checkout function in TEST mode on a live storefront, or
-   does it require live keys? If live-only, please say so plainly — we
-   will switch.
-4. Is there anything else pending on our account blocking Magic?
+So the modal renders and collects, but the checkout finishes on Shopify.
 
-We are ready to switch to live keys today if that is the requirement.
 
-ADDITIONAL, AFTER READING YOUR DOCUMENTATION
-- Is the Coupons feature enabled on this account? Your integration steps say to
-  disable "Auto fetch coupon" in Checkout Setup, and Coupons is an on-demand
-  feature. If Magic auto-fetches coupons on load against an account where that
-  feature is not enabled, would the checkout hang exactly as described?
-- Our Shopify theme was published today, after the app was installed last week.
-  Your troubleshooting names a recent theme change as the first thing to check.
-  Does Magic need to be re-enabled against the newly published theme, and how?
-- Shopify reports "Functions: 1 active" for your app. Could an active payment
-  method customization be blocking the checkout from rendering?
-- Your configuration doc says to set the Shopify Store ID under Magic Checkout →
-  Setup & Settings → "Platform Settings". Our dashboard has no Platform Settings
-  entry — only Checkout Setup, Cash On Delivery, RazorpayID, Delivery Statuses,
-  Shipping Setup, Order Settings, Analytics, Upload and Magic Cart. The store ID
-  does show on Checkout Setup. Is that the same step, or is something missing
-  from our account?
-- Checkout Setup has no "Auto fetch coupon" toggle, which your integration steps
-  say to disable. Is that expected on our account?
+WHY WE ARE ASKING
 
+Your Magic Checkout dashboard shows NO record of these sessions.
+Magic Checkout -> Abandoned sessions reads All 0, Open 0, COD 0 and
+"No abandoned sessions found", ~15 minutes after a checkout that was taken
+through the modal to the address step and then left.
+
+That suggests Magic is not owning the checkout session. We chose Magic
+specifically for the transaction-fee difference against Shopify's own
+checkout, so we need to know which rate actually applies.
+
+
+OUR QUESTIONS
+
+1. Is step 5 expected behaviour for Magic Checkout on Shopify Basic — i.e.
+   does Magic collect contact and address and then hand payment to Shopify's
+   checkout by design?
+
+2. If it IS expected: which transaction fee applies to an order that completes
+   this way — Magic Checkout's rate, or the standard gateway rate?
+
+3. If it is NOT expected: what is misconfigured? Please check this account's
+   Magic Checkout configuration directly.
+
+4. Why does Abandoned sessions show nothing for a session that reached the
+   address step through the Magic modal? Should it appear there?
+
+5. Your Shopify setup guide refers to adding products to a "Magic Checkout
+   sales channel". Our Shopify store exposes only two sales channels, Online
+   Store and Point of Sale — there is no Magic Checkout channel to publish to.
+   Is that step still required, and if so how is that channel created?
+
+6. Your configuration documentation refers to Magic Checkout -> Setup &
+   Settings -> "Platform Settings", for entering the Shopify Store ID. There is
+   no Platform Settings entry in this account's Magic Checkout sidebar, in
+   either test or live mode. Has that moved, or was it never provisioned here?
+
+
+WHAT IS ALREADY VERIFIED ON OUR SIDE, SO PLEASE DO NOT ASK US TO RE-CHECK
+
+- The Magic Checkout Script app embed is enabled and saved on the live theme.
+  Verified by reading config/settings_data.json directly: the magicx-script
+  block is present with "disabled": false. Not the toggle — the file.
+- The app holds 41 Shopify access scopes, including write_orders,
+  write_draft_orders, unauthenticated_write_checkouts, write_shipping,
+  write_payment_customizations and write_app_proxy.
+- Enable Magic Checkout reads ON at
+  /app/magic/settings/magicx-store-settings in live mode.
+- Website https://malnadproducts.in is Approved under Account & Settings ->
+  Website and app settings.
+- Extensions 1 active, Functions 1 active on the Shopify app page.
+- Shipping is configured and correct: four zones, seven weight bands, and it
+  prices correctly at checkout (a 0.14 kg Karnataka cart charged INR 40, the
+  right band). Magic Shipping is OFF and we want it to stay off.
+- COD is disabled and must stay disabled. This is a prepaid-only store.
+- The store is public, not password protected.
+- 57 products, all Active and published to the Online Store channel.
+
+
+PLEASE REPLY WITH
+
+A direct answer to question 1 and question 2. Those two decide whether we leave
+Magic Checkout enabled. At present the modal adds an OTP step for our customers
+and we cannot see that it changes the fee, so unless Magic is genuinely owning
+these checkouts we are better off with it switched off.
