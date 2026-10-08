@@ -280,7 +280,7 @@ Both were raised with him; they are not resolved by his answers.
 | Decision | Reason |
 |---|---|
 | **Shopify, not a custom build** | Below roughly ₹3 lakh/month in sales, Shopify's plan plus Magic Checkout costs less than self-hosted infrastructure, and carries none of the operational burden. The custom build plan is superseded, kept for reference. |
-| **Razorpay Magic Checkout** | Shopify adds 2% on Basic because Shopify Payments is unavailable in India. Magic Checkout is ~0.65% and currently falls outside that fee. Saves ~₹28,700/year. Flagged to the client as a gap in Shopify's rules, not a guarantee. **Re-confirmed by Jnanottam 17 Sep** — *"lets go with magic checkout"* — after being shown the comparison and the caveats, including that Magic's headline feature is COD and this store is prepaid only, so the purchase is the fee gap plus one-click address, not the product's main draw. |
+| **Razorpay Magic Checkout** | **THE RATE IN THIS ROW IS WRONG — corrected 8 Oct, see "Magic's 0.5% is additive" below.** Magic Checkout's fee is **0.5% + 18% GST ON TOP OF** the normal transaction fee, not ~0.65% instead of it (Razorpay support, in writing). The decision survives only if Shopify's own 2% genuinely disappears on a Magic-completed order, which is unconfirmed. Original reasoning kept for the record: Shopify adds 2% on Basic because Shopify Payments is unavailable in India. Magic Checkout is ~0.65% and currently falls outside that fee. Saves ~₹28,700/year. Flagged to the client as a gap in Shopify's rules, not a guarantee. **Re-confirmed by Jnanottam 17 Sep** — *"lets go with magic checkout"* — after being shown the comparison and the caveats, including that Magic's headline feature is COD and this store is prepaid only, so the purchase is the fee gap plus one-click address, not the product's main draw. |
 | **Prepaid only** | Client instruction. Also removes COD refusal losses entirely. |
 | **WhatsApp community on the free Business App** | Communities only exist on the Business App; the API cannot run one, and a number moved to the API loses Communities permanently. API is priced as a separate optional upgrade, triggered by the 256-contact broadcast cap. |
 | **Owner dashboard included at no charge** | Listed at ₹8,000 then discounted to zero, so the client sees the value. Total stays ₹38,000. |
@@ -1888,6 +1888,64 @@ Payments are described in steady state with a dated note saying the website is
 under Razorpay review, so the manual does not go stale the day approval lands.
 JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
 the standing instructions.
+
+### MAGIC'S 0.5% IS ADDITIVE — the premise of the whole decision was wrong. 8 Oct
+
+**Razorpay support, in writing, answering what fee applies:**
+
+> *"Two charges will apply: one for the transaction along with 18% GST on the
+> transaction fees, **and another** for using Magic Checkout, which is 0.5% plus
+> 18% GST on the 0.5%."*
+
+**So Magic Checkout's fee is an ADD-ON to the normal transaction fee, not a
+replacement rate.** Every comparison in this file that reads "Magic ~0.65%
+against ~4%" is wrong and was wrong from 17 Sep. The ~0.65% was never an
+achievable all-in rate.
+
+**What it actually costs, in the state the store is in right now:**
+
+| | |
+|---|---|
+| Shopify third-party gateway fee (Basic) | 2% |
+| Razorpay transaction fee | ~2% + 18% GST |
+| **Magic Checkout** | **+0.5% + 18% GST** |
+| | **~4.5%** |
+
+**And Magic is not completing a single checkout**, so that 0.5% buys nothing. On
+the ~₹14.35 lakh/year turnover implied by the quotation's ₹28,700 figure, it is
+about **₹7,175/year for a feature that drops out before its own payment step**.
+**Recommendation given and recorded: turn the embed off.** No function is lost,
+the 0.5% stops, and the customer stops doing an OTP for nothing.
+
+**THE ONE QUESTION THAT DECIDES WHETHER MAGIC IS EVER WORTH IT**, put to support
+and still unanswered: **when Magic owns the full checkout, does Shopify's 2%
+third-party gateway fee still apply?**
+
+- **If it disappears** → Magic is worth ~1.5% net (2% saved, 0.5% paid), roughly
+  **₹21,500/year**. Real, but half what the quotation costed. Worth fixing.
+- **If it does not** → Magic is a pure 0.5% cost and should stay off permanently,
+  and the original reason for choosing it evaporates.
+
+**SUPPORT ALSO CONTRADICTED ITSELF, and it is worth recording how that was
+handled.** Syed's first message: *"you have integrated the API key, and the
+Shopify store has been linked, **so it is redirecting** to the Shopify store."*
+His second: *"There is no scenario where Shopify prevents Magic Checkout from
+completing the checkout process itself."* Both cannot hold. Accepting the first
+would have sent us to deactivate the gateway for nothing; accepting the second
+closes the ticket with the behaviour unexplained. **Pushing back on the
+contradiction is what produced the fee answer**, which is the single most
+valuable thing support has said.
+
+**THE EVIDENCE THAT KILLS "IT IS DESIGNED THAT WAY".** Magic's own modal shows
+its three steps across the top: **Contact › Address › Payment**. Contact and
+Address complete; **Magic's Payment step never renders** and the customer is
+dropped on Shopify's checkout. A product that intends to hand off after the
+address step does not advertise a Payment step it never shows. So this is a
+drop-out mid-flow, not a designed handoff — and that is the form the question to
+support now takes.
+
+**Q4 is still unanswered**: why Abandoned sessions reads All 0 for a session
+taken through the modal to the address step and left.
 
 ### MAGIC — THE HANG IS FIXED, BUT IT DOES NOT OWN THE CHECKOUT. 8 Oct
 
