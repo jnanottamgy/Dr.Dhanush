@@ -2300,6 +2300,82 @@ spend it.
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
 
+### WHERE FORM DATA LANDS — read from the live store 8 Oct
+
+Asked where everything a customer types on the site ends up. **Exactly three
+inputs exist**, and they go to three different places. Read from the theme and
+the Admin API, not from memory.
+
+| Input | Fields | Where it lands | Durable? |
+|---|---|---|---|
+| **Contact form**, `/pages/contact` | Name · **Email (required)** · Phone · Message | **An email only.** Nothing is stored in Shopify | **No** |
+| **Footer newsletter**, "Word from the hills" | Email | A **customer record** with marketing consent. Admin → Customers | Yes |
+| **Checkout** | Name · email · phone · delivery address | The **order** + a **customer record** | Yes |
+
+**The contact form is the weak point, and it is the answer to the question.**
+Horizon's `blocks/contact-form.liquid` uses `{% form 'contact' %}`, which
+**emails and does not store**. Shopify has no admin list for built-in
+contact-form submissions. It goes to the **sender email** on
+**Settings → Notifications**, which is a *different* field from the store email
+on Settings → General and **is not exposed in the Admin API**. Both addresses
+that *are* readable — `shop.email` and `shop.contactEmail` — read
+`drjhrnd5@gmail.com`, so that is almost certainly the destination, but
+**Settings → Notifications is the one screen that settles it** and only
+Jnanottam can see it. Shopify spam-filters the message body and prefixes
+`[SPAM]` to the subject of anything flagged; flagged mail still arrives, so it
+can land in Gmail's spam rather than vanish. **If nobody opens that inbox, the
+enquiry is gone — there is no second copy.**
+
+**The footer signup emails nobody.** Block `email_signup_crihX7`, type
+`email-signup`, in `sections/footer-group.json`. It creates or updates a
+customer with email-marketing consent. **0 customers** in the store, so it has
+never been used — expected with no real traffic. No newsletter tool is
+connected, so addresses just accumulate; Shopify Email is free to 10,000
+sends/month if the list is ever wanted.
+
+**THERE IS NO BULK-ORDER FORM.** Checked the live theme and the whole repo —
+nothing. The contact form has four fields and none is about quantity, and no
+page invites a bulk enquiry. Consistent with the quotation, which lists
+**"wholesale or dealer pricing"** as explicitly out of scope. So a bulk enquiry
+arrives today as a contact-form email into that Gmail, or on the two footer
+phone numbers.
+
+Two ways to add one, if asked:
+- **Extra fields on the existing contact form** — product, quantity, delivery
+  town. Any input named `contact[<id>]` arrives in the same email, labelled.
+  Theme edit, so duplicate → edit → publish; live theme writes are blocked here.
+- **Shopify Forms**, free Shopify app. Submissions are stored **in the admin**,
+  not in an inbox, and it can email a notification too. **Preferred**, precisely
+  because it removes the single-inbox failure above.
+
+**Nothing records who merely visited.** No Google Analytics, no Search Console,
+no Search & Discovery. The only trace of a customer is a signup, an abandoned
+checkout (Orders → Abandoned checkouts; one, 28 Sep, ₹685) or an order.
+
+### ABOUT PAGE WAS DESCRIBING A RETIRED BEHAVIOUR — fixed 8 Oct
+
+Found while answering the above. The live About page said:
+
+> *"Where a pack does not carry one of those, the page says 'Not printed on this
+> pack'. We would rather show you a gap than a number we cannot stand behind."*
+
+**The theme has not done that since 16 Sep.** The client's instruction was that
+an undisclosed field is simply not mentioned; `show_gaps` is **off** and blank
+rows are omitted entirely. So a customer reading the About page was told to
+expect a notice the product pages never show — and it is exactly the kind of
+inconsistency a payments reviewer picks up.
+
+Rewritten through `pageUpdate` on `Page/112875372657` and verified:
+
+> *"Nothing on a product page is worked out, estimated or filled in for you. If a
+> figure is on the pack it is on the page, and if it is not on the pack the page
+> does not carry that line at all."*
+
+Same promise, accurate to what the theme does. **`storefront-design.html` still
+shows the old laterite "Not printed on this pack" rows** and remains out of step
+with the theme on that one point — it is a mockup, so this is cosmetic, but do
+not treat it as the reference for that row.
+
 ### QR code for the storefront — made 8 Oct, and it is STATIC on purpose
 
 Dr. Dhanush asked for a QR code for `malnadproducts.in` that is free and lasts
