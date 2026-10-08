@@ -1889,6 +1889,73 @@ under Razorpay review, so the manual does not go stale the day approval lands.
 JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
 the standing instructions.
 
+### RAZORPAY APPROVED THE WEBSITE — 8 Oct 15:10 IST
+
+`https://malnadproducts.in` reads **✓ Approved** on
+`dashboard.razorpay.com/app/website-app-settings/business-website-details`.
+**Generate Key is enabled** and the dashboard Test Mode toggle is **off**. Trial
+banner 69 Free* Days. The 24–48 hour clock that started 7 Oct 12:09 returned
+inside 27 hours.
+
+**This clears the root cause recorded on 29 Sep.** Live keys can now exist, so
+the store can take real money for the first time.
+
+**THE GATEWAY DID NOT ASK FOR KEYS — and that is expected, not a gap.**
+Jnanottam unticked Shopify's test mode and reactivated
+`01 Cards, UPI, NB, Wallets by Razorpay`; it asked for nothing. That provider
+holds a **connection** to the Razorpay account rather than a stored Key ID and
+Secret, so reactivating keeps it and the live/test choice is Shopify's own
+checkbox. **No key was generated** — correct, because an unused live Key Secret
+is a credential to look after for nothing.
+
+**Whether the gateway is genuinely live is NOT yet proven.** A checkout reached
+`api.razorpay.com/v1/checkout/hosted` at 15:25 for **₹90**, showing real UPI
+apps, netbanking, wallets and a QR. **That appearance proves nothing** — the
+28 Sep record already establishes that Razorpay's *test* checkout renders the
+same chrome, and over-reading it was a logged wrong call. Do not repeat it.
+Two free ways to settle it, neither needing a payment:
+
+1. **Razorpay → Transactions, live mode.** Razorpay records an order the moment
+   the hosted page opens, even unpaid. A ₹90 entry at ~15:25 in live mode settles
+   it; present only in test mode means the connection is still on test
+   credentials.
+2. **The order record**, once anything is paid: `test` must read **false** on
+   both the order and the transaction. Order #1001 reads `true`.
+
+**Shopify saw nothing from that attempt** — still 1 order and 1 abandoned
+checkout, both 28 Sep. Normal: abandoned checkouts take ~10 minutes to register
+and an order only exists on payment.
+
+**One thing it did prove.** ₹90 = **₹50 goods + ₹40 delivery**, and ₹40 is exactly
+the Karnataka 0–0.5 kg band. **Weight-based shipping is correct on a live cart —
+the third independent confirmation** (920 g → ₹55, 1,570 g → ₹85, now ≤0.5 kg →
+₹40).
+
+**THE MAGIC EMBED IS BACK ON — 8 Oct 15:31, verified from the file.**
+`config/settings_data.json` reads **8082 bytes, md5
+`c6b037400494325e780db39d1ce0a7f5`** — byte-identical to the pre-disable state,
+so `disabled: false`. Same trap as both previous attempts: the editor's **Save
+was greyed out**, which is ambiguous between "already saved" and "never
+registered". **Only the file settles it.**
+
+**MAGIC CAN BE TESTED WITHOUT PAYING.** The symptom was always a modal that
+opened and hung. So: add to cart → Check out → if the modal **fills**, Magic
+works; if it **hangs**, it does not. The answer arrives before the payment step.
+If it hangs, set the embed back off and send
+`docs/razorpay-magic-support-request.txt`.
+
+**The Razorpay MCP connector is disconnected again** — no `fetch_*` tools in the
+session, and the OAuth flow cannot run from a non-interactive container. Until
+Jnanottam reconnects it in claude.ai connector settings, **Razorpay's side cannot
+be read from here at all**, so every live/test question has to be answered off
+his screen. Reconnecting it is what finally makes the both-sides cross-check
+(Shopify order against Razorpay payment, by id and amount) possible.
+
+**The end-to-end money test should be the client's, not Jnanottam's.** What needs
+proving is that settlement lands in **Dhanush's** bank; ₹90 of Jnanottam's own
+money does not prove that any better, and he said plainly he did not want to
+spend it.
+
 ## Repository
 
 | Path | What |
