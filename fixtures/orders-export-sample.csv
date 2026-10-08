@@ -1,0 +1,6 @@
+Name,Email,Financial Status,Paid at,Fulfillment Status,Currency,Subtotal,Shipping,Taxes,Total,Discount Code,Discount Amount,Shipping Method,Created at,Lineitem quantity,Lineitem name,Lineitem price,Lineitem sku,Lineitem discount,Shipping Province,Shipping Province Name,Shipping Country,Tax 1 Name,Tax 1 Value,Tax 2 Name,Tax 2 Value
+#1001,buyer@example.com,paid,2026-09-28 15:28:43 +0530,unfulfilled,INR,1100.00,55.00,100.00,1155.00,,0.00,Standard delivery,2026-09-28 15:28:43 +0530,1,Black Cardamom - 100 g,240.00,black-cardamom-100-g,0.00,KA,Karnataka,IN,CGST 5.0%,50.00,SGST 5.0%,50.00
+,,,,,INR,,,,,,,,,1,Badam (Almonds) - 500 g,750.00,badam-almonds-500-g,0.00,,,,,,,
+,,,,,INR,,,,,,,,,1,Antuvala (Soapnut) Powder - 200 g,110.00,antuvala-soapnut-powder-200-g,0.00,,,,,,,
+#1002,buyer2@example.com,paid,2026-09-29 10:02:11 +0530,fulfilled,INR,640.00,105.00,58.18,745.00,,0.00,Standard delivery,2026-09-29 10:02:11 +0530,2,Swad Horanadu Rasam Powder - 250 g,180.00,swad-horanadu-rasam-powder-250-g,0.00,MH,Maharashtra,IN,IGST 5.0%,58.18,,
+,,,,,INR,,,,,,,,,1,Malnad Chai - Premium Malnad Tea Powder - 1 kg,300.00,malnad-chai-premium-malnad-tea-powder-1-kg,0.00,,,,,,,
