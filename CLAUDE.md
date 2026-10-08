@@ -2269,6 +2269,9 @@ spend it.
 | `scripts/audit_live_products.py` | Finds live products missing declarations |
 | `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
 | `scripts/build_shipping_rates.py` | **Generates the 28 weight-based shipping rates** from eight numbers |
+| `money-explained.html` | **How the money works** — client-facing, written for Dr. Dhanush |
+| `Malnad-Products-How-The-Money-Works.pdf` | The same, 7 pages, for handover |
+| `assets/qr/` | **QR codes for `malnadproducts.in`** — static, SVG and PNG, black and brand green |
 | `owner-manual.html` | **The client's owner's manual** — how to run the shop, 12 sections |
 | `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
@@ -2296,6 +2299,68 @@ spend it.
 | `catalogue/pack-size-request.txt` | Drafted: pack sizes for the 9 unlabelled lines |
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
+
+### QR code for the storefront — made 8 Oct, and it is STATIC on purpose
+
+Dr. Dhanush asked for a QR code for `malnadproducts.in` that is free and lasts
+for life. **The trap in that request is real**: most free QR generators hand out a
+**dynamic** code that encodes *their* domain and redirects to yours. It is free
+until the trial ends or the company folds, and then every QR printed on a pack, a
+board or a van stops working. Nobody reprints packaging.
+
+**So these are STATIC.** The URL is encoded directly in the pattern. No third
+party, no redirect, no account, no expiry. It works for exactly as long as
+`malnadproducts.in` does, and it cannot be switched off by anyone.
+
+Generated with `segno`, error correction **H (30%)** so a scuffed sticker or a
+rain-marked board still scans. Version 4, 41×41 modules.
+
+| File | For |
+|---|---|
+| `malnadproducts-qr-black.svg` | **Print.** Vector — scales to a hoarding without softening |
+| `malnadproducts-qr-green.svg` | The same in brand `#1F4034`, for anything designed |
+| `malnadproducts-qr-black.png` | 1640×1640 — WhatsApp, posters, anyone wanting a raster |
+| `malnadproducts-qr-green.png` | 1640×1640, brand green |
+
+**Both were decoded back with OpenCV and return exactly
+`https://malnadproducts.in`** — checked rather than assumed, because a QR printed
+on packaging that encodes the wrong thing is not a defect you can patch.
+
+**Rules for whoever prints it:** keep the white margin around it (it is already
+in the files — do not crop); never print it smaller than about 2 cm square;
+dark-on-light only, never inverted; and if a logo is ever dropped in the middle,
+re-test the scan, because the H error correction allows it but only just.
+
+### How the money works — client document, 8 Oct
+
+`money-explained.html` → `Malnad-Products-How-The-Money-Works.pdf`, 7 pages, same
+stylesheet as the quotation and the owner's manual so the handover pack reads as
+one family.
+
+Written for Dr. Dhanush, not for us. Ten sections: the short version · how a
+customer pays · **one ₹1,055 order followed from Monday to Wednesday** · what is
+deducted · when it reaches the bank · what he actually has to do · refunds ·
+counter sales · GST and the accountant's sheet · when it starts.
+
+Four things it is careful about:
+
+1. **The two fees are deducted in different ways**, which is the part people get
+   wrong. Razorpay's comes **out of each payment** before the bank; Shopify's is
+   **billed monthly** like a phone bill. The document says plainly not to expect
+   them to reconcile in the bank statement.
+2. **No invented fee figures.** The Razorpay rate on this account was never read,
+   so the document points at the dashboard, where every payment shows its exact
+   fee, instead of printing a number that might be wrong.
+3. **Settlement timing is Razorpay's published T+2 working days**, with the real
+   caveats — Sundays, bank holidays and the 2nd and 4th Saturdays do not count,
+   payments are batched into one deposit, and **the account's own dashboard is the
+   figure to rely on**.
+4. **It names the last open gate honestly**: no real money has gone through yet,
+   so the chain is not proven. It asks him to buy one ₹50–80 pack from his own
+   shop and watch it land — framed as paying himself for certainty.
+
+Magic Checkout is mentioned in one sentence as a background fee improvement that
+**changes nothing about how he is paid**. No jargon, no ticket history.
 
 ### Storefront imagery — placed 16 Sep
 
