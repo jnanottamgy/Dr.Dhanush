@@ -14,6 +14,9 @@ Malnad produce business (coffee, spices, estate goods).
 | `quotation-malnad-print.html` | Self-contained build with fonts inlined — used to render the PDF. Regenerated, not hand-edited. |
 | `JTACS-Quotation-Malnad-Store.pdf` | 15-page A4 PDF. |
 | `dashboard-mockup.html` | Design mockup of the owner dashboard — sample data, agreed before building. |
+| `owner-manual.html` | Owner's manual for the client. Source, loads webfonts. **Edit this one.** |
+| `owner-manual-print.html` | Fonts-inlined build used to render the PDF. Regenerated, not hand-edited. |
+| `Malnad-Products-Owner-Manual.pdf` | 8-page A4 PDF — how to run the shop, handed over with the store. |
 
 **Commercials**
 

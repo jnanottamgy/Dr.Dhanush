@@ -1765,6 +1765,130 @@ Stage 3 (payments) is gated hardest: the 16-row test matrix runs in test mode an
 again live, and is not complete until a settlement is confirmed landed in the
 client's bank.
 
+### SEO — written and pushed 8 Oct. Every record had a null title.
+
+Read first: `seo { title description }` was **null on all 57 products, all 9
+collections and both pages**, so Shopify was falling back to the bare product
+title. Google saw *"Black Pepper"* where it should see *"Malnad Black Pepper
+100 g"*. The quotation promises "Basic SEO — page titles, descriptions", so this
+was an unbuilt scope item, not a nicety.
+
+**Source of truth is `catalogue/seo.py`**, same pattern as `descriptions.py`,
+with a `check()` that fails the push rather than letting a bad record through.
+Pushed as batched aliased `productUpdate` / `collectionUpdate` calls and
+**verified by reading all 68 records back.**
+
+The rules it enforces, each for a reason worth keeping:
+
+- **No shop name in the SEO title.** `snippets/meta-tags.liquid` appends
+  ` – {{ shop.name }}` **unless the title already contains it**, so a title
+  carrying "Malnad Products" suppresses the append and one that does not gets it
+  free. Titles are capped at **42 characters**; + 18 for the append = 60, which
+  is Google's display width.
+- **Local names where they are the search term** — nellikai, sikakai, antuvala,
+  sasive, chekke, marati moggu, kishmish, elakki, sompu. A Kannada-speaking
+  customer does not search "Indian gooseberry powder".
+- **No health claims**, same regex discipline as the descriptions. "Diabeat" is
+  whitelisted because it is the maker's product name, not a claim we make.
+- **No prices in meta descriptions.** They change, and a stale Google snippet
+  undercutting the live price is a consumer-law problem, not an annoyance.
+- **No duplicates.** Duplicated meta descriptions across 57 pages is the commonest
+  way a small catalogue gets flattened in search.
+- **Origin named wherever true** — Horanadu, Kalasa, Koppa, Chikkamagaluru. Nobody
+  else competes for "marati moggu online"; everybody competes for "buy almonds".
+
+**Pages have no `seo` field on `PageUpdateInput`** — checked against the schema,
+not guessed. Theirs go in as the `global.title_tag` and `global.description_tag`
+metafields, which is what Shopify's own SEO editor writes.
+
+**THE HOMEPAGE CANNOT BE SET FROM THE API.** Its title and meta description live
+in **Online Store → Preferences** and need a browser. `shop.description` reads
+`null`, which also means `og:description` falls back to the shop name on every
+page that has no description of its own. The wording is parked in `seo.py` as
+`HOMEPAGE_TITLE` and `HOMEPAGE_DESCRIPTION` so it is version-controlled and
+consistent with the rest.
+
+**Still missing from the SEO scope**, and all of it needs his login:
+Google Analytics, Search Console, a Google Business Profile, and the free
+**Shopify Search & Discovery** app — `appInstallations` shows only three apps, so
+it is not installed and the collection pages therefore have **no filters**, which
+the quotation also promises.
+
+### Collection images — all nine now set, 8 Oct
+
+Seven of the nine had `image: null` and were falling back to whatever pack photo
+Shopify picked. Each now carries a deliberately chosen pack photograph with real
+alt text, set through `collectionUpdate(input: {image: {src, altText}})` — `src`
+takes a public URL, so they went straight off `raw.githubusercontent.com` pinned
+to a commit SHA, the same route the 70 pack photos took.
+
+**This is an improvement, not the finish.** Whole Spices and Coffee have proper
+atmospheric brand art; the other seven have pack shots, which sit oddly beside
+them. The real fix is still the two generated category images noted under
+Storefront imagery. `cat-honey-comb.png` and `packs-three-up.png` remain orphaned.
+
+### The accountant's monthly sheet — built 8 Oct
+
+`scripts/gst_monthly_summary.py`. Quotation 02B promises "a one-page GST and HSN
+summary you can hand to your accountant each month"; it did not exist.
+
+Shopify's order export has **no HSN column** — HSN lives in our `compliance`
+metafields — so the script joins the export to `catalogue/malnad-catalogue.csv`
+**on SKU**, which was verified to match variant-for-variant in the live store.
+Output is the HSN-wise table GSTR-1 wants: HSN, rate, quantity, taxable value,
+CGST/SGST/IGST, total.
+
+Three things it surfaces rather than smoothing over:
+
+1. **The 10%-vs-5% defect appears on every run** until Settings → Taxes and
+   duties is fixed, as tax-at-declared-rate against tax-as-Shopify-computed and
+   the gap between them. Tested against the real order #1001: it reproduces
+   ₹52.38 correct against ₹100.00 charged.
+2. **The intra/inter split comes from the SHIPPING province**, not billing —
+   under IGST s.10 the place of supply for goods is where delivery ends.
+3. **Delivery is its own line**, because `taxShipping` is false and delivery on a
+   taxable supply is normally a composite supply at the principal rate.
+
+A product sold but absent from the catalogue gets **no HSN**, so it is reported
+under "NEEDS ATTENTION" rather than silently dropped — that is the failure mode
+if somebody adds a product in Shopify without telling us. Refunded and voided
+orders are **excluded, not netted**, because the export cannot say which month
+the refund belongs to.
+
+Fixture at `fixtures/orders-export-sample.csv`, whose first order is order #1001
+with its real figures.
+
+### Owner's manual — written 8 Oct
+
+`owner-manual.html` → `Malnad-Products-Owner-Manual.pdf`, 8 pages. Reuses the
+quotation's stylesheet verbatim so the handover pack reads as one family; the
+print variant inlines 58 woff2 files, built by the same approach as
+`quotation-malnad-print.html`.
+
+Twelve sections, written for Dheeraj and Dhanush rather than for us: what they
+have · the order-day routine · **what must be printed on every pack** · changing
+a price · the eight-item checklist for adding a product · taking something off
+sale · counter sales as draft orders · refunds · the monthly export for the
+accountant · **six things not to touch** · payments and where they stand · a
+symptom-to-cause table.
+
+Three sections exist because of findings in this file and would not be in a
+generic manual:
+
+- **Section 03** is the per-package declaration duty, stated as the biggest open
+  risk in the shop, with the rubber-stamp suggestion as the cheap close. It also
+  says plainly that resold sealed goods keep the maker's declarations.
+- **Section 10** is the list of settings that quietly break things: Magic
+  Shipping, the `Updated copy of…` theme, Republish Cart, deleting instead of
+  drafting, COD, and test mode.
+- **Section 05** leads with the **Active-but-not-published trap**, which cost us
+  a day twice.
+
+Payments are described in steady state with a dated note saying the website is
+under Razorpay review, so the manual does not go stale the day approval lands.
+JTACS is named as **"Jnanottam" only** and there are **no fill-in blanks**, per
+the standing instructions.
+
 ## Repository
 
 | Path | What |
@@ -1780,6 +1904,12 @@ client's bank.
 | `scripts/audit_live_products.py` | Finds live products missing declarations |
 | `scripts/render_declarations_test.py` | **Renders the declarations block** and checks the gap treatment |
 | `scripts/build_shipping_rates.py` | **Generates the 28 weight-based shipping rates** from eight numbers |
+| `owner-manual.html` | **The client's owner's manual** — how to run the shop, 12 sections |
+| `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
+| `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
+| `catalogue/seo.py` | **All 68 SEO titles and meta descriptions** — source of truth, re-pushable |
+| `catalogue/shopify-ids.json` | handle → Shopify gid for all 57 products and 9 collections |
+| `fixtures/orders-export-sample.csv` | Order-export fixture built from the real order #1001 |
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
 | `policies/` | Refund, shipping, terms, contact, legal notice — **paste by hand**, see below |
 | `docs/store-setup.md` | What is left and who does it, in full |
