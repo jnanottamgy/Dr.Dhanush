@@ -2356,6 +2356,98 @@ Check out and watch the URL bar. Magic's own **Payment** step rendering with no
 stays in the library after the test theme is published, so re-publishing it
 restores today's working store in seconds.
 
+### THE PRIVATE APP IS IN — and the store CANNOT TAKE PAYMENTS. 9 Oct 11:19–11:26
+
+**THE PRIVATE APP IS REAL AND INSTALLED.** Read from `appInstallations`, so this
+is the record, not the label on a screen:
+
+| | |
+|---|---|
+| App | **`TcBzhyvGVSK9Q0 - MagicCheckout`**, handle **`tcbzhyvgvsk9q0-magiccheckout`** |
+| Installation | `gid://shopify/AppInstallation/1067648319601` |
+| Public app | **GONE.** `razorpay-magicx-app` is uninstalled |
+| Scopes | **57** |
+
+**A different handle is what settles it** — named for the Merchant ID
+`TcBzhyvGVSK9Q0`, exclusive to this store, exactly as Sushil described. The
+public-vs-private question is **closed**; this is the private app. So the
+10:59 reinstall of the public app was a step on the way, not the destination,
+and Razorpay's team did the real install at about 11:19.
+
+**Scope differences worth keeping, because they say how it works:**
+
+- **Has `unauthenticated_write_checkouts` + `unauthenticated_read_checkouts`** —
+  it can own the checkout session. That is the capability the whole argument
+  was about.
+- **Has `write_script_tags`**, which the public app did not. The public app
+  hooked the storefront with a **theme app embed**; this one injects a
+  **script tag**, which is **store-wide, not per-theme** — so it applies to the
+  live theme too, and the test theme isolates nothing.
+- **Dropped `write_payment_customizations` and `write_delivery_customizations`**,
+  which the public app held for its COD function. Consistent with COD being off.
+
+**App embeds on the test theme now reads "You don't have any apps with embeds
+installed."** The three Razorpay embeds are gone with the public app, and the
+private app contributes none. **So there is nothing to enable in the theme** —
+do not go hunting for a toggle. The test theme's `config/settings_data.json` is
+still **8082 / `c6b03740…`**, meaning the dead orphan block for the uninstalled
+`razorpay-cod-magic-checkout` is still in `current.blocks` and can no longer be
+switched off from the UI, because Shopify hides blocks for uninstalled apps.
+Inert, but it will ride into the live theme if this one is ever published.
+
+**`scriptTags` CANNOT be read from this connector** — *"Access denied for
+scriptTags field"*; it lacks `read_script_tags`. So the script-tag hypothesis is
+inferred from the scope plus the empty embeds panel, not read directly.
+
+---
+
+### THE REAL FINDING, 11:26 — NO PAYMENT PROVIDER. THE STORE IS DOWN FOR MONEY.
+
+The ₹50 preview checkout went **straight to `malnadproducts.in/checkouts/cn/…`**,
+with no Magic modal at all, and Shopify's Payment section read:
+
+> **"This store can't accept payments right now."** — Pay now greyed out.
+
+**That is byte for byte the 8 Oct deactivation-test message.** The Razorpay
+gateway `01 Cards, UPI, NB, Wallets by Razorpay` is no longer active.
+
+**Payment providers are STORE-WIDE, not per-theme**, so this is equally true on
+the live storefront. The store is public and took 21 sessions in the last 30
+days. **A real customer reaching checkout today cannot pay.** This is an
+outage, not a test artefact.
+
+**It also explains the 11:00 error.** The public app's *"Oops! Something went
+wrong. No appropriate payment method found."* was the same condition reported
+one step earlier, by Magic rather than by Shopify. Flagged as the likely cause
+at the time and now confirmed from the checkout itself.
+
+**Cause, near-certain:** the gateway came off with the app during the
+uninstall/reinstall/uninstall cycle and was never restored. It was on the open
+list as *"confirm the gateway survived the 8 Oct uninstall"* and was never
+checked.
+
+**FIX, and it is the first thing: Settings → Payments → reactivate
+`01 Cards, UPI, NB, Wallets by Razorpay`.** If it is not listed at all, add the
+provider back. Browser only — this connector cannot read or write payment
+providers (`paymentCustomizations` and `scriptTags` are both denied).
+
+**Fallback if it will not come back:** the custom manual **UPI** payment method
+recorded under the 6 Oct section. Zero fees, orders land Pending until marked
+Paid, still prepaid. It gets the store selling the same day.
+
+**SECOND, SEPARATE FINDING: the private app's storefront hook is NOT FIRING.**
+Check out went directly to Shopify's checkout with no Magic modal — so the app
+is installed and authorised but nothing intercepts the button. That is
+Razorpay's to finish, and it should be reported together with the missing
+payment provider, since their own work is the likeliest cause of both.
+
+**TWO THINGS VERIFIED GOOD, free, from the same screen:**
+
+- **Shipping correct for the FOURTH time** — ₹50 goods + **₹40** = ₹90, the
+  Karnataka 0–0.5 kg band exactly. Address Bengaluru 560080, Standard delivery.
+- **Tax still computing at 10%** — *"Including ₹4.54 in taxes"* on ₹50, where
+  `50 × 5/105 = ₹2.38` is right. Unchanged and still open.
+
 ### APP REINSTALLED 9 Oct 10:59 — IT IS THE SAME PUBLIC APP, and the orphan block resolved
 
 Read from the Admin API the moment the App embeds panel came up:
