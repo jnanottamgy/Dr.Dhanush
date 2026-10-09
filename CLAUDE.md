@@ -2356,6 +2356,90 @@ Check out and watch the URL bar. Magic's own **Payment** step rendering with no
 stays in the library after the test theme is published, so re-publishing it
 restores today's working store in seconds.
 
+### THE FEE QUESTION IS ANSWERED — researched 9 Oct. Magic IS worth ~1.4%, not 3.35%.
+
+Jnanottam: *"theres some misunderstanding / even if i use magic checkout / i have
+to pay 2 percent standard."* **Half right, and the half that is wrong is the
+whole value of the private app.** Researched through WebSearch against Razorpay's
+and Shopify's own published pricing, because this has been the open question
+since 8 Oct.
+
+**THERE ARE TWO DIFFERENT 2% FEES AND THEY HAVE BEEN CONFLATED ALL ALONG:**
+
+| Fee | Charged by | Avoidable by Magic? |
+|---|---|---|
+| **Razorpay platform fee 2%** (+18% GST = **2.36%**) | Razorpay | **NEVER** |
+| **Shopify third-party fee 2%** on Basic | **Shopify**, because Shopify Payments does not exist in India | **YES — but only if Magic owns the whole checkout** |
+| **Magic Checkout 0.5%** (+GST = **0.59%**) | Razorpay, additive | the cost of avoiding the row above |
+
+**RAZORPAY'S 2% APPLIES TO UPI TOO.** Razorpay's own wording is that the 2% is a
+**platform fee** for gateway infrastructure, **not MDR** — so the RBI zero-MDR
+mandate on UPI and RuPay debit does **not** exempt it. There is no UPI discount
+on this account. Do not plan around one. (RuPay **credit** on UPI is separately
+2.15%; international, Amex and Diners 3%.)
+
+**WHY SHOPIFY'S 2% IS AVOIDABLE, AND IT IS A MECHANISM NOT A LOOPHOLE-HUNT.**
+Shopify's third-party fee attaches to orders **processed through Shopify's own
+checkout**. India's quick-checkout providers — GoKwik, Shopflo, Razorpay Magic —
+all work the same way: checkout runs off-platform, the gateway takes the money,
+then the order is pushed into Shopify over the Admin API as a **draft order
+marked paid against a manual payment method**. No Shopify checkout transaction,
+so no Shopify fee.
+
+**AND THAT IS EXACTLY WHAT THE PRIVATE APP'S SCOPES ARE FOR** —
+`write_draft_orders`, `write_orders`, `unauthenticated_write_checkouts`, read
+from `appInstallations` the same morning. The architecture matches the mechanism.
+That is independent corroboration that `TcBzhyvGVSK9Q0 - MagicCheckout` is the
+real thing.
+
+**THE ARITHMETIC, and it supersedes every earlier figure in this file:**
+
+| | Razorpay | Shopify | Magic | **All-in** |
+|---|---|---|---|---|
+| **Today** — Shopify checkout → Razorpay Secure | 2.36% | **2%** | — | **4.36%** |
+| **Public app** — OTP, address, then Shopify checkout anyway | 2.36% | **2%** | 0.59% | **4.95%** |
+| **Private app owning the checkout** | 2.36% | **0%** | 0.59% | **2.95%** |
+
+**Net saving of the private app: ~1.41%**, about **₹20,000/year** at the
+~₹14.35 lakh turnover the quotation assumes. **Real, and worth having — but half
+what the quotation's ₹28,700 claimed**, and it exists *only* in the private-app
+flow. In the public app Magic was a pure 0.59% cost for nothing, exactly as
+recorded on 8 Oct.
+
+**This also corrects my own 8 Oct figure of "~4.5%"** for the public app with the
+embed on. Worked properly it is **4.95%**, because Razorpay's 2% carries 18% GST
+and Magic's 0.5% carries it too.
+
+**TWO THINGS TO CHECK, both material:**
+
+1. **The "Free* Days" banner on every Razorpay screen is probably the 0% platform
+   fee offer.** It read 78 days on 29 Sep, 71 on 6 Oct, 70 on 7 Oct, 69 on 8 Oct.
+   Razorpay runs a **90-day 0% platform fee waiver for new merchants**, capped
+   around **₹5 lakh cumulative GMV**. If that is what it is, **Razorpay's 2% is
+   currently waived on this account**, which changes the first months' economics
+   entirely. It does **not** waive Shopify's 2%. Read the offer terms.
+2. **There is a terms-of-service question and it is not settled.** A Shopify
+   staff reply in their community says bypassing the native checkout **is not
+   permitted under the Terms of Service**. That post is old, other merchants
+   report no problems, and GoKwik, Shopflo and Razorpay run this at scale across
+   India — but it is not an entitlement, and one industry guide says the window
+   is narrowing. **State the saving as real but conditional; do not promise the
+   client a permanent number.**
+
+**These are PUBLISHED STANDARD RATES, not this account's rates.** Razorpay
+negotiates above roughly ₹5 lakh/month. The exact fee on each payment appears on
+the Razorpay dashboard against that payment — that is the figure to rely on, and
+it is why `money-explained.html` deliberately prints no percentage. **Do not put
+these numbers into a client document without reading the account's own rate
+card.**
+
+Sources: `razorpay.com/blog/razorpay-shopify-payment-gateway-pricing-explained/`
+· `razorpay.com/pricing/` ·
+`razorpay.com/blog/razorpay-0-percent-platform-fee-offer-90-days-new-merchants-2026/`
+· `shopify.com/pricing` ·
+`community.shopify.dev/t/how-do-gokwik-razorpay-magic-checkout-shopflo-bypass-shopify-s-3p-transaction-fees/37241`
+· `maydayinternet.com/why-shopify-transaction-fees-dont-apply-to-quick-checkouts-like-gokwik-razorpay-magic-checkout-shopflo-in-india-and-how-long-this-will-last`
+
 ### THE PRIVATE APP IS IN — and the store CANNOT TAKE PAYMENTS. 9 Oct 11:19–11:26
 
 **THE PRIVATE APP IS REAL AND INSTALLED.** Read from `appInstallations`, so this
