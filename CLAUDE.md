@@ -2300,6 +2300,62 @@ spend it.
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
 
+### PRIVATE-APP ACCESS GRANTED — PROCEEDING, 9 Oct. Test theme built.
+
+Jnanottam: *"apparently now they have given me magic checkout private
+collaboration access ... lets do it and see once."* He was shown the finding
+below — that the mail reads as public-app onboarding — and chose to proceed.
+**That is his call with the analysis in front of him; follow the steps, do not
+re-litigate it.** The finding still stands as the thing to watch for, and Step 3
+of the runbook turns it into a checkpoint rather than an argument.
+
+**Full runbook: `docs/magic-private-app-steps.md`.** Ordered so the live store
+cannot break, with the one decisive test at Step 6.
+
+**THE TEST THEME IS ALREADY MADE, from the right source.** Their Step 1 says to
+duplicate the current theme, and the wrong-theme trap has bitten twice, so it
+was done through `themeDuplicate` rather than left to the browser:
+
+| | |
+|---|---|
+| Name | **`MAGIC TEST 9 Oct — do not publish yet`** |
+| Id | `gid://shopify/OnlineStoreTheme/189064872049` |
+| Role | **UNPUBLISHED** |
+| Source | `Malnad Spices — build` (146238865521), the live theme |
+| `config/settings_data.json` | **8082 bytes, md5 `c6b037400494325e780db39d1ce0a7f5`** — byte-identical to live |
+
+**That checksum is the baseline for verifying the embed save.** It is the same
+file as live, so the duplicate also carries the **orphan Razorpay app block**
+with `disabled: false`. Useful rather than a problem: it makes the public-vs-
+private question readable from the file. After the new app is installed and its
+embed saved, re-read that md5 —
+
+- **File unchanged at `c6b03740…` and Magic nonetheless runs** → the orphan
+  block resolved, so the same `razorpay-cod-magic-checkout` **public** app is
+  back.
+- **A new, differently-named embed appears** → a different app, i.e. the
+  **private** one.
+
+**`themeDuplicate` works from the connector; `themePublish` and `themeDelete`
+do not.** So duplicating and renaming can be done from here, publishing and
+deleting cannot. Confirmed against the `Mutation` field list, not inferred.
+
+**THE ONE INSTRUCTION THAT MATTERS MOST, and it is a negative:** **do not
+install from the Shopify app store.** That listing *is* the public app;
+installing it reproduces yesterday exactly. The private app arrives only because
+Razorpay's engineers install it with the collaborator access, or from a direct
+link they send.
+
+**The decisive test is free and arrives before any payment.** Preview the test
+theme, add Chekke 100 g ₹50 (same item as 8 Oct, so ₹90 total compares), click
+Check out and watch the URL bar. Magic's own **Payment** step rendering with no
+`/checkouts/cn/` in the URL = private app owning the checkout. Landing on
+`malnadproducts.in/checkouts/cn/<token>` = still the public app.
+
+**Rollback is one step and must be said at handover:** `Malnad Spices — build`
+stays in the library after the test theme is published, so re-publishing it
+restores today's working store in seconds.
+
 ### RAZORPAY'S 9 OCT MAIL IS THE PUBLIC-APP ONBOARDING AGAIN — DO NOT FOLLOW IT
 
 Preeti Kumari Nayak, Merchant Success, 9 Oct 10:20 IST, against ticket
