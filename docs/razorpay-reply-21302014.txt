@@ -1,0 +1,81 @@
+Reply to Razorpay — ticket #21302014
+Paste as a reply to Preeti Kumari Nayak's mail of 9 Oct, 10:20 AM.
+Send this BEFORE installing anything.
+--------------------------------------------------------------------
+
+Hello Preeti,
+
+Thank you. Before we install anything we need to resolve a contradiction
+between your mail and what Sushil told us on chat yesterday against this
+same ticket.
+
+Your Step 1 says "Install the Magic Checkout app" and "Duplicate your
+current theme". That is the self-serve public-app flow. We already ran
+exactly that flow for three weeks, and yesterday Sushil described it to
+us as follows:
+
+  "Public App ... a completely self-serve onboarding process. In this
+   setup, orders are not processed through Magic Checkout. Instead,
+   after the customer's address is verified via OTP, they are redirected
+   to the Shopify checkout page to complete their purchase."
+
+That is precisely the behaviour we reported as the fault. Sushil then
+instructed us to uninstall the app, which we did yesterday at about
+5 PM, and said the private app was the fix:
+
+  "Private App ... requires the development of a custom app that is
+   exclusive to your store ... the Magic Checkout will handle address
+   and payment processes, and the Shopify redirection will no longer
+   occur. For this, we need the Shopify Collab code and Shopify URL."
+
+Your mail does not ask for a Collab code, and asks us to install the
+public app again. So please confirm, plainly:
+
+1. Which app does your mail refer to — the public app from the Shopify
+   app store, or the private app Sushil said your team would build?
+
+   If it is the public app, we will not install it. It collects an OTP
+   and an address and then sends the customer to Shopify's checkout
+   anyway, so it adds a step for the customer and 0.5% to our cost
+   while changing nothing about how the payment is taken.
+
+   If it is the private app, tell us so and we will issue a Shopify
+   collaborator code scoped to Themes, Apps and Orders.
+
+2. When Magic Checkout owns the entire checkout, does Shopify's 2%
+   third-party payment-provider fee still apply to the order?
+
+   This decides whether Magic is worth anything to us. Your mail
+   confirms Magic's 0.5% (plus 18% GST) is over and above the standard
+   gateway charges, which we accept. But if Shopify's 2% is also still
+   charged, Magic is a pure additional cost with no saving, and we will
+   stay on the current setup. If Shopify's 2% no longer applies because
+   the payment does not pass through Shopify's checkout, then Magic
+   saves us money and we want it. Please answer this one specifically
+   rather than pointing us at the pricing page.
+
+Three constraints on your Step 2, so your team does not configure
+against them:
+
+- COD must stay OFF. This is a prepaid-only store by the owner's
+  instruction. Please do not enable COD or RTO workflows.
+
+- Do NOT enable Magic Shipping. We run four Indian zones with seven
+  weight bands each, 28 rates, in Shopify's own delivery profiles, and
+  they have been verified correct on three live carts. Magic Shipping
+  states that it bypasses all platform shipping configuration, which
+  would discard that.
+
+- Our live theme still contains a stale app block referring to the
+  uninstalled app:
+  shopify://apps/razorpay-cod-magic-checkout/blocks/magicx-script/
+  c13c688d-5c45-4054-b95f-1edd63faa705
+  It is inert because the app is gone, but please clear or account for
+  it before any fresh install so it does not conflict.
+
+Store: 8uysc8-kx.myshopify.com
+Site:  https://malnadproducts.in   (approved by Razorpay 8 Oct)
+MID:   TcBzhyvGVSK9Q0
+
+Regards,
+Dheeraj

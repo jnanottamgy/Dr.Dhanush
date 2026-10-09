@@ -2300,6 +2300,87 @@ spend it.
 | `templates/catalogue-template.csv` | Now Claude's working format, not a client form |
 | `build-plan.html`, `quotation.html` | **Superseded.** Custom build, and the earlier Ayurveda quotation. |
 
+### RAZORPAY'S 9 OCT MAIL IS THE PUBLIC-APP ONBOARDING AGAIN — DO NOT FOLLOW IT
+
+Preeti Kumari Nayak, Merchant Success, 9 Oct 10:20 IST, against ticket
+**#21302014** — the ticket Sushil escalated. *"Good news - Magic Checkout setup
+is ready ... you can go live on your store right now without waiting for a
+call."*
+
+**It is a canned template for the flow we just removed.** Read against Sushil's
+own definitions from the day before:
+
+| The mail says | Which flow that is |
+|---|---|
+| **"Install the Magic Checkout app"** | The Shopify **app store** app = **public app** |
+| **"Duplicate your current theme"** | Razorpay's documented **public-app** test-theme step |
+| *"go live ... right now without waiting for a call"* | Sushil's words for public: *"a completely self-serve onboarding process"* |
+| **Asks only to "Confirm your Shopify URL"** | **No Collab code requested** |
+
+**The absent Collab code is the tell.** Sushil was explicit: the private app
+*"requires the development of a custom app that is exclusive to your store ...
+For this, we need the Shopify Collab code and Shopify URL. Kindly share these
+details."* A custom exclusive app is not installed from the app store, and this
+mail asks for neither the code nor anything else about a build. It also never
+acknowledges the uninstall Sushil instructed, or the escalation.
+
+**FOLLOWING IT WOULD BE STRICTLY WORSE THAN TODAY.** In the public-app flow the
+customer lands on Shopify's checkout and pays through Razorpay Secure, so
+Shopify's **2%** applies, Razorpay's **~2% + GST** applies, and Magic's **0.5% +
+GST** is now added on top — about **4.5%**, for an extra OTP step that changes
+nothing. That is the 8 Oct conclusion unchanged.
+
+**The additive fee is now confirmed in writing for the third time**, and this one
+is the plainest yet: *"0.5% on all transactions (Prepaid & COD) processed via
+Magic Checkout. This charge is over and above standard payment gateway
+charges."* ≈0.59% with GST — about **₹8,470/year** at the ~₹14.35 lakh turnover
+the quotation implies.
+
+**It also half-answers the deciding question, against Magic.** In the public-app
+flow Shopify's 2% certainly still applies, because the payment goes through
+Shopify's own checkout. So **public app = pure added cost, no offset.** The
+"2% disappears" case can only exist if the private app owns the whole checkout,
+and nobody has confirmed it. **Still the one question worth asking.**
+
+**THREE TRAPS IN ITS STEP 2, each of which would damage a working store:**
+
+1. **"COD + RTO" is its first suggestion.** Prepaid only, client instruction.
+   Do not enable either.
+2. **"Shipping zones."** If that means **Magic Shipping**, it *"bypasses all
+   shipping configurations from any plugins on your E-commerce platform"* —
+   discarding 28 + 28 rates proven right on three live carts (920 g → ₹55,
+   1,570 g → ₹85, ≤0.5 kg → ₹40). **Never enable it.**
+3. **"Duplicate your current theme"** then *"Themes → Publish"*. There is
+   already a stale **`Updated copy of Malnad Spices — build`** (id
+   **188710879345**, UNPUBLISHED) that has caused confusion twice. A third
+   duplicate, published over the live theme, is how the brand work gets lost.
+
+**STATE RE-READ FROM THE ADMIN API, 9 Oct — nothing has drifted since the
+uninstall:**
+
+| Check | Result |
+|---|---|
+| `appInstallations` | **Razorpay app still gone.** Messaging + Claude connector only |
+| Shipping | **Both profiles intact** — `General profile` (default) and `Malnad delivery`, 4 zones × 7 active rates = **28 each** |
+| Themes | 3 — Horizon UNPUBLISHED · **`Malnad Spices — build` MAIN** · `Updated copy…` UNPUBLISHED |
+| Live `config/settings_data.json` | **8082 bytes, md5 `c6b037400494325e780db39d1ce0a7f5`** — the **orphan app block is still there**, `disabled: false`, pointing at the uninstalled app |
+
+**ACTION: reply, install nothing.** Draft ready to paste at
+**`docs/razorpay-reply-21302014.txt`** — it names the contradiction, quotes
+Sushil on both flows, asks which app the mail means, asks the 2% question
+specifically, and states the three constraints (COD off, no Magic Shipping, the
+stale block) so their team does not configure against them.
+
+**One thing to watch, not act on:** *"The installation and integration feature
+will be enabled on your Razorpay Dashboard within 1 hour."* Something is being
+switched on at their end. Look at the dashboard after that hour — if a
+private-app or install screen appears that was not there before, that is new
+information. Do not press anything on it before the reply is answered.
+
+**The handover is unaffected.** The store sells today: Shopify checkout →
+Razorpay Secure. Magic remains a fee question sitting on Razorpay's ticket, and
+the fee question now leans against it.
+
 ### WHERE FORM DATA LANDS — read from the live store 8 Oct
 
 Asked where everything a customer types on the site ends up. **Exactly three
