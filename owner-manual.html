@@ -229,13 +229,19 @@ footer li{margin:0 0 5px; break-inside:avoid;}
   body{background:#fff; color:#000; font-size:10.2pt;}
   .doc{max-width:none; padding:0;}
   section{break-inside:auto; page-break-inside:auto;}
-  .tw,.plan,.reason,.note,.win,.howbox,.party,.tl-row{break-inside:avoid; page-break-inside:avoid;}
+  .plan,.reason,.note,.win,.howbox,.party,.tl-row{break-inside:avoid; page-break-inside:avoid;}
+  /* Tables may run over a page break; the header repeats and no row is split. */
+  .tw{break-inside:auto; page-break-inside:auto;}
+  thead{display:table-header-group;}
+  tr,caption{break-inside:avoid; page-break-inside:avoid;}
+  caption{break-after:avoid; page-break-after:avoid;}
   h2,h3.sub{break-after:avoid; page-break-after:avoid;}
   .signblock{break-before:auto;}
   a{color:#000;}
 }
 @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important;}}
 </style>
+
 
 <div class="doc">
 
@@ -250,7 +256,8 @@ footer li{margin:0 0 5px; break-inside:avoid;}
     <div class="kind">How to run the shop</div>
     <b>malnadproducts.in</b><br>
     Malnad Spices, Horanadu<br>
-    FSSAI 21223055000121
+    FSSAI 21223055000121<br>
+    Revised 9 October 2026
   </div>
 </header>
 
@@ -261,38 +268,58 @@ footer li{margin:0 0 5px; break-inside:avoid;}
     <p class="deck">Read this page first. Everything after it is the detail.</p>
 
     <ul class="tick">
-      <li><b>An online shop at malnadproducts.in</b> with 57 products on it. A customer anywhere in India can open it on a phone, pick a pack size, pay, and give you their address.</li>
+      <li><b>An online shop at malnadproducts.in</b> with 57 products on it, in nine sections. A customer anywhere in India can open it on a phone, pick a pack size, pay, and give you their address.</li>
+      <li><b>Payment through Razorpay, straight into your own bank account.</b> The customer pays on the shop itself &mdash; mobile number, a one-time code to confirm it, address, pay. The order then appears in Shopify by itself.</li>
       <li><b>Delivery priced by weight and distance.</b> Four zones &mdash; Karnataka, South and West India, Rest of India, and the North East and islands &mdash; each with seven weight bands. The customer is charged the right postage automatically. You do not work it out.</li>
-      <li><b>No stock counting.</b> You pack to order, so the shop never says &ldquo;out of stock&rdquo; and you never update a stock number. Somebody can order anything, any day.</li>
+      <li><b>No stock counting.</b> You pack to order, so the shop never says &ldquo;out of stock&rdquo; and there is no stock number to keep. Section 05 explains what that means in practice.</li>
       <li><b>Every pack size is its own listing</b> with its own price, its own photograph and its own printed declarations. A customer choosing 1 kg sees the 1 kg pack, not the 250 g one.</li>
+      <li><b>A monthly sheet for your accountant</b> &mdash; sales broken down by HSN code with the GST worked out. Section 12.</li>
     </ul>
 
     <h3 class="sub">Where to log in</h3>
-    <p>Go to <b>admin.shopify.com</b> and sign in with <b>drjhrnd5@gmail.com</b>. Install the <b>Shopify</b> app on your phone and sign in with the same email &mdash; almost everything in this manual can be done from the phone, and the phone is where you will get the order alert.</p>
+    <p>On a computer, go to <b>admin.shopify.com</b> and sign in with <b>drjhrnd5@gmail.com</b>. On your phone, install the app called <b>Shopify</b> and sign in with the same email. The next section is about the phone, because that is where you will actually run the shop.</p>
   </div>
 </section>
 
 <section>
   <div class="num">02</div>
   <div class="body">
-    <h2>The day an order comes in</h2>
-    <p class="deck">This is the routine. It takes about five minutes per parcel once you are used to it.</p>
+    <h2>The app on your phone</h2>
+    <p class="deck">The phone app and the website admin are the same shop seen two ways. Anything you change in one is changed in the other straight away &mdash; there is no saving, syncing or sending between them.</p>
 
+    <h3 class="sub">Set it up once</h3>
     <div class="howbox">
     <ol class="how">
-      <li>Your phone buzzes and an email arrives. Open the Shopify app, tap <b>Orders</b>, tap the new one.</li>
-      <li><b>Check it says Paid.</b> If it says Pending, the money has not arrived yet. Do not pack it.</li>
-      <li>Tap the three dots and <b>Print packing slip</b>. It has the customer&rsquo;s name, address, phone and exactly what they bought.</li>
-      <li><b>Weigh out each item to the quantity on the slip.</b> If it says 500 g, it is 500 g.</li>
-      <li><b>Write or stick the full declaration on every pack.</b> Section 03 lists what has to be on it. This is the law, not a preference.</li>
-      <li>Pack the parcel and hand it to India Post or your courier. Keep the tracking number.</li>
-      <li>Back in the order, tap <b>Fulfil items</b>, type the <b>tracking number</b>, and send. The customer gets an email with it automatically.</li>
-      <li><b>Send the customer one WhatsApp</b> with the tracking number. Takes ten seconds and it is the difference between a customer who waits patiently and one who phones you.</li>
+      <li>On the App Store or Play Store, search <b>Shopify</b> and install it. It is free. Take the one published by Shopify, not any of the apps with similar names.</li>
+      <li>Sign in with <b>drjhrnd5@gmail.com</b>.</li>
+      <li><b>Allow notifications when it asks.</b> This is the important one &mdash; it is how you learn an order has come in without going to look.</li>
+      <li>Pick <b>Malnad Products</b> if it offers you a choice of shops.</li>
     </ol>
     </div>
 
+    <h3 class="sub">What the areas are for</h3>
+
+    <div class="tw">
+    <table>
+      <caption>Where to go for what</caption>
+      <thead><tr><th>Area</th><th>What you do there</th></tr></thead>
+      <tbody>
+        <tr><td><b>Orders</b></td><td>Every sale, newest first. Open one to see what was bought, whether it is paid, the delivery address and the phone number. This is where you pack from, where you enter the tracking number, and where you refund. It is also where you write up a counter sale yourself.</td></tr>
+        <tr><td><b>Products</b></td><td>All 57 listings. Open one to change a price, change a photograph, or take it off sale. Each pack size sits inside its product as a separate line with its own price.</td></tr>
+        <tr><td><b>Customers</b></td><td>Everybody who has ordered or signed up, with what they bought before. Useful when somebody rings and says &ldquo;the same as last time&rdquo;.</td></tr>
+        <tr><td><b>Home and Analytics</b></td><td>Today&rsquo;s sales, this month&rsquo;s sales, how many people visited, what sold most. Nothing here can break anything &mdash; it is all reading.</td></tr>
+        <tr><td><b>Store or Settings</b></td><td>The shop&rsquo;s own settings and design. You will rarely need this. Section 14 is the list of things in here not to touch.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="tnote">Shopify moves things around in the app from time to time, so a button may sit somewhere slightly different from where this manual puts it. The names of the areas have been steady for years &mdash; look for the word, not the position.</p>
+
+    <div class="win">
+      <p><b>Everything in this manual that belongs to a day&rsquo;s trading can be done from the phone</b> &mdash; packing, dispatching, tracking numbers, prices, refunds, counter sales, taking something off sale. The few one-off jobs that are easier on a computer &mdash; the shop&rsquo;s design, the tax setting, the payment provider &mdash; are Jnanottam&rsquo;s anyway.</p>
+    </div>
+
     <div class="note">
-      <p><b>Why the WhatsApp matters.</b> Shopify sends order and dispatch emails, but it does not send SMS unless you buy a separate app every month. We did not buy one, because you already have WhatsApp and every order now carries a mobile number. One message from your phone does the job better than an automatic SMS would.</p>
+      <p><b>Two people can be signed in, not more.</b> Your Shopify plan allows two staff logins. If Dheeraj and Dhanush each want their own, that uses both &mdash; so do not hand the password around a third time. If a third person needs access, say so and it is arranged properly rather than by sharing a login.</p>
     </div>
   </div>
 </section>
@@ -300,13 +327,43 @@ footer li{margin:0 0 5px; break-inside:avoid;}
 <section>
   <div class="num">03</div>
   <div class="body">
+    <h2>The day an order comes in</h2>
+    <p class="deck">This is the routine. It takes about five minutes per parcel once you are used to it.</p>
+
+    <div class="howbox">
+    <ol class="how">
+      <li>Your phone buzzes. Open the Shopify app, go to <b>Orders</b>, open the new one.</li>
+      <li><b>Check it says Paid.</b> If it says Pending or Unpaid, the money has not arrived. Do not pack it. See the warning below.</li>
+      <li>Open <b>Print packing slip</b>. It carries the customer&rsquo;s name, address, phone and exactly what they bought.</li>
+      <li><b>Weigh out each item to the quantity on the slip.</b> If it says 500 g, it is 500 g.</li>
+      <li><b>Write or stick the full declaration on every pack.</b> Section 04 lists what has to be on it. This is the law, not a preference.</li>
+      <li>Pack the parcel and hand it to India Post or your courier. Keep the tracking number.</li>
+      <li>Back in the order, choose <b>Fulfil</b>, type the <b>tracking number</b>, and send. The customer gets an email with it automatically.</li>
+      <li><b>Send the customer one WhatsApp</b> with the tracking number. Takes ten seconds and it is the difference between a customer who waits patiently and one who phones you.</li>
+    </ol>
+    </div>
+
+    <div class="note">
+      <p><b>If an order says Cash on Delivery, do not pack it.</b> This shop is prepaid only &mdash; that is how there are no refused parcels and no money to chase. A cash-on-delivery order should not be possible and Razorpay has been asked to switch it off at their end. Until they confirm it, if one arrives: open the order, <b>Cancel</b> it, and ring the customer on the number on the order to say the shop takes payment online only and they are welcome to order again. Tell Jnanottam it happened.</p>
+    </div>
+
+    <div class="note">
+      <p><b>Why the WhatsApp matters.</b> Shopify sends order and dispatch emails, but it does not send SMS unless you buy a separate app every month. We did not buy one, because you already have WhatsApp and every order carries a mobile number. One message from your phone does the job better than an automatic SMS would.</p>
+      <p>It matters more than it looks: some customers pay with a phone number and no email address, and for those the WhatsApp is the <i>only</i> message they get. Section 15 has that one.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="num">04</div>
+  <div class="body">
     <h2>What must be printed on every pack you fill</h2>
     <p class="deck">Because you weigh the goods out yourself, the law treats <b>you</b> as the packer. That makes these declarations yours to print, on the pack, not just on the website.</p>
 
     <ul class="plain">
       <li><b>Name and full address of the packer</b> &mdash; Malnad Spices, Devaramane, Horanadu Post, Kalasa Taluk, Chikkamagaluru 577181</li>
-      <li><b>Net quantity</b> &mdash; the weight or volume inside, e.g. <i>Net qty. 500 g</i></li>
-      <li><b>Retail sale price</b> &mdash; written as <i>MRP &#8377;___ (incl. of all taxes)</i></li>
+      <li><b>Net quantity</b> &mdash; the weight or volume inside, written as <i>Net qty. 500 g</i></li>
+      <li><b>Retail sale price</b> &mdash; the figure for that pack, written as <i>MRP &#8377;140 (incl. of all taxes)</i></li>
       <li><b>Month and year of packing</b></li>
       <li><b>Best before</b> &mdash; the date, or the number of months from packing</li>
       <li><b>Consumer care</b> &mdash; a name, a phone number and drjhrnd5@gmail.com</li>
@@ -326,7 +383,24 @@ footer li{margin:0 0 5px; break-inside:avoid;}
 </section>
 
 <section>
-  <div class="num">04</div>
+  <div class="num">05</div>
+  <div class="body">
+    <h2>Stock, and why there is nothing to update</h2>
+    <p class="deck">You said it yourself: <i>&ldquo;stock, we&rsquo;ll give according to orders.&rdquo;</i> The shop is built around that, so there is no stock figure anywhere for you to keep right.</p>
+
+    <p>On all 63 pack sizes, Shopify&rsquo;s stock counting is <b>switched off</b> and each one is set to <b>keep selling</b>. So the shop never shows a number in stock, never says sold out, and will accept an order for anything on any day. The judgement about whether you can supply it stays with you, at the moment the order arrives &mdash; which is how you were working anyway.</p>
+
+    <h3 class="sub">If you cannot supply something for a while</h3>
+    <p>Do not try to set its stock to zero. Set the <b>product to Draft</b> instead &mdash; section 08. It comes off the shop at once, and comes back the moment you switch it to Active. Nobody can order what is not there, and your old orders and your sales history are untouched.</p>
+
+    <div class="note">
+      <p><b>Do not switch stock tracking on and leave it.</b> It can be turned on for one product if you ever want a real count &mdash; but the moment it is on, the number has to be kept right, and when it reaches zero that product <b>stops selling with no warning to you</b>. A forgotten count at zero is how a shop quietly stops taking orders for its best seller. Only turn it on if you mean to maintain it, and tell Jnanottam if you do, because the monthly accountant&rsquo;s sheet reads from the same place.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="num">06</div>
   <div class="body">
     <h2>Changing a price</h2>
 
@@ -348,7 +422,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
 </section>
 
 <section>
-  <div class="num">05</div>
+  <div class="num">07</div>
   <div class="body">
     <h2>Adding a new product</h2>
     <p class="deck">A new product needs eight things set or it will be broken in a way nobody notices for weeks. Work down the list.</p>
@@ -359,25 +433,25 @@ footer li{margin:0 0 5px; break-inside:avoid;}
       <thead><tr><th>Set this</th><th>If you forget</th></tr></thead>
       <tbody>
         <tr><td><b>Status: Active</b></td><td>Nobody can see it.</td></tr>
-        <tr><td><b>Sales channel: Online Store</b> (a separate tick from Status)</td><td>It says Active and still does not appear. This one catches everybody.</td></tr>
+        <tr><td><b>Sales channel: Online Store</b> (a separate tick from Status)</td><td>It says Active and still does not appear. This one catches everybody &mdash; it cost us a day twice.</td></tr>
         <tr><td><b>A category tag</b> &mdash; one of <span class="rate">whole-spices, masala-powders, coffee, tea, oils, syrups-squashes, seeds, dry-fruits-nuts, home-personal-care</span></td><td>It belongs to no section, so it never shows under Shop.</td></tr>
         <tr><td><b>Weight in grams</b>, including the packing material</td><td>Delivery is priced wrong on every order containing it.</td></tr>
         <tr><td><b>Track quantity: off</b>, and <b>Continue selling when out of stock</b></td><td>It sells out at zero and goes unbuyable.</td></tr>
+        <tr><td><b>Delivery profile: Malnad delivery</b></td><td>It may land in the other profile and be charged the wrong postage.</td></tr>
         <tr><td><b>The Compliance boxes</b> &mdash; net quantity, MRP, packer, FSSAI, care details, dates</td><td>The declarations panel on the page comes up blank.</td></tr>
-        <tr><td><b>HSN code and GST rate</b></td><td>It is missing from the accountant&rsquo;s monthly sheet.</td></tr>
-        <tr><td><b>A photograph for each pack size</b>, and an <b>SKU</b> on each</td><td>Every size shows the same picture, and the sale cannot be traced for GST.</td></tr>
+        <tr><td><b>HSN code and GST rate</b>, plus a <b>photograph and an SKU for each pack size</b></td><td>It is missing from the accountant&rsquo;s sheet, every size shows the same picture, and the sale cannot be traced for GST.</td></tr>
       </tbody>
     </table>
     </div>
 
     <div class="win">
-      <p><b>Easier: send Jnanottam the pack photographs and the price.</b> One message is quicker than the eight steps above, the declarations get read off the pack rather than typed from memory, and the catalogue stays in step with the shop. Do that for anything you want listed properly.</p>
+      <p><b>Easier: send Jnanottam the pack photographs and the price.</b> One message is quicker than the list above, the declarations get read off the pack rather than typed from memory, and the catalogue stays in step with the shop. Do that for anything you want listed properly.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="num">06</div>
+  <div class="num">08</div>
   <div class="body">
     <h2>Taking something off sale</h2>
     <p>Open the product and change <b>Status</b> from <i>Active</i> to <b>Draft</b>. It disappears from the shop at once and comes back the moment you set it to Active again.</p>
@@ -388,7 +462,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
 </section>
 
 <section>
-  <div class="num">07</div>
+  <div class="num">09</div>
   <div class="body">
     <h2>Selling at the shop counter or over the phone</h2>
     <p class="deck">Put it through Shopify as well, so your totals are your real totals.</p>
@@ -404,7 +478,7 @@ footer li{margin:0 0 5px; break-inside:avoid;}
 </section>
 
 <section>
-  <div class="num">08</div>
+  <div class="num">10</div>
   <div class="body">
     <h2>Refunds</h2>
     <div class="howbox">
@@ -415,11 +489,39 @@ footer li{margin:0 0 5px; break-inside:avoid;}
     </ol>
     </div>
     <p>Refund the delivery charge too if the parcel never went out. If it did, you have already paid the courier and the refund policy on the website says so.</p>
+    <p class="tnote">A refund is not the same as a cancellation. <b>Cancel</b> is for an order that has not been paid or has not gone out &mdash; it closes the order. <b>Refund</b> is for money that has already reached you.</p>
   </div>
 </section>
 
 <section>
-  <div class="num">09</div>
+  <div class="num">11</div>
+  <div class="body">
+    <h2>Where a customer&rsquo;s message goes</h2>
+    <p class="deck">There are exactly three places a customer can type something into the site, and they go to three different places. One of them has no second copy, so it is worth knowing which.</p>
+
+    <div class="tw">
+    <table>
+      <caption>The three inputs on the site</caption>
+      <thead><tr><th>Where they type it</th><th>Where it lands</th><th>Kept?</th></tr></thead>
+      <tbody>
+        <tr><td><b>Contact form</b> on the Contact page &mdash; name, email, phone, message</td><td><b>An email to drjhrnd5@gmail.com.</b> Nothing is stored in Shopify</td><td class="muted">No</td></tr>
+        <tr><td><b>Newsletter box</b> in the footer &mdash; just an email address</td><td>A customer record in Shopify, under <b>Customers</b></td><td>Yes</td></tr>
+        <tr><td><b>Checkout</b> &mdash; name, phone, email, address</td><td>The order, and a customer record</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="note">
+      <p><b>The contact form has no second copy.</b> It is an email and only an email &mdash; there is no list of messages inside Shopify to go back to. If nobody opens that inbox, the enquiry is gone. Two things follow: check <b>drjhrnd5@gmail.com</b> daily, and <b>check its spam folder</b>, because Shopify marks anything it suspects and the message still arrives, just filed badly.</p>
+      <p>If enquiries start mattering &mdash; wholesale questions, bulk orders &mdash; say so. There is a free Shopify app that stores them in the admin instead of only emailing them, and that removes this weak point entirely.</p>
+    </div>
+
+    <p><b>There is no bulk-order form on the site today.</b> A shop or a hotel wanting a quantity price will either use the contact form or ring one of the two numbers in the footer. Wholesale pricing was outside what was built; if you want it on the site, it is a separate job and a small one.</p>
+  </div>
+</section>
+
+<section>
+  <div class="num">12</div>
   <div class="body">
     <h2>Once a month, for the accountant</h2>
     <div class="howbox">
@@ -430,15 +532,39 @@ footer li{margin:0 0 5px; break-inside:avoid;}
     </ol>
     </div>
     <div class="note">
-      <p><b>One thing on that sheet will not match Shopify.</b> Shopify&rsquo;s tax setting is currently charging twice the rate it should &mdash; 10% where it should be 5%. Customers are not overcharged, because prices include tax, but the figure Shopify reports as tax is too high and the difference comes out of your margin at filing. The sheet prints both numbers and the gap so your accountant can see exactly what happened. It is a one-line fix in Settings and Jnanottam has flagged it.</p>
+      <p><b>One thing on that sheet will not match Shopify.</b> Shopify&rsquo;s tax setting is currently working the tax out at twice the rate it should &mdash; 10% where it should be 5%. Customers are <b>not</b> overcharged, because prices include tax and the total they pay is the price on the shop. But the figure Shopify reports as tax is too high, and the difference comes out of your own margin at filing. On a &#8377;140 sale it declares &#8377;12.72 where &#8377;6.67 is right.</p>
+      <p>The sheet prints both numbers and the gap, so your accountant can see exactly what happened. It is a one-line fix in Settings, it is flagged, and it does not need to hold anything up.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="num">10</div>
+  <div class="num">13</div>
   <div class="body">
-    <h2>Six things not to touch</h2>
+    <h2>Payments, and how the money reaches you</h2>
+    <p class="deck">Razorpay approved the website on 8 October and the shop has been able to take real payments since. The money goes into your own bank account. Jnanottam never touches it.</p>
+
+    <h3 class="sub">What the customer sees</h3>
+    <p>Since 9 October the shop uses <b>Razorpay Magic Checkout</b>. The customer stays on malnadproducts.in the whole way: they put in a mobile number, confirm it with a code, type the delivery address, and pay by UPI, card, net banking or wallet. The order then appears in Shopify by itself, with the address and the right delivery charge already on it.</p>
+
+    <h3 class="sub">When it reaches the bank</h3>
+    <p>Razorpay holds each payment briefly and then deposits it, normally <b>two working days</b> after the sale. Sundays, bank holidays and the second and fourth Saturdays do not count. Several payments are usually batched into one deposit, so a &#8377;3,000 day may arrive as one line, not three. Two fees are taken &mdash; Razorpay&rsquo;s out of each payment, and Shopify&rsquo;s billed monthly like a phone bill &mdash; which is why the bank figure and the shop figure will not be identical. <i>How the money works</i> sets that out properly with a worked example.</p>
+
+    <h3 class="sub">Checking a payment</h3>
+    <p>Every sale shows up in two places: the order in Shopify, and the payment in your Razorpay dashboard. They should always agree, and the exact fee charged on each payment is shown against it in Razorpay. If one side ever shows a sale the other does not, say so straight away rather than waiting for the month end.</p>
+
+    <div class="note">
+      <p><b>Two things are still open on payments, and both are honest to say out loud.</b></p>
+      <p><b>No real money has gone through yet.</b> The chain &mdash; customer pays, Razorpay deposits, it appears in your bank &mdash; has been tested at every step except the last. The way to close it is to buy one small pack from your own shop, with your own card or UPI, and watch it land. You are paying yourself, so it costs you only the fee, and it is the only thing that proves the money arrives.</p>
+      <p><b>Cash on delivery is being offered and should not be.</b> It is switched off in both places a shopkeeper can switch it off, so it is coming from Razorpay&rsquo;s own side and they have been asked to remove it. Until they confirm, treat any COD order as described in section 03: cancel it, ring the customer, and tell Jnanottam.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="num">14</div>
+  <div class="body">
+    <h2>Things not to touch</h2>
     <p class="deck">Each of these quietly breaks something that took a long time to get right.</p>
 
     <div class="reasons">
@@ -449,47 +575,49 @@ footer li{margin:0 0 5px; break-inside:avoid;}
       </div>
       <div class="reason">
         <div class="rn">02</div>
-        <h4>The theme called &ldquo;Updated copy of Malnad Spices&rdquo;</h4>
-        <p>Shopify generates this automatically and it looks identical to the live one in the editor. Publishing it replaces your shop&rsquo;s design. The live theme is the one marked <b>Current theme</b>.</p>
+        <h4>Publishing a theme</h4>
+        <p>There are four designs in the library and only one is live &mdash; <b>Magic Checkout - Malnad Spices &mdash; build</b>, marked <i>Current theme</i>. The others look nearly identical in the editor. Publishing one replaces your shop&rsquo;s design and can take the checkout with it. Never press Publish.</p>
       </div>
       <div class="reason">
         <div class="rn">03</div>
+        <h4>Uninstalling the Razorpay app</h4>
+        <p>The app named for your merchant ID is what runs the checkout, and it was built for this shop specifically. Removing it takes the checkout away, and getting it back took three weeks.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">04</div>
         <h4>Republish Cart, in the Razorpay dashboard</h4>
         <p>It pushes a different shopping cart onto your website, in Razorpay&rsquo;s blue rather than your green. Nobody asked for it and it is not needed.</p>
       </div>
       <div class="reason">
-        <div class="rn">04</div>
+        <div class="rn">05</div>
         <h4>Deleting products, collections or pages</h4>
         <p>Set products to Draft instead. Deleting a collection breaks the links in the Shop menu; deleting a page breaks the links in the footer.</p>
       </div>
       <div class="reason">
-        <div class="rn">05</div>
-        <h4>Cash on Delivery</h4>
-        <p>It is off everywhere on purpose. The shop is prepaid only, which is why there are no refused parcels and no money chasing.</p>
+        <div class="rn">06</div>
+        <h4>Switching on Cash on Delivery</h4>
+        <p>It is off on purpose, everywhere a shopkeeper can set it. The shop is prepaid only, which is why there are no refused parcels and no money chasing. One is currently getting through from Razorpay&rsquo;s side and is being removed &mdash; do not help it along.</p>
       </div>
       <div class="reason">
-        <div class="rn">06</div>
-        <h4>Turning on Test mode under Payments</h4>
-        <p>The shop keeps looking normal and takes no money at all. If sales suddenly stop, this is the first thing to check.</p>
+        <div class="rn">07</div>
+        <h4>Test mode, under Payments</h4>
+        <p>The shop keeps looking completely normal and takes no money at all. If sales suddenly stop, this is the first thing to check.</p>
+      </div>
+      <div class="reason">
+        <div class="rn">08</div>
+        <h4>Switching on stock tracking</h4>
+        <p>Section 05. A count left at zero makes a product unbuyable and tells you nothing about it.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<section>
-  <div class="num">11</div>
-  <div class="body">
-    <h2>Payments, and where they stand</h2>
-    <p>Payments go through <b>Razorpay</b>, straight into your own bank account. JTACS never touches the money. Settlement is normally two working days after the sale.</p>
-    <div class="note">
-      <p><b>As this manual is written, Razorpay is still reviewing the website.</b> Every Indian payment company checks the site before it will release live keys; it takes a day or two and nobody can speed it up. Until it clears, the shop is finished and visible but cannot take a card or UPI payment. The moment approval lands, Jnanottam enters the keys and the shop starts selling &mdash; nothing else has to change.</p>
+    <div class="win">
+      <p><b>If the checkout ever breaks completely</b> &mdash; customers reach the last step and cannot pay &mdash; there is one step back. The design called <b>Malnad Spices &mdash; build</b> is kept in the library for exactly this. Publishing it returns the shop to Shopify&rsquo;s own checkout, which is slower and costs a little more per sale but works. Ring Jnanottam first if you can; this is the emergency answer if you cannot reach anyone.</p>
     </div>
-    <p>Once live, every payment shows up in two places: the order in Shopify, and the payment in your Razorpay dashboard. They should always agree. If one shows a sale the other does not, say so straight away rather than waiting for the month end.</p>
   </div>
 </section>
 
 <section>
-  <div class="num">12</div>
+  <div class="num">15</div>
   <div class="body">
     <h2>If something looks wrong</h2>
 
@@ -500,15 +628,18 @@ footer li{margin:0 0 5px; break-inside:avoid;}
       <tbody>
         <tr><td>A product is not on the website</td><td>Status is Active <b>and</b> the Online Store channel is ticked. Both, not one.</td></tr>
         <tr><td>A section under Shop opens an error page</td><td>The collection has been unpublished from the Online Store.</td></tr>
-        <tr><td>No orders at all for a few days</td><td>Test mode under Settings &rarr; Payments.</td></tr>
+        <tr><td>No orders at all for a few days</td><td>Test mode under Settings &rarr; Payments. Then check the shop yourself on a phone, right through to the payment screen.</td></tr>
+        <tr><td>An order says <b>Cash on Delivery</b></td><td>Cancel it, ring the customer, tell Jnanottam. Section 03.</td></tr>
+        <tr><td>A customer says they never got a confirmation</td><td>They paid with a phone number and gave no email address, so there was nothing to send to. Their number is on the order &mdash; WhatsApp them. This is being fixed at Razorpay&rsquo;s end so an email becomes compulsory.</td></tr>
         <tr><td>Delivery is charging strangely</td><td>The new product has no weight, or is sitting in the wrong delivery profile.</td></tr>
-        <tr><td>A customer says they never got a confirmation</td><td>They checked out without an email address. Their phone number is on the order &mdash; WhatsApp them.</td></tr>
         <tr><td>A pack size shows the wrong photograph</td><td>That size has no image of its own and is falling back to the first one.</td></tr>
+        <tr><td>A customer says they wrote and got no reply</td><td>The spam folder of drjhrnd5@gmail.com. The contact form keeps no second copy. Section 11.</td></tr>
+        <tr><td>The tax figure on a sale looks too high</td><td>Known, and it does not affect what the customer paid. Section 12.</td></tr>
       </tbody>
     </table>
     </div>
 
-    <p>Anything not on that list, send Jnanottam a message with a screenshot. Things built by JTACS that do not work are fixed free for thirty days after launch.</p>
+    <p>Anything not on that list, send Jnanottam a message with a screenshot. Thirty days of free defect support runs from the day the shop goes live, and the phone gets answered after that too.</p>
   </div>
 </section>
 

@@ -2275,6 +2275,7 @@ spend it.
 | `owner-manual.html` | **The client's owner's manual** — how to run the shop, 12 sections |
 | `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
+| `scripts/build_print_html.py` | **Inlines the webfonts** into a `-print.html` before the PDF render |
 | `catalogue/seo.py` | **All 68 SEO titles and meta descriptions** — source of truth, re-pushable |
 | `catalogue/shopify-ids.json` | handle → Shopify gid for all 57 products and 9 collections |
 | `fixtures/orders-export-sample.csv` | Order-export fixture built from the real order #1001 |
@@ -2451,6 +2452,114 @@ platform fee offer.
 **Housekeeping once COD is settled:** delete `MAGIC TEST 9 Oct — do not publish
 yet` (189064872049) and `Updated copy of Malnad Spices — build` (188710879345).
 Keep `Malnad Spices — build` as the rollback and Horizon as the stock backup.
+
+### ORDER #1002 — THE FIRST LIVE ORDER EVER, AND IT WAS COD. Read 9 Oct.
+
+The store's order count went 1 → 2. Read from the Admin API, so this is the
+record rather than a screen:
+
+| | |
+|---|---|
+| Order | **#1002**, 9 Oct 06:50:10Z = **12:20 IST** |
+| `test` | **false** — the first non-test order this store has ever taken |
+| Created by | **`app.name: "TcBzhyvGVSK9Q0 - MagicCheckout"`** |
+| Gateway | **`Cash on Delivery (COD)`** |
+| Customer | **Dheeraj Spices**, +918431218956 (the billing-address phone) |
+| Cart | Chia Seeds 150 g × 1, ₹140 + ₹40 delivery = **₹180** |
+| Cancelled | 06:54:11Z, four minutes later, `cancelReason: CUSTOMER`. SALE PENDING then VOID SUCCESS |
+
+So Dheeraj placed it himself and voided it immediately. Nothing is owed and
+nothing shipped. **But it is the single most informative record in the project**,
+because it settles four separate questions at once from one row.
+
+**1. MAGIC OWNS THE CHECKOUT — proven from the order, not from a screenshot.**
+`app.name` is the private app. The order was pushed into Shopify by Razorpay
+over the Admin API, which is exactly the mechanism the fee analysis predicted
+(`write_draft_orders` + `unauthenticated_write_checkouts`). **This is the
+corroboration the 1.41% saving rested on** — an order created by the app rather
+than by Shopify's checkout is an order Shopify's 2% should not attach to. Worth
+checking on the first *paid* live order: whether Shopify bills the 2% on it.
+
+**2. COD IS LIVE AND ORDERABLE — confirmed, not suspected.** A real customer
+could have done this. The record also names the gateway string Shopify stores,
+`Cash on Delivery (COD)`, which is what to search Orders for.
+
+**3. THE EMAIL DEFECT IS REAL AND NOW DEMONSTRATED.** `email: null` on both the
+order and the customer record. Dheeraj paid with a phone number and no email,
+so **Shopify had nothing to send a confirmation to**. That is the `Email Field`
+= Optional setting flagged on 8 Oct, now proven on a live order rather than
+argued from a settings page. It is in `docs/razorpay-cod-off-request.txt`.
+
+**4. THE 10% TAX DEFECT REPRODUCES OUTSIDE TEST MODE.** CGST 5% ₹6.36 + SGST 5%
+₹6.36 = **₹12.72** on ₹140 of goods. `140 × 10/110 = 12.727`. Correct at 5%
+inclusive is `140 × 5/105 = ₹6.67`. Unchanged and still waiting on
+Settings → Taxes and duties.
+
+**ONE NEW OBSERVATION, recorded and NOT over-called.** The shipping line reads
+**`Standard Shipping`**, where every Shopify-checkout order reads
+`Standard delivery`. `source` and `carrierIdentifier` are both `null`. **The
+amount is exactly right** — the variant's shipping weight is **210 g**, which is
+the Karnataka 0–0.5 kg band at **₹40**, the fifth independent confirmation that
+weight-based shipping works. So Magic reads the correct rate and writes its own
+label on it. That is consistent with an API-created order carrying a flat
+shipping line, and is **not** evidence that Magic is pricing postage itself. Do
+not raise it as a defect; do re-check the label and the amount on the first few
+real orders, because a hardcoded ₹40 and a correctly-read ₹40 look identical at
+0–0.5 kg.
+
+### Owner's manual rewritten for the live store — 9 Oct
+
+`owner-manual.html` was written 8 Oct, before Magic went live, and had gone
+stale in the one place that mattered: its payments section said Razorpay was
+still reviewing the website. Rewritten and re-rendered: **15 sections, 13 pages**
+(was 12 and 8).
+
+Three sections are new, and each answers something actually asked:
+
+- **02 · The app on your phone** — Jnanottam's first named ask. Setup, the five
+  areas and what each is for, and the two-staff-login limit. Deliberately
+  describes *areas* rather than claiming a bottom-tab layout: Shopify's own help
+  page could not be fetched from here (`help.shopify.com` fails DNS at the
+  egress proxy) and WebSearch did not return the current app navigation, so the
+  exact tab positions are **not** stated. A note says to look for the word, not
+  the position. **Do not add app menu paths without reading them off a screen.**
+- **05 · Stock, and why there is nothing to update** — the honest answer to
+  "update inventory": tracking is off on all 63 variants by his own instruction,
+  so there is no count. Draft is the way to take something out of supply, and
+  switching tracking on is listed as a thing not to touch, because a forgotten
+  count at zero silently makes a product unbuyable.
+- **11 · Where a customer's message goes** — the three inputs and their three
+  destinations, with the contact form's single-inbox failure spelled out.
+
+Rewritten: **13 · Payments** (approved, live, Magic owns the checkout, T+2
+settlement, and the two things still open — no real money has settled, and COD
+is being offered). **14 · Things not to touch** is now eight, with the live theme
+named correctly as `Magic Checkout - Malnad Spices — build`, uninstalling the
+Razorpay app added, and `Malnad Spices — build` named as the one-step rollback.
+**15 · troubleshooting** gained the COD row, the no-email row and the
+contact-form-spam row.
+
+Two standing instructions were being broken and are fixed: **"JTACS" appeared
+twice** where the rule is Jnanottam only, and section 03 carried
+`MRP ₹___ (incl. of all taxes)` — an underscore blank, which reads as a
+fill-in even though it was describing a label format. Now a worked example.
+
+**`scripts/build_print_html.py` is new, and the `-print.html` files finally have
+a generator.** The README called them "regenerated, not hand-edited" while no
+script existed. It fetches the Google Fonts CSS with a browser User-Agent
+(without one Google serves TTF, several times the size), inlines all 58 woff2
+files as data URIs, strips the remote links, and stamps `data-theme="light"`.
+**Both of those are load-bearing**: Chromium's print path does not reliably
+fetch a remote stylesheet before it paints, so rendering the source directly
+gives a PDF in a fallback face with no error; and without the theme stamp the
+dark palette can be picked up and the PDF comes out white on white. Verified by
+reading the embedded font names back out of the PDF — Spectral, Fira Sans and
+IBM Plex Mono are all there, with DejaVu picking up ₹, ✓ and →.
+
+**One print-CSS fix while there.** `.tw` was in the `break-inside: avoid` list,
+so every table was thrown whole onto the next page. Tables now break with
+`thead{display:table-header-group}` and `tr{break-inside:avoid}`, which is the
+correct behaviour for a split table and took the render from 14 pages to 13.
 
 ### THE FEE QUESTION IS ANSWERED — researched 9 Oct. Magic IS worth ~1.4%, not 3.35%.
 

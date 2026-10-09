@@ -16,7 +16,7 @@ Malnad produce business (coffee, spices, estate goods).
 | `dashboard-mockup.html` | Design mockup of the owner dashboard — sample data, agreed before building. |
 | `owner-manual.html` | Owner's manual for the client. Source, loads webfonts. **Edit this one.** |
 | `owner-manual-print.html` | Fonts-inlined build used to render the PDF. Regenerated, not hand-edited. |
-| `Malnad-Products-Owner-Manual.pdf` | 8-page A4 PDF — how to run the shop, handed over with the store. |
+| `Malnad-Products-Owner-Manual.pdf` | 13-page A4 PDF — how to run the shop, handed over with the store. |
 
 **Commercials**
 
@@ -69,13 +69,25 @@ Kept for reference only.
 
 ## Regenerating a PDF
 
+Two steps. Edit only the plain `.html`; the `-print.html` is generated.
+
 ```sh
+# 1. inline the webfonts  (source -> source-print.html)
+python3 scripts/build_print_html.py quotation-malnad.html
+
+# 2. render
 /opt/pw-browsers/chromium --headless --disable-gpu --no-sandbox \
   --virtual-time-budget=30000 --run-all-compositor-stages-before-draw \
   --no-pdf-header-footer \
   --print-to-pdf=JTACS-Quotation-Malnad-Store.pdf \
   "file://$PWD/quotation-malnad-print.html"
 ```
+
+**Step 1 is not optional.** Chromium's print path does not reliably fetch a
+remote stylesheet before it paints, so rendering the source directly produces a
+PDF in a fallback typeface with no error of any kind. The script also stamps
+`data-theme="light"`, without which the dark palette can be picked up and the
+PDF comes out white on white.
 
 Third-party rates and regulatory references are as published in September 2026
 and are set by those bodies, not by JTACS. Sources are listed in each document's
