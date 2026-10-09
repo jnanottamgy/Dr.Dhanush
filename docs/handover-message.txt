@@ -5,52 +5,39 @@ Send with: Malnad-Products-Owner-Manual.pdf
 
 ------------------------------------------------------------------
 
-Namaste Dr. Dhanush, Dheeraj —
+Dhanush sir, Dheeraj — it's done 🎉
 
-The shop is done. malnadproducts.in is live and taking payments.
+malnadproducts.in is live and taking payments. All 57 products up,
+delivery charges work themselves out by weight and distance, and the
+money goes straight to your bank — usually 2 working days.
 
-57 products across nine sections, every pack size with its own price
-and its own photograph. Delivery is calculated by itself, by the
-weight of the parcel and where it is going, so you never work out
-postage. The customer pays by UPI, card or net banking on the site
-itself, and the money goes into your own bank account — normally two
-working days later.
+Sending the manual with this. Plain English, no jargon. Three bits to
+read first:
 
-I am sending the owner's manual with this. It is written for you, not
-for a computer person. Three parts to read first:
+*Section 02* — the Shopify app. Put it on your phone and say yes to
+notifications, that's how you'll know an order came in.
 
-• *Section 02* — the Shopify app on your phone. Install it and allow
-  notifications. That is how you will know an order has come in.
+*Section 03* — what to do when one does. 5 minutes a parcel.
 
-• *Section 03* — what to do the day an order arrives. About five
-  minutes per parcel.
+*Section 04* — what has to be printed on every pack you fill. Please
+actually read that one, it's the important page.
 
-• *Section 04* — what must be printed on every pack you fill. This is
-  the one legal part that is yours and not mine, and it is the most
-  important page in the book.
+Two things:
 
-Two things to know before you start:
+1. *If an order says Cash on Delivery, don't pack it.* We're prepaid
+only. Razorpay has it switched on at their end by mistake and they're
+taking it off. Till then just cancel it, call the customer, and tell
+me.
 
-1. *If an order comes in marked Cash on Delivery, do not pack it.*
-   The shop is prepaid only. Razorpay has COD switched on at their
-   end by mistake and they are removing it. Until they confirm:
-   cancel the order, ring the customer on the number shown, and tell
-   me it happened.
+2. Buy something from your own shop — a ₹140 pack — and pay properly.
+It's the only way to actually see the money land. You're paying
+yourself so it only costs the fee.
 
-2. *Please place one small order yourself* — a ₹140 pack is enough —
-   and pay for it properly from your own phone. It is the only way to
-   watch the money actually land in your account. You are paying
-   yourself, so it costs you only the fee.
+The dashboard we talked about I've left for later on purpose — the
+Shopify app already does everything day to day. Once you've run it a
+few weeks and know what you want on one screen, we'll build it. Costs
+you nothing either way.
 
-The owner's dashboard we spoke about is deliberately left for later.
-Shopify's own app already does orders, money, packing slips and
-dispatch, and the manual is written around it. Once you have run the
-shop for a few weeks and know what you actually want to see on one
-screen, we build it then. It costs you nothing either way.
+Anything looks off, screenshot it to me.
 
-Anything that looks wrong, send me a screenshot and I will sort it.
-
-Congratulations — twenty-seven years of the shop, now open to the
-whole country.
-
-— Jnanottam
+Congrats 🙌
