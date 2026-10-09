@@ -1,0 +1,55 @@
+To Razorpay — ticket #21302014
+Paste as a reply. Urgent: COD is live on a prepaid-only store.
+--------------------------------------------------------------------
+
+Hello,
+
+The private Magic Checkout app (TcBzhyvGVSK9Q0 - MagicCheckout) is installed
+and working on our store, and the Magic Checkout theme your team created has
+been published. Thank you — the checkout now runs on Magic.
+
+**One urgent problem: Magic Checkout is offering Cash on Delivery, and this is
+a prepaid-only store.**
+
+Please disable COD on the private app's checkout configuration.
+
+We have already confirmed it is not coming from our side:
+
+- **Razorpay dashboard, LIVE mode, Magic Checkout > COD Setup**
+  (dashboard.razorpay.com/app/magic/settings/cod-settings):
+  "Enable COD as payment option" is **OFF**.
+- **Shopify > Settings > Payments > Manual payment methods: EMPTY.**
+  No Cash on Delivery method exists on the Shopify side.
+- The only active payment provider in Shopify is
+  "01 Cards, UPI, NB, Wallets by Razorpay".
+
+So the COD option is being served by the private app's own configuration,
+which is on your side and not self-serve. Please turn it off.
+
+**This is urgent.** The store is public and live, the script tag is store-wide,
+and we have no way to disable the Magic hook from our end without uninstalling
+the app. Until you turn COD off, a real customer can place a cash-on-delivery
+order that the merchant cannot fulfil on those terms.
+
+Three standing constraints for this store, so they are not configured against:
+
+- **Prepaid only. No COD, no RTO workflows.** Owner's instruction.
+- **Do not enable Magic Shipping.** We run four Indian zones with seven weight
+  bands each, 28 rates, in Shopify's own delivery profiles, verified correct on
+  four live carts. Magic Shipping states that it bypasses all platform shipping
+  configuration.
+- Two settings we also want changed on the Magic checkout, if they are yours
+  rather than ours:
+  - **Email field: MANDATORY.** This store sends order confirmations and
+    dispatch notices by email only. A customer who checks out without an email
+    receives nothing.
+  - **Theme colour: #1F4034** (brand green), not the default blue.
+
+Store: 8uysc8-kx.myshopify.com
+Site:  https://malnadproducts.in
+MID:   TcBzhyvGVSK9Q0
+App:   TcBzhyvGVSK9Q0 - MagicCheckout
+Theme: "Magic Checkout - Malnad Spices - build" (published)
+
+Regards,
+Dheeraj

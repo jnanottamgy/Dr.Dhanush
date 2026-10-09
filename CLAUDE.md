@@ -2356,6 +2356,102 @@ Check out and watch the URL bar. Magic's own **Payment** step rendering with no
 stays in the library after the test theme is published, so re-publishing it
 restores today's working store in seconds.
 
+### MAGIC CHECKOUT WORKS — 9 Oct ~12:15. Twelve days. One defect: COD.
+
+**It is the private app, on Razorpay's own theme, and it owns the checkout.**
+Confirmed by Jnanottam driving it: *"its working."*
+
+**THE CAUSE OF THE LAST FAILURE WAS A WRONG THEME, AND IT WAS MINE.** Razorpay's
+team created **their own integration theme** when they installed the private app:
+
+| Theme | Id | |
+|---|---|---|
+| Horizon | 146202984561 | unpublished, stock backup |
+| `Malnad Spices — build` | 146238865521 | unpublished — **the rollback** |
+| `MAGIC TEST 9 Oct — do not publish yet` | 189064872049 | my plain duplicate, briefly published **by mistake** |
+| **`Magic Checkout - Malnad Spices — build`** | **189066182769** | **MAIN — Razorpay's, the one that works** |
+
+Theirs was created **2026-10-09T05:46:29Z = 11:16 IST**, the minute the private
+app went in. Jnanottam published mine, which had no integration in it, and
+Shopify's checkout kept opening. **Razorpay's documented flow is exactly this** —
+they build a test theme and the merchant publishes it. Nobody said so.
+
+**How to tell their theme apart, from the files:**
+
+| File | Ours (146238865521) | Razorpay's (189066182769) |
+|---|---|---|
+| `layout/theme.liquid` | 7081 / `098a8726…` | **7127 / `c5ad321b…`** — +46 bytes, their hook |
+| `config/settings_data.json` | 8082 / `c6b03740…` | **7900 / `f3b7dce9…`** — −182, the dead orphan block **removed** |
+
+**Nothing of ours was lost, and that was checked before publishing rather than
+after.** All six of our files are **byte-identical** in their theme —
+`blocks/compliance-declarations.liquid` 12512/`30978770…`,
+`snippets/compliance-row.liquid` 1567/`3bddf808…`,
+`assets/compliance-declarations.js` 2681/`c3fc4c23…`,
+`templates/product.json` 18330/`5d64452c…`,
+`templates/index.json` 6835/`0a274e38…`,
+`sections/footer-group.json` 9003/`014373c6…`. They built from
+`Malnad Spices — build`, not from stock Horizon. **7900 = 8082 − 182 exactly**,
+which is the orphan block and nothing else — so they also cleaned up the stale
+app block for us.
+
+**A SECOND TRAP COST ONE MORE ROUND: a stale checkout token.** After publishing,
+Shopify's checkout still appeared — because the URL carried
+`checkouts/cn/hWNHMHonwpJS5xapQPRxgUke`, **byte-identical to the 11:26 attempt**.
+Only `_r=` had changed. **Magic intercepts the Check out button on the cart; it
+cannot take over a checkout that already exists.** A fresh incognito window
+fixed it. **Always retest a checkout change in incognito** — the token, the cart
+cookie and the cached script all survive a plain reload.
+
+**THE PAYMENT OUTAGE IS CLOSED.** Settings → Payments reads
+`01 Cards, UPI, NB, Wallets by Razorpay` with **no Inactive badge**; PayPal is
+Inactive, which is correct and was always so.
+
+---
+
+### OPEN AND URGENT: MAGIC IS OFFERING COD ON A PREPAID-ONLY STORE
+
+Both places a merchant can switch it off are **already clean**, checked on the
+screens:
+
+| Checked | Result |
+|---|---|
+| Razorpay **LIVE** mode, Magic Checkout → COD Setup (`/app/magic/settings/cod-settings`) | **"Enable COD as payment option" is OFF** |
+| Shopify → Settings → Payments → **Manual payment methods** | **EMPTY** — no Shopify COD method |
+| Shopify payment providers | Only `01 Cards, UPI, NB, Wallets by Razorpay`, active |
+
+**So COD is served by the private app's own configuration, which is on
+Razorpay's side.** That is consistent with Sushil's own description — the
+private app *"does not follow a self-serve process"*, so its settings are not
+self-serve either. The dashboard toggle governs the public/self-serve
+integration.
+
+**THERE IS NO LOCAL KILL SWITCH.** The private app hooks the storefront with a
+**store-wide script tag**, not a theme app embed — so it cannot be disabled by
+editing a theme, by republishing `Malnad Spices — build`, or from this
+connector. The only merchant-side off switch is uninstalling the app, which
+throws away the whole build. **The store is public and live, so a COD order can
+land before Razorpay fixes it.** If one does: cancel it and contact the customer.
+
+**Paste-ready request: `docs/razorpay-cod-off-request.txt`.** It states the two
+screens already ruled out, asks them to disable COD on the private app, and
+repeats the three standing constraints (prepaid only, never Magic Shipping, and
+the Email-field and theme-colour settings) so their team does not configure
+against them.
+
+**Also still open on the Magic checkout, and now live for the first time:**
+`Email Field` → **Mandatory** (this store confirms and dispatches by email only;
+Magic owns the whole flow now, so Shopify never collects it) and `Theme Color`
+→ **#1F4034**. Both are in the same request in case they are Razorpay's to set.
+
+**Trial banner reads 68 Free* Days on 9 Oct** — 78 on 29 Sep, 71 on 6 Oct, 70 on
+7 Oct, 69 on 8 Oct. Counting down one a day, consistent with the 90-day 0%
+platform fee offer.
+
+**Housekeeping once COD is settled:** delete `MAGIC TEST 9 Oct — do not publish
+yet` (189064872049) and `Updated copy of Malnad Spices — build` (188710879345).
+Keep `Malnad Spices — build` as the rollback and Horizon as the stock backup.
+
 ### THE FEE QUESTION IS ANSWERED — researched 9 Oct. Magic IS worth ~1.4%, not 3.35%.
 
 Jnanottam: *"theres some misunderstanding / even if i use magic checkout / i have
