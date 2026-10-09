@@ -2356,6 +2356,33 @@ Check out and watch the URL bar. Magic's own **Payment** step rendering with no
 stays in the library after the test theme is published, so re-publishing it
 restores today's working store in seconds.
 
+### APP REINSTALLED 9 Oct 10:59 — IT IS THE SAME PUBLIC APP, and the orphan block resolved
+
+Read from the Admin API the moment the App embeds panel came up:
+
+| Check | Result |
+|---|---|
+| `appInstallations` | **`Razorpay COD & Magic Checkout`, handle `razorpay-magicx-app`** — byte for byte the app recorded on 28 Sep and uninstalled on 8 Oct. **The public app.** |
+| App embeds panel, test theme | Three embeds offered — `Login with Razorpay` off, **`Magic Checkout Script` ON**, `Razorpay Reviews` off |
+| `MAGIC TEST 9 Oct` `config/settings_data.json` | **8082 bytes, md5 `c6b03740…` — UNCHANGED from the baseline** |
+
+**THE UNCHANGED CHECKSUM IS THE FINDING, and it is benign for once.** The
+duplicate inherited the orphan block
+`shopify://apps/razorpay-cod-magic-checkout/blocks/magicx-script/c13c688d-…`
+with `disabled: false`. Reinstalling the **same app handle** made that block
+resolve again, so the panel shows ON because **the file already said ON** —
+nothing needed writing.
+
+**So this is the one case where a greyed-out Save genuinely means "already
+saved".** Every previous occurrence was ambiguous and two of them were real
+failures. The difference is that it was settled from the file, not from the
+toggle. **Keep doing it that way.**
+
+It also closes the public-vs-private question from the file as predicted: the
+handle is identical, so no private app was built. Jnanottam is running the test
+anyway, which is the right call — the URL-bar marker costs nothing and settles
+behaviour rather than labels.
+
 ### RAZORPAY'S 9 OCT MAIL IS THE PUBLIC-APP ONBOARDING AGAIN — DO NOT FOLLOW IT
 
 Preeti Kumari Nayak, Merchant Success, 9 Oct 10:20 IST, against ticket
