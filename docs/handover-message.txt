@@ -1,0 +1,56 @@
+WhatsApp — handover to Dr. Dhanush and Dheeraj, 9 October 2026
+Send with: Malnad-Products-Owner-Manual.pdf
+               Malnad-Products-How-The-Money-Works.pdf
+(Optional, if not already sent: the QR code from assets/qr/)
+
+------------------------------------------------------------------
+
+Namaste Dr. Dhanush, Dheeraj —
+
+The shop is done. malnadproducts.in is live and taking payments.
+
+57 products across nine sections, every pack size with its own price
+and its own photograph. Delivery is calculated by itself, by the
+weight of the parcel and where it is going, so you never work out
+postage. The customer pays by UPI, card or net banking on the site
+itself, and the money goes into your own bank account — normally two
+working days later.
+
+I am sending the owner's manual with this. It is written for you, not
+for a computer person. Three parts to read first:
+
+• *Section 02* — the Shopify app on your phone. Install it and allow
+  notifications. That is how you will know an order has come in.
+
+• *Section 03* — what to do the day an order arrives. About five
+  minutes per parcel.
+
+• *Section 04* — what must be printed on every pack you fill. This is
+  the one legal part that is yours and not mine, and it is the most
+  important page in the book.
+
+Two things to know before you start:
+
+1. *If an order comes in marked Cash on Delivery, do not pack it.*
+   The shop is prepaid only. Razorpay has COD switched on at their
+   end by mistake and they are removing it. Until they confirm:
+   cancel the order, ring the customer on the number shown, and tell
+   me it happened.
+
+2. *Please place one small order yourself* — a ₹140 pack is enough —
+   and pay for it properly from your own phone. It is the only way to
+   watch the money actually land in your account. You are paying
+   yourself, so it costs you only the fee.
+
+The owner's dashboard we spoke about is deliberately left for later.
+Shopify's own app already does orders, money, packing slips and
+dispatch, and the manual is written around it. Once you have run the
+shop for a few weeks and know what you actually want to see on one
+screen, we build it then. It costs you nothing either way.
+
+Anything that looks wrong, send me a screenshot and I will sort it.
+
+Congratulations — twenty-seven years of the shop, now open to the
+whole country.
+
+— Jnanottam
