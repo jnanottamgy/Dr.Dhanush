@@ -22,16 +22,9 @@ notifications, that's how you'll know an order came in.
 *Section 04* — what has to be printed on every pack you fill. Please
 actually read that one, it's the important page.
 
-Two things:
-
-1. *If an order says Cash on Delivery, don't pack it.* We're prepaid
-only. Razorpay has it switched on at their end by mistake and they're
-taking it off. Till then just cancel it, call the customer, and tell
-me.
-
-2. Buy something from your own shop — a ₹140 pack — and pay properly.
-It's the only way to actually see the money land. You're paying
-yourself so it only costs the fee.
+One thing to do: buy something from your own shop — a ₹140 pack — and
+pay properly. It's the only way to actually see the money land in your
+account. You're paying yourself so it only costs the fee.
 
 The dashboard we talked about I've left for later on purpose — the
 Shopify app already does everything day to day. Once you've run it a

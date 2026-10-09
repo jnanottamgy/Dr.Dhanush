@@ -2410,7 +2410,7 @@ Inactive, which is correct and was always so.
 
 ---
 
-### OPEN AND URGENT: MAGIC IS OFFERING COD ON A PREPAID-ONLY STORE
+### COD — CLOSED 9 Oct by Razorpay. The history below is kept; do not re-chase it.
 
 Both places a merchant can switch it off are **already clean**, checked on the
 screens:
@@ -2448,6 +2448,36 @@ Magic owns the whole flow now, so Shopify never collects it) and `Theme Color`
 **Trial banner reads 68 Free* Days on 9 Oct** — 78 on 29 Sep, 71 on 6 Oct, 70 on
 7 Oct, 69 on 8 Oct. Counting down one a day, consistent with the 90-day 0%
 platform fee offer.
+
+---
+
+**REMOVED — Jnanottam, 9 Oct: *"cod has been remved"*.** Razorpay took it off
+the private app's configuration, which is where it was being served from, as
+the section above worked out. The prepaid-only instruction is intact again.
+
+**THIS CANNOT BE VERIFIED FROM HERE AND HAS NOT BEEN.** The hook is a store-wide
+script tag; this connector is denied `scriptTags` and `paymentCustomizations`,
+the Razorpay MCP is disconnected, and the storefront is 403'd at the egress
+proxy. So the record is his screen, not a read. Two free confirmations, neither
+needing a payment:
+
+1. **A fresh incognito checkout** — COD must not appear as an option. Incognito
+   matters: a stale `checkouts/cn/` token and the cached script both survive a
+   plain reload, which already cost a round on 9 Oct.
+2. **`paymentGatewayNames` on the next live order.** `Cash on Delivery (COD)` is
+   the exact string Shopify stored on #1002; anything but that on a new order
+   confirms it from the record.
+
+**Orders re-read at the time of the report: still 2.** #1002 (COD, voided) and
+#1001 (test). Nothing new landed in the window it was open, so the only COD
+order this store has ever taken is Dheeraj's own, cancelled after four minutes.
+
+**Still open on the Magic checkout, and NOT closed by this:** `Email Field` →
+**Mandatory** and `Theme Color` → **#1F4034**. Order #1002 proved the email gap
+on a live order — `email: null` on both the order and the customer, so Shopify
+had nothing to send a confirmation to. Both are in
+`docs/razorpay-cod-off-request.txt`; if that request went in as written, ask
+whether they were done at the same time.
 
 **Housekeeping once COD is settled:** delete `MAGIC TEST 9 Oct — do not publish
 yet` (189064872049) and `Updated copy of Malnad Spices — build` (188710879345).
@@ -2538,6 +2568,13 @@ named correctly as `Magic Checkout - Malnad Spices — build`, uninstalling the
 Razorpay app added, and `Malnad Spices — build` named as the one-step rollback.
 **15 · troubleshooting** gained the COD row, the no-email row and the
 contact-form-spam row.
+
+**Revised again the same day when COD was removed.** The four COD passages are
+now written as a standing rule rather than a live defect: section 03 keeps the
+cancel-and-ring instruction as insurance ("if one ever says"), section 13's two
+open items become one (no real money settled), and 14 · 06 drops the "currently
+getting through" clause. The troubleshooting row stays, prefixed *should not
+happen*. Still 13 pages.
 
 Two standing instructions were being broken and are fixed: **"JTACS" appeared
 twice** where the rule is Jnanottam only, and section 03 carried
