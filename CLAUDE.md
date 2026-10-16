@@ -2599,6 +2599,64 @@ so every table was thrown whole onto the next page. Tables now break with
 `thead{display:table-header-group}` and `tr{break-inside:avoid}`, which is the
 correct behaviour for a split table and took the render from 14 pages to 13.
 
+### SEO AUDIT RUN — 16 Oct. Score 72/100. Alt text fixed, schema is the big gap.
+
+Ran with the `seo-audit` skill's methodology and weights, every figure read from
+the Admin API or the live theme source. Full report: **`docs/seo-audit-2026-10-16.md`**.
+
+**Score 72/100**, up from 68 — the alt-text fix is the four points and the only
+change made. Content 85 · Technical 78 · On-page 88 · **Schema 15** ·
+AI readiness 45 · Images 90 (was 10). **Performance is excluded, not assumed
+good** — the egress proxy 403s `malnadproducts.in` and `google.com`, so no CWV,
+no rendered HTML, no PageSpeed from here.
+
+**FIXED: alt text on all 70 pack photographs.** **64 of 70 were empty**; the six
+that had one repeated the product title verbatim. All 70 now carry descriptive
+alt text, pushed via `fileUpdate` in three batches and **verified by reading all
+70 back**. Source of truth is **`catalogue/image_alt.py`** — in git, re-pushable,
+with a `check()` that bars health claims, filler phrases ("image of"), >125
+characters and empties.
+
+Written under the declarations discipline: **the photographs were not looked at,
+so no line claims a visual detail.** Product, maker, pack size from the variant,
+origin from the listing — all from the record. Container named from the
+published description, so syrups read "700 ml bottle" and Kalpatharu "1.720 kg
+tin". Where a product has more frames than pack sizes, the extras assert no size;
+that leaves 67 unique strings over 70 images and inventing a difference would be
+worse.
+
+**THE BIG REMAINING GAP: there is no Product JSON-LD on this store.** Verified
+from source rather than inferred — no `structured_data` call and no
+`application/ld+json` in `layout/theme.liquid`, `snippets/meta-tags.liquid`,
+`snippets/scripts.liquid`, `blocks/_product-details.liquid` or
+`blocks/price.liquid`, and **no `structured-data.liquid` / `json-ld.liquid` /
+`schema.liquid` snippet exists**. So no Product, Offer, Organization,
+LocalBusiness or BreadcrumbList. No price or availability in Google's result,
+nothing for Google Shopping or the AI shopping surfaces, and no entity for a
+business that already publishes its legal name, address, two phones, FSSAI number
+and 1999 trading history. **Highest-value work left, and it needs no login** —
+but live-theme writes are blocked here, so it is duplicate → edit → publish.
+
+**One thing checked specifically and CLEAN, worth not re-checking:** Horizon's
+schema presets contain *"Free shipping over…"* and *"Free returns"* text blocks,
+plus Materials / Care instructions / Fit accordions. On a store with weight-based
+delivery and a paid returns policy those would be a false claim on 57 pages.
+**They are not in the live `templates/product.json`** — grepped. The live product
+page is H1 title · price · variant picker · buy buttons · description ·
+declarations, then `<h3>You may also like</h3>`.
+
+**Smaller findings:** the product template skips H2 (H1 → H3);
+`<meta name="theme-color" content="">` is emitted empty and should be `#1F4034`;
+`og:image` carries an `http:` prefix alongside the secure_url (Shopify's own
+default); the `frontpage` collection has null SEO and one product.
+
+**`shop.description` is null and it is worse than it looks.** `meta-tags.liquid`
+resolves `og_description` as `page_description | default: shop.description |
+default: shop.name`, so **every page without its own description shares
+`og:description` = "Malnad Products"** — which is what WhatsApp shows when the
+shop is shared, and WhatsApp is this business's main channel. Wording is already
+in `catalogue/seo.py`; it is Online Store → Preferences, browser only.
+
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 
 `AgriciDaniel/claude-seo` v2.4.2, MIT. **33 skills in `.claude/skills/`, 19
