@@ -2274,6 +2274,7 @@ spend it.
 | `assets/qr/` | **QR codes for `malnadproducts.in`** — static, SVG and PNG, black and brand green |
 | `owner-manual.html` | **The client's owner's manual** — how to run the shop, 12 sections |
 | `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
+| `invoice-malnad.html` · `Malnad-Products-Invoice.pdf` | **The ₹38,000 invoice**, 4 pages — invoice 01 / 2026–27 |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
 | `scripts/build_print_html.py` | **Inlines the webfonts** into a `-print.html` before the PDF render |
 | `catalogue/seo.py` | **All 68 SEO titles and meta descriptions** — source of truth, re-pushable |
@@ -2597,6 +2598,48 @@ IBM Plex Mono are all there, with DejaVu picking up ₹, ✓ and →.
 so every table was thrown whole onto the next page. Tables now break with
 `thead{display:table-header-group}` and `tr{break-inside:avoid}`, which is the
 correct behaviour for a split table and took the render from 14 pages to 13.
+
+### THE INVOICE — raised 16 Oct. Full ₹38,000, nothing paid before it.
+
+Jnanottam asked for the bill and confirmed **nothing had been paid yet**, so this
+is one invoice for the whole fee rather than the go-live milestone. The
+quotation's Section 09 milestone schedule (advance 50% ₹19,000 · design approval
+25% ₹9,500 · go-live 25% ₹9,500) was therefore never invoiced stage by stage, as
+that section says it would be. Recorded so the history is not misread later.
+
+`invoice-malnad.html` → `Malnad-Products-Invoice.pdf`, **4 pages**, same
+stylesheet as the quotation, the owner's manual and `money-explained.html`.
+
+**It reproduces the quotation's proforma table line for line**, same order, same
+amounts — including the owner dashboard listed at ₹8,000 and discounted to zero,
+so the client sees the value exactly as quoted. Total ₹38,000, *Rupees
+Thirty-Eight Thousand Only*, flat, no tax added.
+
+**ITEM 4 IS BILLED BUT NOT DELIVERED, AND THE INVOICE SAYS SO.** *WhatsApp
+Business and community setup, ₹6,000* carries a **To follow** chip and a note
+offering to reissue at **₹32,000 now + ₹6,000 on handover** if the client
+prefers. It was not billed silently: Jnanottam was told before it went out, and
+chose the full amount. The WhatsApp community remains the only unstarted build
+item in scope, and it is waiting on a mobile number not already tied to a
+personal WhatsApp.
+
+**The parked dashboard is stated as still to come at no further cost**, with the
+reason (built after launch, around what Dhanush actually wants to see) — which is
+the "say it plainly at handover" instruction carried onto the bill.
+
+**No bank details, no entity name, no GSTIN, no PAN, no address** anywhere on it,
+per the standing instruction. It says account details are sent separately, which
+is what the quotation itself promised. Client block is name and descriptor only.
+No fill-in blanks.
+
+**One process note worth keeping.** The PDF was first rendered from
+`invoice-malnad.html` instead of the `-print.html`, which is exactly the failure
+`scripts/build_print_html.py` exists to prevent — 164 KB of fallback-face PDF
+against 122 KB with the real fonts embedded. **Always render from the
+`-print.html`.** Also: splitting the shared stylesheet out of `owner-manual.html`
+by line number (`head -239`) silently dropped `</style>`, because the print-CSS
+fix had shifted it. Split on the `</style>` tag, and run the HTML well-formedness
+check — that is what caught it.
 
 ### THE FEE QUESTION IS ANSWERED — researched 9 Oct. Magic IS worth ~1.4%, not 3.35%.
 
