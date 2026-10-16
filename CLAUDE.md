@@ -2615,19 +2615,19 @@ way — an invoice is a bill, not an argument.
 | 3 | Razorpay payment integration | 6,000 |
 | 4 | Order management and dispatch workflow | 2,500 |
 | 5 | **Search engine optimisation, two weeks** | 6,000 |
-| | Sub-total | **44,000** |
-| 6 | **WhatsApp Business and community setup** · *Not charged* | 6,000 |
-| | Less: not charged | − 6,000 |
+| 6 | **WhatsApp Business and community setup** · *Not charged* | **0** |
 | | **Total payable** | **44,000** |
 
 *Rupees Forty-Four Thousand Only.* Three sections only: **01 Amount due ·
 02 What has been delivered · 03 How to pay.**
 
-**WHATSAPP IS SHOWN AND THEN DISCOUNTED TO ZERO** — his instruction, *"add it
-charge 6k / then tell that im not charging them for that"*. Same treatment the
-owner dashboard used to have. It reads as goodwill rather than as a withdrawal,
-which is the commercially better framing for something that was quoted and not
-built.
+**WHATSAPP IS A LINE AT ₹0** — *"whatsapp just show it as 0 rupees"*. It went
+through two shapes before that: first withdrawn entirely, then listed at ₹6,000
+with a *less: not charged* row beneath it. The ₹6,000-then-discounted version put
+a sub-total above it and a total below it at the same figure, which reads as
+clutter on a six-line bill. **One row, amount 0, "Not charged" chip, and no
+sub-total.** The work is still named in full so the client sees what is not being
+charged for, which is the point.
 
 **REMOVED ON HIS INSTRUCTION, do not put any of it back without being asked:**
 
