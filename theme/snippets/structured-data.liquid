@@ -1,0 +1,279 @@
+{% comment %}
+  Structured data (JSON-LD) for malnadproducts.in.
+
+  Horizon ships none. Verified 16 Oct 2026 by reading the live theme: no
+  `structured_data` filter call and no `application/ld+json` anywhere in
+  layout/theme.liquid, snippets/meta-tags.liquid, snippets/scripts.liquid,
+  blocks/_product-details.liquid or blocks/price.liquid, and no
+  structured-data / json-ld / schema snippet exists. So the store published no
+  Product, Offer, Organization, LocalBusiness or BreadcrumbList markup at all —
+  which is why no price or availability appears in a Google result, and why
+  Google holds no entity for the business.
+
+  Rendered once from layout/theme.liquid, inside <head>:
+
+      {%- render 'structured-data' -%}
+
+  WHAT THIS MAY AND MAY NOT SAY
+  -----------------------------
+  Every value is read from the store record or from what the footer already
+  publishes. Nothing is invented, which is the same rule as the pack
+  declarations. In particular:
+
+  * No `aggregateRating` and no `review`. The store has no reviews. Inventing
+    them is the fastest way to a manual action, and Google strips unearned
+    rating stars anyway.
+  * No `hasMerchantReturnPolicy` and no `shippingDetails`. Delivery here is
+    weight-and-zone based across four zones and seven bands, and returns are not
+    free. Either would have to be modelled exactly or not stated; stating them
+    loosely in schema is a claim the policy pages do not support.
+  * No `gtin`/`mpn`. No pack in the catalogue carries a barcode — `barcode` is
+    null on every variant, checked.
+  * `priceCurrency` is INR and prices are GST-inclusive, which is what the store
+    charges and what the terms say.
+
+  Prices come from `variant.price`, which Liquid returns in paise, so each is
+  divided by 100. `money_without_currency` is deliberately NOT used: it honours
+  the shop's money format and would emit "1,500.00", and a comma makes the price
+  invalid JSON-LD.
+
+  The page-type guards test the drop for TRUTHINESS (`{% if collection %}`),
+  not against `blank`. Caught by scripts/render_structured_data_test.py:
+  `nil != blank` is false in Shopify but an undefined drop compares unequal to
+  blank in other Liquid engines, so the loose form rendered a collection
+  breadcrumb on a product reached outside any collection. nil and undefined
+  are both falsy everywhere, so truthiness is the portable test.
+
+  `strip_html` removes tags but leaves HTML entities, so a description written
+  with an ampersand would emit a literal `&amp;` inside the JSON-LD. Liquid has
+  no entity decoder, so the five that actually occur are replaced by hand.
+{% endcomment %}
+
+{%- liquid
+  assign shop_name = 'Malnad Products'
+  assign packer_name = 'Malnad Spices'
+  assign street = 'Devaramane, Horanadu Post, Kalasa Taluk'
+  assign locality = 'Chikkamagaluru'
+  assign region = 'Karnataka'
+  assign postcode = '577181'
+  assign phone_one = '+91-8431218956'
+  assign phone_two = '+91-9480956035'
+  assign care_email = 'drjhrnd5@gmail.com'
+-%}
+
+{%- capture organization -%}
+  {
+    "@type": "Organization",
+    "@id": {{ request.origin | append: '/#organization' | json }},
+    "name": {{ shop_name | json }},
+    "alternateName": {{ packer_name | json }},
+    "url": {{ request.origin | json }},
+    "email": {{ care_email | json }},
+    "telephone": {{ phone_one | json }},
+    "foundingDate": "1999",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ street | json }},
+      "addressLocality": {{ locality | json }},
+      "addressRegion": {{ region | json }},
+      "postalCode": {{ postcode | json }},
+      "addressCountry": "IN"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": {{ phone_one | json }},
+        "email": {{ care_email | json }},
+        "areaServed": "IN",
+        "availableLanguage": ["en", "kn"]
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": {{ phone_two | json }},
+        "areaServed": "IN"
+      }
+    ]
+    {%- if settings.logo -%}
+      ,"logo": {
+        "@type": "ImageObject",
+        "url": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }}
+      }
+    {%- endif -%}
+  }
+{%- endcapture -%}
+
+{%- comment -%}
+  Organization and WebSite are emitted on every page so the entity is asserted
+  consistently and product graphs can reference it by @id.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{ organization }},
+    {
+      "@type": "WebSite",
+      "@id": {{ request.origin | append: '/#website' | json }},
+      "name": {{ shop_name | json }},
+      "url": {{ request.origin | json }},
+      "publisher": { "@id": {{ request.origin | append: '/#organization' | json }} },
+      "inLanguage": "en-IN",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": {{ request.origin | append: '/search?q={search_term_string}' | json }}
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+
+{%- if request.page_type == 'product' and product -%}
+  {%- liquid
+    assign current_variant = product.selected_or_first_available_variant
+    assign product_url = request.origin | append: product.url
+    assign plain_description = product.description | strip_html | strip_newlines
+    assign plain_description = plain_description | replace: '&amp;', '&' | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&lt;', '<' | replace: '&gt;', '>'
+    assign plain_description = plain_description | truncate: 500
+  -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": {{ product_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "url": {{ product_url | json }},
+    "description": {{ plain_description | json }},
+    "sku": {{ current_variant.sku | json }},
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | default: packer_name | json }}
+    },
+    {%- if product.type != blank %}
+    "category": {{ product.type | json }},
+    {%- endif %}
+    "image": [
+      {%- for media in product.media limit: 6 -%}
+        {%- if media.media_type == 'image' -%}
+          {{ media | image_url: width: 1200 | prepend: 'https:' | json }}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    ],
+    {%- if product.variants.size > 1 %}
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "lowPrice": {{ product.price_min | divided_by: 100.0 }},
+      "highPrice": {{ product.price_max | divided_by: 100.0 }},
+      "offerCount": {{ product.variants.size }},
+      "offers": [
+        {%- for variant in product.variants -%}
+        {
+          "@type": "Offer",
+          "name": {{ variant.title | json }},
+          "sku": {{ variant.sku | json }},
+          "url": {{ request.origin | append: variant.url | json }},
+          "price": {{ variant.price | divided_by: 100.0 }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": {%- if variant.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
+          "seller": { "@id": {{ request.origin | append: '/#organization' | json }} }
+        }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+    {%- else %}
+    "offers": {
+      "@type": "Offer",
+      "url": {{ product_url | json }},
+      "sku": {{ current_variant.sku | json }},
+      "price": {{ current_variant.price | divided_by: 100.0 }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": {%- if current_variant.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
+      "seller": { "@id": {{ request.origin | append: '/#organization' | json }} }
+    }
+    {%- endif %}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ request.origin | json }} },
+      {%- if collection %}
+      { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": {{ request.origin | append: collection.url | json }} },
+      { "@type": "ListItem", "position": 3, "name": {{ product.title | json }} }
+      {%- else %}
+      { "@type": "ListItem", "position": 2, "name": {{ product.title | json }} }
+      {%- endif %}
+    ]
+  }
+  </script>
+{%- endif -%}
+
+{%- if request.page_type == 'collection' and collection -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": {{ request.origin | append: collection.url | append: '#collection' | json }},
+    "name": {{ collection.title | json }},
+    "url": {{ request.origin | append: collection.url | json }},
+    {%- if collection.description != blank %}
+    {%- liquid
+      assign collection_description = collection.description | strip_html | strip_newlines
+      assign collection_description = collection_description | replace: '&amp;', '&' | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&lt;', '<' | replace: '&gt;', '>'
+      assign collection_description = collection_description | truncate: 300
+    -%}
+    "description": {{ collection_description | json }},
+    {%- endif %}
+    "isPartOf": { "@id": {{ request.origin | append: '/#website' | json }} },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": {{ collection.products_count }},
+      "itemListElement": [
+        {%- for item in collection.products limit: 24 -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "url": {{ request.origin | append: item.url | json }},
+          "name": {{ item.title | json }}
+        }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ request.origin | json }} },
+      { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }} }
+    ]
+  }
+  </script>
+{%- endif -%}
+
+{%- if request.page_type == 'page' and page -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ page.title | json }},
+    "url": {{ request.origin | append: page.url | json }},
+    "isPartOf": { "@id": {{ request.origin | append: '/#website' | json }} },
+    "about": { "@id": {{ request.origin | append: '/#organization' | json }} }
+  }
+  </script>
+{%- endif -%}
