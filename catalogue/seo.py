@@ -319,6 +319,23 @@ COLLECTIONS = {
         "Soapnut & Shikakai — Traditional Hair Care",
         "Antuvala and sikakai powder and whole soapnuts from Kalasa, the "
         "traditional Malnad wash for hair and for delicate laundry. Not foods."),
+    # `frontpage` is NOT one of the nine. Shopify creates it with every store,
+    # titles it "Home page", and publishes it — so it sits in sitemap.xml as a
+    # page whose <h1> reads "Home page" and which holds one product, competing
+    # with the real homepage. Nothing in the theme references it: the homepage's
+    # featured row uses `collection: 'all'` and the nine tiles use the real
+    # handles, checked in templates/index.json.
+    #
+    # The right fix is to delete or unpublish it, which is one click in the
+    # admin and is on the handover list. Both `publishableUnpublish` and
+    # `themeFilesDelete` are refused by this connector's safety policy, so this
+    # entry is the most that can be done from here: it stops Google reading a
+    # null description and the words "Home page". Discard it if he deletes the
+    # collection.
+    "frontpage": (
+        "Featured — Malnad Chai Tea Powder",
+        "Malnad Chai, the house tea powder blended and packed at Horanadu, in "
+        "250 g, 500 g and 1 kg. See the full range of Malnad spices and coffee."),
 }
 
 # handle -> (seo_title, seo_description). Pages store SEO as `global` metafields.

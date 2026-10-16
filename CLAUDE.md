@@ -2277,7 +2277,13 @@ spend it.
 | `invoice-malnad.html` · `Malnad-Products-Invoice.pdf` | **The ₹44,000 invoice**, 3 pages — invoice 01 / 2026–27 |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
 | `scripts/build_print_html.py` | **Inlines the webfonts** into a `-print.html` before the PDF render |
-| `catalogue/seo.py` | **All 68 SEO titles and meta descriptions** — source of truth, re-pushable |
+| `catalogue/seo.py` | **All SEO titles and meta descriptions** — 57 products, 10 collections, 2 pages. Source of truth, re-pushable |
+| `catalogue/image_alt.py` | **Alt text for all 70 pack photographs** — source of truth, re-pushable |
+| `theme/snippets/structured-data.liquid` | **The JSON-LD** — Organization, WebSite, Product, Offers, BreadcrumbList |
+| `theme/layout/theme.liquid` | Live layout + the one `render 'structured-data'` line. **Byte-verified against live before editing** |
+| `scripts/render_structured_data_test.py` | **Renders the JSON-LD and parses every block**, and lints the source for braces inside output tags |
+| `docs/seo-audit-2026-10-16.md` | **The SEO audit** — 72/100, scores, what could not be measured and why |
+| `docs/google-steps.md` | **His 8 numbered steps to get onto Google**, plain English |
 | `catalogue/shopify-ids.json` | handle → Shopify gid for all 57 products and 9 collections |
 | `fixtures/orders-export-sample.csv` | Order-export fixture built from the real order #1001 |
 | `theme/` | Theme source we add to Horizon — see `theme/README.md` |
@@ -2656,6 +2662,138 @@ default: shop.name`, so **every page without its own description shares
 `og:description` = "Malnad Products"** — which is what WhatsApp shows when the
 shop is shared, and WhatsApp is this business's main channel. Wording is already
 in `catalogue/seo.py`; it is Online Store → Preferences, browser only.
+
+### JSON-LD IS BUILT AND STAGED — 16 Oct. One Publish click closes Schema 15/100.
+
+`theme/snippets/structured-data.liquid` emits Organization + WebSite with a
+SearchAction on every page, Product with per-variant Offers plus a BreadcrumbList
+on product pages, CollectionPage + BreadcrumbList on collections, WebPage on
+pages. Rendered from `layout/theme.liquid` by one added line,
+`{%- render 'structured-data' -%}`, placed after `meta-tags`.
+
+**It deliberately omits `aggregateRating`, `review`, `hasMerchantReturnPolicy`,
+`shippingDetails` and `gtin`/`mpn`**, each for a stated reason in the file's own
+comment. The store has no reviews, delivery is four zones × seven weight bands
+and returns are not free, and `barcode` is null on every variant — checked. Same
+discipline as the pack declarations: nothing is invented. Prices come from
+`variant.price | divided_by: 100.0`, **never `money_without_currency`**, which
+honours the shop money format and would emit `1,500.00` — a comma makes the
+JSON-LD invalid.
+
+**THEME STAGED, ready to publish: `SCHEMA — publish this one (16 Oct)`,
+`gid://shopify/OnlineStoreTheme/189346480241`, UNPUBLISHED.** Duplicated from
+**Razorpay's** MAIN theme, not ours, so `snippets/razorpay-magic-checkout.liquid`
+(497 / `fbbfda93…`) rides along — duplicating `Malnad Spices — build` instead
+would have taken the checkout down. Verified by reading the theme back: our six
+files byte-identical to live, `layout/theme.liquid` 7164 / `2f434b543d78…`
+(= live's 7127 / `c5ad321b…` plus the one line), `snippets/structured-data.liquid`
+12131 / `c60a5c6883c4…`, `config/settings_data.json` 7900 / `f3b7dce9…`.
+
+**THE ROLLBACK HAS CHANGED. It is now `Magic Checkout - Malnad Spices — build`
+(189066182769)**, the current MAIN. The old answer, `Malnad Spices — build`
+(146238865521), has **no Razorpay hook** and republishing it would be an outage.
+Correct this wherever the old rollback is still written down.
+
+`ZZ scratch — do NOT publish (has test files)` (189346218097) is my bisect
+theme and carries ten junk probe snippets. Renamed via `themeUpdate` so it cannot
+be confused; it must never be published.
+
+#### A CURLY BRACE INSIDE AN OUTPUT TAG MAKES SHOPIFY REJECT THE WHOLE FILE
+
+The snippet would not upsert. **By URL `themeFilesUpsert` returned
+`upsertedThemeFiles: []` and `userErrors: []` and wrote nothing**, while
+`layout/theme.liquid` in the very same call landed fine. Re-sent as a **TEXT**
+body it named the cause immediately:
+
+    Liquid syntax error (line 1): Variable '{{ request.origin | append:
+    '/search?q=...' was not properly terminated with regexp: /\}\}/
+
+The SearchAction's `{search_term_string}` placeholder was built with `append`,
+putting a `}` inside a `{{ ... }}` output tag. **Shopify's lexer scans for the
+closing `}}` and stops at that brace.** Fixed by writing the placeholder as plain
+template text outside any tag, interpolating only the origin.
+
+**Two rules out of this, both general:**
+
+1. **A URL body is fetched asynchronously and its errors are swallowed.** It
+   reports `[]`/`[]` on success *and* on rejection. **A TEXT body validates
+   synchronously and returns the real message.** So: verify every URL upsert by
+   reading the checksum back, and re-send a file that will not land as TEXT to
+   find out why. This is the third distinct silent-`themeFilesUpsert` cause in
+   this project, after the empty-string schema default and the JSON
+   normalisation.
+2. **python-liquid accepts the `append` form**, so the render test passed a file
+   the platform refuses. Same class of gap as `nil != blank`. **Rendering cannot
+   catch a lexer difference**, so `scripts/render_structured_data_test.py` now
+   lints the *source text* for any brace inside an output tag and for a nested
+   tag opener. It caught a second instance immediately — in the file's own doc
+   comment, where I had quoted Shopify's error verbatim.
+
+**My earlier call that an unbalanced `{% if %}` in a comment caused this was
+wrong.** Comments are skipped for block balancing, proven by probe; the control
+probe `{% if true %}` with no `endif` reports *"'if' tag was never closed"*
+properly. The commit message on `1c9b556e` overstates it and the following commit
+says so.
+
+#### Connector limits found while doing this — do not plan around them
+
+| Mutation | |
+|---|---|
+| `themeDuplicate` | **works** — returns `newTheme`, not `theme` |
+| `themeUpdate` (rename) | **works** |
+| `themeFilesUpsert` | works, but see the URL/TEXT rule above |
+| `themePublish`, `themeDelete` | blocked |
+| **`themeFilesDelete`** | **blocked** — *"Theme deletion is blocked"*. A junk file written into a theme from here cannot be removed from here |
+| **`publishableUnpublish`** | **blocked** — *"Unpublishing is blocked to prevent accidental storefront catalog removal"* |
+
+#### The `frontpage` collection is a thin duplicate, and it is in the sitemap
+
+`Collection/310831939697`, handle `frontpage`, title **"Home page"**, **1 product**
+(Malnad Chai), `resourcePublicationsCount: 2`. Shopify creates it with every
+store. **Nothing references it** — checked `templates/index.json`: the homepage's
+featured row uses `collection: 'all'` and the nine tiles use the real handles. So
+it is published, sits in `sitemap.xml`, and renders an `<h1>` reading "Home page"
+against the real homepage.
+
+**The right fix is to delete or unpublish it, and `publishableUnpublish` is
+blocked**, so it is on the handover list. What was done instead: a real SEO title
+and description, recorded as the tenth entry in `COLLECTIONS` in
+`catalogue/seo.py` with a note to discard it if he deletes the collection.
+`seo.py` now reads **57 products, 10 collections, 2 pages — 0 problems**.
+
+#### Two things deliberately NOT done, with reasons
+
+- **No `robots.txt.liquid`.** Nothing currently blocks Google — password
+  protection off, verified — so editing the one file that can remove a site from
+  Google entirely is all risk and no gain. The audit's AI-crawler-policy finding
+  stays open on purpose.
+- **No `llms.txt`.** **Shopify will not serve a file from the domain root**
+  without an app or proxy, so it cannot be done on Basic. A page at
+  `/pages/llms-txt` is not `/llms.txt`. State this rather than promising it.
+
+### HIS STEP-BY-STEP GOOGLE LIST — `docs/google-steps.md`, 16 Oct
+
+Written because he asked for *"a list in plain simpole english for me to do"* and
+said *"i havent submitted the website to gse yet"*. Eight numbered steps, in the
+order that matters, with honest timelines.
+
+**Verified before writing, so nothing on it is guessed:** password protection
+`enabled: false`, primary domain `malnadproducts.in` with SSL, `www` and the
+myshopify host both present with SSL, `shop.description` still **null**. **Nothing
+is blocking Google — it has simply never been told the site exists.**
+
+**Search Console: tell him the DOMAIN property, not the HTML tag.** Shopify's own
+guide routes you to a URL-prefix property verified by pasting a tag into
+`theme.liquid`. The DNS TXT route is better here: it covers `malnadproducts.in`,
+`www` and future subdomains in one property, and it needs no theme edit — and
+live-theme writes are blocked from this connector anyway. Sitemap to submit is
+`sitemap.xml`; Shopify generates and maintains it. If he prefers the tag, it goes
+into the **staged** theme before publishing, never into the live one by hand.
+
+The list also carries the four non-SEO items still open, so they do not get lost:
+the **10% tax defect** (India country rate → 2.5%), Magic's **Email Field →
+Mandatory**, Magic's **Theme Color → `#1F4034`**, and **one real paid order in the
+client's own bank**.
 
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 
