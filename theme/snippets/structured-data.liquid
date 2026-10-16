@@ -37,12 +37,19 @@
   the shop's money format and would emit "1,500.00", and a comma makes the price
   invalid JSON-LD.
 
-  The page-type guards test the drop for TRUTHINESS (`{% if collection %}`),
+  The page-type guards test the drop for TRUTHINESS -- `if collection` -- and
   not against `blank`. Caught by scripts/render_structured_data_test.py:
   `nil != blank` is false in Shopify but an undefined drop compares unequal to
   blank in other Liquid engines, so the loose form rendered a collection
   breadcrumb on a product reached outside any collection. nil and undefined
   are both falsy everywhere, so truthiness is the portable test.
+
+  NOTE TO WHOEVER EDITS THIS COMMENT: Shopify PARSES Liquid inside a
+  `comment` block without executing it, so an unbalanced block tag written in
+  prose here -- an `if` with no `endif` -- is a parse error, and
+  themeFilesUpsert then rejects the whole file with `userErrors: []` and
+  writes nothing. Never put a bare block tag in this comment; name it without
+  the percent braces, as above.
 
   `strip_html` removes tags but leaves HTML entities, so a description written
   with an ampersand would emit a literal `&amp;` inside the JSON-LD. Liquid has
