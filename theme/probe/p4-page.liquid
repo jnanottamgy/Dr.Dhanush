@@ -1,0 +1,12 @@
+{%- if request.page_type == 'page' and page -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ page.title | json }},
+    "url": {{ request.origin | append: page.url | json }},
+    "isPartOf": { "@id": {{ request.origin | append: '/#website' | json }} },
+    "about": { "@id": {{ request.origin | append: '/#organization' | json }} }
+  }
+  </script>
+{%- endif -%}
