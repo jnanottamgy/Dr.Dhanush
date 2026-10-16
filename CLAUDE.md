@@ -2274,7 +2274,7 @@ spend it.
 | `assets/qr/` | **QR codes for `malnadproducts.in`** — static, SVG and PNG, black and brand green |
 | `owner-manual.html` | **The client's owner's manual** — how to run the shop, 12 sections |
 | `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
-| `invoice-malnad.html` · `Malnad-Products-Invoice.pdf` | **The ₹44,000 invoice**, 5 pages — invoice 01 / 2026–27 |
+| `invoice-malnad.html` · `Malnad-Products-Invoice.pdf` | **The ₹44,000 invoice**, 3 pages — invoice 01 / 2026–27 |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
 | `scripts/build_print_html.py` | **Inlines the webfonts** into a `-print.html` before the PDF render |
 | `catalogue/seo.py` | **All 68 SEO titles and meta descriptions** — source of truth, re-pushable |
@@ -2599,52 +2599,65 @@ so every table was thrown whole onto the next page. Tables now break with
 `thead{display:table-header-group}` and `tr{break-inside:avoid}`, which is the
 correct behaviour for a split table and took the render from 14 pages to 13.
 
-### THE INVOICE — REVISED TO ₹44,000 the same day. Read this before the record below.
+### THE INVOICE — ₹44,000, and CUT BACK HARD. 16 Oct. This is the current one.
 
-Jnanottam's instruction, 16 Oct: *"remove whatsapp business community / and split
-the money into other services / remove compliance launch and training , and solit
-the money / add it to website develoipment / add 6k extra for 2 weeks seo"*.
+Jnanottam, after I over-wrote it: *"dude keep it simple dude / wtf is this
+nonsense / so much nonsense is there"*. **He was right.** I had turned a bill
+into a four-section justification document. **3 pages now, was 5.** Keep it that
+way — an invoice is a bill, not an argument.
 
-| Line | Quoted | Billed | Change |
-|---|---|---|---|
-| Store design and development | 15,000 | **22,500** | **+7,500** |
-| Product catalogue setup | 7,000 | 7,000 | — |
-| Razorpay payment integration | 6,000 | 6,000 | — |
-| **WhatsApp Business and community** | 6,000 | **—** | **−6,000** |
-| Order management and dispatch | 2,500 | 2,500 | — |
-| **Compliance, launch and training** | 1,500 | **—** | **−1,500** |
-| **Search engine optimisation, two weeks** | — | **6,000** | **+6,000** |
-| **Total** | **38,000** | **44,000** | **+6,000** |
+**The table, which is the whole document:**
 
-The freed **₹7,500** (6,000 + 1,500) all went into the build line, because that is
-the only destination he named. *Rupees Forty-Four Thousand Only.*
+| # | Line | ₹ |
+|---|---|---|
+| 1 | Store design and development | 22,500 |
+| 2 | Product catalogue setup | 7,000 |
+| 3 | Razorpay payment integration | 6,000 |
+| 4 | Order management and dispatch workflow | 2,500 |
+| 5 | **Search engine optimisation, two weeks** | 6,000 |
+| | Sub-total | **44,000** |
+| 6 | **WhatsApp Business and community setup** · *Not charged* | 6,000 |
+| | Less: not charged | − 6,000 |
+| | **Total payable** | **44,000** |
 
-**THE WHATSAPP COMMUNITY IS NOW OUT OF SCOPE, not merely unbilled.** It was a
-quoted deliverable; removing its ₹6,000 from the bill is the honest way to drop
-it, and the invoice says so in those words. It is also no longer listed under
-"still to come" — a thing you neither charge for nor promise. **So the only
-unstarted item in the ₹38,000 scope is gone by withdrawal rather than by
-delivery.** Update the scope line at the top of this file if that is ever
-questioned.
+*Rupees Forty-Four Thousand Only.* Three sections only: **01 Amount due ·
+02 What has been delivered · 03 How to pay.**
 
-**THE ₹6,000 SEO IS THE ONLY CHARGE ABOVE THE ACCEPTED QUOTATION**, and the
-quotation says *"Nothing is billed to you that you did not agree to in advance,
-in writing."* The invoice states plainly that it was not in the original scope
-and does **not** claim the client agreed to it, because that was never confirmed
-here. **Flagged to Jnanottam: get Dhanush's agreement in writing before sending,
-or the invoice contradicts the quotation's own promise.**
+**WHATSAPP IS SHOWN AND THEN DISCOUNTED TO ZERO** — his instruction, *"add it
+charge 6k / then tell that im not charging them for that"*. Same treatment the
+owner dashboard used to have. It reads as goodwill rather than as a withdrawal,
+which is the commercially better framing for something that was quoted and not
+built.
 
-**Section 02 is a full reconciliation** — quoted against billed, line by line,
-with the three changes explained one at a time and a closing line that no item
-rose without something coming off. That exists because a client who signed
-₹38,000 and receives ₹44,000 will otherwise just see the headline.
+**REMOVED ON HIS INSTRUCTION, do not put any of it back without being asked:**
 
-**Compliance, launch and training is a presentation change, not a scope cut.**
-That work was delivered; its description (FSSAI and labelling fields, GST and
-HSN, legal pages, testing, go-live) is folded into the build line so the bill
-still accounts for it. Do not let anyone read the removed line as work not done.
+- The deck line naming the revision (*"Revised against the quotation you
+  accepted…"*).
+- **The whole section 02 reconciliation** — the quoted-against-billed table and
+  the three explanations. Both references to it went with it.
+- The note explaining why the total is not ₹38,000.
+- **The owner dashboard row entirely** — the ₹8,000 line and its
+  *"less: included at no charge"*.
+- **The whole "Still to come, at no further cost" section**, including the
+  ownership paragraph (*"On payment of this invoice, everything is yours
+  outright…"*).
 
----
+**THE CONSEQUENCE, STATED ONCE AND ACCEPTED BY HIM: the document no longer
+explains the ₹6,000 above the quoted ₹38,000.** The SEO line is visible but
+nothing on the page reconciles it to the quotation, and the quotation's own
+terms say *"Nothing is billed to you that you did not agree to in advance, in
+writing."* So **the ₹6,000 has to be agreed with Dhanush outside the invoice.**
+That was flagged before the cut and the cut was his call — do not re-raise it,
+and do not re-add the reconciliation.
+
+**The owner dashboard is now absent from the bill altogether**, so the handover
+promise about it lives only in the owner's manual and in conversation. Same for
+the ownership-on-payment line, which was the clause protecting the client's
+outright ownership. Both were his to remove.
+
+**Compliance, launch and training stays folded into line 1's description** —
+FSSAI and labelling fields, GST and HSN, legal pages, testing, go-live. The work
+was delivered; only the separate line went.
 
 ### THE INVOICE AS FIRST RAISED — ₹38,000, nothing paid before it. Superseded above.
 

@@ -19,7 +19,7 @@ Malnad produce business (coffee, spices, estate goods).
 | `Malnad-Products-Owner-Manual.pdf` | 13-page A4 PDF — how to run the shop, handed over with the store. |
 | `invoice-malnad.html` | The ₹44,000 build invoice. Source, loads webfonts. **Edit this one.** |
 | `invoice-malnad-print.html` | Fonts-inlined build used to render the PDF. Regenerated, not hand-edited. |
-| `Malnad-Products-Invoice.pdf` | 5-page A4 PDF — invoice 01 / 2026–27, raised 16 Oct 2026. |
+| `Malnad-Products-Invoice.pdf` | 3-page A4 PDF — invoice 01 / 2026–27, raised 16 Oct 2026. |
 
 **Commercials**
 
