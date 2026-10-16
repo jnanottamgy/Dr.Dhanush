@@ -1,0 +1,59 @@
+{% comment %}
+  Structured data (JSON-LD) for malnadproducts.in.
+
+  Horizon ships none. Verified 16 Oct 2026 by reading the live theme: no
+  `structured_data` filter call and no `application/ld+json` anywhere in
+  layout/theme.liquid, snippets/meta-tags.liquid, snippets/scripts.liquid,
+  blocks/_product-details.liquid or blocks/price.liquid, and no
+  structured-data / json-ld / schema snippet exists. So the store published no
+  Product, Offer, Organization, LocalBusiness or BreadcrumbList markup at all —
+  which is why no price or availability appears in a Google result, and why
+  Google holds no entity for the business.
+
+  Rendered once from layout/theme.liquid, inside <head>:
+
+      {%- render 'structured-data' -%}
+
+  WHAT THIS MAY AND MAY NOT SAY
+  -----------------------------
+  Every value is read from the store record or from what the footer already
+  publishes. Nothing is invented, which is the same rule as the pack
+  declarations. In particular:
+
+  * No `aggregateRating` and no `review`. The store has no reviews. Inventing
+    them is the fastest way to a manual action, and Google strips unearned
+    rating stars anyway.
+  * No `hasMerchantReturnPolicy` and no `shippingDetails`. Delivery here is
+    weight-and-zone based across four zones and seven bands, and returns are not
+    free. Either would have to be modelled exactly or not stated; stating them
+    loosely in schema is a claim the policy pages do not support.
+  * No `gtin`/`mpn`. No pack in the catalogue carries a barcode — `barcode` is
+    null on every variant, checked.
+  * `priceCurrency` is INR and prices are GST-inclusive, which is what the store
+    charges and what the terms say.
+
+  Prices come from `variant.price`, which Liquid returns in paise, so each is
+  divided by 100. `money_without_currency` is deliberately NOT used: it honours
+  the shop's money format and would emit "1,500.00", and a comma makes the price
+  invalid JSON-LD.
+
+  The page-type guards test the drop for TRUTHINESS -- `if collection` -- and
+  not against `blank`. Caught by scripts/render_structured_data_test.py:
+  `nil != blank` is false in Shopify but an undefined drop compares unequal to
+  blank in other Liquid engines, so the loose form rendered a collection
+  breadcrumb on a product reached outside any collection. nil and undefined
+  are both falsy everywhere, so truthiness is the portable test.
+
+  NOTE TO WHOEVER EDITS THIS COMMENT: Shopify PARSES Liquid inside a
+  `comment` block without executing it, so an unbalanced block tag written in
+  prose here -- an `if` with no `endif` -- is a parse error, and
+  themeFilesUpsert then rejects the whole file with `userErrors: []` and
+  writes nothing. Never put a bare block tag in this comment; name it without
+  the percent braces, as above.
+
+  `strip_html` removes tags but leaves HTML entities, so a description written
+  with an ampersand would emit a literal `&amp;` inside the JSON-LD. Liquid has
+  no entity decoder, so the five that actually occur are replaced by hand.
+{% endcomment %}
+
+ok-commentonly
