@@ -151,6 +151,33 @@ def parse_all(html, label):
     return out
 
 
+# ---- source lint: constructs Shopify rejects but python-liquid accepts -------
+# themeFilesUpsert refused this file outright, with userErrors: [] on the URL
+# path, because a `}` sat inside a {{ ... }} output tag. Shopify's lexer scans
+# for the closing `}}` and a brace in a string literal ends the tag early:
+#
+#   Liquid syntax error (line 1): Variable '{{ request.origin | append:
+#   '/search?q={search_term_string}' was not properly terminated
+#
+# python-liquid parses it happily, so rendering cannot catch it. Lint the text.
+def lint_source(path):
+    src = open(path).read()
+    bad = []
+    for m in re.finditer(r"\{\{(.*?)\}\}", src, flags=re.S):
+        if "{" in m.group(1) or "}" in m.group(1):
+            line = src[: m.start()].count("\n") + 1
+            bad.append(f"line {line}: brace inside an output tag — {m.group(0)[:90]!r}")
+    for m in re.finditer(r"\{%(.*?)%\}", src, flags=re.S):
+        if "{%" in m.group(1):
+            line = src[: m.start()].count("\n") + 1
+            bad.append(f"line {line}: nested tag opener — {m.group(0)[:90]!r}")
+    if bad:
+        sys.exit("FAIL source lint (Shopify would reject this file):\n  " + "\n  ".join(bad))
+    print("source lint passed: no braces inside output tags")
+
+
+lint_source(SRC)
+
 failures = []
 
 

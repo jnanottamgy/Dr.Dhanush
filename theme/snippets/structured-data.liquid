@@ -44,12 +44,22 @@
   breadcrumb on a product reached outside any collection. nil and undefined
   are both falsy everywhere, so truthiness is the portable test.
 
-  NOTE TO WHOEVER EDITS THIS COMMENT: Shopify PARSES Liquid inside a
-  `comment` block without executing it, so an unbalanced block tag written in
-  prose here -- an `if` with no `endif` -- is a parse error, and
-  themeFilesUpsert then rejects the whole file with `userErrors: []` and
-  writes nothing. Never put a bare block tag in this comment; name it without
-  the percent braces, as above.
+  A CURLY BRACE MAY NOT APPEAR INSIDE AN OUTPUT TAG. Shopify's lexer scans a
+  `{{ ... }}` for its closing `}}`, and a `}` inside a string literal ends it
+  early. So the SearchAction's `{search_term_string}` placeholder cannot be
+  built with `append`; the braces are written as plain template text, outside
+  any tag, and only the origin comes from Liquid. Shopify's error, paraphrased
+  because quoting it here would reintroduce the fault, is that the variable was
+  "not properly terminated" -- it had stopped reading the tag at the brace.
+
+  themeFilesUpsert reports this on a TEXT body but NOT on a URL body: by URL it
+  returns upsertedThemeFiles: [] and userErrors: [] and writes nothing at all.
+  So a URL upsert must always be verified by reading the checksum back, and a
+  file that will not land should be re-sent as TEXT to get the real message.
+
+  python-liquid accepts the append form, so the render test alone passed it.
+  scripts/render_structured_data_test.py now lints the source text for any
+  brace inside an output tag, which is the check that would have caught it.
 
   `strip_html` removes tags but leaves HTML entities, so a description written
   with an ampersand would emit a literal `&amp;` inside the JSON-LD. Liquid has
@@ -131,7 +141,7 @@
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": {{ request.origin | append: '/search?q={search_term_string}' | json }}
+          "urlTemplate": "{{ request.origin }}/search?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
