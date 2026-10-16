@@ -2599,6 +2599,46 @@ so every table was thrown whole onto the next page. Tables now break with
 `thead{display:table-header-group}` and `tr{break-inside:avoid}`, which is the
 correct behaviour for a split table and took the render from 14 pages to 13.
 
+### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
+
+`AgriciDaniel/claude-seo` v2.4.2, MIT. **33 skills in `.claude/skills/`, 19
+subagents in `.claude/agents/`, 1.6 MB, zero executable files.** Full record in
+**`.claude/skills/INSTALL-NOTES.md`** — read that before changing the install.
+
+**Installed into the repository, NOT `~/.claude/`.** Upstream's `install.sh`
+writes to `$HOME`, and this container is ephemeral, so a `$HOME` install
+evaporates at session end. In the repo it is committed and every future session
+has it.
+
+**The ~80 bundled Python scripts are NOT installed, and that is deliberate.**
+There are **200 references to 45 script names** in the installed markdown which
+will not resolve. Two reasons, both already established in this file: the egress
+proxy 403s `malnadproducts.in` and `google.com`, so every live-URL fetcher is
+dead here; and the **Shopify Admin API is the better source** — it is how all 68
+SEO records were pushed in the first place. **When a skill says to run a script,
+get the same fact from the connector or from `catalogue/seo.py` instead.**
+
+**Reviewed before installing**, since a skill's text enters context as
+instructions: `install.sh` is clean (pinned tag, `set -euo pipefail`, mktemp +
+trap, no `curl | bash`); the single hook is a `PostToolUse` JSON-schema validator
+on `Edit|Write`; every outbound host is a real SEO API or `example.com`;
+dependencies pinned with CVE notes. **The skill text is third party — where it
+conflicts with this file (no health claims, no invented declarations, no prices
+in meta descriptions, Jnanottam named only), THIS FILE WINS.**
+
+All 33 `SKILL.md` files were checked for `name` + `description` frontmatter — a
+skill missing either registers silently as nothing. `${CLAUDE_PLUGIN_ROOT}/skills/`
+was rewritten to `.claude/skills/` in 15 files.
+
+**What this does and does not unblock for the ₹6,000 SEO line.** It supplies
+method and checklists. It does **not** supply the four things that actually gate
+the work, every one of which needs Jnanottam's browser: the homepage title and
+meta description (Online Store → Preferences, already written as
+`HOMEPAGE_TITLE` / `HOMEPAGE_DESCRIPTION` in `catalogue/seo.py`), Google
+Analytics, Search Console, and the free **Shopify Search & Discovery** app —
+whose absence is why the collection pages still have **no filters**, which the
+quotation promises.
+
 ### THE INVOICE — ₹44,000, and CUT BACK HARD. 16 Oct. This is the current one.
 
 Jnanottam, after I over-wrote it: *"dude keep it simple dude / wtf is this
