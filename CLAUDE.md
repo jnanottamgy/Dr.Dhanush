@@ -2275,6 +2275,8 @@ spend it.
 | `owner-manual.html` | **The client's owner's manual** — how to run the shop, 12 sections |
 | `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
 | `invoice-malnad.html` · `Malnad-Products-Invoice.pdf` | **The ₹44,000 invoice**, 3 pages — invoice 01 / 2026–27 |
+| `quotation-seo.html` · `Malnad-Products-SEO-Quotation.pdf` | **Professional SEO, ₹13,000**, 2–5 weeks, 5 pages — quotation 02 / 2026–27 |
+| `quotation-clipping.html` · `Instagram-Clipping-Quotation.pdf` | **YouTube → Instagram clipping, ₹12,000/month**, 4 pages — quotation 03 / 2026–27 |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
 | `scripts/build_print_html.py` | **Inlines the webfonts** into a `-print.html` before the PDF render |
 | `catalogue/seo.py` | **All SEO titles and meta descriptions** — 57 products, 10 collections, 2 pages. Source of truth, re-pushable |
@@ -2794,6 +2796,74 @@ The list also carries the four non-SEO items still open, so they do not get lost
 the **10% tax defect** (India country rate → 2.5%), Magic's **Email Field →
 Mandatory**, Magic's **Theme Color → `#1F4034`**, and **one real paid order in the
 client's own bank**.
+
+### TWO NEW QUOTATIONS — 19 Oct. SEO ₹13,000 · Instagram clipping ₹12,000/month.
+
+Both built on the invoice's stylesheet, so the whole pack reads as one family. Head
+split on the **`</style>` tag**, never by line number — that is the failure that
+silently dropped the closing tag out of `owner-manual.html`. Rendered from the
+`-print.html`, which is the other recorded trap.
+
+| | Pages | PDF |
+|---|---|---|
+| `quotation-seo.html` | 5 | `Malnad-Products-SEO-Quotation.pdf` |
+| `quotation-clipping.html` | 4 | `Instagram-Clipping-Quotation.pdf` |
+
+**THE SEO ONE HAD TO BE WRITTEN AROUND AN OVERLAP, and section 01 does it
+explicitly.** The invoice already carries *"Search engine optimisation, two weeks —
+₹6,000"*, and the build has already delivered the 68 SEO titles and descriptions,
+70 alt texts and the JSON-LD. **So the ₹13,000 scope deliberately contains none of
+that.** It is Search Console, Analytics, Bing, **Google Business Profile**, keyword
+research, category filters, page speed, duplicate-page cleanup, directory
+citations and a written report. Section 01 names the already-delivered work as "the
+shop window" and this as "the other half", because a client who is not told will
+read it as SEO creeping from ₹6,000 to ₹19,000.
+
+**FLAGGED TO HIM, NOT RESOLVED: this quotation bills for most of
+`docs/google-steps.md`.** That list was written 16 Oct for *him* to do himself,
+free, inside the existing engagement. The same items cannot be both. **He has to
+pick one** — do the eight steps himself as part of the ₹44,000, or hold them and
+bill this ₹13,000. Either is fine; doing half of them free and then invoicing is
+not.
+
+**No monthly charge in the SEO quotation**, and it says so twice — the standing
+instruction against a maintenance or retainer section is intact.
+
+#### The clipping price, researched rather than guessed
+
+Indian market, from published rate guides (all vendor-written, so treated as
+signal not data): caption-and-cut clips **₹300–800**; hook-engineered edits with
+motion graphics **₹800–2,500**; a budget monthly retainer of 12–16 reels including
+posting **₹6,000–8,000**; a shorts pipeline of 15–30 a month **₹5,000–25,000**;
+freelance social-media retainers **₹15,000–50,000**. Globally per clip is
+**$15–60**.
+
+Labour on 12 clips a month: ~30 min mining each source video, 30–45 min editing per
+clip, plus selection and posting — **12–15 hours**. At ₹800–1,000/hour for skilled
+creative work that is **₹10,000–15,000**.
+
+**Recommended and quoted: ₹12,000/month for 12 clips (₹1,000 each).** Starter 6 at
+₹7,500, Heavy 24 at ₹20,000, extra clips ₹1,200, and a **one-time back-catalogue
+batch of 10 for ₹9,000** as the opener. **The floor is ₹1,000 a clip** — below that
+he is competing with Opus Clip plus a ₹400 editor and it is not worth his time.
+**₹15,000 is defensible** if the source videos run 40 minutes or more, or if he is
+also posting and scheduling.
+
+**A RETAINER IS THE CORRECT SHAPE HERE AND THAT IS NOT A REGRESSION.** The standing
+instruction against a maintenance or retainer section was about the *store* build,
+which is one-time. Clipping is inherently monthly; a one-off clipping fee would make
+no sense. Said to him plainly rather than slipped in. The one-time back-catalogue
+line exists so he can also sell it without any commitment.
+
+**Written for Dr. R. Dhanush on the assumption that "he" is the same client** —
+no YouTube channel is recorded anywhere in this file, so that is an assumption, and
+it was flagged as a one-line change if the channel belongs to someone else.
+
+**Both documents refuse to promise a result**, in their own sections: *"Nobody can
+promise you a position on Google"* and *"No honest person can promise you views,
+followers or a Reel going viral."* The clipping one also says the first month
+usually looks quiet and that anyone wanting a result in three weeks should not buy
+it — better said before the money than after.
 
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 
