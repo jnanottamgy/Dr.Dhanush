@@ -2276,7 +2276,7 @@ spend it.
 | `Malnad-Products-Owner-Manual.pdf` | The same, 8 pages, for handover |
 | `invoice-malnad.html` · `Malnad-Products-Invoice.pdf` | **The ₹44,000 invoice**, 3 pages — invoice 01 / 2026–27 |
 | `quotation-seo.html` · `Malnad-Products-SEO-Quotation.pdf` | **Professional SEO, ₹13,000**, 2–5 weeks, 5 pages — quotation 02 / 2026–27 |
-| `quotation-clipping.html` · `Instagram-Clipping-Quotation.pdf` | **YouTube → Instagram clipping, ₹12,000/month**, 4 pages — quotation 03 / 2026–27 |
+| `quotation-clipping.html` · `Instagram-Clipping-Quotation.pdf` | **YouTube → Instagram clipping, ₹13,000/month for 16 clips**, 5 pages — quotation 03 / 2026–27 |
 | `scripts/gst_monthly_summary.py` | **The accountant's monthly HSN sheet** from a Shopify order export |
 | `scripts/build_print_html.py` | **Inlines the webfonts** into a `-print.html` before the PDF render |
 | `catalogue/seo.py` | **All SEO titles and meta descriptions** — 57 products, 10 collections, 2 pages. Source of truth, re-pushable |
@@ -2842,12 +2842,31 @@ Labour on 12 clips a month: ~30 min mining each source video, 30–45 min editin
 clip, plus selection and posting — **12–15 hours**. At ₹800–1,000/hour for skilled
 creative work that is **₹10,000–15,000**.
 
-**Recommended and quoted: ₹12,000/month for 12 clips (₹1,000 each).** Starter 6 at
-₹7,500, Heavy 24 at ₹20,000, extra clips ₹1,200, and a **one-time back-catalogue
-batch of 10 for ₹9,000** as the opener. **The floor is ₹1,000 a clip** — below that
-he is competing with Opus Clip plus a ₹400 editor and it is not worth his time.
-**₹15,000 is defensible** if the source videos run 40 minutes or more, or if he is
-also posting and scheduling.
+**HIS DECISION, 19 Oct: ₹13,000 a month for FOUR CLIPS A WEEK.** Quoted and built
+exactly that way; the tiers are gone and it is now one offer. Recorded against my
+recommendation so the arithmetic is not lost:
+
+- **Four a week is 16 clips a month, not 12** — so ₹13,000 is **₹812.50 a clip**,
+  about 20% *below* the ₹1,000 floor I had given him an hour earlier. The headline
+  went up ₹1,000 and the unit rate went down ₹190.
+- Labour at 16 clips is **16–18 hours**, so roughly **₹750–800/hour**. Still real
+  professional money, and a coherent volume deal — just thinner per clip, not
+  fatter. **He was shown this before the document was rebuilt and confirmed the
+  number. Do not re-raise it.**
+- **The guard rail stated with it, and it is the thing that would actually make this
+  unprofitable:** at this unit rate, no extra platforms, no comments-and-DMs, no
+  unlimited re-edits. Section 05 bars all three by name, and the revision policy is
+  one round per clip with anything beyond charged as an extra clip.
+
+Add-ons kept and repriced to stay coherent with ₹812: **extra clip ₹1,000** (above
+the pack rate on purpose, so ad-hoc volume pushes toward a bigger pack rather than
+away from it) and a **one-time back-catalogue batch of 10 for ₹8,500** = ₹850 a
+clip, also deliberately above the monthly rate, because a no-commitment batch should
+not undercut a commitment.
+
+My own earlier figures, superseded but kept: ₹12,000 for 12 (₹1,000 each), Starter 6
+at ₹7,500, Heavy 24 at ₹20,000, floor ₹1,000 a clip, and ₹15,000 defensible on
+40-minute source videos.
 
 **A RETAINER IS THE CORRECT SHAPE HERE AND THAT IS NOT A REGRESSION.** The standing
 instruction against a maintenance or retainer section was about the *store* build,
@@ -2858,6 +2877,20 @@ line exists so he can also sell it without any commitment.
 **Written for Dr. R. Dhanush on the assumption that "he" is the same client** —
 no YouTube channel is recorded anywhere in this file, so that is an assumption, and
 it was flagged as a one-line change if the channel belongs to someone else.
+
+**HE ASKED FOR THE EDITING DETAIL SPELLED OUT** — *"with full editing etc etc the
+details"* — so section 02 is now the heart of the document: **fifteen named steps in
+four groups**, finding and framing · the cut · captions, picture and sound ·
+finishing and delivery. It exists to stop "fully edited" being argued about later,
+and it is also the selling argument against a ₹400 clipper.
+
+Three of those fifteen are deliberate differentiators rather than filler, and each
+is a real craft point: **Instagram's safe area** (the app covers the bottom of the
+screen and the right edge, so text laid out without allowing for it is simply
+hidden — the commonest fault in reposted clips); **captions corrected by hand**
+(automatic captions mangle Kannada words and product names every time, and a wrong
+caption on a food product reads as carelessness); and **the 70 pack photographs cut
+in as B-roll**, which nobody else bidding for this work has sitting ready.
 
 **Both documents refuse to promise a result**, in their own sections: *"Nobody can
 promise you a position on Google"* and *"No honest person can promise you views,
