@@ -2898,6 +2898,66 @@ followers or a Reel going viral."* The clipping one also says the first month
 usually looks quiet and that anyone wanting a result in three weeks should not buy
 it — better said before the money than after.
 
+### 30 Oct CHECKOUT SCARE — RAZORPAY WAS MID-SURGERY. Nothing lost, nothing paid.
+
+Jnanottam, 13:03 IST: *"we have an crisis / website payment part is not working
+... its taking me to directly razorpay / and the loading page is taking forvere"*.
+Screenshot: a Razorpay panel over `malnadproducts.in/products/fennel-seed`,
+**Price Summary ₹50 with no delivery line**, a *Payment Options* pane already
+showing a UPI QR counting down from 11:39, and a **Contact details** modal on top
+asking mobile + **"Email address (optional)"**, its button stuck on three dots.
+
+**THE TIMESTAMP IS THE ANSWER.** Razorpay created a new integration theme
+**`Magic Checkout - Magic Checkout - Malnad Spices...` (189895540849) at
+2026-10-30T07:35:11Z = 13:05 IST** — two minutes after the screenshot. **Their
+engineers were working in the store while he was testing it.** Everything he saw
+is a half-installed integration, not a configuration fault.
+
+**READ FROM THE ADMIN API, so this is the record:**
+
+| Check | Result |
+|---|---|
+| Orders | **STILL 2** — #1001 (28 Sep, test) and #1002 (9 Oct, COD, voided). **Nothing landed** |
+| Abandoned checkouts | **3, newest 9 Oct 06:31.** **Nothing from today at all** |
+| Live theme `Magic Checkout - Malnad Spices — build` (189066182769) | **MAIN, updatedAt still 2026-10-09T06:46:05Z.** All four files byte-identical: `layout/theme.liquid` 7127/`c5ad321b…`, `config/settings_data.json` 7900/`f3b7dce9…`, `snippets/razorpay-magic-checkout.liquid` 497/`fbbfda93…`, `templates/product.json` 18330/`5d64452c…` |
+| New theme 189895540849 | **UNPUBLISHED, and byte-identical to live on all four files.** Carries no new integration — publishing it today would be a no-op |
+| Shipping | **INTACT** — both profiles, 4 zones × 7 rates = **28 + 28**, 63 variants on `Malnad delivery`. **Magic Shipping was NOT enabled** |
+| Apps | Messaging, Claude connector, **`TcBzhyvGVSK9Q0 - MagicCheckout`** — the private app, still installed |
+
+**THE ₹50 PAGE WAS NOT JOINED TO THE SHOPIFY CART, and the abandoned checkouts
+prove it.** When Magic worked on 9 Oct, every session wrote an abandoned checkout
+into Shopify reading **₹90 = ₹50 goods + ₹40 delivery** with a real address
+(chikmagalur 577181, at 06:26 and again at 06:31). **Today's attempt wrote
+nothing.** So that payment page never spoke to Shopify, which is exactly why it
+showed goods-only with no delivery. **Paying on it could have sent money to
+Razorpay with no order and no address on this side.** Told him not to pay.
+
+**ADDRESS COLLECTION IS NOT "SWITCHED OFF" — do not chase that.** Order #1002
+carries a full shipping address (sadashivngar, Bengaluru, Karnataka, 560080) and
+a ₹40 `Standard Shipping` line, and all three abandoned checkouts carry one. The
+missing address step on 30 Oct is the broken install, not a setting.
+
+**THE EMAIL "(optional)" IS REAL AND IS STILL OPEN.** That is the `Email Field`
+= Optional setting on `/app/magic/settings/magicx-store-settings`, flagged 8 Oct
+and **proven on order #1002, where `email: null` on both the order and the
+customer** — Shopify had nothing to send a confirmation to. It is the one thing
+in that screenshot that is a genuine standing defect rather than today's
+breakage. Still in `docs/razorpay-cod-off-request.txt`, with `Theme Color` →
+`#1F4034`.
+
+**THE ONE LEVER HE ACTUALLY HAS.** The private app hooks the storefront with a
+**store-wide script tag**, so there is no theme toggle and no kill switch from
+this connector (`scriptTags` is denied). The store is public, so a real customer
+can hit the same hanging checkout. If the work runs long, **password-protect the
+storefront** (Online Store → Preferences) rather than leave a broken checkout
+live — one click, reversible.
+
+**DO NOT PUBLISH 189895540849 on his own initiative.** It is byte-identical to
+live, so it would change nothing today, and the 9 Oct lesson was that publishing
+a theme nobody asked him to publish costs a round. Wait for Razorpay to say they
+have finished, then retest **in a fresh incognito window** — the stale
+`checkouts/cn/` token and the cached script both survive a plain reload.
+
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 
 `AgriciDaniel/claude-seo` v2.4.2, MIT. **33 skills in `.claude/skills/`, 19
