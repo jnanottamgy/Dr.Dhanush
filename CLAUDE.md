@@ -2958,6 +2958,81 @@ a theme nobody asked him to publish costs a round. Wait for Razorpay to say they
 have finished, then retest **in a fresh incognito window** — the stale
 `checkouts/cn/` token and the cached script both survive a plain reload.
 
+### DELIVERY REPRICED — 30 Oct. ₹80 per kilo or part, flat across India.
+
+Jnanottam: *"per kilo 80 rs ... doesnt matter if its from 100 grams or 50
+grams, till 1 kilo its 80 rs. so for 1.4 kilo its 160. like that"*.
+Arithmetically **`ceil(weight_kg) × 80`**. **This supersedes the eight-number
+zone rate card and the 28 Sep "the rates stand as built" closure**, and with it
+every delivery figure previously proved against live carts — 920 g → ₹55,
+1,570 g → ₹85, ≤0.5 kg → ₹40. Those are history now, not current.
+
+**BUILT, PUSHED AND READ BACK.** 20 brackets × 4 zones × 2 profiles = **160
+rates**, every one verified from the Admin API rather than from `userErrors: []`:
+
+| | |
+|---|---|
+| `Malnad delivery` (97018216561) | **80 active**, 4 zones × 20, **63 variants** |
+| `General profile` (96993116273, default) | **80 active**, 4 zones × 20, 0 variants |
+| Every zone | 20 rate definitions, ₹80 → ₹1,600 in ₹80 steps, 0 participant rates |
+| Karnataka, read in full | `TOTAL_WEIGHT` GTE/LTE at 0–1, 1–2 … 19–20 kg, all `active: true` |
+
+**IT IS NOW ONE FLAT RATE FOR THE WHOLE OF INDIA.** The four zones survive and
+keep their correct province lists, but all four price identically — Horanadu to
+Bengaluru costs the same as Horanadu to Port Blair. **Flagged to him once:** if
+the courier charges more for the far zones he is absorbing the difference, and
+putting a per-zone multiplier back is one number in
+`scripts/build_shipping_rates.py` and a re-run. The zones were deliberately
+*not* collapsed into one, because rebuilding the province lists is the genuinely
+error-prone part — Shopify accepts a bad code, drops the province and reports
+nothing.
+
+**THE BRACKETS OVERLAP ON PURPOSE, and that is what makes "or part thereof"
+correct.** Shopify has GREATER_THAN_OR_EQUAL_TO and LESS_THAN_OR_EQUAL_TO and no
+strict greater-than, so (0,1) and (1,2) both match a parcel of exactly 1.000 kg.
+Shopify offers the cheaper, ₹80 — and ₹80 is right, because ceil(1.0) = 1. The
+same holds at every boundary. `--check` proves rule and table agree at every
+10 g step from 0.01 to 20 kg, and reproduces his own worked figures including
+1.4 kg → ₹160.
+
+**TWO PLATFORM FACTS LEARNED DOING IT, both measured:**
+
+1. **A GraphQL document may not exceed 16,384 characters.** Shopify's published
+   guidance is "no more than 5 zones per request" and says nothing about this.
+   Four zones at 20 brackets is 21,487 characters and is rejected outright:
+   *"GraphQL document is 21487 characters, over the 16384 limit."* **Two zones
+   per call** (~10.7k) goes through.
+2. **`methodDefinitionsToDelete` lives at the top of `DeliveryProfileInput`**,
+   not inside the zone, while new rates go in through
+   `locationGroupsToUpdate` → `zonesToUpdate` → `methodDefinitionsToCreate`
+   against the existing zone `id`.
+
+**ORDER OF OPERATIONS, AND IT MATTERS: CREATE THE NEW RATES, THEN DELETE THE
+OLD.** During the overlap both ladders match and Shopify offers the cheaper, so
+a customer mid-checkout sees the old lower price for a few seconds. Deleting
+first would have left the store with **no delivery option at all**, which is
+this project's worst failure mode — unbuyable, silent, no error.
+
+**ABOVE 20 kg THERE IS NO RATE AND THE CART CANNOT CHECK OUT.** That ceiling is
+inherited from the previous card, so nothing that was buyable yesterday has
+stopped being buyable; 20 kg of spices is a wholesale enquiry and wholesale is
+out of scope in the quotation. Raising it is one constant (`MAX_KG`) and a
+re-run — but every extra kilo is 4 more rates per profile.
+
+**`money-explained.html` quoted the old rate and is corrected.** Its worked
+order read *"₹1,055 — ₹1,000 of goods plus ₹55 delivery"*; ₹55 was the Karnataka
+0.5–1 kg band and no longer exists. Now **₹1,080 = ₹1,000 + ₹80**, re-rendered
+to `Malnad-Products-How-The-Money-Works.pdf`, 7 pages, fonts verified embedded.
+Checked the rest of the handover pack the same way: the owner's manual describes
+delivery behaviour without ever quoting a price, so it needed no change.
+
+**ONE THING TO WATCH ON THE FIRST ORDER AFTER THIS.** Razorpay synced the old
+profiles on their side and were mid-install on this same day. Magic reads the
+Shopify rates (proven on order #1002: 210 g → ₹40, the then-correct Karnataka
+band), but whether it re-reads them promptly is unknown. **On the next live
+order, check the shipping line against the ₹80 ladder** — a stale ₹40 would show
+up there first.
+
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 
 `AgriciDaniel/claude-seo` v2.4.2, MIT. **33 skills in `.claude/skills/`, 19
