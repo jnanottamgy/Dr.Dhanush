@@ -2900,6 +2900,12 @@ it — better said before the money than after.
 
 ### 30 Oct CHECKOUT SCARE — RAZORPAY WAS MID-SURGERY. Nothing lost, nothing paid.
 
+**"Nothing paid" means nothing paid THROUGH THE STOREFRONT.** A ₹160 UPI payment
+was captured on the Razorpay account at 12:49 the same day, fourteen minutes
+before the screenshot and unrelated to it — see
+*REAL MONEY HAS SETTLED* and *TODAY'S HANG* below, which were read from
+Razorpay's own records afterwards and settle this section from both sides.
+
 Jnanottam, 13:03 IST: *"we have an crisis / website payment part is not working
 ... its taking me to directly razorpay / and the loading page is taking forvere"*.
 Screenshot: a Razorpay panel over `malnadproducts.in/products/fennel-seed`,
@@ -3032,6 +3038,102 @@ Shopify rates (proven on order #1002: 210 g → ₹40, the then-correct Karnatak
 band), but whether it re-reads them promptly is unknown. **On the next live
 order, check the shipping line against the ₹80 ladder** — a stale ₹40 would show
 up there first.
+### REAL MONEY HAS SETTLED — ₹260 in the bank. Read from Razorpay 30 Oct.
+
+**THIS SUPERSEDES THE STANDING LINE "no real money has ever settled" WHEREVER IT
+APPEARS.** It was true until 23 Oct and is now false. It was the last open gate
+on the whole payment chain and it closed quietly, without either of us noticing.
+Corrected here and in `docs/google-steps.md` item 4.
+
+The Razorpay MCP connector came back long enough to read orders, payments and
+settlements before dropping again. **Live mode, so this is the real account.**
+
+| | Amount | |
+|---|---|---|
+| 23 Oct | ₹100 | captured, UPI `dheeraj035@axl` |
+| 27 Oct 12:31 | **₹150** | **FAILED** — insufficient funds, UPI `djainhrnd189@axl` |
+| 27 Oct 12:31 | ₹160 | captured, UPI `dheeraj035@axl` |
+| 30 Oct 12:49 | ₹160 | captured, UPI `dheeraj035@ybl` |
+
+**TWO SETTLEMENTS, both `processed`, with real Axis Bank UTRs:**
+
+| Settlement | Amount | Credited | UTR |
+|---|---|---|---|
+| `setl_Tsr7FJFejtDc39` | **₹100** | **27 Oct 13:18 IST** | `AXISCN1513590659` |
+| `setl_Tte6XB4fyVt3LV` | **₹160** | **29 Oct 13:14 IST** | `AXISCN1516531830` |
+
+So **₹260 has reached the bank** and the 30 Oct ₹160 should follow around 1 Nov
+on Razorpay's T+2.
+
+**BE PRECISE ABOUT WHAT THIS PROVES, because it is narrower than it looks.**
+Razorpay → bank is now **proven with real UTRs**. The full storefront chain —
+a customer's order on the website, paid, landing in Shopify, settling to the
+bank — is **still unproven**, because no Shopify order has ever been paid for
+(#1001 was test, #1002 was COD and voided). So `money-explained.html`'s ask
+stands as written: one real purchase *from the website*. What has changed is
+that the half everyone worries about, money actually leaving Razorpay and
+arriving in an Axis account, is no longer a question.
+
+**FEES ARE ₹0 — on every payment and on both settlements.** ₹100 captured
+settled as ₹100; `fee: 0`, `tax: 0` throughout. **That confirms the "Free* Days"
+banner is the 90-day 0% platform fee waiver**, which until now was a hypothesis
+written up on 9 Oct. Razorpay is currently taking nothing on this account. It
+does **not** waive Shopify's 2%, and it runs out — the banner read 68 days on
+9 Oct, so roughly late December.
+
+**OPEN, AND IT IS A GST QUESTION RATHER THAN A TECHNICAL ONE: none of those
+three payments produced a Shopify order.** Shopify still holds exactly two —
+#1001 (28 Sep, test) and #1002 (9 Oct, COD, voided). The 30 Oct payment carries
+**empty `notes` and no description**, where every website session carries
+`cart_id` and `storefront_id` in its notes. So they read as collections taken
+**outside** the storefront — a Razorpay QR code or a payment link, which is
+ordinary counter-sale behaviour for this business and not a defect.
+
+**If that is what they are, the consequence is the accountant's:** ₹420 collected
+with no Shopify order means no HSN line, no CGST/SGST split and no invoice.
+`scripts/gst_monthly_summary.py` joins a **Shopify order export** to the
+catalogue, so a payment that never became a Shopify order is invisible to it.
+**Not guessed at and not resolved** — the connector dropped before the order
+notes could be read. The screens that settle it are Razorpay's Payment Links and
+QR Codes pages.
+
+### TODAY'S HANG: RAZORPAY CREATED NOTHING. Settled from both sides, 30 Oct.
+
+**The 13:03 session does not exist on Razorpay either.** Newest Razorpay order is
+the ₹160 at **12:49**, fourteen minutes before the screenshot, and it is
+unrelated. Nothing at 13:03 — no order, no payment, no attempt. Shopify likewise
+has no abandoned checkout from today; newest is 9 Oct 06:31.
+
+**That is diagnostic, not merely absent.** A *misconfigured* Magic still creates
+a Razorpay order — the six ₹50 sessions on 8 Oct all did. A session that creates
+nothing on either system never got as far as asking Razorpay for a checkout.
+Combined with Razorpay's own theme created at **13:05, two minutes after the
+screenshot**, and untouched since `07:35:18Z`: their engineers were mid-install.
+**Not a configuration fault on our side, and not something to chase.**
+
+**THE ADDRESS AND SHIPPING WORRY IS ANSWERED FROM THE RECORD — nothing is
+switched off.** `order_TlifEkrHYPv7zb`, 9 Oct 12:29, ₹240, abandoned, carries
+**`shipping_fee: 4000` and `tax_details.total_tax: 1818`**. So Magic computes and
+carries delivery and tax once the address step completes. Every ₹50 session that
+shows no delivery line is frozen at the **Contact** step with `attempts: 0` and
+`shipping_fee: 0` — shipping was never *reached*, not misconfigured. The
+screenshot is that exact state. **Do not raise it as a settings defect.**
+
+**`notes.is_magic_x` IS THE DEFINITIVE MARKER on a Razorpay order**, better than
+any dashboard screen: `true` = Magic owned the checkout, `false` = Shopify
+checkout → Razorpay offsite (those also carry `type: "offsite"` and a `cancelUrl`
+containing `/checkouts/cn/`). Worth keeping — it answers in one read what cost
+eleven days of screenshots. Two 8 Oct orders read `true`, which means Magic
+**did** own the checkout that day, against what was concluded at the time.
+
+**Six ₹50 orders share one `cart_id: hWNHMHonwpJS5xapQPRxgUke`** — the same stale
+checkout token already recorded for 9 Oct. Another reason to retest only in a
+fresh incognito window.
+
+**ACTION: none, until Razorpay says they have finished.** Then retest in
+incognito. The store's two real open items are unchanged — Magic's `Email Field`
+→ Mandatory and `Theme Color` → `#1F4034`, both in
+`docs/razorpay-cod-off-request.txt`.
 
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 

@@ -231,6 +231,10 @@ Not part of this list, so it does not get lost:
    This store confirms and dispatches by email only.
 3. **Magic Checkout's colour is Razorpay blue**, should be `#1F4034`. It is the
    screen every customer pays on.
-4. **No real money has ever settled.** One ₹50–80 purchase with Dhanush's or
-   Dheeraj's own card, into their own bank, is the only thing that proves the
-   chain works end to end.
+4. **One real purchase from the website.** Money *has* now reached the bank —
+   ₹100 credited 27 October and ₹160 credited 29 October, both with real Axis
+   Bank reference numbers, and a further ₹160 taken on 30 October. So Razorpay
+   paying out is settled and no longer a worry. What is still untested is an
+   order placed **on the website** and paid for: the two orders Shopify holds
+   are one test and one cash-on-delivery that was cancelled. One ₹50–80 pack
+   bought from the shop itself is all that is left to prove.
