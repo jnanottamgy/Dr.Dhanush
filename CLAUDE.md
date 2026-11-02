@@ -3135,6 +3135,121 @@ incognito. The store's two real open items are unchanged — Magic's `Email Fiel
 → Mandatory and `Theme Color` → `#1F4034`, both in
 `docs/razorpay-cod-off-request.txt`.
 
+### MAGIC IS OFF — NORMAL CHECKOUT, 2 Nov. Theme built and verified.
+
+Jnanottam: *"fuck magic checkout / let do normal / give me steps / also tell me
+what the commsion will look like now / also all orders must be updated in
+shopify"*. **His call after five weeks and nine wrong calls on that integration.
+Do not re-litigate it.**
+
+**A STANDING NOTE IN THIS FILE WAS WRONG, and the correction is the whole
+solution.** It said the private app hooks the storefront with *"a store-wide
+script tag, not a theme app embed — so it cannot be disabled by editing a
+theme"*. **The theme file was read today and there IS a theme-side hook.**
+`snippets/razorpay-magic-checkout.liquid`, 497 bytes, rendered from the last line
+of `layout/theme.liquid`:
+
+    <div id="magic-checkout-data-container">
+      <script src="https://magic-plugins.razorpay.com/shopify/magic-shopify.js"
+              crossorigin="anonymous" defer></script>
+      <script id="RazorpayMagicCheckoutConfig" type="application/json">
+        {"oneClickCheckoutEnabled":"{{shop.metafields.magic_checkout.oneClickCheckoutEnabled}}",
+         "buyNowEnabled":"...","config":{{shop.metafields.magic_checkout.config}},
+         "email":"{{customer.email}}","phone":"{{customer.phone}}"}
+      </script></div>
+
+So the off switch is **removing one render line and publishing** — reversible in
+seconds, which uninstalling the app is not. That matters: the 9 Oct uninstall
+cycle took the payment gateway off and left the store unable to take money at all.
+
+**Whether it is the ONLY hook is NOT settled.** The app also holds
+`write_script_tags` and this connector is denied `read_script_tags`, so a
+store-wide script tag cannot be ruled out from here. **The incognito retest
+decides it** — if Magic still intercepts after publishing, a script tag exists
+too and the app must be uninstalled.
+
+**THEME BUILT AND VERIFIED: `NORMAL CHECKOUT — publish this (2 Nov)`,
+`gid://shopify/OnlineStoreTheme/189991026801`, UNPUBLISHED.** Duplicated from
+`SCHEMA — publish this one (16 Oct)`, so it carries the JSON-LD too — **one
+Publish closes both the checkout change and Schema 15/100**.
+
+| File | | |
+|---|---|---|
+| `layout/theme.liquid` | **7118 / `d4565d91067315b22cb72499e82d8fba`** | hook removed; = 7164 − 46 |
+| `snippets/structured-data.liquid` | 12131 / `c60a5c6883c4…` | intact |
+| `snippets/razorpay-magic-checkout.liquid` | 497 / `fbbfda93…` | **present, unrendered, inert** |
+| the six brand/compliance files | byte-identical to live | verified one by one |
+| `config/settings_data.json` | 7900 / `f3b7dce9…` | same as live |
+
+7164 − 46 = 7118 exactly, which is stock Horizon's ending plus our one
+`structured-data` line and nothing else. **Shopify name fields truncate at 50
+characters** — the first name was cut mid-word, so it was renamed through
+`themeUpdate`.
+
+**The snippet file is deliberately LEFT IN PLACE**, unrendered. `themeFilesDelete`
+is blocked from this connector anyway, and an unrendered snippet does nothing.
+
+**`themeFilesUpsert` by URL returned `[]`/`[]` again** — the documented ambiguous
+response. Settled by reading the checksum back, as the rule says. Do not trust
+that response, ever.
+
+#### THE COMMISSION ON NORMAL CHECKOUT
+
+| Fee | Rate | Now |
+|---|---|---|
+| **Shopify third-party gateway** (Basic, India) | **2%** | applies |
+| **Razorpay platform fee** | 2% + 18% GST = **2.36%** | **WAIVED** |
+| ~~Magic Checkout~~ | ~~0.5% + GST = 0.59%~~ | **gone — this is the saving** |
+
+**TODAY IT IS ABOUT 2%.** The Razorpay fee is waived and that is **measured, not
+assumed** — the 30 Oct read showed `fee: 0` and `tax: 0` on every payment and on
+both settlements; ₹100 captured settled as ₹100, ₹160 as ₹160.
+
+**AFTER THE WAIVER IT IS ABOUT 4.36%.** The banner read 78 Free* Days on 29 Sep,
+so it ends about **16 December 2026**, or at roughly ₹5 lakh cumulative GMV,
+whichever comes first. At ₹420 of sales to date the date arrives first.
+
+**WHAT HE GIVES UP, stated once with the number.** A *working* private app would
+avoid Shopify's 2% and land at ~2.95%, so normal costs **~1.41% more** — about
+**₹20,000/year** at the ₹14.35 lakh the quotation assumes. **But Magic as it
+actually behaves is 4.95% AND loses orders**, so normal is 0.59% cheaper than the
+status quo and reliable. The ₹20,000 is theoretical money on theoretical
+turnover; real turnover is ₹420. **He was shown this and chose normal.**
+
+The two fees are still deducted differently — Razorpay's out of each payment,
+Shopify's billed monthly — which `money-explained.html` already says.
+
+#### "ALL ORDERS MUST BE UPDATED IN SHOPIFY" — normal checkout solves this structurally
+
+**That is the strongest argument for the change, stronger than the fee.** With
+Shopify's own checkout, **Shopify creates the order itself**: the checkout object
+exists before payment and Shopify converts it on success. There is no third party
+pushing the order in over the Admin API afterwards — **and that push is exactly
+the step that was dropping**. Order #1001 proves the route end to end: three line
+items, correct variant titles, shipping line, phone captured.
+
+**Still not covered, and no software fixes it:**
+
+- **Counter, phone and QR sales** must be raised as **draft orders**. `draftOrders`
+  reads **0** today, so the step is not being used at all.
+- **The three past payments have no order** — ₹100 (23 Oct), ₹160 (27 Oct), ₹160
+  (30 Oct). Jnanottam confirmed 30 Oct that the ₹160 *"was done on the
+  malnadproducts.in site"*, which **supersedes the 30 Oct reading that they were
+  QR collections** — that inference leaned on the *payment's* empty `notes`, and
+  notes live on the **order** object, not the payment. Wrong call, corrected.
+  **`write_draft_orders` is in scope so these can be raised from here**, but only
+  once he supplies what was bought and the delivery address. Nothing is invented.
+
+**Reconciliation habit to hand over:** with normal checkout, Razorpay Transactions
+and Shopify Orders should match **one to one**. A payment with no order is then
+visible the same day instead of at the month's accounts.
+
+**STATE RE-READ 2 Nov, before any of this:** orders **still 2** (#1001 test,
+#1002 COD voided), **0 draft orders**, private app
+`TcBzhyvGVSK9Q0 - MagicCheckout` **still installed**, MAIN still
+`Magic Checkout - Malnad Spices — build` (189066182769), **7 themes** — four of
+them junk and listed for deletion.
+
 ### claude-seo INSTALLED — 16 Oct, markdown only, into the repo
 
 `AgriciDaniel/claude-seo` v2.4.2, MIT. **33 skills in `.claude/skills/`, 19
