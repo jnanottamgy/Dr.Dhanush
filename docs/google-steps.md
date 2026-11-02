@@ -1,8 +1,16 @@
 # Getting malnadproducts.in onto Google — your steps
 
-**16 October 2026.** Plain English. Everything here needs a browser login, so
-it is yours to do. Everything that could be done from the API is already done
-and is listed at the bottom so you know what not to repeat.
+**16 October 2026. Step 1 revised 2 November — read it again even if you read
+this before.** Plain English. Everything here needs a browser login, so it is
+yours to do. Everything that could be done from the API is already done and is
+listed at the bottom so you know what not to repeat.
+
+> **What changed on 2 November.** Step 1 used to tell you to publish a theme
+> called `SCHEMA — publish this one (16 Oct)`. **Do not publish that one any
+> more** — it still has Razorpay's Magic Checkout code in it, and publishing it
+> would switch Magic back on. The theme to publish is now
+> **`NORMAL CHECKOUT — publish this (2 Nov)`**, which has the same Google
+> information in it *and* the normal checkout. **One Publish does both jobs.**
 
 Nothing is blocking Google today. The store is public, the password page is off,
 the domain is live with SSL, and all 57 products are published. Google simply
@@ -18,7 +26,7 @@ Do these in order. Together they are about 35 minutes.
 
 Online Store → Themes. Publish the one called:
 
-> **SCHEMA — publish this one (16 Oct)**
+> **NORMAL CHECKOUT — publish this (2 Nov)**
 
 It is a copy of the theme you are running now, with one thing added: the
 hidden block of information that tells Google your prices, your pack sizes,
@@ -29,14 +37,16 @@ else.
 
 **Three things to know before you click:**
 
-- Razorpay's checkout code is in it. I copied *their* theme, not ours, so Magic
-  Checkout is untouched. I verified their file is present and unchanged.
-- **Do not publish** `ZZ scratch — do NOT publish (has test files)` or
-  `MAGIC TEST 9 Oct`. Those are mine, for testing, and both are junk.
+- **It also turns Magic Checkout off**, which is what you asked for on
+  2 November. Your products, photographs, prices and delivery charges are
+  untouched — every one of those files was checked against your live site before
+  the theme was built.
+- **Do not publish** `SCHEMA — publish this one (16 Oct)`,
+  `ZZ scratch — do NOT publish (has test files)`, `MAGIC TEST 9 Oct` or
+  `Magic Checkout - Magic Checkout - Malnad Spices...`. Two of those are mine
+  for testing and the other two would put Magic back.
 - **If anything looks wrong, publish `Magic Checkout - Malnad Spices — build`
-  again.** That is what you are on now and it comes back in seconds. Note this
-  has changed — the old rollback, `Malnad Spices — build`, does **not** have
-  Razorpay's code in it and would take the checkout down.
+  again.** That is what you are on now and it comes back in seconds.
 
 After publishing, **open the shop in a new incognito window** and put one item
 through to the checkout. Not a normal reload — a stale checkout link and the
@@ -146,14 +156,18 @@ to answer "did Google send us anybody this week".
 
 ### 7. Delete the leftover themes
 
-Online Store → Themes. There are six, which is four too many. Safe to delete:
+Online Store → Themes. There are **eight**, which is six too many. Safe to
+delete once step 1 has been running happily for a few days:
 
 - `MAGIC TEST 9 Oct — do not publish yet`
 - `ZZ scratch — do NOT publish (has test files)`
-- `Malnad Spices — build` — **only after** step 1 has been running happily for
-  a few days. It is the old rollback and has no Razorpay code in it.
+- `SCHEMA — publish this one (16 Oct)`
+- `Magic Checkout - Magic Checkout - Malnad Spices...`
+- `Malnad Spices — build`
 
-**Keep** `Horizon` (the untouched original) and whichever theme is live.
+**Keep** `Horizon` (the untouched original), whichever theme is live, and
+`Magic Checkout - Malnad Spices — build` as the one-step way back to Magic if
+you ever want it.
 
 ### 8. Delete the "Home page" collection
 
@@ -198,7 +212,7 @@ Finished from the API this week, all verified by reading the store back:
 | **SEO titles and descriptions** | All 57 products, 10 collections, both pages. Every one was empty before, so Google was reading bare product names |
 | **Alt text on all 70 pack photographs** | 64 were blank. This is how Google Images finds "marati moggu" and "sikakai" |
 | **Collection images** | All nine, with real alt text |
-| **Price, stock and business information for Google** | Written and staged — step 1 publishes it |
+| **Price, stock and business information for Google** | Written and staged — step 1 publishes it, in the same click that turns Magic off |
 | **The "Home page" collection** | Given a real title and description. Step 8 is the proper fix |
 | **Checked and found fine** | Password page off · domain and SSL correct · canonical tags on every page · all 57 products published to the storefront · no false "free shipping" or "free returns" text anywhere |
 
